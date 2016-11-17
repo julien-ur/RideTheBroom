@@ -32,12 +32,12 @@ public class CameraRotation : MonoBehaviour {
 		{
 			// cap rotation at 90° in each direction
 			// TODO: cap as variable?
-			if(transform.eulerAngles.z < 90 || transform.eulerAngles.z > 270)
+			if(transform.eulerAngles.z < 45 || transform.eulerAngles.z > 315)
 			{
 				transform.Rotate(rotateX, rotateY, rotateZ);
 			}
 		}
-		else // roll back to zero degrees
+		else if(transform.localEulerAngles.z != 0)	// roll back to zero degrees
 		{
 			float backRotationDegrees = backRotationRate * Time.deltaTime;
 

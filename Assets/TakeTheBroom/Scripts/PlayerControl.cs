@@ -15,6 +15,8 @@ public class PlayerControl : MonoBehaviour
 	public const float rotationFactorY = 12;
 	public const float rotationFactorZ = 1;
 
+	public const float backRotationRate = 90;	// degrees per second to roll back camera
+
 	private Transform transform;
 	private Transform cameraTransform;
 
@@ -45,12 +47,35 @@ public class PlayerControl : MonoBehaviour
 
 		float velocity = speed * Time.deltaTime;	// actual speed
 
+		Vector3 upVector = transform.up;
+		Vector3 rightVector = transform.right;
+
 		transform.Rotate(rotateX, rotateY, rotateZ);
-		//transform.RotateAround(transform.position, transform.right, rotateX);
-		//transform.RotateAround(transform.position, transform.up, rotateY);
+		//transform.RotateAround(transform.position, rightVector, rotateX);
+		//transform.RotateAround(transform.position, upVector, rotateY);
 
 		transform.Translate(Vector3.forward * velocity);
 
 		//if(!(cameraTransform.eulerAngles.z == 0 || cameraTransform.eulerAngles.z == 180)) Debug.Log(transform.eulerAngles.x);
+
+		// TEST
+		if(transform.eulerAngles.z != 0)	// roll back to zero degrees
+		{
+			float backRotationDegrees = backRotationRate * Time.deltaTime;
+
+			// if close to zero, set to zero
+			// transform.eulerAngles.z = 0 does not work because of quaternion magic
+			if(Mathf.Abs(backRotationDegrees) > Mathf.Abs(transform.eulerAngles.z))
+			{
+				transform.Rotate(0, 0, -transform.eulerAngles.z);
+			}
+			else // roll back at fixed rate
+			{
+				// find direction to avoid accidental 360° rolls (and vomit)
+				if(transform.eulerAngles.z < 180) backRotationDegrees *= -1;
+
+				transform.Rotate(0, 0, backRotationDegrees);
+			}
+		}
 	}
 }

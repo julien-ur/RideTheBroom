@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-	public const bool invertVertical 	= false;
-	public const bool invertHorizontal 	= false;
+	public bool invertVertical 	= false;
+	public bool invertHorizontal 	= false;
 	private int invertFactorVertical 	= -1;		// -1 = normal, 1 = inverted
 	private int invertFactorHorizontal 	= -1;	// -1 = normal, 1 = inverted
 
-	public float speed = 1;	// units per second
+	public float speedMin = 0.7f;
+	public float speedMax = 15;
+	public float speed = 3;	// units per second
+	public float speedChange = 1;
 
-	public const float rotationFactorX = 9;
-	public const float rotationFactorY = 12;
-	public const float rotationFactorZ = 1;
+	public float rotationFactorX = 9;
+	public float rotationFactorY = 12;
+	public float rotationFactorZ = 1;
 
-	public const float backRotationRate = 90;	// degrees per second to roll back camera
+	public float backRotationRate = 90;	// degrees per second to roll back camera
 
 	private Transform transform;
 	private Transform cameraTransform;
@@ -45,20 +48,27 @@ public class PlayerControl : MonoBehaviour
 		float rotateY = inputHorizontal * rotationFactorY * -1;
 		float rotateZ = 0;
 
-		float velocity = speed * Time.deltaTime;	// actual speed
+		float velocity;	// actual speed
 
-		Vector3 upVector = transform.up;
-		Vector3 rightVector = transform.right;
+		// Handle Speed Change
+		if(Input.GetAxis("SlowDown") > 0 && speed > speedMin)
+		{
+			speed -= speedChange * Time.deltaTime;
+			if(speed < speedMin) speed = speedMin;
+		}
+		else if(Input.GetAxis("Accelerate") > 0 && speed < speedMax)
+		{
+			speed += speedChange * Time.deltaTime;
+			if(speed > speedMax) speed = speedMax;
+		}
 
+		velocity = speed * Time.deltaTime;
+
+		// perform actual transformations
 		transform.Rotate(rotateX, rotateY, rotateZ);
-		//transform.RotateAround(transform.position, rightVector, rotateX);
-		//transform.RotateAround(transform.position, upVector, rotateY);
-
 		transform.Translate(Vector3.forward * velocity);
 
-		//if(!(cameraTransform.eulerAngles.z == 0 || cameraTransform.eulerAngles.z == 180)) Debug.Log(transform.eulerAngles.x);
-
-		// TEST
+		// make sure the head is straight up when it should be (same as in CameraRotation.cs)
 		if(transform.eulerAngles.z != 0)	// roll back to zero degrees
 		{
 			float backRotationDegrees = backRotationRate * Time.deltaTime;

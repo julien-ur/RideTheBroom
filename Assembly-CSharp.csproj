@@ -46,8 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CameraRotation.cs" />
-     <Compile Include="Assets\PlayerControl.cs" />
+     <Compile Include="Assets\TakeTheBroom\Scripts\CameraRotation.cs" />
+     <Compile Include="Assets\TakeTheBroom\Scripts\PS_Circle.cs" />
+     <Compile Include="Assets\TakeTheBroom\Scripts\PlayerControl.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />

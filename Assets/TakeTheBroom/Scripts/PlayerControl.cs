@@ -14,8 +14,8 @@ public class PlayerControl : MonoBehaviour
 	public float speed = 3;	// units per second
 	public float speedChange = 1;
 
-	public float rotationFactorX = 9;
-	public float rotationFactorY = 12;
+	public float rotationFactorX = 60;
+	public float rotationFactorY = 60;
 	public float rotationFactorZ = 1;
 
 	public float backRotationRate = 90;	// degrees per second to roll back camera
@@ -44,8 +44,8 @@ public class PlayerControl : MonoBehaviour
 		float inputHorizontal 	= invertFactorHorizontal 	* Input.GetAxis("Horizontal");
 		
 		// TODO: use quaternions to avoid gimbal lock
-		float rotateX = inputVertical 	* rotationFactorX;
-		float rotateY = inputHorizontal * rotationFactorY * -1;
+		float rotateX = inputVertical 	* rotationFactorX * Time.deltaTime;
+		float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
 		float rotateZ = 0;
 
 		float velocity;	// actual speed
@@ -65,7 +65,10 @@ public class PlayerControl : MonoBehaviour
 		velocity = speed * Time.deltaTime;
 
 		// perform actual transformations
-		transform.Rotate(rotateX, rotateY, rotateZ);
+		//transform.Rotate(rotateX, rotateY, rotateZ); //deprecated
+		// use axis-angle rotation because euler angles suck
+		transform.RotateAround(transform.position, transform.right, rotateX);
+		transform.RotateAround(transform.position, Vector3.up, rotateY);
 		transform.Translate(Vector3.forward * velocity);
 
 		// make sure the head is straight up when it should be (same as in CameraRotation.cs)
@@ -82,7 +85,10 @@ public class PlayerControl : MonoBehaviour
 			else // roll back at fixed rate
 			{
 				// find direction to avoid accidental 360° rolls (and vomit)
-				if(transform.eulerAngles.z < 180) backRotationDegrees *= -1;
+				if(transform.eulerAngles.z < 180)
+				{
+					backRotationDegrees *= -1;
+				}
 
 				transform.Rotate(0, 0, backRotationDegrees);
 			}

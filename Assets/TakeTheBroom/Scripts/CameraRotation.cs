@@ -8,9 +8,9 @@ public class CameraRotation : MonoBehaviour {
 
 	public const float rotationFactorX = 1;
 	public const float rotationFactorY = 1;
-	public const float rotationFactorZ = 6;
+	public const float rotationFactorZ = 60;
 
-	public const float backRotationRate = 90;	// degrees per second to roll back camera
+	public const float backRotationRate = 60;	// degrees per second to roll back camera
 
 	// Use this for initialization
 	void Start ()
@@ -25,10 +25,11 @@ public class CameraRotation : MonoBehaviour {
 
 		float rotateX = 0;
 		float rotateY = 0;
-		float rotateZ = inputHorizontal * rotationFactorZ;
+		float rotateZ = inputHorizontal * rotationFactorZ * Time.deltaTime;
 
+		
 		// if joystick is pressed, roll camera view
-		if(Mathf.Abs(inputHorizontal) > 0)
+		if(inputHorizontal != 0)
 		{
 			// cap rotation at 90° in each direction
 			// TODO: cap as variable?

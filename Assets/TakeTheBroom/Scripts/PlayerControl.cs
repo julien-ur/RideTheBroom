@@ -20,18 +20,24 @@ public class PlayerControl : MonoBehaviour
 
 	public float backRotationRate = 90;	// degrees per second to roll back camera
 
+	[HideInInspector]
+	public Vector3 momentum;
+
 	private Transform transform;
+	private Rigidbody rigidbody;
 	private Transform cameraTransform;
 
 	void Awake()
 	{
 		transform 		= GetComponent<Transform>();
+		rigidbody 		= GetComponent<Rigidbody>();
 		cameraTransform = transform.GetChild(0).GetComponent<Transform>();
 	}
 
 	// Use this for initialization
 	void Start ()
 	{
+		//momentum = Vector3.up; // temp
 		invertFactorVertical 	= (invertVertical 	? 1 : -1);
 		invertFactorHorizontal 	= (invertHorizontal ? 1 : -1);
 	}
@@ -69,7 +75,11 @@ public class PlayerControl : MonoBehaviour
 		// use axis-angle rotation because euler angles suck
 		transform.RotateAround(transform.position, transform.right, rotateX);
 		transform.RotateAround(transform.position, Vector3.up, rotateY);
-		transform.Translate(Vector3.forward * velocity);
+		//transform.Translate((Vector3.forward + transform.TransformDirection(momentum)) * velocity);
+		transform.Translate((Vector3.forward * velocity) + (transform.InverseTransformDirection(momentum) * Time.deltaTime));
+		Debug.Log(momentum);
+		momentum -= momentum * 0.5f * Time.deltaTime;
+		//rigidbody.AddForce(Vector3.forward * velocity);
 
 		// make sure the head is straight up when it should be (same as in CameraRotation.cs)
 		if(transform.eulerAngles.z != 0)	// roll back to zero degrees

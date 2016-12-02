@@ -77,7 +77,7 @@ public class PlayerControl : MonoBehaviour
 		transform.RotateAround(transform.position, Vector3.up, rotateY);
 		//transform.Translate((Vector3.forward + transform.TransformDirection(momentum)) * velocity);
 		transform.Translate((Vector3.forward * velocity) + (transform.InverseTransformDirection(momentum) * Time.deltaTime));
-		Debug.Log(momentum);
+		//Debug.Log(momentum);
 		momentum -= momentum * 0.5f * Time.deltaTime;
 		//rigidbody.AddForce(Vector3.forward * velocity);
 

@@ -6,8 +6,14 @@ public class MagicalRing : MonoBehaviour {
 
     public bool activated = false;
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider col)
     {
-        activated = true;
+    	Debug.Log("Enter");
+    	PlayerControl player;
+		if(player = col.GetComponent<PlayerControl>())
+		{
+			Debug.Log("Player");
+        	activated = true;
+        }
     }
 }

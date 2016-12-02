@@ -12,11 +12,11 @@ public class GameController : MonoBehaviour {
     public int rings;
     public int ringCount = 0;
 
-    void Start () {
+    void Awake () {
         ringList = route.GetComponentsInChildren<Transform>();
         rings = ringList.Length-1;
         nextRing = ringList[ringCount+1].GetComponent<MagicalRing>();
-        pointDisplay.text = ringCount + "/" + rings;
+        //pointDisplay.text = ringCount + "/" + rings;
     }
 
     void Update ()
@@ -33,12 +33,12 @@ public class GameController : MonoBehaviour {
 
         if (ringCount >= rings)
         {
-            pointDisplay.text = "I'm done..";
+            //pointDisplay.text = "I'm done..";
         }
         else
         {
             nextRing = ringList[ringCount+1].GetComponent<MagicalRing>();
-            pointDisplay.text = ringCount + "/" + rings;
+            //pointDisplay.text = ringCount + "/" + rings;
         }
     }
 }

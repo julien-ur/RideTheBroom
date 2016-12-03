@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4051775971988726}
   - component: {fileID: 33029184759838714}
   - component: {fileID: 23369126742507806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818613098868028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1

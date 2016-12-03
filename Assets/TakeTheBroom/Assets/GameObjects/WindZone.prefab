@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4232830780908318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Marker
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4757611291871232}
   - component: {fileID: 33612049163885550}
   - component: {fileID: 23425114074282224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4616146720602986}
   - component: {fileID: 23408005025015312}
   - component: {fileID: 102886561302272486}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DirectionMarker01
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4729795290118742}
   - component: {fileID: 23237085320946086}
   - component: {fileID: 102822512886606658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DirectionMarker02
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4831746497662676}
   - component: {fileID: 23907184207945174}
   - component: {fileID: 102562254514883808}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DirectionMarker03
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 4211121437139716}
   - component: {fileID: 23768464139724320}
   - component: {fileID: 102380537939477440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DirectionMarker04
   m_TagString: EditorOnly
   m_Icon: {fileID: 0}
@@ -195,15 +195,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1982143802013142}
-  m_LocalRotation: {x: 0.43739906, y: -0.46063375, z: -0.55242884, w: 0.53974164}
-  m_LocalPosition: {x: 382.9, y: 2.49, z: 210.7}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.124929, y: 2.1249297, z: 2.124929}
   m_Children:
   - {fileID: 4232830780908318}
   - {fileID: 4161750605475412}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -2.107, y: -78.865005, z: -89.59801}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4616146720602986
 Transform:
   m_ObjectHideFlags: 1
@@ -262,7 +262,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1335720309956684}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -293,7 +293,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1180028623002518}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -324,7 +324,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1101657111979472}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -355,7 +355,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1845279622723574}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -386,7 +386,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1759934475987150}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1

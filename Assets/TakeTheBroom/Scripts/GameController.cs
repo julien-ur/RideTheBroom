@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour {
 
     void Update ()
     {
-        if(nextRing.activated)
+        if(nextRing && nextRing.activated)
         {
             next();
         }

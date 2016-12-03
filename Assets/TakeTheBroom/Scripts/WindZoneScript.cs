@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +31,7 @@ public class WindZoneScript : MonoBehaviour
 		PlayerControl player;
 		if(player = col.GetComponent<PlayerControl>())
 		{
-			Debug.Log("Wind");
+			//Debug.Log("Wind");
 			player.momentum += transform.TransformDirection(direction) * strength * Time.deltaTime;
 			//Debug.Log(direction + " - " + transform.TransformDirection(direction));
 			//col.attachedRigidbody.AddForce(direction * strength * Time.deltaTime);

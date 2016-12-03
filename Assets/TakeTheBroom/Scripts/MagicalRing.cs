@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +8,11 @@ public class MagicalRing : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-    	Debug.Log("Enter");
+    	//Debug.Log("Enter");
     	PlayerControl player;
 		if(player = col.GetComponent<PlayerControl>())
 		{
-			Debug.Log("Player");
+			//Debug.Log("Player");
         	activated = true;
         }
     }

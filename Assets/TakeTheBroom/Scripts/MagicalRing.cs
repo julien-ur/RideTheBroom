@@ -10,7 +10,7 @@ public class MagicalRing : MonoBehaviour {
 
     void OnTriggerExit(Collider col)
     {
-		if(col.name == "WitchBroom_01" && !activated && !finishTrigger)
+		if(col.name == "Broom" && !activated && !finishTrigger)
 		{
         	activated = true;
             gc.addPoint();
@@ -19,7 +19,7 @@ public class MagicalRing : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        if (col.name == "WitchBroom_01" && finishTrigger)
+        if (col.name == "Broom" && finishTrigger)
         {
             activated = true;
             gc.finishedRoute();

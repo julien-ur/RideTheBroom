@@ -6,39 +6,30 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour {
 
     public GameObject route;
-    public Transform[] ringList;
-    public MagicalRing nextRing;
     public Text pointDisplay;
-    public int rings;
-    public int ringCount = 0;
+    public int totalRings;
+    public int actualRings = 0;
 
     void Awake () {
-        ringList = route.GetComponentsInChildren<Transform>();
-        rings = ringList.Length-1;
-        nextRing = ringList[ringCount+1].GetComponent<MagicalRing>();
-        //pointDisplay.text = ringCount + "/" + rings;
+        Transform[] ringList = route.GetComponentsInChildren<Transform>();
+        totalRings = ringList.Length-2; // ignore parent and finish trigger
     }
 
-    void Update ()
+    public void addPoint()
     {
-        if(nextRing && nextRing.activated)
+        actualRings++;
+        if(actualRings >= totalRings)
         {
-            next();
-        }
-    }
-	
-	public void next ()
-    {
-        ringCount++;
-
-        if (ringCount >= rings)
-        {
-            //pointDisplay.text = "I'm done..";
+            Debug.Log("Route finished!");
         }
         else
         {
-            nextRing = ringList[ringCount+1].GetComponent<MagicalRing>();
-            //pointDisplay.text = ringCount + "/" + rings;
+            Debug.Log(actualRings + " from " + totalRings);
         }
+    }
+
+    public void finishedRoute()
+    {
+        Debug.Log("You only got " + actualRings + " out of " + totalRings);
     }
 }

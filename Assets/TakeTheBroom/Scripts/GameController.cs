@@ -11,8 +11,13 @@ public class GameController : MonoBehaviour {
     public int actualRings = 0;
 
     void Awake () {
-        Transform[] ringList = route.GetComponentsInChildren<Transform>();
-        totalRings = ringList.Length-2; // ignore parent and finish trigger
+        //Transform[] ringList = route.GetComponentsInChildren<Transform>();
+        //foreach (Transform ring in ringList)
+        //{
+        //    if (ring.name.Contains("MagicalRing")) totalRings++;
+        //}
+
+        pointDisplay.text = actualRings + "/" + totalRings;
     }
 
     public void addPoint()
@@ -21,15 +26,18 @@ public class GameController : MonoBehaviour {
         if(actualRings >= totalRings)
         {
             Debug.Log("Route finished!");
+            pointDisplay.text = "Route finished. All Rings collected!";
         }
         else
         {
             Debug.Log(actualRings + " from " + totalRings);
+            pointDisplay.text = actualRings + "/" + totalRings;
         }
     }
 
     public void finishedRoute()
     {
         Debug.Log("You only got " + actualRings + " out of " + totalRings);
+        pointDisplay.text = "Route finished with " + actualRings + "/" + totalRings;
     }
 }

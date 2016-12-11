@@ -20,6 +20,12 @@ public class PlayerControl : MonoBehaviour
 
 	public float backRotationRate = 90;	// degrees per second to roll back camera
 
+	public bool enableBalanceBoardControl = false;	// use the balance board?
+	
+	// multiplier for each balance board axis to adjust rotation speed
+	public float balanceBoardFactorX = 1.5f;
+	public float balanceBoardFactorY = 1.0f;
+
 	[HideInInspector]
 	public Vector3 momentum;
 
@@ -45,9 +51,23 @@ public class PlayerControl : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		// between 0 and 1
-		float inputVertical 	= invertFactorVertical 		* Input.GetAxis("Vertical");
-		float inputHorizontal 	= invertFactorHorizontal 	* Input.GetAxis("Horizontal");
+		float inputVertical = 0;
+		float inputHorizontal = 0;
+		BalanceBoardInput balanceBoard = GetComponent<BalanceBoardInput>();
+
+		if(enableBalanceBoardControl && balanceBoard != null)
+		{
+			// use the balance board if it's enabled AND available
+			inputHorizontal = balanceBoard.x * balanceBoardFactorX;
+			inputVertical 	= balanceBoard.y * balanceBoardFactorY;
+		}
+		else
+		{
+			// instead use a gamepad
+			inputVertical 		= invertFactorVertical 		* Input.GetAxis("Vertical");
+			inputHorizontal 	= invertFactorHorizontal 	* Input.GetAxis("Horizontal");
+		}
+		
 		
 		// TODO: use quaternions to avoid gimbal lock
 		float rotateX = inputVertical 	* rotationFactorX * Time.deltaTime;

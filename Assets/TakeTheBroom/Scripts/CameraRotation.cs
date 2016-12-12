@@ -12,16 +12,31 @@ public class CameraRotation : MonoBehaviour {
 
 	public const float backRotationRate = 60;	// degrees per second to roll back camera
 
+	public const float balanceBoardFactorX = 1.0f;
+
+	private PlayerControl player;
+
 	// Use this for initialization
 	void Start ()
 	{
-		transform = GetComponent<Transform>();		
+		transform = GetComponent<Transform>();	
+		player = transform.parent.GetComponent<PlayerControl>();	// PlayerControl script of player GameObject
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		float inputHorizontal = -1 * Input.GetAxis("Horizontal");
+		float inputHorizontal;
+		if(player.enableBalanceBoardControl && player.balanceBoard != null)
+		{
+			// use the balance board if it's enabled AND available
+			inputHorizontal = player.balanceBoard.x * balanceBoardFactorX;
+		}
+		else
+		{
+			// else use normal input
+			inputHorizontal = -1 * Input.GetAxis("Horizontal");
+		}
 
 		float rotateX = 0;
 		float rotateY = 0;

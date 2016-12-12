@@ -20,6 +20,7 @@ public class PlayerControl : MonoBehaviour
 
 	public float backRotationRate = 90;	// degrees per second to roll back camera
 
+	public BalanceBoardInput balanceBoard;
 	public bool enableBalanceBoardControl = false;	// use the balance board?
 	
 	// multiplier for each balance board axis to adjust rotation speed
@@ -38,6 +39,7 @@ public class PlayerControl : MonoBehaviour
 		transform 		= GetComponent<Transform>();
 		rigidbody 		= GetComponent<Rigidbody>();
 		cameraTransform = transform.GetChild(0).GetComponent<Transform>();
+		balanceBoard = GetComponent<BalanceBoardInput>();
 	}
 
 	// Use this for initialization
@@ -53,7 +55,6 @@ public class PlayerControl : MonoBehaviour
 	{
 		float inputVertical = 0;
 		float inputHorizontal = 0;
-		BalanceBoardInput balanceBoard = GetComponent<BalanceBoardInput>();
 
 		if(enableBalanceBoardControl && balanceBoard != null)
 		{
@@ -63,6 +64,7 @@ public class PlayerControl : MonoBehaviour
 		}
 		else
 		{
+			enableBalanceBoardControl = false;
 			// instead use a gamepad
 			inputVertical 		= invertFactorVertical 		* Input.GetAxis("Vertical");
 			inputHorizontal 	= invertFactorHorizontal 	* Input.GetAxis("Horizontal");

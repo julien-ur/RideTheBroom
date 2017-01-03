@@ -1029,7 +1029,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5fe18f281c2fa548b3124b44d5882d4, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c5fe18f281c2fa548b3124b44d5882d4, type: 2}
       propertyPath: m_LocalScale.x
@@ -1573,17 +1573,17 @@ Prefab:
     - target: {fileID: 198210339390088470, guid: fc6448bf8dedd5f499e7a9f9b870819c,
         type: 2}
       propertyPath: randomSeed
-      value: -976030932
+      value: -1223340140
       objectReference: {fileID: 0}
     - target: {fileID: 198774440543794504, guid: fc6448bf8dedd5f499e7a9f9b870819c,
         type: 2}
       propertyPath: randomSeed
-      value: 525750970
+      value: -1629370725
       objectReference: {fileID: 0}
     - target: {fileID: 198589278123877972, guid: fc6448bf8dedd5f499e7a9f9b870819c,
         type: 2}
       propertyPath: randomSeed
-      value: -632212278
+      value: -33016902
       objectReference: {fileID: 0}
     - target: {fileID: 4292626054745930, guid: fc6448bf8dedd5f499e7a9f9b870819c, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2164,8 +2164,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 851974844}
+  - {fileID: 1864921037}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2480,7 +2481,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 851974843}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -2694,7 +2695,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a10d1f3307879f24fa4403887422c73f, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a10d1f3307879f24fa4403887422c73f, type: 2}
       propertyPath: m_LocalScale.x
@@ -2896,7 +2897,7 @@ Terrain:
   m_DrawHeightmap: 1
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialType: 0
+  m_MaterialType: 1
   m_LegacySpecular:
     serializedVersion: 2
     rgba: 4286545791
@@ -5036,6 +5037,16 @@ Prefab:
       propertyPath: enableBalanceBoardControl
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: balanceBoardFactorX
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: balanceBoardFactorY
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
   m_IsPrefabParent: 0
@@ -5802,12 +5813,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1864921034}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -332.5, y: -328, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 731141451}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1866989551
 Prefab:
@@ -6344,7 +6355,7 @@ Terrain:
   m_DrawHeightmap: 1
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialType: 0
+  m_MaterialType: 1
   m_LegacySpecular:
     serializedVersion: 2
     rgba: 4286545791
@@ -6968,7 +6979,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a10d1f3307879f24fa4403887422c73f, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a10d1f3307879f24fa4403887422c73f, type: 2}
       propertyPath: m_Name

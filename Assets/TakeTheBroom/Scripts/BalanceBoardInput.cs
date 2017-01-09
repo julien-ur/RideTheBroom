@@ -46,8 +46,11 @@ public class BalanceBoardInput : MonoBehaviour
 			// the string is now parsed into a float[4] array
 
 			// now combine the two directions into one axis and divide it by the total weight to get values between -1 and 1
+			// and square them for reasons
 			x = (balanceBoardData[2] - balanceBoardData[3]) / weightSum;
 			y = (balanceBoardData[0] - balanceBoardData[1]) / weightSum;
+			x *= Mathf.Abs(x);
+			y *= Mathf.Abs(y);
 
 			//Debug.Log(x);
 		}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UniversalTrigger : MonoBehaviour {
+public class BoulderTrigger : MonoBehaviour {
 
     public GameObject boulders;
     private Rigidbody[] rbList;
@@ -16,6 +16,9 @@ public class UniversalTrigger : MonoBehaviour {
     }
 
     void OnTriggerEnter () {
+        Time.timeScale = 0.2F;
+        Time.fixedDeltaTime = 0.02F * Time.timeScale;
+
         foreach (Rigidbody rb in rbList)
         {
             rb.isKinematic = false;

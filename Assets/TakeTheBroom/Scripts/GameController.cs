@@ -1,43 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    public GameObject route;
-    public Text pointDisplay;
-    public int totalRings;
-    public int actualRings = 0;
+    public PlayerControl player;
+    public Score score;
+    public HUD hud;
 
-    void Awake () {
-        //Transform[] ringList = route.GetComponentsInChildren<Transform>();
-        //foreach (Transform ring in ringList)
-        //{
-        //    if (ring.name.Contains("MagicalRing")) totalRings++;
-        //}
-
-        pointDisplay.text = actualRings + "/" + totalRings;
+    public void freezePlayer()
+    {
+        player.speed = 0;
     }
 
-    public void addPoint()
+    internal void ringActivated()
     {
-        actualRings++;
-        if(actualRings >= totalRings)
-        {
-            Debug.Log("Route finished!");
-            pointDisplay.text = "Route finished. All Rings collected!";
-        }
-        else
-        {
-            Debug.Log(actualRings + " from " + totalRings);
-            pointDisplay.text = actualRings + "/" + totalRings;
-        }
-    }
-
-    public void finishedRoute()
-    {
-        Debug.Log("You only got " + actualRings + " out of " + totalRings);
-        pointDisplay.text = "Route finished with " + actualRings + "/" + totalRings;
+        score.addRing();
+        hud.show("" + score.getActivatedRings());
     }
 }

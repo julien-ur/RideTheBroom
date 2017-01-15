@@ -13,16 +13,16 @@ public class HUD : MonoBehaviour {
         gui.enabled = false;
     }
 
-    public void show(string text)
+    public void show(string text, float duration)
     {
-        StartCoroutine(showText(text));
+        StartCoroutine(showText(text, duration));
     }
 
-    IEnumerator showText(string text)
+    IEnumerator showText(string text, float duration)
     {
         gui.text = text;
         gui.enabled = true;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(duration);
         gui.enabled = false;
     }
 }

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23309312537397460}
   - component: {fileID: 64202321508848672}
   - component: {fileID: 114423789469969988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MagicalRing01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,8 +100,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1187091028123330}
-  m_LocalRotation: {x: 0.700764, y: 0.09449794, z: -0.09449794, w: 0.700764}
-  m_LocalPosition: {x: 330.97, y: 6.79, z: 80.46}
+  m_LocalRotation: {x: -0.23056304, y: -0.67753744, z: -0.66118085, w: 0.22499701}
+  m_LocalPosition: {x: 368.11, y: 5.2, z: 124.79}
   m_LocalScale: {x: 5.29, y: 0.08, z: 5.34}
   m_Children:
   - {fileID: 4172226706934572}
@@ -109,7 +109,7 @@ Transform:
   - {fileID: 4584871015318446}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 15.360001, z: 0}
+  m_LocalEulerAnglesHint: {x: 268.6, y: -0.000015258789, z: 217.586}
 --- !u!4 &4496197014792158
 Transform:
   m_ObjectHideFlags: 1
@@ -255,7 +255,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 257244563
+  randomSeed: -204612677
   InitialModule:
     serializedVersion: 3
     enabled: 1

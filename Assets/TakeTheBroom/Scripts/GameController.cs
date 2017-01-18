@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
@@ -14,9 +11,14 @@ public class GameController : MonoBehaviour {
         player.speed = 0;
     }
 
-    public void startBroom()
+    public void startBroom(float speed)
     {
-        player.speed = 5;
+        player.speed = speed;
+    }
+
+    public void slowDownBroom()
+    {
+        player.speed = 3;
     }
 
     public void ringActivated()
@@ -24,5 +26,4 @@ public class GameController : MonoBehaviour {
         score.addRing();
         hud.show("" + score.getActivatedRings(), 3);
     }
-
 }

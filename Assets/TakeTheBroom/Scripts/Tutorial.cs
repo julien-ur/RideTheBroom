@@ -1,12 +1,11 @@
 ﻿
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tutorial : MonoBehaviour {
 
     public HUD hud;
-    public GameObject[] waypoints;
+    public Wisp wisp;
 
     private GameController gc;
     private Fading fade;
@@ -19,29 +18,41 @@ public class Tutorial : MonoBehaviour {
         gc.freezeBroom();
         float fadingTimeInSec = fade.fadeIn();
 
+
         StartCoroutine(startTutorial(fadingTimeInSec));
 	}
 
-    void Update()
+    internal void trigger(int id)
     {
-        //if ((gc.getPlayerPos() - activeWaypoint.transform.position).magnitude < distance)
-        //{
-
-        //}
+        StartCoroutine(startWaypointRoutine(id));
     }
 
     IEnumerator startTutorial(float waitingTime)
     {
         yield return new WaitForSeconds(waitingTime);
-        hud.show("Hallo ich bin der And! Ich nehme dich jetzt mit auf ein wildes Abenteuer!", 4);
-        yield return new WaitForSeconds(4);
-        hud.show("Lass uns vorher noch schnell deinen Besen checken!", 4);
-        yield return new WaitForSeconds(4);
-        hud.show("Lehne dich jetzt bitte mal nach rechts..", 4);
-        yield return new WaitForSeconds(4);
-        hud.show("Ok lass uns losfliegen! Huiiiiii!", 4);
-        yield return new WaitForSeconds(4);
-        gc.startBroom();
-        //activeWaypoint = 
+        hud.show("Hallo ich bin der And! Ich nehme dich jetzt mit auf ein wildes Abenteuer!", 3);
+        yield return new WaitForSeconds(3);
+        hud.show("Lass uns vorher noch schnell deinen Besen checken!", 3);
+        yield return new WaitForSeconds(3);
+        hud.show("Lehne dich jetzt bitte mal nach rechts..", 3);
+        yield return new WaitForSeconds(3);
+        hud.show("Ok lass uns losfliegen! Huiiiiii!", 3);
+        yield return new WaitForSeconds(3);
+        gc.startBroom(5);
+        wisp.setTarget(0);
+    }
+
+    IEnumerator startWaypointRoutine(int id)
+    {
+        switch (id)
+        {
+            case 0:
+                gc.slowDownBroom();
+                hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
+                yield return new WaitForSeconds(4);
+                wisp.setTarget(1);
+                gc.startBroom(8);
+                break;
+        }
     }
 }

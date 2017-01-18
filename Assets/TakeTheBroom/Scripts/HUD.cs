@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +6,7 @@ public class HUD : MonoBehaviour {
 
     private Text gui;
 
-    void Awake()
+    void Start()
     {
         gui = GetComponentInChildren<Text>();
         gui.enabled = false;

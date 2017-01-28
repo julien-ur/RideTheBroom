@@ -1,35 +1,56 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class Wisp : MonoBehaviour {
 
-    public Transform[] waypoints;
+    public Transform player;
+    public GameObject path;
+    public float maxSpeed = 10;
+    public float slowDownFactor = 0.1f;
 
-    private NavMeshAgent agent;
-    private Transform[] targets;
-    private int actID;
+    private Rigidbody rb;
+    private float speed;
+    private int actWaypoint = 0;
+    private Transform[] waypoints;
+    private Transform target;
+    private double targetReachedDistance = 0.5;
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
+        List<Transform> transforms = new List<Transform>(path.GetComponentsInChildren<Transform>());
+        transforms.Remove(transform);
+        waypoints = transforms.ToArray();
+
+        rb = GetComponent<Rigidbody>();
+        speed = maxSpeed;
+
+        nextTarget();
     }
 
-    public void setTarget(int id)
+    public void nextTarget()
     {
-        actID = id;
-        if (id >= waypoints.Length) return;
-        agent.SetDestination(waypoints[id].position);
-        
+        actWaypoint++;
+        target = waypoints[actWaypoint];
     }
 
     void Update()
     {
-        Debug.Log(agent.remainingDistance + " " + actID);
-       if(agent.remainingDistance < 10 && actID >= 1) 
-       {
-            actID++;
-            agent.speed = 20;
-            setTarget(actID);
-       }
+        
+        var targetDistance = (target.position - transform.position).magnitude;
+        if (targetDistance < targetReachedDistance) nextTarget();
+
+        var distanceToPlayer = (player.position - transform.position).magnitude;
+        if (distanceToPlayer > 10)
+        {
+            speed = Mathf.Max(0, speed - slowDownFactor);
+        }
+        else
+        {
+            speed = Mathf.Min(maxSpeed, speed + slowDownFactor/2);
+        }
+
+        Vector3 dir = (target.position - transform.position).normalized;
+        rb.MovePosition(transform.position + dir * speed * Time.deltaTime);
     }
 }

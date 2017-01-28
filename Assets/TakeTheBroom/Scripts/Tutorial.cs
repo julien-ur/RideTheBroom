@@ -31,15 +31,18 @@ public class Tutorial : MonoBehaviour {
     {
         yield return new WaitForSeconds(waitingTime);
         hud.show("Hallo ich bin der And! Ich nehme dich jetzt mit auf ein wildes Abenteuer!", 3);
+        gc.freezeBroom();
         yield return new WaitForSeconds(3);
         hud.show("Lass uns vorher noch schnell deinen Besen checken!", 3);
+        gc.freezeBroom();
         yield return new WaitForSeconds(3);
         hud.show("Lehne dich jetzt bitte mal nach rechts..", 3);
+        gc.freezeBroom();
         yield return new WaitForSeconds(3);
         hud.show("Ok lass uns losfliegen! Huiiiiii!", 3);
+        gc.freezeBroom();
         yield return new WaitForSeconds(3);
         gc.startBroom(5);
-        wisp.setTarget(0);
     }
 
     IEnumerator startWaypointRoutine(int id)
@@ -50,7 +53,6 @@ public class Tutorial : MonoBehaviour {
                 gc.slowDownBroom();
                 hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
                 yield return new WaitForSeconds(4);
-                wisp.setTarget(1);
                 gc.startBroom(8);
                 break;
         }

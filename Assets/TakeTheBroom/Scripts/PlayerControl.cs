@@ -79,16 +79,16 @@ public class PlayerControl : MonoBehaviour
 			float velocity;	// actual speed
 
 			// Handle Speed Change
-			if(Input.GetAxis("SlowDown") > 0 && speed > speedMin)
-			{
-				speed -= speedChange * Time.deltaTime;
-				if(speed < speedMin) speed = speedMin;
-			}
-			else if(Input.GetAxis("Accelerate") > 0 && speed < speedMax)
-			{
-				speed += speedChange * Time.deltaTime;
-				if(speed > speedMax) speed = speedMax;
-			}
+			//if(Input.GetAxis("SlowDown") > 0 && speed > speedMin)
+			//{
+			//	speed -= speedChange * Time.deltaTime;
+			//	if(speed < speedMin) speed = speedMin;
+			//}
+			//else if(Input.GetAxis("Accelerate") > 0 && speed < speedMax)
+			//{
+			//	speed += speedChange * Time.deltaTime;
+			//	if(speed > speedMax) speed = speedMax;
+			//}
 
 			velocity = speed * Time.deltaTime;
 

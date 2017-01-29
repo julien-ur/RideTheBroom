@@ -19,8 +19,8 @@ public class HUD : MonoBehaviour {
 
     IEnumerator showText(string text, float duration)
     {
-        gui.text = text;
         gui.enabled = true;
+        gui.text = text;
         yield return new WaitForSeconds(duration);
         gui.enabled = false;
     }

@@ -10,6 +10,7 @@ public class Wisp : MonoBehaviour {
     public float slowDownFactor = 0.1f;
 
     private Rigidbody rb;
+    private bool freezed = false;
     private float speed;
     private int actWaypoint = 0;
     private Transform[] waypoints;
@@ -34,12 +35,20 @@ public class Wisp : MonoBehaviour {
         target = waypoints[actWaypoint];
     }
 
+    public void freeze(bool b)
+    {
+        freezed = b;
+    }
+
     void Update()
     {
-        
+        if (freezed) return;
+
+        // check target distance
         var targetDistance = (target.position - transform.position).magnitude;
         if (targetDistance < targetReachedDistance) nextTarget();
 
+        // wait for player
         var distanceToPlayer = (player.position - transform.position).magnitude;
         if (distanceToPlayer > 10)
         {
@@ -49,7 +58,8 @@ public class Wisp : MonoBehaviour {
         {
             speed = Mathf.Min(maxSpeed, speed + slowDownFactor/2);
         }
-
+        
+        // move in target direction
         Vector3 dir = (target.position - transform.position).normalized;
         rb.MovePosition(transform.position + dir * speed * Time.deltaTime);
     }

@@ -5,6 +5,7 @@ public class TutorialTrigger : MonoBehaviour {
     public int id;
 
     private Tutorial tutorial;
+    private bool activated = false;
 
     private void Start()
     {
@@ -13,9 +14,10 @@ public class TutorialTrigger : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(!activated && other.gameObject.tag == "Player")
         {
-            tutorial.trigger(id);
+            tutorial.trigger();
+            activated = true;
         }
     }
 }

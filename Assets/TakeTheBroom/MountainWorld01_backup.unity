@@ -1411,6 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hud: {fileID: 731141452}
   wisp: {fileID: 1697939994}
+  player: {fileID: 887165536}
 --- !u!114 &600333504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,7 +2262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Test
 --- !u!222 &851974846
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5916,7 +5917,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1341196906
+  randomSeed: -544852
   InitialModule:
     serializedVersion: 3
     enabled: 1

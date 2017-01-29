@@ -1424,7 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeOutTexture: {fileID: 2800000, guid: 7285d045341b25c41ae4e2f59881c224, type: 3}
-  fadingTimeInSec: 4
+  fadingTimeInSec: 1
 --- !u!1 &614475412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,7 +2262,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Test
+  m_Text: 
 --- !u!222 &851974846
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -11,8 +11,7 @@ public class Tutorial : MonoBehaviour {
     private GameController gc;
     private Fading fade;
     private object activeWaypoint;
-    private float playerMotionDetectionAngle = 20;
-    private float xStartAngle;
+    private float playerRotationDetectionAngle = 30;
     private bool triggered = false;
 
     void Start () {
@@ -41,29 +40,33 @@ public class Tutorial : MonoBehaviour {
         yield return new WaitForSeconds(3);
 
         hud.show("Lehne dich jetzt bitte mal nach rechts..", 3);
-        float startAngle = player.eulerAngles.y;
-        yield return new WaitUntil(() => hasPlayerTurnedRight(startAngle));
+        float lastAngle = player.eulerAngles.y;
+        float angleCounter = 0;
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.y, ref angleCounter, true));
 
         hud.show("Schön!", 2);
         yield return new WaitForSeconds(2);
 
         hud.show("Lehne dich jetzt bitte mal nach links..", 3);
-        startAngle = player.eulerAngles.y;
-        yield return new WaitUntil(() => hasPlayerTurnedLeft(startAngle));
+        lastAngle = player.eulerAngles.y;
+        angleCounter = 0;
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.y, ref angleCounter, false));
 
         hud.show("Super!", 2);
         yield return new WaitForSeconds(2);
 
         hud.show("Lehne dich jetzt bitte mal nach hinten..", 3);
-        startAngle = player.eulerAngles.x;
-        yield return new WaitUntil(() => hasPlayerTurnedUp(startAngle));
+        lastAngle = player.eulerAngles.x;
+        angleCounter = 0;
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.x, ref angleCounter, false));
 
         hud.show("Excellent!", 2);
         yield return new WaitForSeconds(2);
 
         hud.show("Lehne dich jetzt bitte mal nach vorne..", 3);
-        startAngle = player.eulerAngles.x;
-        yield return new WaitUntil(() => hasPlayerTurnedDown(startAngle));
+        lastAngle = player.eulerAngles.x;
+        angleCounter = 0;
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.x, ref angleCounter, true));
 
         hud.show("Grandios!", 2);
         yield return new WaitForSeconds(2);
@@ -82,47 +85,21 @@ public class Tutorial : MonoBehaviour {
         gc.startBroom(8);
     }
 
-    private bool hasPlayerTurnedRight(float yStartAngle)
+
+    private bool hasPlayerExecutedClaimedRotation(ref float lastAngle, float currentAngle, ref float angleCounter, bool positiveDirection)
     {
-        float targetAngle = (yStartAngle + playerMotionDetectionAngle + 360) % 360;
-        float deltaAngle = Mathf.DeltaAngle(player.eulerAngles.y, targetAngle);
+        float deltaAngle = Mathf.DeltaAngle(lastAngle, currentAngle);
 
-        Debug.Log(player.eulerAngles.y + " " + targetAngle + " " + Mathf.Abs(deltaAngle));
+        if (deltaAngle >= 0 && positiveDirection || deltaAngle <= 0 && !positiveDirection)
+        {
+            angleCounter += Mathf.Abs(deltaAngle);
+        }
+        else angleCounter = 0;
 
-        if (Mathf.Abs(deltaAngle) < 2) return true;
-        return false;
-    }
+        // Debug.Log("last: " + lastAngle + " current: " + currentAngle + " counter: " + angleCounter);
+        lastAngle = currentAngle;
 
-    private bool hasPlayerTurnedLeft(float yStartAngle)
-    {
-        float targetAngle = (yStartAngle - playerMotionDetectionAngle + 360) % 360;
-        float deltaAngle = Mathf.DeltaAngle(player.eulerAngles.y, targetAngle);
-
-        Debug.Log(player.eulerAngles.y + " " + targetAngle + " " + Mathf.Abs(deltaAngle));
-
-        if (Mathf.Abs(deltaAngle) < 2) return true;
-        return false;
-    }
-
-    private bool hasPlayerTurnedUp(float xStartAngle)
-    {
-        float targetAngle = (xStartAngle - playerMotionDetectionAngle + 360) % 360;
-        float deltaAngle = Mathf.DeltaAngle(player.eulerAngles.x, targetAngle);
-
-        Debug.Log(player.eulerAngles.x + " " + targetAngle + " " + Mathf.Abs(deltaAngle));
-
-        if (Mathf.Abs(deltaAngle) < 2) return true;
-        return false;
-    }
-
-    private bool hasPlayerTurnedDown(float xStartAngle)
-    {
-        float targetAngle = (xStartAngle + playerMotionDetectionAngle + 360) % 360;
-        float deltaAngle = Mathf.DeltaAngle(player.eulerAngles.x, targetAngle);
-
-        Debug.Log(player.eulerAngles.x + " " + targetAngle + " " + Mathf.Abs(deltaAngle));
-
-        if (Mathf.Abs(deltaAngle) < 2) return true;
-        return false;
+        if (angleCounter > playerRotationDetectionAngle) return true;
+        else return false;
     }
 }

@@ -6,29 +6,25 @@ public class Tutorial : MonoBehaviour {
 
     public HUD hud;
     public Wisp wisp;
-    public Transform player;
+    public GameObject player;
 
-    private GameController gc;
     private Fading fade;
+    private PlayerControl pc;
+
     private object activeWaypoint;
     private float playerRotationDetectionAngle = 30;
     private bool triggered = false;
 
     void Start () {
-        gc = GetComponent<GameController>();
         fade = GetComponent<Fading>();
+        pc = player.GetComponent<PlayerControl>();
 
-        gc.freezeBroom();
-        wisp.freeze(true);
+        pc.lockToTargetSpeed(0, 0);
+        wisp.lockToTargetSpeed(0, 0);
 
         float fadingTimeInSec = fade.fadeIn();
         StartCoroutine(startTutorial(fadingTimeInSec));
 	}
-
-    public void trigger()
-    {
-        triggered = true;
-    }
 
     IEnumerator startTutorial(float waitingTime)
     {
@@ -40,33 +36,33 @@ public class Tutorial : MonoBehaviour {
         yield return new WaitForSeconds(3);
 
         hud.show("Lehne dich jetzt bitte mal nach rechts..", 3);
-        float lastAngle = player.eulerAngles.y;
+        float lastAngle = player.transform.eulerAngles.y;
         float angleCounter = 0;
-        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.y, ref angleCounter, true));
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.y, ref angleCounter, true));
 
         hud.show("Schön!", 2);
         yield return new WaitForSeconds(2);
 
         hud.show("Lehne dich jetzt bitte mal nach links..", 3);
-        lastAngle = player.eulerAngles.y;
+        lastAngle = player.transform.eulerAngles.y;
         angleCounter = 0;
-        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.y, ref angleCounter, false));
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.y, ref angleCounter, false));
 
         hud.show("Super!", 2);
         yield return new WaitForSeconds(2);
 
         hud.show("Lehne dich jetzt bitte mal nach hinten..", 3);
-        lastAngle = player.eulerAngles.x;
+        lastAngle = player.transform.eulerAngles.x;
         angleCounter = 0;
-        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.x, ref angleCounter, false));
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.x, ref angleCounter, false));
 
         hud.show("Excellent!", 2);
         yield return new WaitForSeconds(2);
 
         hud.show("Lehne dich jetzt bitte mal nach vorne..", 3);
-        lastAngle = player.eulerAngles.x;
+        lastAngle = player.transform.eulerAngles.x;
         angleCounter = 0;
-        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.eulerAngles.x, ref angleCounter, true));
+        yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.x, ref angleCounter, true));
 
         hud.show("Grandios!", 2);
         yield return new WaitForSeconds(2);
@@ -74,15 +70,25 @@ public class Tutorial : MonoBehaviour {
         hud.show("Ok lass uns losfliegen! Huiiiiii!", 3);
         yield return new WaitForSeconds(3);
 
-        wisp.freeze(false);
-        gc.startBroom(5);
+        wisp.unlockSpeed(1);
+        pc.unlockSpeed(1);
 
         yield return new WaitUntil(() => triggered);
-        triggered = false;
-        gc.slowDownBroom();
+        pc.lockToTargetSpeed(2, 0.5f);
+        wisp.lockToTargetSpeed(3, 0.5f);
         hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
         yield return new WaitForSeconds(4);
-        gc.startBroom(8);
+        pc.unlockSpeed(0.5f);
+        wisp.unlockSpeed(0.5f);
+        triggered = false;
+
+        yield return new WaitUntil(() => triggered);
+        pc.lockToTargetSpeed(2, 1);
+        wisp.lockToTargetSpeed(3, 1);
+        hud.show("Das da vorne, das so merkwürdig flimmert, das sind Windzonen. Wenn du genau durch sie durchfliegst, beschleunigt dein Besen und du wirst richt schnell. Flieg einfach mir nach!", 4);
+        yield return new WaitForSeconds(4);
+        pc.unlockSpeed(0.5f);
+        pc.unlockSpeed(0.5f);
     }
 
 
@@ -101,5 +107,10 @@ public class Tutorial : MonoBehaviour {
 
         if (angleCounter > playerRotationDetectionAngle) return true;
         else return false;
+    }
+
+    public void trigger()
+    {
+        triggered = true;
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
@@ -9,8 +11,8 @@ public class PlayerControl : MonoBehaviour
 
 	public float speedMin = 0.7f;
 	public float speedMax = 15;
-	public float speed = 3;	// units per second
-	public float speedChange = 1;
+    public float defaultSpeed = 10; // units per second
+    public float speedChange = 1;
 
 	public float rotationFactorX = 60;
 	public float rotationFactorY = 60;
@@ -32,16 +34,21 @@ public class PlayerControl : MonoBehaviour
 	private Rigidbody rigidbody;
 	private Transform cameraTransform;
 
-	void Awake()
+    private float speed;
+    private bool speedLocked = false;
+
+    void Awake()
 	{
 		transform 		= GetComponent<Transform>();
 		rigidbody 		= GetComponent<Rigidbody>();
 		cameraTransform = transform.GetChild(0).GetComponent<Transform>();
 		balanceBoard = GetComponent<BalanceBoardInput>();
-	}
 
-	// Use this for initialization
-	void Start ()
+        speed = defaultSpeed;
+    }
+
+    // Use this for initialization
+    void Start ()
 	{
 		//momentum = Vector3.up; // temp
 		invertFactorVertical 	= (invertVertical 	? 1 : -1);
@@ -53,7 +60,6 @@ public class PlayerControl : MonoBehaviour
 	{
 		try
 		{
-
 			float inputVertical = 0;
 			float inputHorizontal = 0;
 
@@ -76,21 +82,24 @@ public class PlayerControl : MonoBehaviour
 			float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
 			float rotateZ = 0;
 
-			float velocity;	// actual speed
+			float velocity; // actual speed
 
-			// Handle Speed Change
-			//if(Input.GetAxis("SlowDown") > 0 && speed > speedMin)
-			//{
-			//	speed -= speedChange * Time.deltaTime;
-			//	if(speed < speedMin) speed = speedMin;
-			//}
-			//else if(Input.GetAxis("Accelerate") > 0 && speed < speedMax)
-			//{
-			//	speed += speedChange * Time.deltaTime;
-			//	if(speed > speedMax) speed = speedMax;
-			//}
-
-			velocity = speed * Time.deltaTime;
+            // Handle Speed Change
+            //if (!speedLocked)
+            //{
+            //    if (Input.GetAxis("SlowDown") > 0 && speed > speedMin)
+            //    {
+            //        speed -= speedChange * Time.deltaTime;
+            //        if (speed < speedMin) speed = speedMin;
+            //    }
+            //    else if (Input.GetAxis("Accelerate") > 0 && speed < speedMax)
+            //    {
+            //        speed += speedChange * Time.deltaTime;
+            //        if (speed > speedMax) speed = speedMax;
+            //    }
+            //}
+                
+            velocity = speed * Time.deltaTime;
 
 			// perform actual transformations
 			//transform.Rotate(rotateX, rotateY, rotateZ); //deprecated
@@ -131,4 +140,38 @@ public class PlayerControl : MonoBehaviour
 			enableBalanceBoardControl = false;
 		}
 	}
+
+    public void lockToTargetSpeed(float targetSpeed, float duration)
+    {
+        float startSpeed = speed;
+        speedLocked = true;
+
+        if (duration == 0) speed = targetSpeed;
+        else StartCoroutine(adjustSpeed(targetSpeed, startSpeed, duration, true));
+    }
+
+    public void unlockSpeed(float duration)
+    {
+        float startSpeed = speed;
+        StartCoroutine(adjustSpeed(defaultSpeed, startSpeed, duration, false));
+    }
+
+    IEnumerator adjustSpeed(float targetSpeed, float startSpeed, float duration, bool b)
+    {
+        yield return new WaitUntil(() => adjustSpeedToTargetSpeed(targetSpeed, startSpeed, duration));
+        speedLocked = b;
+    }
+
+    private bool adjustSpeedToTargetSpeed(float targetSpeed, float startSpeed, float duration)
+    {
+        speed += ((targetSpeed - startSpeed) / duration) * Time.deltaTime;
+        bool slowDown = (targetSpeed < startSpeed);
+
+        if (speed <= targetSpeed && slowDown || speed >= targetSpeed && !slowDown)
+        {
+            speed = targetSpeed;
+            return true;
+        }
+        else return false;
+    }
 }

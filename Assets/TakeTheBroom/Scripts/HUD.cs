@@ -9,7 +9,6 @@ public class HUD : MonoBehaviour {
     void Start()
     {
         gui = GetComponentInChildren<Text>();
-        gui.enabled = false;
     }
 
     public void show(string text, float duration)
@@ -19,9 +18,9 @@ public class HUD : MonoBehaviour {
 
     IEnumerator showText(string text, float duration)
     {
-        gui.enabled = true;
         gui.text = text;
+        gui.enabled = true;
         yield return new WaitForSeconds(duration);
-        gui.enabled = false;
+        gui.text = "";
     }
 }

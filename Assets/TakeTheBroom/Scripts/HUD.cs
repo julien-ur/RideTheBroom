@@ -13,6 +13,7 @@ public class HUD : MonoBehaviour {
 
     public void show(string text, float duration)
     {
+        StopAllCoroutines();
         StartCoroutine(showText(text, duration));
     }
 
@@ -20,7 +21,9 @@ public class HUD : MonoBehaviour {
     {
         gui.text = text;
         gui.enabled = true;
+        Debug.Log("show text");
         yield return new WaitForSeconds(duration);
+        Debug.Log("hide text");
         gui.text = "";
     }
 }

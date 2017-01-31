@@ -19,7 +19,7 @@ public class CameraRotation : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
 	{
-		transform = GetComponent<Transform>();	
+		transform = GetComponent<Transform>();
 		player = transform.parent.GetComponent<PlayerControl>();	// PlayerControl script of player GameObject
 	}
 	

@@ -34,8 +34,9 @@ public class Fading : MonoBehaviour {
         return fadingTimeInSec;
     }
 
-    public float fadeOut ()
+    public float fadeOut (float f)
     {
+        fadingTimeInSec = f;
         fadeDir = 1;
         alpha = 0;
         isFading = true;

@@ -27,6 +27,8 @@ public class PlayerControl : MonoBehaviour
 	public float balanceBoardFactorX = 2.5f;
 	public float balanceBoardFactorY = 2.0f;
 
+	public bool enableCameraRollback = true;
+
 	[HideInInspector]
 	public Vector3 momentum;
 
@@ -105,33 +107,46 @@ public class PlayerControl : MonoBehaviour
 			//transform.Rotate(rotateX, rotateY, rotateZ); //deprecated
 			// use axis-angle rotation because euler angles suck
 			transform.RotateAround(transform.position, transform.right, rotateX);
-			transform.RotateAround(transform.position, Vector3.up, rotateY);
+			
+			if(enableCameraRollback)
+			{
+				transform.RotateAround(transform.position, Vector3.up, rotateY);
+			}
+			else
+			{
+				transform.RotateAround(transform.position, transform.up, rotateY);
+			}
+			
+
 			//transform.Translate((Vector3.forward + transform.TransformDirection(momentum)) * velocity);
 			transform.Translate((Vector3.forward * velocity) + (transform.InverseTransformDirection(momentum) * Time.deltaTime));
 			//Debug.Log(momentum);
 			momentum -= momentum * 0.5f * Time.deltaTime;
 			//rigidbody.AddForce(Vector3.forward * velocity);
 
-			// make sure the head is straight up when it should be (same as in CameraRotation.cs)
-			if(transform.eulerAngles.z != 0)	// roll back to zero degrees
+			if(enableCameraRollback)
 			{
-				float backRotationDegrees = backRotationRate * Time.deltaTime;
+				// make sure the head is straight up when it should be (same as in CameraRotation.cs)
+				if(transform.eulerAngles.z != 0)	// roll back to zero degrees
+				{
+					float backRotationDegrees = backRotationRate * Time.deltaTime;
 
-				// if close to zero, set to zero
-				// transform.eulerAngles.z = 0 does not work because of quaternion magic
-				if(Mathf.Abs(backRotationDegrees) > Mathf.Abs(transform.eulerAngles.z))
-				{
-					transform.Rotate(0, 0, -transform.eulerAngles.z);
-				}
-				else // roll back at fixed rate
-				{
-					// find direction to avoid accidental 360° rolls (and vomit)
-					if(transform.eulerAngles.z < 180)
+					// if close to zero, set to zero
+					// transform.eulerAngles.z = 0 does not work because of quaternion magic
+					if(Mathf.Abs(backRotationDegrees) > Mathf.Abs(transform.eulerAngles.z))
 					{
-						backRotationDegrees *= -1;
+						transform.Rotate(0, 0, -transform.eulerAngles.z);
 					}
+					else // roll back at fixed rate
+					{
+						// find direction to avoid accidental 360° rolls (and vomit)
+						if(transform.eulerAngles.z < 180)
+						{
+							backRotationDegrees *= -1;
+						}
 
-					transform.Rotate(0, 0, backRotationDegrees);
+						transform.Rotate(0, 0, backRotationDegrees);
+					}
 				}
 			}
 		}

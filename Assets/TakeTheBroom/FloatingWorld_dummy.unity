@@ -2091,11 +2091,31 @@ Prefab:
     - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
         type: 2}
       propertyPath: speed
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
         type: 2}
       propertyPath: speedMin
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: enableBalanceBoardControl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: balanceBoard
+      value: 
+      objectReference: {fileID: 1616406089}
+    - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: balanceBoardFactorX
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114437202425060770, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: balanceBoardFactorY
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4205,6 +4225,21 @@ GameObject:
   m_PrefabParentObject: {fileID: 1573378376722722, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
     type: 2}
   m_PrefabInternal: {fileID: 804810687}
+--- !u!114 &1578113867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1578113865}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1104f9dcea56e4cd792a4eb5896dab57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbShader: {fileID: 4800000, guid: d38c69df7fd504147b0a598162d8f9b1, type: 3}
+  blurStrength: 2.2
+  blurWidth: 1
+  clearRadius: 0.1
 --- !u!114 &1578113875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4364,6 +4399,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7538465fc0b60b64aa2aae4ea9d4bbad, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1616406084 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1210211509481444, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 804810687}
+--- !u!114 &1616406089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1616406084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b4f10410f2244dc3b7a3643469145c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  serverUrl: http://0.0.0.0:5000/besen/
 --- !u!1001 &1621123037
 Prefab:
   m_ObjectHideFlags: 0

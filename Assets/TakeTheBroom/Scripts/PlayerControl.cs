@@ -24,8 +24,8 @@ public class PlayerControl : MonoBehaviour
 	public bool enableBalanceBoardControl = false;	// use the balance board?
 	
 	// multiplier for each balance board axis to adjust rotation speed
-	public float balanceBoardFactorX = 1.5f;
-	public float balanceBoardFactorY = 1.0f;
+	public float balanceBoardFactorX = 2.5f;
+	public float balanceBoardFactorY = 2.0f;
 
 	[HideInInspector]
 	public Vector3 momentum;

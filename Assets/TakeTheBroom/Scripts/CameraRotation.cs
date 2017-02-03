@@ -47,32 +47,35 @@ public class CameraRotation : MonoBehaviour {
 			float rotateZ = inputHorizontal * rotationFactorZ * Time.deltaTime;
 
 			
-			// if joystick is pressed, roll camera view
-			if(inputHorizontal != 0)
+			if(player.enableCameraRollback)
 			{
-				// cap rotation at 90° in each direction
-				// TODO: cap as variable?
-				if(transform.eulerAngles.z < 45 || transform.eulerAngles.z > 315)
+				// if joystick is pressed, roll camera view
+				if(inputHorizontal != 0)
 				{
-					transform.Rotate(rotateX, rotateY, rotateZ);
+					// cap rotation at 90° in each direction
+					// TODO: cap as variable?
+					if(transform.eulerAngles.z < 45 || transform.eulerAngles.z > 315)
+					{
+						transform.Rotate(rotateX, rotateY, rotateZ);
+					}
 				}
-			}
-			else if(transform.localEulerAngles.z != 0)	// roll back to zero degrees
-			{
-				float backRotationDegrees = backRotationRate * Time.deltaTime;
-
-				// if close to zero, set to zero
-				// transform.eulerAngles.z = 0 does not work because of quaternion magic
-				if(Mathf.Abs(backRotationDegrees) > Mathf.Abs(transform.eulerAngles.z))
+				else if(transform.localEulerAngles.z != 0)	// roll back to zero degrees
 				{
-					transform.Rotate(0, 0, -transform.eulerAngles.z);
-				}
-				else // roll back at fixed rate
-				{
-					// find direction to avoid accidental 360° rolls (and vomit)
-					if(transform.eulerAngles.z < 180) backRotationDegrees *= -1;
+					float backRotationDegrees = backRotationRate * Time.deltaTime;
 
-					transform.Rotate(0, 0, backRotationDegrees);
+					// if close to zero, set to zero
+					// transform.eulerAngles.z = 0 does not work because of quaternion magic
+					if(Mathf.Abs(backRotationDegrees) > Mathf.Abs(transform.eulerAngles.z))
+					{
+						transform.Rotate(0, 0, -transform.eulerAngles.z);
+					}
+					else // roll back at fixed rate
+					{
+						// find direction to avoid accidental 360° rolls (and vomit)
+						if(transform.eulerAngles.z < 180) backRotationDegrees *= -1;
+
+						transform.Rotate(0, 0, backRotationDegrees);
+					}
 				}
 			}
 		}

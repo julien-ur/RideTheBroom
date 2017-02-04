@@ -14,6 +14,7 @@ public class Tutorial : MonoBehaviour {
     private GameController gc;
 
     private object activeWaypoint;
+    private float fadingTimeInSec;
     private float playerRotationDetectionAngle = 30;
     private bool triggered = false;
 
@@ -25,11 +26,16 @@ public class Tutorial : MonoBehaviour {
         pc.lockToTargetSpeed(0, 0);
         wisp.lockToTargetSpeed(0, 0);
 
-        float fadingTimeInSec = fade.fadeIn();
-        StartCoroutine(startTutorial(fadingTimeInSec));
+        fadingTimeInSec = fade.fadeIn();
 	}
 
-    IEnumerator startTutorial(float waitingTime)
+    public void startTutorial()
+    {
+        Debug.Log("clicked");
+        StartCoroutine(tutorial(fadingTimeInSec));
+    }
+
+    IEnumerator tutorial(float waitingTime)
     {
         yield return new WaitForSeconds(waitingTime);
 

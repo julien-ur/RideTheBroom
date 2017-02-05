@@ -9,7 +9,7 @@ public class TutorialTrigger : MonoBehaviour {
 
     private void Start()
     {
-        tutorial = GameObject.FindGameObjectWithTag("GameController").GetComponent<Tutorial>();
+        tutorial = GameObject.Find("Tutorial").GetComponent<Tutorial>();
     }
 
     private void OnTriggerEnter(Collider other)

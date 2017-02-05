@@ -19,12 +19,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4344644927408722}
-  - component: {fileID: 114437202425060770}
   - component: {fileID: 136891535617499480}
   - component: {fileID: 54607861776736878}
+  - component: {fileID: 114437202425060770}
+  - component: {fileID: 114694604193460392}
+  - component: {fileID: 114811160501343478}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,6 +98,7 @@ GameObject:
   - component: {fileID: 114788760579870892}
   - component: {fileID: 114775336857268080}
   - component: {fileID: 114943075298604788}
+  - component: {fileID: 114058329220275160}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -127,8 +130,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4454518187213430}
+  - component: {fileID: 136058668723003682}
   m_Layer: 0
-  m_Name: broom01
+  m_Name: Broom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,15 +187,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1210211509481444}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 321.4, y: 2.49, z: 48.8}
+  m_LocalRotation: {x: -0, y: 0.15324111, z: -0, w: 0.98818886}
+  m_LocalPosition: {x: 321.2, y: 2.5, z: 48.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4388851317042860}
   - {fileID: 4454518187213430}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 17.630001, z: 0}
 --- !u!4 &4388851317042860
 Transform:
   m_ObjectHideFlags: 1
@@ -242,7 +246,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573378376722722}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -280,7 +284,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 86
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -477,6 +481,44 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573378376722722}
   m_Enabled: 1
+--- !u!114 &114058329220275160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1573378376722722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 2.5
+  quality: 1
+  bloomIntensity: 0.5
+  bloomThreshold: 0.81
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 2
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!114 &114164517478220890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -518,13 +560,28 @@ MonoBehaviour:
   invertHorizontal: 0
   speedMin: 0.7
   speedMax: 15
-  speed: 10
+  defaultSpeed: 0
   speedChange: 1
   rotationFactorX: 60
   rotationFactorY: 60
   rotationFactorZ: 1
   backRotationRate: 90
+  balanceBoard: {fileID: 0}
+  enableBalanceBoardControl: 0
+  balanceBoardFactorX: 1.5
+  balanceBoardFactorY: 1
   momentum: {x: 0, y: 0, z: 0}
+--- !u!114 &114694604193460392
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1210211509481444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6722f77745f1e89458f1792c8e58c7c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114775336857268080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -552,17 +609,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
-  intensity: 1.48
-  chromaticAberration: 0
-  axialAberration: 0.5
+  intensity: 0
+  chromaticAberration: 1.08
+  axialAberration: 5
   blur: 0
-  blurSpread: 0.75
-  luminanceDependency: 0.25
-  blurDistance: 2.5
+  blurSpread: 1
+  luminanceDependency: 1
+  blurDistance: 2.12
   vignetteShader: {fileID: 4800000, guid: 627943dc7a9a74286b70a4f694a0acd5, type: 3}
   separableBlurShader: {fileID: 4800000, guid: e97c14fbb5ea04c3a902cc533d7fc5d1, type: 3}
   chromAberrationShader: {fileID: 4800000, guid: 2b4f29398d9484ccfa9fd220449f5eee,
     type: 3}
+--- !u!114 &114811160501343478
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1210211509481444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8a54d3185f1584aa102622e7940d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gc: {fileID: 0}
 --- !u!114 &114943075298604788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -595,6 +664,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1573378376722722}
   m_Enabled: 0
+--- !u!136 &136058668723003682
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1890170879087578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.06
+  m_Height: 2.55
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.15}
 --- !u!136 &136891535617499480
 CapsuleCollider:
   m_ObjectHideFlags: 1

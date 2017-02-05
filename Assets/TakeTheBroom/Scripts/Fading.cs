@@ -3,8 +3,8 @@
 public class Fading : MonoBehaviour {
 
     public Texture2D fadeOutTexture;
-    public float fadingTimeInSec = 3;
 
+    private float fadingTimeInSec = 3;
     private int drawDepth = -1000; // the texture's order in the draw hierachy: a low number means it renders on top
     private float alpha;
     private int fadeDir; // in = -1 or out = 1
@@ -26,25 +26,19 @@ public class Fading : MonoBehaviour {
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeOutTexture);
     }
 
-    public float fadeIn()
+    public void fadeIn(float f)
     {
+        fadingTimeInSec = f;
         fadeDir = -1;
         alpha = 1;
         isFading = true;
-        return fadingTimeInSec;
     }
 
-    public float fadeOut (float f)
+    public void fadeOut (float f)
     {
         fadingTimeInSec = f;
         fadeDir = 1;
         alpha = 0;
         isFading = true;
-        return fadingTimeInSec;
     }
-
-    //private void OnLevelWasLoaded()
-    //{
-    //    fadeIn();
-    //}
 }

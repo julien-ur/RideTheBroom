@@ -6,11 +6,11 @@ using UnityEngine.AI;
 public class Wisp : MonoBehaviour {
 
     public Transform player;
-    public GameObject path;
     public float maxSpeed = 18;
     public float defaultSpeed = 18;
     public float slowDownFactor = 0.1f;
 
+    private GameObject path;
     private Rigidbody rb;
     private float speed;
     private int actWaypoint = 0;
@@ -22,12 +22,17 @@ public class Wisp : MonoBehaviour {
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    public void initWaypoints()
+    {
+        path = GameObject.Find("Wisp Waypoints");
+
         List<Transform> transforms = new List<Transform>(path.GetComponentsInChildren<Transform>());
         transforms.Remove(transform);
         waypoints = transforms.ToArray();
-
-        rb = GetComponent<Rigidbody>();
-
+        
         nextTarget();
     }
 
@@ -39,6 +44,8 @@ public class Wisp : MonoBehaviour {
 
     void Update()
     {
+        if (!target) return;
+
         // check target distance
         var targetDistance = (target.position - transform.position).magnitude;
         if (targetDistance < targetReachedDistance) nextTarget();

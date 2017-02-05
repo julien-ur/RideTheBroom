@@ -72,10 +72,8 @@ public class GameController : MonoBehaviour {
 
     IEnumerator learnBroomControl()
     {
-        hud.show("Hallo Fremder, ich bin der Wisp. Willkommen in meiner magischen Welt.", 3);
-        yield return new WaitForSeconds(3);
-        hud.show("Damit du gewappnet bist, für die Gefahren, die dich bald erwarten werden, werde ich dir zuerst ein paar grundlegende Dinge beibringen.", 3);
-        yield return new WaitForSeconds(3);
+        float duration = wisp.saySomething();
+        yield return new WaitForSeconds(duration + 1);
 
         hud.show("Lehne dich jetzt bitte mal nach rechts..", 3);
         float lastAngle = player.transform.eulerAngles.y;

@@ -6,10 +6,12 @@ using UnityEngine.AI;
 public class Wisp : MonoBehaviour {
 
     public Transform player;
+    public AudioClip introductionClip;
     public float maxSpeed = 18;
     public float defaultSpeed = 18;
     public float slowDownFactor = 0.1f;
 
+    private AudioSource audioSource;
     private GameObject path;
     private Rigidbody rb;
     private float speed;
@@ -23,6 +25,7 @@ public class Wisp : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void initWaypoints()
@@ -101,5 +104,12 @@ public class Wisp : MonoBehaviour {
             return true;
         }
         else return false;
+    }
+
+    public float saySomething()
+    {
+        audioSource.clip = introductionClip;
+        audioSource.Play();
+        return introductionClip.length;
     }
 }

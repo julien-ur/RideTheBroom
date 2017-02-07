@@ -130,6 +130,23 @@ public class PlayerControl : MonoBehaviour
 			}
 			
 
+			velocity = speed * Time.deltaTime;
+
+			// perform actual transformations
+			//transform.Rotate(rotateX, rotateY, rotateZ); //deprecated
+			// use axis-angle rotation because euler angles suck
+			transform.RotateAround(transform.position, transform.right, rotateX);
+			
+			if(enableCameraRollback)
+			{
+				transform.RotateAround(transform.position, Vector3.up, rotateY);
+			}
+			else
+			{
+				transform.RotateAround(transform.position, transform.up, rotateY);
+			}
+			
+
 			//transform.Translate((Vector3.forward + transform.TransformDirection(momentum)) * velocity);
 			transform.Translate((Vector3.forward * velocity) + (transform.InverseTransformDirection(momentum) * Time.deltaTime));
 			//Debug.Log(momentum);

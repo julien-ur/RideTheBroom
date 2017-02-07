@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerControl : MonoBehaviour
 	public float balanceBoardFactorY = 2.0f;
 
 	public bool enableCameraRollback = true;
+
+	[SerializeField] VRNode m_VRNode    = VRNode.Head;
 
 	[HideInInspector]
 	public Vector3 momentum;
@@ -61,6 +64,9 @@ public class PlayerControl : MonoBehaviour
 			float inputVertical = 0;
 			float inputHorizontal = 0;
 
+			Quaternion q = InputTracking.GetLocalRotation(m_VRNode);
+			Debug.Log(q.eulerAngles.ToString("F2"));
+
 			if(enableBalanceBoardControl && balanceBoard != null)
 			{
 				// use the balance board if it's enabled AND available
@@ -72,6 +78,12 @@ public class PlayerControl : MonoBehaviour
 				// instead use a gamepad
 				inputVertical 		= invertFactorVertical 		* Input.GetAxis("Vertical");
 				inputHorizontal 	= invertFactorHorizontal 	* Input.GetAxis("Horizontal");
+			}
+
+			if(q != null)
+			{
+				//inputHorizontal = Mathf.Clamp(q.eulerAngles.x, -1.0f, 1.0f);
+				inputHorizontal = (q.eulerAngles.z) / 180;
 			}
 			
 			

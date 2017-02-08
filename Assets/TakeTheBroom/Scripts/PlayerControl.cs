@@ -69,13 +69,24 @@ public class PlayerControl : MonoBehaviour
 			float inputHorizontal = 0;
 
 			Quaternion q = InputTracking.GetLocalRotation(m_VRNode);
-			Debug.Log(q.eulerAngles.ToString("F2"));
+            //Debug.Log(q.eulerAngles.ToString("F2"));
+
+            //Debug.Log(balanceBoard.accY);
 
 			if(enableBalanceBoardControl && balanceBoard != null)
 			{
-				// use the balance board if it's enabled AND available
-				inputHorizontal = balanceBoard.x * balanceBoardFactorX;
-				inputVertical 	= balanceBoard.y * balanceBoardFactorY;
+                // use the balance board if it's enabled AND available
+                //inputHorizontal = balanceBoard.x * balanceBoardFactorX;
+                //inputVertical 	= balanceBoard.y * balanceBoardFactorY;
+                inputVertical = Mathf.Clamp((balanceBoard.accY - 500) / 50, -1.0f, 1.0f);
+
+                if(q != null)
+				{
+	                //inputHorizontal = Mathf.Clamp(q.eulerAngles.x, -1.0f, 1.0f);
+	                //inputHorizontal = Mathf.Clamp(Mathf.DeltaAngle(0, q.eulerAngles.z) / 180, -1.0f, 1.0f);
+	                float normedRot = Mathf.DeltaAngle(0, q.eulerAngles.z) / 180;
+	                inputHorizontal = Mathf.Clamp(Math.Sign(normedRot) * Mathf.Pow(normedRot, 2) * 30, -1.0f, 1.0f);
+	            }
 			}
 			else
 			{
@@ -84,11 +95,7 @@ public class PlayerControl : MonoBehaviour
 				inputHorizontal 	= invertFactorHorizontal 	* Input.GetAxis("Horizontal");
 			}
 
-			if(q != null)
-			{
-				//inputHorizontal = Mathf.Clamp(q.eulerAngles.x, -1.0f, 1.0f);
-				inputHorizontal = (q.eulerAngles.z) / 180;
-			}
+			
 			
 			
 			// TODO: use quaternions to avoid gimbal lock

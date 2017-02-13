@@ -59,4 +59,4 @@ public class BalanceBoardInput : MonoBehaviour
 			// the file was not readable
 		}
 	}
-}	
+}

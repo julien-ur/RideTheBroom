@@ -16,8 +16,8 @@ public class BoulderTrigger : MonoBehaviour {
     }
 
     void OnTriggerEnter () {
-        Time.timeScale = 0.2F;
-        Time.fixedDeltaTime = 0.02F * Time.timeScale;
+        //Time.timeScale = 0.2F;
+        //Time.fixedDeltaTime = 0.02F * Time.timeScale;
 
         foreach (Rigidbody rb in rbList)
         {

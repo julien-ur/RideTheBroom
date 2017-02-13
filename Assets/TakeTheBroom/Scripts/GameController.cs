@@ -39,9 +39,16 @@ public class GameController : MonoBehaviour {
     {
         hud.show("Ringe: " + score.getActivatedRings() + "  --  Zeit: " + Time.realtimeSinceStartup, durationInSec);
     }
+
+    void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.A)) LoadLevel((int)(BuildIndex.Tutorial));
+        //if (Input.GetKeyDown(KeyCode.B)) LoadLevel((int)(BuildIndex.FloatingRocks));
+    }
     
     public void LoadLevel(int id)
     {
+        
         if ((BuildIndex)(id) == BuildIndex.Tutorial) StartCoroutine(learnBroomControl());
         else StartCoroutine(loadScene(id));
     }

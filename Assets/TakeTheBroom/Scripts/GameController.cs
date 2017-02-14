@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
+    public enum LEVEL { Menu, Tutorial, FloatingRocks };
+
+    public GameObject Menu;
+    public GameObject MainMenu;
+    public GameObject LevelMenu;
     public GameObject player;
     public HUD hud;
     public Wisp wisp;
@@ -13,8 +18,6 @@ public class GameController : MonoBehaviour {
 
     private Fading fade;
     private Score score;
-
-    enum BuildIndex { Menu, Tutorial, FloatingRocks };
     private float playerRotationDetectionAngle = 30;
 
     private void Start()
@@ -42,39 +45,36 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A)) LoadLevel((int)(BuildIndex.Tutorial));
-        //if (Input.GetKeyDown(KeyCode.B)) LoadLevel((int)(BuildIndex.FloatingRocks));
+        //if (Input.GetKeyDown(KeyCode.A)) LoadLevel((int)(LEVEL.Tutorial));
+        //if (Input.GetKeyDown(KeyCode.B)) LoadLevel((int)(LEVEL.FloatingRocks));
     }
     
-    public void LoadLevel(int id)
+    public void LoadLevel(LEVEL lvl)
     {
         
-        if ((BuildIndex)(id) == BuildIndex.Tutorial) StartCoroutine(learnBroomControl());
-        else StartCoroutine(loadScene(id));
+        if (lvl == LEVEL.Tutorial) StartCoroutine(learnBroomControl());
+        else StartCoroutine(loadScene(lvl));
     }
 
-    IEnumerator loadScene(int id)
+    IEnumerator loadScene(LEVEL levelToLoad)
     {
-        if((BuildIndex)(id) > BuildIndex.Tutorial)
+        if(levelToLoad > LEVEL.Tutorial)
         {
             hud.show("Let's Go!", 3);
             yield return new WaitForSeconds(3);
         }
         
-        BuildIndex sceneIndex = (BuildIndex)(SceneManager.GetActiveScene().buildIndex);
-        if ((BuildIndex)(id) == sceneIndex) yield break;
+        LEVEL currentLevel = (LEVEL)(SceneManager.GetActiveScene().buildIndex);
+        if (levelToLoad == currentLevel) yield break;
 
-        LoadSceneMode mode = (sceneIndex == BuildIndex.Menu) ? LoadSceneMode.Additive : LoadSceneMode.Single;
+        LoadSceneMode mode = (currentLevel == LEVEL.Menu) ? LoadSceneMode.Additive : LoadSceneMode.Single;
 
-        AsyncOperation loadOp = SceneManager.LoadSceneAsync(id, mode);
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync((int)(levelToLoad), mode);
         yield return new WaitUntil(() => loadOp.isDone);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(id));
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)(levelToLoad)));
 
-        if ((BuildIndex)(id) > BuildIndex.Tutorial)  pc.unlockSpeed(1);
-        if ((BuildIndex)(id) == BuildIndex.Menu) yield break;
-
-        Destroy(GameObject.Find("Menu Objects"));
-        Destroy(GameObject.Find("Menu Canvas"));
+        if (levelToLoad > LEVEL.Tutorial) pc.unlockSpeed(1);
+        // if (levelToLoad != LEVEL.Menu) Destroy(GameObject.Find("Menu Props"));
     }
 
     IEnumerator learnBroomControl()
@@ -114,7 +114,7 @@ public class GameController : MonoBehaviour {
         hud.show("Grandios!", 2);
         yield return new WaitForSeconds(2);
 
-        StartCoroutine(loadScene(1));
+        StartCoroutine(loadScene(LEVEL.Tutorial));
     }
 
     private bool hasPlayerExecutedClaimedRotation(ref float lastAngle, float currentAngle, ref float angleCounter, bool positiveDirection)

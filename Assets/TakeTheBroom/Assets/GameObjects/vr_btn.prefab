@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 114960753190279376}
   - component: {fileID: 114174596196040466}
   - component: {fileID: 82154564733379558}
+  - component: {fileID: 114376304425154274}
   m_Layer: 0
   m_Name: vr_btn
   m_TagString: Untagged
@@ -252,6 +253,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114376304425154274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510253413642500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5a4da33ce5f76240ad37c7639a1953f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VRAction: 2
+  Menu: {fileID: 0}
+  MainMenu: {fileID: 0}
+  LevelMenu: {fileID: 0}
 --- !u!114 &114404124369018078
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -559,8 +575,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510253413642500}
   m_LocalRotation: {x: 0.18186487, y: -0.27150643, z: 0.05943351, w: 0.943227}
-  m_LocalPosition: {x: 0, y: 0, z: 6.46}
-  m_LocalScale: {x: 0.029053349, y: 0.030519357, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5.63}
+  m_LocalScale: {x: 0.023124948, y: 0.024291815, z: 0.7959478}
   m_Children:
   - {fileID: 224258243768437660}
   m_Father: {fileID: 0}
@@ -568,7 +584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 22.046001, y: -31.956001, z: 0.82600003}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.04, y: 1.39}
+  m_AnchoredPosition: {x: -4.53, y: 1.41}
   m_SizeDelta: {x: 158.58, y: 34.33}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224729537294002022

@@ -6,6 +6,8 @@ public class RingDetection : MonoBehaviour {
 
     void OnTriggerExit(Collider col)
     {
+    	if(!gc) return;
+    	
         MagicalRing mr = col.GetComponent<MagicalRing>();
         if (mr && !mr.isActivated())
         {

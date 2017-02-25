@@ -68,7 +68,10 @@ public class PlayerControl : MonoBehaviour
 			float inputVertical = 0;
 			float inputHorizontal = 0;
 
-			Quaternion q = InputTracking.GetLocalRotation(m_VRNode);
+			// +++ VR +++
+			//Quaternion q = InputTracking.GetLocalRotation(m_VRNode);
+			Quaternion q = Quaternion.identity;
+
             //Debug.Log(q.eulerAngles.ToString("F2"));
 
             //Debug.Log(balanceBoard.accY);

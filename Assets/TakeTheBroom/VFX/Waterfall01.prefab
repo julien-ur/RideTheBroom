@@ -2244,7 +2244,7 @@ ParticleSystem:
     plane5: {fileID: 0}
     m_Dampen:
       minMaxState: 0
-      scalar: 0.03
+      scalar: 0.02
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2283,7 +2283,7 @@ ParticleSystem:
         m_RotationOrder: 4
     m_Bounce:
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.25
       maxCurve:
         serializedVersion: 2
         m_Curve:

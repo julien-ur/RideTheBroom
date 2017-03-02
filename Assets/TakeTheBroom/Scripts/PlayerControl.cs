@@ -160,7 +160,7 @@ public class PlayerControl : MonoBehaviour
 			//transform.Translate((Vector3.forward + transform.TransformDirection(momentum)) * velocity);
 			transform.Translate((Vector3.forward * velocity) + (transform.InverseTransformDirection(momentum) * Time.deltaTime));
 			//Debug.Log(momentum);
-			momentum -= momentum * 0.5f * Time.deltaTime;
+			momentum -= momentum * 0.9f * Time.deltaTime;
 			//rigidbody.AddForce(Vector3.forward * velocity);
 
 			if(enableCameraRollback)

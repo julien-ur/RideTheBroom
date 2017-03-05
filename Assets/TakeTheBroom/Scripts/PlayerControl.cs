@@ -36,12 +36,15 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public Vector3 momentum;
 
+
     private Transform transform;
     private Rigidbody rigidbody;
     private Transform cameraTransform;
 
     private float speed;
     private bool speedLocked = false;
+
+    private float momentumLossInSec = 2.0f;
 
     void Awake()
     {
@@ -69,7 +72,7 @@ public class PlayerControl : MonoBehaviour
             float inputVertical = 0;
             float inputHorizontal = 0;
 
-            Quaternion q = InputTracking.GetLocalRotation(m_VRNode);
+            Quaternion vrQuat = InputTracking.GetLocalRotation(m_VRNode);
             //Debug.Log(q.eulerAngles.ToString("F2"));
 
             //Debug.Log(balanceBoard.accY);
@@ -81,11 +84,11 @@ public class PlayerControl : MonoBehaviour
                 //inputVertical 	= balanceBoard.y * balanceBoardFactorY;
                 inputVertical = Mathf.Clamp((balanceBoard.accY - 500) / 50, -1.0f, 1.0f);
 
-                if (q != null)
+                if (vrQuat != null)
                 {
                     //inputHorizontal = Mathf.Clamp(q.eulerAngles.x, -1.0f, 1.0f);
                     //inputHorizontal = Mathf.Clamp(Mathf.DeltaAngle(0, q.eulerAngles.z) / 180, -1.0f, 1.0f);
-                    float normedRot = Mathf.DeltaAngle(0, q.eulerAngles.z) / 180;
+                    float normedRot = Mathf.DeltaAngle(0, vrQuat.eulerAngles.z) / 180;
                     inputHorizontal = Mathf.Clamp(Math.Sign(normedRot) * Mathf.Pow(normedRot, 2) * 30, -1.0f, 1.0f);
                 }
             }
@@ -95,9 +98,6 @@ public class PlayerControl : MonoBehaviour
                 inputVertical = invertFactorVertical * Input.GetAxis("Vertical");
                 inputHorizontal = invertFactorHorizontal * Input.GetAxis("Horizontal");
             }
-
-
-
 
             // TODO: use quaternions to avoid gimbal lock
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
@@ -158,7 +158,7 @@ public class PlayerControl : MonoBehaviour
             //transform.Translate((Vector3.forward + transform.TransformDirection(momentum)) * velocity);
             transform.Translate((Vector3.forward * velocity) + (transform.InverseTransformDirection(momentum) * Time.deltaTime));
             //Debug.Log(momentum);
-            momentum -= momentum * 0.5f * Time.deltaTime;
+            momentum -= momentum / momentumLossInSec * Time.deltaTime;
             //rigidbody.AddForce(Vector3.forward * velocity);
 
             if (enableCameraRollback)
@@ -192,6 +192,9 @@ public class PlayerControl : MonoBehaviour
             enableBalanceBoardControl = false;
         }
     }
+
+
+
 
     public void lockToTargetSpeed(float targetSpeed, float duration)
     {

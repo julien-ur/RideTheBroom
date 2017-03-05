@@ -14,18 +14,6 @@ public class WindZoneScript : MonoBehaviour
 		transform = GetComponent<Transform>();
 	}
 
-	// Use this for initialization
-	void Start ()
-	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		
-	}
-
 	void OnTriggerStay(Collider col)
 	{
 		PlayerControl player;
@@ -35,7 +23,6 @@ public class WindZoneScript : MonoBehaviour
 			player.momentum += transform.TransformDirection(direction) * strength * Time.deltaTime;
 			//Debug.Log(direction + " - " + transform.TransformDirection(direction));
 			//col.attachedRigidbody.AddForce(direction * strength * Time.deltaTime);
-
 		}
 	}
 }

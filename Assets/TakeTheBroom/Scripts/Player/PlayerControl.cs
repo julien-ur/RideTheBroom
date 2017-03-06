@@ -5,10 +5,13 @@ using UnityEngine.VR;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float speedMin = 0.7f;
-    public float speedMax = 15;
-    public float defaultSpeed = 10;
-    public float speedChange = 1;
+
+    [Range(0.0f, 1.0f)] public float forceDrivenFactor = 0.5f;
+
+    public float speedMin = 1;
+    public float speedMax = 25;
+    public float defaultSpeed = 20;
+    public float speedChange = 2;
 
     public float rotationFactorX = 60;
     public float rotationFactorY = 60;
@@ -26,8 +29,7 @@ public class PlayerControl : MonoBehaviour
     private bool speedLocked = false;
 
     [HideInInspector] public Vector3 momentum;
-    private float momentumLossInSec = 2.0f;
-
+    private float momentumLossInSec = 0.5f;
 
     void Start()
     {
@@ -38,9 +40,17 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        // broom forward drive
-        rb.velocity = ((transform.forward * speed * Time.deltaTime) + (momentum * Time.deltaTime)) * 100;
-        momentum -= momentum / momentumLossInSec * Time.deltaTime;
+        // non physical forward drive component
+        // can't set rigidbody velocity here, as it would override the calculated velocity 
+        // from the addForce method of the physical forward drive component
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * Time.deltaTime);
+
+        // physical forward drive component
+        rb.AddForce(transform.forward * speed * forceDrivenFactor);
+
+        // fake physical momentum, used for windzones
+        transform.Translate(momentum * Time.deltaTime, Space.World);
+        momentum -= (momentum / momentumLossInSec) * Time.deltaTime;
 
         // Rotate broom based on input
         float inputVertical = 0;
@@ -77,10 +87,10 @@ public class PlayerControl : MonoBehaviour
         {
             // back rotate brooms z Axis to zero degrees, when it was rotated
             if (transform.eulerAngles.z != 0) PerformBroomRollback();
-        }
 
-        // rotate player camera horizontally
-        cameraControl.RollCamera(inputHorizontal);
+            // rotate player camera horizontally
+            cameraControl.RollCamera(inputHorizontal);
+        }
     }
 
     private void PerformBroomRollback()
@@ -104,6 +114,7 @@ public class PlayerControl : MonoBehaviour
             transform.Rotate(0, 0, backRotationDegrees);
         }
     }
+
 
     public void lockToTargetSpeed(float targetSpeed, float duration)
     {

@@ -38,10 +38,6 @@ public class SlowDownPlayer : MonoBehaviour {
                     case METHOD.addForce:
                         rb.AddForce(transform.forward * thrust, ForceMode.VelocityChange);
                         break;
-
-                    case METHOD.translate:
-                        player.momentum += transform.forward * thrust * 45 * Time.deltaTime;
-                        break;
                 }
             } 
         }

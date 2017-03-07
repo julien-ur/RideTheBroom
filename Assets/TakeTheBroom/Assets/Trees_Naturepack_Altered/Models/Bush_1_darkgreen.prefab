@@ -44,43 +44,27 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _BumpSpecMap
-      second:
+    - _BumpSpecMap:
         m_Texture: {fileID: 2800000, guid: a31384bb9f079497e87ffe378176bc84, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 2800000, guid: 5060fa686601942f1a6026e021f7d277, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _TranslucencyMap
-      second:
+    - _TranslucencyMap:
         m_Texture: {fileID: 2800000, guid: 45ba2dbff6cb74c6caf1478af10e5b24, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _SquashAmount
-      second: 1
+    - _SquashAmount: 1
     m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _SpecColor
-      second: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - first:
-        name: _TreeInstanceColor
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _TreeInstanceScale
-      second: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
 --- !u!21 &2181844
 Material:
   serializedVersion: 6
@@ -94,61 +78,35 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TexEnvs:
-    - first:
-        name: _BumpSpecMap
-      second:
+    - _BumpSpecMap:
         m_Texture: {fileID: 2800000, guid: a31384bb9f079497e87ffe378176bc84, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _MainTex
-      second:
+    - _MainTex:
         m_Texture: {fileID: 2800000, guid: 5060fa686601942f1a6026e021f7d277, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _ShadowTex
-      second:
+    - _ShadowTex:
         m_Texture: {fileID: 2800000, guid: ba673b47c61504c0ca4bb17df2fa6fff, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _TranslucencyMap
-      second:
+    - _TranslucencyMap:
         m_Texture: {fileID: 2800000, guid: 45ba2dbff6cb74c6caf1478af10e5b24, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - first:
-        name: _Cutoff
-      second: 0.625
-    - first:
-        name: _ShadowOffsetScale
-      second: 1
-    - first:
-        name: _ShadowStrength
-      second: 0
-    - first:
-        name: _SquashAmount
-      second: 1
-    - first:
-        name: _TranslucencyViewDependency
-      second: 0.441
+    - _Cutoff: 0.625
+    - _ShadowOffsetScale: 1
+    - _ShadowStrength: 0
+    - _SquashAmount: 1
+    - _TranslucencyViewDependency: 0.441
     m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _TranslucencyColor
-      second: {r: 0.009407449, g: 0.6397059, b: 0.35281137, a: 1}
-    - first:
-        name: _TreeInstanceColor
-      second: {r: 1, g: 1, b: 1, a: 1}
-    - first:
-        name: _TreeInstanceScale
-      second: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _TranslucencyColor: {r: 0.009407449, g: 0.6397059, b: 0.35281137, a: 1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
 --- !u!23 &2309914
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -180,6 +138,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &3373892
 MeshFilter:

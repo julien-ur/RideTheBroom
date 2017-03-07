@@ -63,7 +63,10 @@ public class BroomHardwareInput : MonoBehaviour
 
     private static float GetHorizontalInput()
     {
-        Quaternion vrQuat = InputTracking.GetLocalRotation(m_VRNode);
+        // +++ VR +++
+        // Quaternion vrQuat = InputTracking.GetLocalRotation(m_VRNode);
+        Quaternion vrQuat = Quaternion.identity;
+
         float normedRot = Mathf.DeltaAngle(0, vrQuat.eulerAngles.z) / 180;
         float inputHorizontal = Mathf.Clamp(Mathf.Sign(normedRot) * Mathf.Pow(normedRot, 2) * 30, -1.0f, 1.0f);
 

@@ -19,8 +19,8 @@ public class BalanceBoardInput : MonoBehaviour
 
     public float accY;
 
-    //private string serverUrl = "http://192.168.0.104:5000/besen";
-    private string serverUrl = "http://132.199.196.245:5000/besen";
+    private string serverUrl = "http://192.168.0.105:5000/besen";
+    //private string serverUrl = "http://132.199.196.245:5000/besen";
 
     private string dataString = "";
 

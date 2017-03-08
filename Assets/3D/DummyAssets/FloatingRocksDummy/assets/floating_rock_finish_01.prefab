@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4342080657316792}
   - component: {fileID: 33512237504370464}
   - component: {fileID: 23266909388885836}
+  - component: {fileID: 64730815765369212}
   m_Layer: 0
   m_Name: floating_rock_finish_01
   m_TagString: Untagged
@@ -79,4 +80,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1885966532933498}
+  m_Mesh: {fileID: 4300000, guid: bca720301975142f8b7a359c313fe07d, type: 3}
+--- !u!64 &64730815765369212
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1885966532933498}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: bca720301975142f8b7a359c313fe07d, type: 3}

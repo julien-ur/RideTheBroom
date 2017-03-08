@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4638610697311000}
   - component: {fileID: 33954982402552506}
   - component: {fileID: 23874268349652190}
+  - component: {fileID: 64295680552934526}
   m_Layer: 0
   m_Name: floating_rock_dummy_11
   m_TagString: Untagged
@@ -79,4 +80,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241180772664932}
+  m_Mesh: {fileID: 4300000, guid: 6e1983b4b247e4d85ac01de3c70c7306, type: 3}
+--- !u!64 &64295680552934526
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241180772664932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 6e1983b4b247e4d85ac01de3c70c7306, type: 3}

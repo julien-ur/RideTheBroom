@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4366267815494900}
   - component: {fileID: 33344323355068040}
   - component: {fileID: 23689537106239934}
+  - component: {fileID: 64663702990269946}
   m_Layer: 0
   m_Name: rock_small_lowpoly_02
   m_TagString: Untagged
@@ -79,4 +80,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1892281553915668}
+  m_Mesh: {fileID: 4300000, guid: 60395eea192d544ce95bc46f795ec999, type: 3}
+--- !u!64 &64663702990269946
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1892281553915668}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 60395eea192d544ce95bc46f795ec999, type: 3}

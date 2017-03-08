@@ -19166,41 +19166,6 @@ Prefab:
       propertyPath: m_Name
       value: Test Player
       objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: bloomThreshold
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: lensFlareVignetteMask
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: lensFlareShader
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: screenBlendShader
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: blurAndFlaresShader
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114058329220275160, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-        type: 2}
-      propertyPath: brightPassFilterShader
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
   m_IsPrefabParent: 0

@@ -7564,10 +7564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70ce4c4590cd2e4a8839c8bae523c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 100
-  slowdownSpeed: 2
-  usedMethod: 0
-  speedChangeType: 0
 --- !u!114 &275652728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8167,7 +8163,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 688718594
+  randomSeed: 2106123236
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -23622,7 +23618,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420483450}
   m_LocalRotation: {x: -0.00082563603, y: 0.27880436, z: -0.0011256189, w: 0.96034694}
-  m_LocalPosition: {x: 383.05, y: 28.81, z: 386.54}
+  m_LocalPosition: {x: 380.4, y: 31.1, z: 388.21}
   m_LocalScale: {x: 0.10291955, y: 0.0663192, z: 0.08653248}
   m_Children:
   - {fileID: 404779608}
@@ -23651,10 +23647,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70ce4c4590cd2e4a8839c8bae523c53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 100
-  slowdownSpeed: 2
-  usedMethod: 0
-  speedChangeType: 1
 --- !u!1 &1426734901
 GameObject:
   m_ObjectHideFlags: 0
@@ -26220,6 +26212,11 @@ Prefab:
       propertyPath: defaultSpeed
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 54607861776736878, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: m_Drag
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
   m_IsPrefabParent: 0
@@ -28013,13 +28010,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2077266194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f70ce4c4590cd2e4a8839c8bae523c53, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d852b8d2bd3856449588b3dbff3750e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 25
-  slowdownSpeed: 2
-  usedMethod: 1
-  speedChangeType: 0
+  thrust: 35
 --- !u!135 &2077266197
 SphereCollider:
   m_ObjectHideFlags: 0

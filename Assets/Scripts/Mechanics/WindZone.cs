@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindZoneScript : MonoBehaviour
+public class WindZone : MonoBehaviour
 {
 	void OnTriggerStay(Collider col)
 	{

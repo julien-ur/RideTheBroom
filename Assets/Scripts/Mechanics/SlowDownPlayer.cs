@@ -8,13 +8,10 @@ public class SlowDownPlayer : MonoBehaviour {
     public enum METHOD { velocity, addForce, translate };
 
     public float thrust = 100;
-    public float speed = 2;
+    public float slowdownSpeed = 2;
     public METHOD usedMethod;
     public TYPE speedChangeType;
 
-    void Start () {
-		
-	}
 	
 	void OnTriggerEnter (Collider col) {
         PlayerControl player;
@@ -23,30 +20,31 @@ public class SlowDownPlayer : MonoBehaviour {
             Rigidbody rb = col.GetComponent<Rigidbody>();
 
             if (speedChangeType == TYPE.slowdown)
-            {
-                rb.drag = 50;
-                StartCoroutine(slowDownPlayer(player));
-            }
+
+                StartCoroutine(slowDownPlayer(player, rb));
+
             else
             {
                 switch (usedMethod)
                 {
                     case METHOD.velocity:
-                        rb.velocity = transform.forward * thrust;
+                        rb.velocity = player.transform.forward * thrust;
                         break;
 
                     case METHOD.addForce:
-                        rb.AddForce(transform.forward * thrust, ForceMode.VelocityChange);
+                        rb.AddForce(player.transform.forward * thrust, ForceMode.VelocityChange);
                         break;
                 }
             } 
         }
 	}
 
-    IEnumerator slowDownPlayer(PlayerControl player)
+    IEnumerator slowDownPlayer(PlayerControl player, Rigidbody rb)
     {
-        player.lockToTargetSpeed(1, 0.5f);
-        yield return new WaitForSeconds(0.5f);
-        player.unlockSpeed(2f);
+        rb.drag = 50;
+        player.changeSpeedToTargetSpeed(Constants.SLOWDOWN_TARGET_SPEED, Constants.SLOWDOWN_TIME);
+        yield return new WaitForSeconds(Constants.SLOWDOWN_TIME);
+        player.changeSpeedToDefaultSpeed(Constants.SLOWDOWN_RECOVERY_TIME);
+        rb.drag = 1;
     }
 }

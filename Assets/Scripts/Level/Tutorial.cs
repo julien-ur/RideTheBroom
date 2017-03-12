@@ -30,30 +30,30 @@ public class Tutorial : MonoBehaviour {
         wisp.initWaypoints();
         yield return new WaitForSeconds(3);
 
-        wisp.unlockSpeed(1);
-        pc.unlockSpeed(1);
+        wisp.changeSpeedToDefaultSpeed(1);
+        pc.changeSpeedToDefaultSpeed(1);
 
         yield return new WaitUntil(() => triggered);
-        pc.lockToTargetSpeed(2, 0.5f);
-        wisp.lockToTargetSpeed(3, 0.5f);
+        pc.changeSpeedToTargetSpeed(2, 0.5f);
+        wisp.changeSpeedToTargetSpeed(3, 0.5f);
         hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
         yield return new WaitForSeconds(4);
-        pc.unlockSpeed(0.5f);
-        wisp.unlockSpeed(0.5f);
+        pc.changeSpeedToDefaultSpeed(0.5f);
+        wisp.changeSpeedToDefaultSpeed(0.5f);
         triggered = false;
 
         yield return new WaitUntil(() => triggered);
-        pc.lockToTargetSpeed(2, 1);
-        wisp.lockToTargetSpeed(3, 1);
+        pc.changeSpeedToTargetSpeed(2, 1);
+        wisp.changeSpeedToTargetSpeed(3, 1);
         hud.show("Das da vorne, das so merkwürdig flimmert, das sind Windzonen. Wenn du genau durch sie durchfliegst, beschleunigt dein Besen und du wirst richt schnell. Flieg einfach mir nach!", 4);
         yield return new WaitForSeconds(4);
-        pc.unlockSpeed(0.5f);
-        wisp.unlockSpeed(0.5f);
+        pc.changeSpeedToDefaultSpeed(0.5f);
+        wisp.changeSpeedToDefaultSpeed(0.5f);
         triggered = false;
 
         yield return new WaitUntil(() => triggered);
-        pc.lockToTargetSpeed(0, 0);
-        wisp.lockToTargetSpeed(0, 0);
+        pc.changeSpeedToTargetSpeed(0, 0);
+        wisp.changeSpeedToTargetSpeed(0, 0);
         gc.showResults(5);
 
         yield return new WaitForSeconds(5);

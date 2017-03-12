@@ -26,8 +26,8 @@ public class GameController : MonoBehaviour {
         pc = player.GetComponent<PlayerControl>();
         score = player.GetComponent<Score>();
 
-        pc.lockToTargetSpeed(0, 0);
-        wisp.lockToTargetSpeed(0, 0);
+        pc.changeSpeedToTargetSpeed(0, 0);
+        wisp.changeSpeedToTargetSpeed(0, 0);
 
         fade.fadeIn(1);
     }
@@ -73,7 +73,7 @@ public class GameController : MonoBehaviour {
         yield return new WaitUntil(() => loadOp.isDone);
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)(levelToLoad)));
 
-        if (levelToLoad > LEVEL.Tutorial) pc.unlockSpeed(1);
+        if (levelToLoad > LEVEL.Tutorial) pc.changeSpeedToDefaultSpeed(1);
         // if (levelToLoad != LEVEL.Menu) Destroy(GameObject.Find("Menu Props"));
     }
 

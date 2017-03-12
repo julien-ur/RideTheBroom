@@ -72,7 +72,7 @@ public class Wisp : MonoBehaviour {
         rb.MovePosition(transform.position + dir * speed * Time.deltaTime);
     }
 
-    public void lockToTargetSpeed(float targetSpeed, float duration)
+    public void changeSpeedToTargetSpeed(float targetSpeed, float duration)
     {
         float startSpeed = speed;
         speedLocked = true;
@@ -81,7 +81,7 @@ public class Wisp : MonoBehaviour {
         else StartCoroutine(adjustSpeed(targetSpeed, startSpeed, duration, true));
     }
 
-    public void unlockSpeed(float duration)
+    public void changeSpeedToDefaultSpeed(float duration)
     {
         float startSpeed = speed;
         StartCoroutine(adjustSpeed(defaultSpeed, startSpeed, duration, false));

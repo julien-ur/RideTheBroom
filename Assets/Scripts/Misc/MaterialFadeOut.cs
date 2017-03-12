@@ -15,9 +15,9 @@ public class MaterialFadeOut : MonoBehaviour {
     }
 
 	void Update () {
-        var cameraDist = (mainCam.position + 2*Vector3.forward - transform.position).magnitude;
+        var cameraDist = (mainCam.position + 2* mainCam.transform.forward - transform.position).magnitude;
         
-        if(cameraDist <= 3)
+        if(cameraDist <= 4)
         {
             Color c = r.material.color;
             float alpha = Mathf.Lerp(0, matAlpha, cameraDist/3);

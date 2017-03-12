@@ -7,10 +7,7 @@ public class PlayerControl : MonoBehaviour
 
     [Range(0.0f, 1.0f)] public float forceDrivenFactor = 0.5f;
 
-    public float speedMin = 1;
-    public float speedMax = 25;
     public float defaultSpeed = 20;
-    public float speedChange = 2;
 
     public float rotationFactorX = 60;
     public float rotationFactorY = 60;
@@ -114,38 +111,30 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-
-    public void lockToTargetSpeed(float targetSpeed, float duration)
+    public void changeSpeedToTargetSpeed(float targetSpeed, float duration)
     {
-        float startSpeed = speed;
-        speedLocked = true;
-
-        if (duration == 0) speed = targetSpeed;
-        else StartCoroutine(adjustSpeed(targetSpeed, startSpeed, duration, true));
-    }
-
-    public void unlockSpeed(float duration)
-    {
-        float startSpeed = speed;
-        StartCoroutine(adjustSpeed(defaultSpeed, startSpeed, duration, false));
-    }
-
-    IEnumerator adjustSpeed(float targetSpeed, float startSpeed, float duration, bool b)
-    {
-        yield return new WaitUntil(() => adjustSpeedToTargetSpeed(targetSpeed, startSpeed, duration));
-        speedLocked = b;
-    }
-
-    private bool adjustSpeedToTargetSpeed(float targetSpeed, float startSpeed, float duration)
-    {
-        speed += ((targetSpeed - startSpeed) / duration) * Time.deltaTime;
-        bool slowDown = (targetSpeed < startSpeed);
-
-        if (speed <= targetSpeed && slowDown || speed >= targetSpeed && !slowDown)
-        {
+        if (duration == 0)
             speed = targetSpeed;
-            return true;
+        else
+            StartCoroutine(adjustSpeed(targetSpeed, duration));
+    }
+
+    public void changeSpeedToDefaultSpeed(float duration)
+    {
+        StartCoroutine(adjustSpeed(defaultSpeed, duration));
+    }
+
+    IEnumerator adjustSpeed(float targetSpeed, float duration)
+    {
+        float startSpeed = speed;
+        bool isSlowDown = (targetSpeed < startSpeed);
+
+        while (speed >= targetSpeed && isSlowDown || speed <= targetSpeed && !isSlowDown)
+        {
+            speed += ((targetSpeed - startSpeed) / duration) * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
-        else return false;
+
+        speed = targetSpeed;
     }
 }

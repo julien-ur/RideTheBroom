@@ -16,7 +16,10 @@ public class PlayerControl : MonoBehaviour
     public float rotationFactorY = 60;
 
     public bool useBroomHardware = false;  // use gamepad instead of broom hardware, for testing purposes
+    public bool useAndroidInput = true;
     public bool invertHorizontal = false;
+
+    public AndroidInput androidInput;
 
     public bool enableBroomRollback = true;
     public float backRotationRate = 90; // degrees per second to roll back broom
@@ -57,11 +60,19 @@ public class PlayerControl : MonoBehaviour
 
         if (useBroomHardware)
         {
-            inputHorizontal = BroomHardwareInput.GetAxis("Vertical");
-            inputHorizontal = BroomHardwareInput.GetAxis("Horizontal");
+            if(useAndroidInput)
+            {
+                inputVertical = androidInput.GetAxis("Vertical");
+                inputHorizontal = androidInput.GetAxis("Horizontal");
+            }
+            else
+            {
+                inputVertical = BroomHardwareInput.GetAxis("Vertical");
+                inputHorizontal = BroomHardwareInput.GetAxis("Horizontal");
+            }
         }
 
-        if (!useBroomHardware || BroomHardwareInput.HasThrownErrors())
+        if (!useBroomHardware) // || BroomHardwareInput.HasThrownErrors())
         {
             inputVertical = -Input.GetAxis("Vertical");
             inputHorizontal = -Input.GetAxis("Horizontal");

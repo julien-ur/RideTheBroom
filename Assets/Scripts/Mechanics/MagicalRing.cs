@@ -2,15 +2,12 @@
 
 public class MagicalRing : MonoBehaviour {
 
-    private bool activated = false;
-
-    public void setActivated()
+    void OnTriggerExit(Collider col)
     {
-        activated = true;
-    }
-
-    public bool isActivated()
-    {
-        return activated;
+        if (col.GetComponent<PlayerControl>())
+        {
+            GameComponents.GetGameController().RingActivated();
+            GetComponent<MeshCollider>().enabled = false;
+        }
     }
 }

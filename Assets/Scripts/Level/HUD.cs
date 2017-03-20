@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour {
 
     private Text gui;
+    private Coroutine co;
 
     void Start()
     {
@@ -13,8 +14,8 @@ public class HUD : MonoBehaviour {
 
     public void show(string text, float duration)
     {
-        StopAllCoroutines();
-        StartCoroutine(showText(text, duration));
+        if (co != null) StopCoroutine(co);
+        co = StartCoroutine(showText(text, duration));
     }
 
     IEnumerator showText(string text, float duration)

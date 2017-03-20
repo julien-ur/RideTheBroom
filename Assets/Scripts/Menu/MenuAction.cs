@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using VRStandardAssets.Utils;
 
 public class MenuAction : MonoBehaviour {
 
@@ -12,8 +11,8 @@ public class MenuAction : MonoBehaviour {
 
     void Start()
     {
-        GetComponent<SelectionSlider>().OnBarFilled += OnVRSelection;
-        gc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        //GetComponent<SelectionSlider>().OnBarFilled += OnVRSelection;
+        gc = GameObject.FindGameObjectWithTag("GameControl").GetComponent<GameController>();
     }
 
     private void OnVRSelection()
@@ -21,18 +20,18 @@ public class MenuAction : MonoBehaviour {
         switch (VRAction)
         {
             case ACTION.MainMenu:
-                gc.MainMenu.SetActive(true);
-                gc.LevelMenu.SetActive(false);
+                //gc.MainMenu.SetActive(true);
+                //gc.LevelMenu.SetActive(false);
                 break;
 
             case ACTION.LevelMenu:
-                gc.MainMenu.SetActive(false);
-                gc.LevelMenu.SetActive(true);
+                //gc.MainMenu.SetActive(false);
+                //gc.LevelMenu.SetActive(true);
                 break;
 
             case ACTION.Tutorial:
                 Destroy(GameObject.Find("Menu"));
-                gc.LoadLevel(GameController.LEVEL.Tutorial);
+                gc.LoadLevel(Constants.LEVEL.Tutorial);
                 break;
         }
     }

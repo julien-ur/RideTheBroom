@@ -5,13 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/TakeTheBroom/FloatingWorld_dummy.unity
   - enabled: 1
-    path: Assets/TakeTheBroom/Menu.unity
+    path: Assets/Scenes/Menu.unity
   - enabled: 1
-    path: Assets/TakeTheBroom/MountainWorld01_backup.unity
-  - enabled: 0
-    path: Assets/TakeTheBroom/MountainWorld01.unity
-  - enabled: 0
-    path: Assets/TakeTheBroom/show_world.unity
+    path: Assets/Scenes/MountainWorld.unity
+  - enabled: 1
+    path: Assets/Scenes/FloatingWorld_dummy_Andi.unity

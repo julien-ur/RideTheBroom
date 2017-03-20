@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-
     [Range(0.0f, 1.0f)] public float forceDrivenFactor = 0.5f;
 
     public float defaultSpeed = 20;
+    [HideInInspector] public Vector3 momentum;
 
     public float rotationFactorX = 60;
     public float rotationFactorY = 60;
@@ -22,16 +22,12 @@ public class PlayerControl : MonoBehaviour
     private PlayerCameraControl cameraControl;
 
     private float speed;
-    private bool speedLocked = false;
-
-    [HideInInspector] public Vector3 momentum;
-    private float momentumLossInSec = 0.5f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cameraControl = GetComponentInChildren<PlayerCameraControl>();
-        speed = defaultSpeed;
+        speed = 0;
     }
 
     void Update()
@@ -46,7 +42,7 @@ public class PlayerControl : MonoBehaviour
 
         // fake physical momentum, used for windzones
         transform.Translate(momentum * Time.deltaTime, Space.World);
-        momentum -= (momentum / momentumLossInSec) * Time.deltaTime;
+        momentum -= (momentum / Constants.WINDZONE_MOMENTUM_LOSS_TIME) * Time.deltaTime;
 
         // Rotate broom based on input
         float inputVertical = 0;
@@ -109,6 +105,11 @@ public class PlayerControl : MonoBehaviour
 
             transform.Rotate(0, 0, backRotationDegrees);
         }
+    }
+
+    public void startBroom()
+    {
+        changeSpeedToTargetSpeed(defaultSpeed, 2);
     }
 
     public void changeSpeedToTargetSpeed(float targetSpeed, float duration)

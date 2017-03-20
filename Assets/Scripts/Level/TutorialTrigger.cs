@@ -2,21 +2,21 @@
 
 public class TutorialTrigger : MonoBehaviour {
 
-    public int id;
+    public Constants.TUTORIAL_ACTION action;
 
     private Tutorial tutorial;
     private bool activated = false;
 
     private void Start()
     {
-        tutorial = GameObject.Find("Tutorial").GetComponent<Tutorial>();
+        tutorial = GameComponents.GetTutorial();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(!activated && other.gameObject.tag == "Player")
         {
-            tutorial.trigger();
+            tutorial.TriggerAction(action);
             activated = true;
         }
     }

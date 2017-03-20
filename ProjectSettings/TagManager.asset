@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GameControl
+  - Wisp
+  - Menu
+  - HUD
   layers:
   - Default
   - TransparentFX
@@ -19,7 +23,7 @@ TagManager:
   - MazeTurretBullet
   - Bg
   - FPSWeapon
-  - 
+  - TestingStuff
   - 
   - 
   - 

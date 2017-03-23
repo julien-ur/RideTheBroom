@@ -45,8 +45,8 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.A)) LoadLevel((int)(LEVEL.Tutorial));
-        //if (Input.GetKeyDown(KeyCode.B)) LoadLevel((int)(LEVEL.FloatingRocks));
+        if (Input.GetKeyDown(KeyCode.A)) LoadLevel((LEVEL.Tutorial));
+        if (Input.GetKeyDown(KeyCode.B)) LoadLevel((LEVEL.FloatingRocks));
     }
     
     public void LoadLevel(LEVEL lvl)

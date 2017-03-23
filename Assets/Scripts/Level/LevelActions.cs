@@ -21,9 +21,6 @@ public class LevelActions : MonoBehaviour {
         pc = GameComponents.GetPlayerControl();
         tut = GameComponents.GetTutorial();
 
-        scene = SceneManager.GetActiveScene();
-        currentLevel = (Constants.LEVEL)(scene.buildIndex);
-
         StartCoroutine(LevelStartRoutine());
     }
 
@@ -43,6 +40,9 @@ public class LevelActions : MonoBehaviour {
 
         if (menu) menu.hideMenu();
 
+        scene = SceneManager.GetActiveScene();
+        currentLevel = (Constants.LEVEL)(scene.buildIndex);
+
         if (currentLevel == Constants.LEVEL.Tutorial)
         {
             tut.TriggerAction(Constants.TUTORIAL_ACTION.Start);
@@ -57,6 +57,7 @@ public class LevelActions : MonoBehaviour {
 
     private void deactivateTestingStuff()
     {
+
         GameObject[] unwantedStuff = GameComponents.GetTestingStuff();
         foreach (GameObject o in unwantedStuff)
         {

@@ -32,7 +32,6 @@ public class Wisp : MonoBehaviour {
     public void initWaypoints()
     {
         path = GameObject.Find("Wisp Waypoints");
-
         List<Transform> transforms = new List<Transform>(path.GetComponentsInChildren<Transform>());
         transforms.Remove(transform);
         waypoints = transforms.ToArray();

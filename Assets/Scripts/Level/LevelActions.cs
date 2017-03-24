@@ -17,6 +17,7 @@ public class LevelActions : MonoBehaviour
 
     public GameObject ringContainer;
 
+
     void Start () {
         menu = GameComponents.GetMenu();
         if (menu) deactivateTestingStuff(); // deactivates all objects of the layer "testing stuff"

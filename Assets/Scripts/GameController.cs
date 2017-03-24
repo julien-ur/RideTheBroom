@@ -73,6 +73,8 @@ public class GameController : MonoBehaviour
     public void RingActivated()
     {
         hud.show("Ring Activated", 2);
+        //player.Find("armature_score").GetComponent<ScoreDisplayControl>().AddScore(1);
+        player.GetComponentInChildren<ScoreDisplayControl>().AddScore(1);
     }
 
     public void ShowResults(float durationInSec)

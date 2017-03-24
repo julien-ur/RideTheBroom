@@ -32,6 +32,8 @@ public class CompassControl : MonoBehaviour
 
 	public void PointAtTarget(Transform target)
 	{
+		if(target == null) return;
+		
 		Vector3 delta = target.position - compassArrow.position;
 		
 		float angle = Quaternion.LookRotation(delta).eulerAngles.y;

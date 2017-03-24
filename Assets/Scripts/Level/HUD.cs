@@ -2,8 +2,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUD : MonoBehaviour {
-
+public class HUD : MonoBehaviour
+{
     private Text gui;
     private Coroutine co;
 

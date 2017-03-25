@@ -21,6 +21,12 @@ public static class GameComponents {
         return (gc) ? gc.GetComponent<Fading>() : null;
     }
 
+    public static GhostModeController GetGhostModeController()
+    {
+        GameObject gc = GetGameControl();
+        return (gc) ? gc.GetComponent<GhostModeController>() : null;
+    }
+
     public static PlayerControl GetPlayerControl()
     {
         GameObject player = GetPlayer();

@@ -7,24 +7,6 @@ using System.IO;
 public class GameController : MonoBehaviour
 {
     private const string HIGHSCORE_FILE_PATH = "highscore.txt";
-    private const string GHOSTMODE_LOG_PATH = "ghostmodetest.txt";
-
-    struct GhostModePathNode
-    {
-        Vector3 position;
-        float time;
-
-        public GhostModePathNode(Vector3 position, float time)
-        {
-            this.position = position;
-            this.time = time;
-        }
-
-        public string ToString()
-        {
-            return time.ToString("F3") + " " + position.x.ToString("F3") + " " + position.y.ToString("F3") + " " + position.z.ToString("F3") + "\r\n";
-        }
-    }
 
     private GameObject player;
     private Tutorial tutorial;
@@ -32,16 +14,12 @@ public class GameController : MonoBehaviour
     private Wisp wisp;
     private PlayerControl pc;
     private Fading fade;
+    private GhostModeController ghostModeController;
 
     private float levelTime;
     private bool isGamePaused;
 
     private int numRings;
-
-    private List<GhostModePathNode> ghostModePathLog;
-    private float ghostModeLogTimer;
-    private float lastGhostModeLogTime;
-    private bool isGhostModeLogRunning;
 
     private void Start()
     {
@@ -51,6 +29,7 @@ public class GameController : MonoBehaviour
         tutorial = GameComponents.GetTutorial();
         fade = GameComponents.GetFading();
         pc = GameComponents.GetPlayerControl();
+        ghostModeController = GameComponents.GetGhostModeController();
 
         fade.fadeIn(1);
     }
@@ -58,7 +37,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         if(!isGamePaused) levelTime += Time.deltaTime;
-        HandleGhostModeLog();
     }
 
 
@@ -101,7 +79,7 @@ public class GameController : MonoBehaviour
         levelTime = 0;
         numRings = 0;
         UnpauseGame();
-        StartGhostModeLog();
+        ghostModeController.StartGhostModeLog(player.GetComponent<Transform>());
         pc.startBroom();
         if (wisp) wisp.startFlying();
     }
@@ -129,8 +107,8 @@ public class GameController : MonoBehaviour
         PauseGame();
         Debug.Log("Finished! Time: " + createTimeString(levelTime) + " Rings: " + numRings);
         SaveHighscoreFile();
-        StopGhostModeLog();
-        SaveGhostModeLog();
+        ghostModeController.StopGhostModeLog();
+        ghostModeController.SaveGhostModeLog();
     }
 
     public void PauseGame()
@@ -157,44 +135,5 @@ public class GameController : MonoBehaviour
         string line = createTimeString(levelTime) + " " + numRings + "\r\n";
         
         System.IO.File.AppendAllText(HIGHSCORE_FILE_PATH, line);
-    }
-
-    private void HandleGhostModeLog()
-    {
-        if(isGhostModeLogRunning)
-        {
-            ghostModeLogTimer += Time.deltaTime;
-
-            if(ghostModeLogTimer - lastGhostModeLogTime >= 1)
-            {
-                ghostModePathLog.Add(new GhostModePathNode(player.transform.position, ghostModeLogTimer));
-                lastGhostModeLogTime = ghostModeLogTimer;
-            }
-        }
-    }
-
-    public void SaveGhostModeLog()
-    {
-        string text = "";
-
-        foreach(GhostModePathNode node in ghostModePathLog)
-        {
-            text += node.ToString();
-        }
-
-        System.IO.File.WriteAllText(GHOSTMODE_LOG_PATH, text);
-    }
-
-    public void StartGhostModeLog()
-    {
-        ghostModePathLog = new List<GhostModePathNode>();
-        isGhostModeLogRunning = true;
-        ghostModeLogTimer = 0;
-        lastGhostModeLogTime = 0;
-    }
-
-    public void StopGhostModeLog()
-    {
-        isGhostModeLogRunning = false;
     }
 }

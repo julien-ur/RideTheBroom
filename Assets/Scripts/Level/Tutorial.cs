@@ -118,7 +118,7 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3, 0.5f);
-        hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
+        hud.show("Siehst du die bläuliche Energiekugel da vorne! Das ist eine Beschleuniger. Wenn du durch ihn Hindurchfliegst, wirst du regelrecht nach vorne geschleudert.", 4);
         yield return new WaitForSeconds(4);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
@@ -126,22 +126,33 @@ public class Tutorial : MonoBehaviour {
 
     IEnumerator ExplainSlowDown()
     {
-        pc.changeSpeedToTargetSpeed(2, 0.5f);
-        wisp.changeSpeedToTargetSpeed(3, 0.5f);
-        hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
-        yield return new WaitForSeconds(4);
-        pc.changeSpeedToDefaultSpeed(0.5f);
-        wisp.changeSpeedToDefaultSpeed(0.5f);
+        float slowDownFactor = 0.1f;
+        Time.timeScale = slowDownFactor;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        hud.show("Huiiii ganz schön schnell. Die Wolke vor dir ist dazu da um zu bremsen. Besonders vor Kurven, oder nach einem Speedboost ist das hilfreich um auf der Strecke zu bleiben", 4 * slowDownFactor);
+        yield return new WaitForSeconds(4 * slowDownFactor);
+
+        while (Time.timeScale < 1)
+        {
+            Time.timeScale += 2 * Time.deltaTime;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     IEnumerator ExplainHardRoute()
     {
-        pc.changeSpeedToTargetSpeed(2, 0.5f);
-        wisp.changeSpeedToTargetSpeed(3, 0.5f);
-        hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
-        yield return new WaitForSeconds(4);
-        pc.changeSpeedToDefaultSpeed(0.5f);
-        wisp.changeSpeedToDefaultSpeed(0.5f);
+        float slowDownFactor = 0.1f;
+        Time.timeScale = slowDownFactor;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        hud.show("Aaah moment, warte. Siehst du das Schild da vorne?! Das steht überall da wo es alternative Streckenabschnitte gibt. Doch sei gewarnt, diese Absschnitte sind zumeist besonders schwer zu meistern und nicht geeignet für unerfahrerne Abenteurer!", 6 * slowDownFactor);
+        yield return new WaitForSeconds(6 * slowDownFactor);
+        while (Time.timeScale < 1)
+        {
+            Time.timeScale += 2 * Time.deltaTime;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void StartTutorial()
@@ -164,6 +175,18 @@ public class Tutorial : MonoBehaviour {
 
             case Constants.TUTORIAL_ACTION.WindZone:
                 StartCoroutine(ExplainWindzone());
+                break;
+
+            case Constants.TUTORIAL_ACTION.SpeedBoost:
+                StartCoroutine(ExplainSpeedBoost());
+                break;
+
+            case Constants.TUTORIAL_ACTION.SlowDown:
+                StartCoroutine(ExplainSlowDown());
+                break;
+
+            case Constants.TUTORIAL_ACTION.HardRoute:
+                StartCoroutine(ExplainHardRoute());
                 break;
         }
     }

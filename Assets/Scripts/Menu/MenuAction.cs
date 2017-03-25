@@ -5,7 +5,9 @@ public class MenuAction : MonoBehaviour {
     [SerializeField] private ACTION VRAction;
 
     public enum ACTION { MainMenu, LevelMenu, Tutorial, FloatingRocks }
+
     private GameController gc;
+    private bool activated = false;
 
     void Start()
     {

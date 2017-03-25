@@ -6,7 +6,7 @@ public class Menu : MonoBehaviour {
 
     private GameObject menu;
     private GameController gc;
-    private bool actionExcuted = false;
+    private bool actionExcuted = true;
 
     void Start()
     {

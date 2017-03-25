@@ -111,10 +111,9 @@ public class Wisp : MonoBehaviour {
         else return false;
     }
 
-    public float saySomething()
+    public void talkToPlayer(AudioClip clip)
     {
-        audioSource.clip = introductionClip;
+        audioSource.clip = clip;
         audioSource.Play();
-        return introductionClip.length;
     }
 }

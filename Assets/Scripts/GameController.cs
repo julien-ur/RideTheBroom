@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
     IEnumerator StartGameAfterCountdownRoutine()
     {
         // implement countdown sound and visuals
-        hud.show("Fancy Countdown missing", 3);
+        hud.show("Wisp Countdown", 3);
         yield return new WaitForSeconds(3);
         StartGame();
     }

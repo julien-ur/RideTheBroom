@@ -16,12 +16,20 @@ public class VRSelectable : MonoBehaviour {
     private const float blinkHoldDuration = 0.14f;
     private const float blinkCount = 3;
 
+    private VRSelectionControl selectionControl;
+    private MaterialResetter materialResetter;
     private Coroutine lastCoroutine;
     private bool selected = false;
 
+    void Start()
+    {
+        selectionControl = GameComponents.GetVRSelectionControl();
+        materialResetter = GameComponents.GetMaterialResetter();
+    }
+
     public void OnPlayerFocusEnter()
     {
-        if (selected) return;
+        if (selected || selectionControl.IsObjectSelected()) return;
 
         if (lastCoroutine != null) StopCoroutine(lastCoroutine);
         lastCoroutine = StartCoroutine(startSelectionProcess());
@@ -29,15 +37,18 @@ public class VRSelectable : MonoBehaviour {
 
     public void OnPlayerFocusExit()
     {
-        if (selected) return;
+        if (selected || selectionControl.IsObjectSelected()) return;
 
         if (lastCoroutine != null) StopCoroutine(lastCoroutine);
         lastCoroutine = StartCoroutine(unselect());
     }
 
-    private void OnSelected()
+    IEnumerator OnSelected()
     {
         selected = true;
+        selectionControl.OnVRSelection();
+        materialResetter.OnMaterialTinted(tintMaterial);
+        yield return new WaitForSeconds(0.5f);
         GetComponent<MenuAction>().OnVRSelection();
     }
 
@@ -75,9 +86,8 @@ public class VRSelectable : MonoBehaviour {
         }
 
         tintMaterial.SetColor("_EmissionColor", selectedColor);
-        yield return new WaitForSeconds(0.5f);
-
-        OnSelected();
+        
+        StartCoroutine(OnSelected());
     }
 
     IEnumerator unselect()

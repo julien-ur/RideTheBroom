@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour {
 
+    public AnimationClip clip;
+
     private GameObject menu;
     private GameController gc;
-    private bool actionExcuted = true;
+    private bool actionExcuted = false;
 
     void Start()
     {
@@ -15,15 +17,21 @@ public class Menu : MonoBehaviour {
     }
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.A) && !actionExcuted)
-        {
-            gc.StartTutorial();
-            actionExcuted = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.A) && !actionExcuted)
+        //{
+        //    gc.StartTutorial();
+        //    actionExcuted = true;
+        //}
             
-        if (Input.GetKeyDown(KeyCode.B) && !actionExcuted)
+        //if (Input.GetKeyDown(KeyCode.B) && !actionExcuted)
+        //{
+        //    gc.LoadLevel(Constants.LEVEL.FloatingRocks);
+        //    actionExcuted = true;
+        //}
+        if (Input.GetKeyDown(KeyCode.C) && !actionExcuted)
         {
-            gc.LoadLevel(Constants.LEVEL.FloatingRocks);
+            Debug.Log("Load Menu");
+            gc.LoadLevel(Constants.LEVEL.Menu);
             actionExcuted = true;
         }
     }

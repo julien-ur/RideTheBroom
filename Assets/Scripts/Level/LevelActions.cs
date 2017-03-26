@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelActions : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class LevelActions : MonoBehaviour
     private GameController gc;
     private PlayerControl pc;
     private Tutorial tut;
-    private Scene scene;
+    private BroomCloset broomCloset;
 
     private Constants.LEVEL currentLevel;
 
@@ -26,6 +25,7 @@ public class LevelActions : MonoBehaviour
         pc = GameComponents.GetPlayerControl();
         tut = GameComponents.GetTutorial();
         player = pc.GetComponent<Transform>();
+        broomCloset = GameComponents.GetBroomCloset();
         compass = player.GetComponentInChildren<CompassControl>();
 
         StartCoroutine(LevelStartRoutine());
@@ -44,27 +44,38 @@ public class LevelActions : MonoBehaviour
          * - Wenn nicht, show Countdown -> Starte Besen
          * 
          */
+        currentLevel = gc.GetActiveLevel();
 
-        if (menu) menu.hideMenu();
-
-        scene = SceneManager.GetActiveScene();
-        currentLevel = (Constants.LEVEL)(scene.buildIndex);
-
-        if (currentLevel == Constants.LEVEL.Tutorial)
+        if (menu)
         {
-            tut.TriggerAction(Constants.TUTORIAL_ACTION.Start);
+            Transform wispTrans = GameComponents.GetWisp().transform;
+            player.parent = broomCloset.transform;
+            wispTrans.parent = broomCloset.transform;
+            float landingDuration = broomCloset.StartLanding();
+            yield return new WaitForSeconds(landingDuration);
+            player.parent = null;
+            wispTrans.parent = null;
+
+            float doorOpenDuration = broomCloset.OpenDoors();
+            yield return new WaitForSeconds(doorOpenDuration);
+
+            if (currentLevel == Constants.LEVEL.Tutorial)
+            {
+                tut.TriggerAction(Constants.TUTORIAL_ACTION.Start);
+            }
+            else
+            {
+                gc.StartGameAfterCountdown();
+            }
         }
-        else if (menu)
-            gc.StartGameAfterCountdown();
-
         else
+        {
             gc.StartGame();
-
+        }
     }
 
     private void deactivateTestingStuff()
     {
-
         GameObject[] unwantedStuff = GameComponents.GetTestingStuff();
         foreach (GameObject o in unwantedStuff)
         {

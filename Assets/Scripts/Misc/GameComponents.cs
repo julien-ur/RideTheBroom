@@ -62,8 +62,26 @@ public static class GameComponents {
 
     public static Menu GetMenu()
     {
-        GameObject mo = GameObject.FindGameObjectWithTag("Menu");
+        GameObject mo = GetMenuObject();
         return (mo) ? mo.GetComponent<Menu>() : null;
+    }
+
+    public static BroomCloset GetBroomCloset()
+    {
+        GameObject mo = GetMenuObject();
+        return (mo) ? mo.GetComponent<BroomCloset>() : null;
+    }
+
+    public static VRSelectionControl GetVRSelectionControl()
+    {
+        GameObject mo = GetMenuObject();
+        return (mo) ? mo.GetComponent<VRSelectionControl>() : null;
+    }
+
+    public static MaterialResetter GetMaterialResetter()
+    {
+        GameObject mo = GetMenuObject();
+        return (mo) ? mo.GetComponent<MaterialResetter>() : null;
     }
 
     private static GameObject GetGameControl()

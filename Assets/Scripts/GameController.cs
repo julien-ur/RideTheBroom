@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private PlayerControl pc;
     private Fading fade;
     private GhostModeController ghostModeController;
+    private MaterialResetter materialResetter;
+    private VRSelectionControl vrSelectionControl;
 
     private float levelTime;
     private bool isGamePaused;
@@ -30,6 +32,8 @@ public class GameController : MonoBehaviour
         fade = GameComponents.GetFading();
         pc = GameComponents.GetPlayerControl();
         ghostModeController = GameComponents.GetGhostModeController();
+        materialResetter = GameComponents.GetMaterialResetter();
+        vrSelectionControl = GameComponents.GetVRSelectionControl();
 
         fade.fadeIn(1);
     }
@@ -71,6 +75,12 @@ public class GameController : MonoBehaviour
 
     public void LoadLevel(Constants.LEVEL lvl)
     {
+        if(lvl == Constants.LEVEL.Menu)
+        {
+            vrSelectionControl.ResetVRSelection();
+            materialResetter.ResetTintedMaterials();
+        }
+
         StartCoroutine(LoadScene(lvl));
     }
 
@@ -79,7 +89,7 @@ public class GameController : MonoBehaviour
         levelTime = 0;
         numRings = 0;
         UnpauseGame();
-        ghostModeController.StartGhostModeLog(player.GetComponent<Transform>());
+        // ghostModeController.StartGhostModeLog(player.GetComponent<Transform>());
         pc.startBroom();
         if (wisp) wisp.startFlying();
     }
@@ -121,6 +131,12 @@ public class GameController : MonoBehaviour
         isGamePaused = false;
     }
 
+    public Constants.LEVEL GetActiveLevel()
+    {
+        Scene s = SceneManager.GetActiveScene();
+        return (Constants.LEVEL)(s.buildIndex);
+    }
+
     // TODO: move to somewhere else
     private string createTimeString(float time)
     {
@@ -135,5 +151,10 @@ public class GameController : MonoBehaviour
         string line = createTimeString(levelTime) + " " + numRings + "\r\n";
         
         System.IO.File.AppendAllText(HIGHSCORE_FILE_PATH, line);
+    }
+
+    void OnApplicationQuit()
+    {
+        materialResetter.ResetTintedMaterials();
     }
 }

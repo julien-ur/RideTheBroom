@@ -5,7 +5,7 @@ using System.IO;
 
 public class GhostModeController : MonoBehaviour
 {
-	private const string GHOSTMODE_LOG_PATH = "ghostmodetest.txt";
+	private string GHOSTMODE_LOG_PATH;
 
     struct GhostModePathNode
     {
@@ -40,12 +40,14 @@ public class GhostModeController : MonoBehaviour
     }
 
     public Transform player;
+    public GameObject ghostPrefab;
 
     private List<GhostModePathNode> ghostModePathLog;
     private List<GhostModePathNode> ghostModePathLoaded;
     private float ghostModeLogTimer;
     private float lastGhostModeLogTime;
     private bool isGhostModeLogRunning;
+    private bool isFirstRecord;
 
     private GhostModePathNode previousNode;
     private GhostModePathNode nextNode;
@@ -56,8 +58,17 @@ public class GhostModeController : MonoBehaviour
 
 	void Start ()
 	{
-		BuildGhostPath();
-		SpawnGhost();
+		GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameObject.Find("LevelControl").GetComponent<LevelActions>().LEVEL_NAME + ".txt";
+		if(!File.Exists(GHOSTMODE_LOG_PATH))
+		{
+			isFirstRecord = true;
+		}
+		else
+		{
+			ghostModePathLoaded = LoadGhostModeLog(GHOSTMODE_LOG_PATH);
+			//BuildGhostPath();
+			SpawnGhost();
+		}
 	}
 	
 	void Update ()
@@ -77,19 +88,24 @@ public class GhostModeController : MonoBehaviour
                 ghostModePathLog.Add(new GhostModePathNode(player.transform.position, ghostModeLogTimer));
                 lastGhostModeLogTime = ghostModeLogTimer;
             }
+
+            if(ghostModeLogTimer > 600) AbortGhostModeLog();
         }
     }
 
     public void SaveGhostModeLog()
     {
-        string text = "";
+    	if(ghostModePathLog != null && (isFirstRecord || ghostModePathLoaded[ghostModePathLoaded.Count].time > ghostModeLogTimer))
+    	{
+	        string text = "";
 
-        foreach(GhostModePathNode node in ghostModePathLog)
-        {
-            text += node.ToString();
-        }
+	        foreach(GhostModePathNode node in ghostModePathLog)
+	        {
+	            text += node.ToString();
+	        }
 
-        System.IO.File.WriteAllText(GHOSTMODE_LOG_PATH, text);
+	        System.IO.File.WriteAllText(GHOSTMODE_LOG_PATH, text);
+	    }
     }
 
     public void StartGhostModeLog(Transform player)
@@ -104,6 +120,13 @@ public class GhostModeController : MonoBehaviour
     public void StopGhostModeLog()
     {
         isGhostModeLogRunning = false;
+    }
+
+    public void AbortGhostModeLog()
+    {
+    	Debug.Log("Logging aborted");
+    	isGhostModeLogRunning = false;
+    	ghostModePathLog = null;
     }
 
     private List<GhostModePathNode> LoadGhostModeLog(string filepath)
@@ -122,8 +145,6 @@ public class GhostModeController : MonoBehaviour
 
     private void BuildGhostPath()
     {
-    	ghostModePathLoaded = LoadGhostModeLog("ghostmodetest.txt");
-
     	foreach(GhostModePathNode node in ghostModePathLoaded)
     	{
     		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -133,8 +154,12 @@ public class GhostModeController : MonoBehaviour
 
     private void SpawnGhost()
     {
-    	ghost = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-    	isGhostMoving = true;
+    	if(!isFirstRecord)
+    	{
+	    	if(ghostPrefab == null) ghost = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+	    	else ghost = Instantiate(ghostPrefab, Vector3.zero, Quaternion.identity).transform;
+	    	isGhostMoving = true;
+	    }
     }
 
     private void HandleGhostMovement()
@@ -157,7 +182,7 @@ public class GhostModeController : MonoBehaviour
 		    	}
 	    	}
 
-	    	if(nextNode.defined == false)
+	    	if(ghostModeLogTimer > nextNode.time)
 	    	{
 	    		isGhostMoving = false;
 	    		return;

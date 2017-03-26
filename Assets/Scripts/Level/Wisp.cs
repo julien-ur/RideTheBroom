@@ -7,7 +7,6 @@ public class Wisp : MonoBehaviour {
 
     public Transform player;
     public AudioClip introductionClip;
-    public float maxSpeed = 18;
     public float defaultSpeed = 12;
     public float slowDownFactor = 0.1f;
 
@@ -69,7 +68,7 @@ public class Wisp : MonoBehaviour {
 
         // move in target direction
         Vector3 dir = (target.position - transform.position).normalized;
-        rb.MovePosition(transform.position + dir * speed * Time.deltaTime);
+        transform.Translate(dir * speed * Time.deltaTime);
     }
 
     public void startFlying()

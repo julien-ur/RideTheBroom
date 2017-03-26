@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
 
     private int numRings;
 
-    private void Start()
+    void Start()
     {
         player = GameComponents.GetPlayer();
         hud = GameComponents.GetHUD();
@@ -115,6 +115,7 @@ public class GameController : MonoBehaviour
     public void FinishLevel()
     {
         PauseGame();
+        pc.changeSpeedToTargetSpeed(0, 0.5f);
         Debug.Log("Finished! Time: " + createTimeString(levelTime) + " Rings: " + numRings);
         SaveHighscoreFile();
         ghostModeController.StopGhostModeLog();
@@ -155,6 +156,6 @@ public class GameController : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        materialResetter.ResetTintedMaterials();
+        if (materialResetter) materialResetter.ResetTintedMaterials();
     }
 }

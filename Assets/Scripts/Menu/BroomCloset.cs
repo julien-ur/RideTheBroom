@@ -7,8 +7,10 @@ public class BroomCloset : MonoBehaviour {
     public AnimationClip LandingMountainWorld;
     public AnimationClip LandingFloatingRocks;
     public AnimationClip OpenBarnDoors;
+    public AudioSource barnDoorAudioSource;
 
     private Animation anim;
+    
 
     void Start()
     {
@@ -36,6 +38,7 @@ public class BroomCloset : MonoBehaviour {
     {
         anim.clip = OpenBarnDoors;
         anim.Play();
+        barnDoorAudioSource.Play();
         return anim.clip.length;
     }
 }

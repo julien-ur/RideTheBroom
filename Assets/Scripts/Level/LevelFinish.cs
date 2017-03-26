@@ -16,6 +16,7 @@ public class LevelFinish : MonoBehaviour
 		if(col.gameObject.name == "Player")
 		{
 			gc.FinishLevel();
+            GetComponent<Collider>().enabled = false;
 			//Debug.Log("FINISH - " + createTimeString(levelTime));
 		}
 	}

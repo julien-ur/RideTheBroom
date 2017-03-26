@@ -9,8 +9,8 @@ public class PlayerControl : MonoBehaviour
     public float defaultSpeed = 20;
     [HideInInspector] public Vector3 momentum;
 
-    public float rotationFactorX = 60;
-    public float rotationFactorY = 60;
+    public float rotationFactorX = 120;
+    public float rotationFactorY = 120;
 
     public bool useBroomHardware = false;  // use gamepad instead of broom hardware, for testing purposes
     public bool useAndroidInput = true;

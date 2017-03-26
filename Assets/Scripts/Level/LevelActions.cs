@@ -108,6 +108,6 @@ public class LevelActions : MonoBehaviour
     {
     	Transform nearestRing = GetNearestRing(player);
 
-    	if(nearestRing) compass.PointAtTarget(nearestRing);
+    	if(nearestRing && compass) compass.PointAtTarget(nearestRing);
     }
 }

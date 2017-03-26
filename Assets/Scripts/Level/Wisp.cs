@@ -1,74 +1,61 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Wisp : MonoBehaviour {
 
-    public Transform player;
     public AudioClip introductionClip;
     public float defaultSpeed = 12;
-    public float slowDownFactor = 0.1f;
 
     private AudioSource audioSource;
-    private GameObject path;
-    private Rigidbody rb;
-    private float speed;
-    private int actWaypoint = 0;
+    private Transform playerTransform;
     private Transform[] waypoints;
     private Transform target;
-    private double targetReachedDistance = 0.5;
 
-    private bool speedLocked = false;
+    private float speed;
+    private int waypointCounter = 0;
+    private double targetReachedDistance = 0.5;
+    private float optimalPlayerDistance = 2;
+    private float maxPlayerDistanceVariance = 3;
+    private float maxSpeedChangeFactor = 2;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        playerTransform = GameComponents.GetPlayer().transform;
         speed = 0;
     }
 
     public void initWaypoints()
     {
-        path = GameObject.Find("Wisp Waypoints");
-        List<Transform> transforms = new List<Transform>(path.GetComponentsInChildren<Transform>());
-        transforms.Remove(transform);
-        waypoints = transforms.ToArray();
-        
-        nextTarget();
-    }
-
-    public void nextTarget()
-    {
-        actWaypoint++;
-        target = waypoints[actWaypoint];
+        GameObject wpContainer = GameObject.Find("Wisp Waypoints");
+        waypoints = GameComponents.GetComponentsInChildrenWithoutParent<Transform>(wpContainer);
+        target = waypoints[waypointCounter++];
     }
 
     void Update()
     {
         if (!target) return;
+        UpdateTarget();
 
-        // check target distance
-        var targetDistance = (target.position - transform.position).magnitude;
-        if (targetDistance < targetReachedDistance) nextTarget();
-
-        // wait for player
-        //if(!speedLocked)
-        //{
-        //    var distanceToPlayer = (player.position - transform.position).magnitude;
-        //    if (distanceToPlayer > 10)
-        //    {
-        //        speed = Mathf.Max(0, speed - slowDownFactor);
-        //    }
-        //    else
-        //    {
-        //        speed = Mathf.Min(maxSpeed, speed + slowDownFactor / 2);
-        //    }
-        //}
-
-        // move in target direction
         Vector3 dir = (target.position - transform.position).normalized;
+
+        //float playerDistance = Vector3.Distance(playerTransform.position, transform.position);
+        //float optimalPlayerDistanceDelta = playerDistance - optimalPlayerDistance;
+        //float clampedDelta = Mathf.Clamp(optimalPlayerDistanceDelta + maxPlayerDistanceVariance, 0, 2 * maxPlayerDistanceVariance);
+        //float playerDistanceFactor = Utilities.Remap(clampedDelta, 0, 2 * maxPlayerDistanceVariance, maxSpeedChangeFactor, 1 / maxSpeedChangeFactor);
+
+        //Debug.Log(playerDistance + " " + optimalPlayerDistanceDelta + " " + clampedDelta + " " + playerDistanceFactor);
+
         transform.Translate(dir * speed * Time.deltaTime);
+    }
+
+    private void UpdateTarget()
+    {
+        float targetDistance = (target.position - transform.position).magnitude;
+        if (targetDistance < targetReachedDistance) target = waypoints[waypointCounter++];
     }
 
     public void startFlying()
@@ -76,25 +63,29 @@ public class Wisp : MonoBehaviour {
         changeSpeedToTargetSpeed(defaultSpeed, 2);
     }
 
+    public void talkToPlayer(AudioClip clip)
+    {
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
     public void changeSpeedToTargetSpeed(float targetSpeed, float duration)
     {
         float startSpeed = speed;
-        speedLocked = true;
 
         if (duration == 0) speed = targetSpeed;
-        else StartCoroutine(adjustSpeed(targetSpeed, startSpeed, duration, true));
+        else StartCoroutine(adjustSpeed(targetSpeed, startSpeed, duration));
     }
 
     public void changeSpeedToDefaultSpeed(float duration)
     {
         float startSpeed = speed;
-        StartCoroutine(adjustSpeed(defaultSpeed, startSpeed, duration, false));
+        StartCoroutine(adjustSpeed(defaultSpeed, startSpeed, duration));
     }
 
-    IEnumerator adjustSpeed(float targetSpeed, float startSpeed, float duration, bool b)
+    IEnumerator adjustSpeed(float targetSpeed, float startSpeed, float duration)
     {
         yield return new WaitUntil(() => adjustSpeedToTargetSpeed(targetSpeed, startSpeed, duration));
-        speedLocked = b;
     }
 
     private bool adjustSpeedToTargetSpeed(float targetSpeed, float startSpeed, float duration)
@@ -110,9 +101,5 @@ public class Wisp : MonoBehaviour {
         else return false;
     }
 
-    public void talkToPlayer(AudioClip clip)
-    {
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
+    
 }

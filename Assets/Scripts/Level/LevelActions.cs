@@ -16,8 +16,6 @@ public class LevelActions : MonoBehaviour
 
     public GameObject ringContainer;
 
-    public string LEVEL_NAME;
-
 
     void Start () {
         menu = GameComponents.GetMenu();

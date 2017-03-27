@@ -3,8 +3,7 @@
 public class MenuAction : MonoBehaviour {
 
     [SerializeField] private ACTION VRAction;
-
-    public enum ACTION { MainMenu, LevelMenu, Tutorial, FloatingRocks }
+    private enum ACTION { Tutorial, FloatingRocks }
 
     private GameController gc;
     private bool activated = false;
@@ -18,18 +17,12 @@ public class MenuAction : MonoBehaviour {
     {
         switch (VRAction)
         {
-            case ACTION.MainMenu:
-                //gc.MainMenu.SetActive(true);
-                //gc.LevelMenu.SetActive(false);
-                break;
-
-            case ACTION.LevelMenu:
-                //gc.MainMenu.SetActive(false);
-                //gc.LevelMenu.SetActive(true);
-                break;
-
             case ACTION.Tutorial:
                 gc.StartTutorial();
+                break;
+
+            case ACTION.FloatingRocks:
+                gc.LoadLevel(Constants.LEVEL.FloatingRocks);
                 break;
         }
     }

@@ -13,7 +13,7 @@ public class LevelFinish : MonoBehaviour
 
 	void OnTriggerEnter(Collider col)
 	{
-		if(col.gameObject.name == "Player")
+		if(col.gameObject.tag == "Player")
 		{
 			gc.FinishLevel();
             GetComponent<Collider>().enabled = false;

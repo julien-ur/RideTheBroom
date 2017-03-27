@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreDiplayControl : MonoBehaviour
+public class ScoreDisplayControl : MonoBehaviour
 {
 	private TextMesh scoreText;
 	private int score;

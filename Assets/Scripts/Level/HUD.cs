@@ -22,9 +22,7 @@ public class HUD : MonoBehaviour
     {
         gui.text = text;
         gui.enabled = true;
-        Debug.Log("show text");
         yield return new WaitForSeconds(duration);
-        Debug.Log("hide text");
         gui.text = "";
     }
 }

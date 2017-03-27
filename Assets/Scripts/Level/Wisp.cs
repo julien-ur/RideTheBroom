@@ -12,14 +12,16 @@ public class Wisp : MonoBehaviour {
     private AudioSource audioSource;
     private Transform playerTransform;
     private Transform[] waypoints;
+    private List<Transform> usedWaypoints = new List<Transform>();
     private Transform target;
+    private Transform nearestTargetToPlayer;
 
     private float speed;
     private int waypointCounter = 0;
     private double targetReachedDistance = 0.5;
-    private float optimalPlayerDistance = 2;
-    private float maxPlayerDistanceVariance = 3;
-    private float maxSpeedChangeFactor = 2;
+    private float optimalPlayerDistance = 5;
+    private float maxPlayerDistanceVariance = 15;
+    private float maxSpeedChangeFactor = 3;
 
     void Start()
     {
@@ -32,7 +34,7 @@ public class Wisp : MonoBehaviour {
     {
         GameObject wpContainer = GameObject.Find("Wisp Waypoints");
         waypoints = GameComponents.GetComponentsInChildrenWithoutParent<Transform>(wpContainer);
-        target = waypoints[waypointCounter++];
+        target = FindNextTarget();
     }
 
     void Update()
@@ -40,22 +42,60 @@ public class Wisp : MonoBehaviour {
         if (!target) return;
         UpdateTarget();
 
-        Vector3 dir = (target.position - transform.position).normalized;
+        if (!target) return;
 
-        //float playerDistance = Vector3.Distance(playerTransform.position, transform.position);
-        //float optimalPlayerDistanceDelta = playerDistance - optimalPlayerDistance;
-        //float clampedDelta = Mathf.Clamp(optimalPlayerDistanceDelta + maxPlayerDistanceVariance, 0, 2 * maxPlayerDistanceVariance);
-        //float playerDistanceFactor = Utilities.Remap(clampedDelta, 0, 2 * maxPlayerDistanceVariance, maxSpeedChangeFactor, 1 / maxSpeedChangeFactor);
+        Vector3 targetDir = (target.position - transform.position).normalized;
 
-        //Debug.Log(playerDistance + " " + optimalPlayerDistanceDelta + " " + clampedDelta + " " + playerDistanceFactor);
-
-        transform.Translate(dir * speed * Time.deltaTime);
+        transform.LookAt(playerTransform);
+        transform.Translate(targetDir * speed * ComputePlayerDistanceFactor() * Time.deltaTime, Space.World);
     }
 
     private void UpdateTarget()
     {
         float targetDistance = (target.position - transform.position).magnitude;
-        if (targetDistance < targetReachedDistance) target = waypoints[waypointCounter++];
+        if (targetDistance < targetReachedDistance) target = FindNextTarget();
+    }
+
+    private Transform FindNextTarget()
+    {
+        float nearestDistance = float.MaxValue;
+        Transform nextTarget = null;
+
+        foreach(Transform waypoint in waypoints)
+        {
+            float distance = (waypoint.position - transform.position).magnitude;
+
+            if (distance < nearestDistance)
+            {
+                if (usedWaypoints.Contains(waypoint)) continue;
+                nearestDistance = distance;
+                nextTarget = waypoint;
+            }
+        }
+
+        usedWaypoints.Add(nextTarget);
+        return nextTarget;
+    }
+
+    private float ComputePlayerDistanceFactor()
+    {
+        Vector3 relWispPos = playerTransform.InverseTransformPoint(transform.position);
+
+        float optimalDistanceDelta = relWispPos.z - optimalPlayerDistance;
+
+        float clampedDelta = Mathf.Clamp(optimalDistanceDelta, -maxPlayerDistanceVariance, maxPlayerDistanceVariance);
+        float playerDistanceFactor = 1;
+
+        if (optimalDistanceDelta > 0)
+        {
+            playerDistanceFactor = Utilities.Remap(clampedDelta, 0, maxPlayerDistanceVariance, 1, 1 / maxSpeedChangeFactor);
+        }
+        else
+        {
+            playerDistanceFactor = Utilities.Remap(clampedDelta, 0, -maxPlayerDistanceVariance, 1, maxSpeedChangeFactor);
+        }
+
+        return playerDistanceFactor;
     }
 
     public void startFlying()
@@ -100,6 +140,4 @@ public class Wisp : MonoBehaviour {
         }
         else return false;
     }
-
-    
 }

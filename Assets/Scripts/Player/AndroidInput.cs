@@ -16,12 +16,14 @@ public class AndroidInput : MonoBehaviour
     private bool verticalInputError = false;
     private bool horizontalInputError = false;
 
-    public float inputDivisorVertical = 45.0f;
-    public float inputDivisorHorizontal = 60.0f;
-    public float neutralAreaHorizontal = 10.0f;
+    public float inputDivisorVertical = 30.0f; // 45
+    public float inputDivisorHorizontal = 45.0f; // 60
+    public float neutralAreaHorizontal = 0.0f; // 10
 
     private float firstZ = 0;
+    private float firstY = 0;
     private bool isZset = false;
+    private bool isYset = false;
 
     Thread udpThread;
     UdpClient client;
@@ -37,7 +39,7 @@ public class AndroidInput : MonoBehaviour
 	
 	void Update ()
 	{
-		//Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
+		Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
 	}
 
 	private void ReceiveDataUDP()
@@ -60,6 +62,14 @@ public class AndroidInput : MonoBehaviour
 					firstZ = z;
 					isZset = true;
 				}
+
+				if(!isYset)
+				{
+					firstY = y;
+					isYset = true;
+				}
+
+				Thread.Sleep(20);
 			}
 			catch (Exception e)
 			{
@@ -92,7 +102,7 @@ public class AndroidInput : MonoBehaviour
         {
             try
             {
-                inputAxis = Mathf.Clamp(y / inputDivisorVertical, -1.0f, 1.0f); //TODO
+                inputAxis = Mathf.Clamp(((y - firstY) % 360) / inputDivisorVertical, -1.0f, 1.0f); //TODO
                 Debug.Log(inputAxis);
                 verticalInputError = false;
             }
@@ -105,6 +115,16 @@ public class AndroidInput : MonoBehaviour
 
         return inputAxis;
     }
+
+    public float getAngleVertical()
+    {
+    	return (y - firstY) % 360;
+    }
+
+	public float getAngleHorizontal()
+    {
+    	return (z - firstZ) % 360;
+    }    
 
     // used for any kind of errors, like lost connetion to hardware etc.
     public bool HasThrownErrors()

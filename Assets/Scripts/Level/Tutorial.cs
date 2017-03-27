@@ -158,8 +158,8 @@ public class Tutorial : MonoBehaviour {
 
     public void StartTutorial()
     {
-        onBroomControlLearned();
-        //StartCoroutine(learnBroomControlRoutine());
+        //onBroomControlLearned();
+        StartCoroutine(learnBroomControlRoutine());
     }
 
     public void TriggerAction(Constants.TUTORIAL_ACTION action)

@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     private GhostModeController ghostModeController;
     private MaterialResetter materialResetter;
     private VRSelectionControl vrSelectionControl;
+    private List<Score> scores = new List<Score>();
 
     private float levelTime;
     private bool isGamePaused;
@@ -116,6 +117,9 @@ public class GameController : MonoBehaviour
     {
         PauseGame();
         pc.changeSpeedToTargetSpeed(0, 0.5f);
+        Score s = new Score(numRings, levelTime);
+        scores.Add(s);
+
         Debug.Log("Finished! Time: " + createTimeString(levelTime) + " Rings: " + numRings);
         SaveHighscoreFile();
         ghostModeController.StopGhostModeLog();

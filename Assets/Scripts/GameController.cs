@@ -124,6 +124,13 @@ public class GameController : MonoBehaviour
         SaveHighscoreFile();
         ghostModeController.StopGhostModeLog();
         ghostModeController.SaveGhostModeLog();
+        LoadMenu();
+    }
+
+    IEnumerator LoadMenu()
+    {
+        yield return new WaitForSeconds(6);
+        LoadLevel(Constants.LEVEL.Menu);
     }
 
     public void PauseGame()

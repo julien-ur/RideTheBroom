@@ -86,13 +86,13 @@ public class PlayerControl : MonoBehaviour
             transform.RotateAround(transform.position, transform.up, rotateY);
 
         // prevent overhead flying if broom rollback is enabled
-        if (enableBroomRollback)
+        if (enableBroomRollback && Mathf.Abs(inputVertical) < 0.1)
         {
             // back rotate brooms z Axis to zero degrees, when it was rotated
             if (transform.eulerAngles.z != 0) PerformBroomRollback();
 
             // rotate player camera horizontally
-            cameraControl.RollCamera(inputHorizontal);
+            //cameraControl.RollCamera(inputHorizontal);
         }
     }
 

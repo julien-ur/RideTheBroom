@@ -39,9 +39,9 @@ public class GhostModeController : MonoBehaviour
         }
     }
 
-    public Transform player;
     public GameObject ghostPrefab;
 
+    private Transform player;
     private List<GhostModePathNode> ghostModePathLog;
     private List<GhostModePathNode> ghostModePathLoaded;
     private float ghostModeLogTimer;

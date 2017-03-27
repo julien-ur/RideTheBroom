@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class PlayerVRRaycaster : MonoBehaviour {
 
@@ -12,8 +13,8 @@ public class PlayerVRRaycaster : MonoBehaviour {
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         RaycastHit hit;
 
-        Debug.DrawRay(transform.position, fwd * 50);
-        if (Physics.Raycast(transform.position, fwd * 50, out hit))
+        Debug.DrawRay(transform.position, transform.forward * 50);
+        if (Physics.Raycast(transform.position, transform.forward * 50, out hit))
         {
             currentHit = hit.transform.gameObject.GetComponent<VRSelectable>();
         }

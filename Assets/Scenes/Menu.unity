@@ -3923,8 +3923,6 @@ GameObject:
   - component: {fileID: 410581669}
   - component: {fileID: 410581668}
   - component: {fileID: 410581666}
-  - component: {fileID: 410581663}
-  - component: {fileID: 410581662}
   - component: {fileID: 410581661}
   - component: {fileID: 410581660}
   m_Layer: 0
@@ -3951,8 +3949,7 @@ Transform:
 --- !u!114 &410581660
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114104176311429634, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410581658}
   m_Enabled: 1
@@ -3984,30 +3981,6 @@ AudioReverbZone:
   m_Density: 100
   m_LFReference: 250
   m_RoomLF: 0
---- !u!114 &410581662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114712100950607688, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410581658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f536630b6951b4e9e91b7c8c1eae93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &410581663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114882134600906746, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 410581658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97f536630b6951b4e9e91b7c8c1eae93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &410581666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4560,8 +4533,8 @@ MonoBehaviour:
   momentum: {x: 0, y: 0, z: 0}
   rotationFactorX: 120
   rotationFactorY: 120
-  useBroomHardware: 1
-  useAndroidInput: 1
+  useBroomHardware: 0
+  useAndroidInput: 0
   invertHorizontal: 0
   androidInput: {fileID: 509061356}
   enableBroomRollback: 1
@@ -12158,6 +12131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739ec71b267f5fa45b9a836fd3a06d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  billboardControl: {fileID: 0}
 --- !u!4 &1623481548
 Transform:
   m_ObjectHideFlags: 0
@@ -12193,7 +12167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ffe266eb42f4a0fb8ac8ee3b04a975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   ghostPrefab: {fileID: 1872402328100162, guid: c2a0d10afca7e49a187707dc2f27aafe,
     type: 2}
 --- !u!1 &1630973950

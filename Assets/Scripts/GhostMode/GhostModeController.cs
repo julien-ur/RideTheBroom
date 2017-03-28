@@ -39,9 +39,9 @@ public class GhostModeController : MonoBehaviour
         }
     }
 
-    public Transform player;
     public GameObject ghostPrefab;
 
+    private Transform player;
     private List<GhostModePathNode> ghostModePathLog;
     private List<GhostModePathNode> ghostModePathLoaded;
     private float ghostModeLogTimer;
@@ -60,6 +60,8 @@ public class GhostModeController : MonoBehaviour
 	{
         //GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameObject.Find("LevelControl").GetComponent<LevelActions>().LEVEL_NAME + ".txt";
         GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameComponents.GetGameController().GetActiveLevel().ToString() + ".txt";
+
+        player = GameComponents.GetPlayer().transform;
         if (!File.Exists(GHOSTMODE_LOG_PATH))
 		{
 			isFirstRecord = true;

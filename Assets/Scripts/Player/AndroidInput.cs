@@ -68,7 +68,7 @@ public class AndroidInput : MonoBehaviour
 				IPEndPoint ip = new IPEndPoint(IPAddress.Any, 0);
 				byte[] data = client.Receive(ref ip);
 
-				x = (short) ( (data[1] << 8) | data[0] );
+                x = (short) ( (data[1] << 8) | data[0] );
 				y = (short) ( (data[3] << 8) | data[2] );
 				z = (short) ( (data[5] << 8) | data[4] );
 

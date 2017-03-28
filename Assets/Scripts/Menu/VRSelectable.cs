@@ -48,7 +48,7 @@ public class VRSelectable : MonoBehaviour {
         selected = true;
         selectionControl.OnVRSelection();
         materialResetter.OnMaterialTinted(tintMaterial);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
         GetComponent<MenuAction>().OnVRSelection();
     }
 

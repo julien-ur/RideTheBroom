@@ -10364,13 +10364,13 @@ GameObject:
   - component: {fileID: 404168276}
   - component: {fileID: 404168275}
   - component: {fileID: 404168279}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Test Player (4)
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &404168275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56289,6 +56289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739ec71b267f5fa45b9a836fd3a06d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  billboardControl: {fileID: 909186682}
 --- !u!4 &1710818166
 Transform:
   m_ObjectHideFlags: 0
@@ -56314,7 +56315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  ghostPrefab: {fileID: 0}
+  ghostPrefab: {fileID: 1872402328100162, guid: c2a0d10afca7e49a187707dc2f27aafe,
+    type: 2}
 --- !u!1 &1711928928
 GameObject:
   m_ObjectHideFlags: 0

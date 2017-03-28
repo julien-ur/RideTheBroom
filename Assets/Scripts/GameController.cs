@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
         materialResetter = GameComponents.GetMaterialResetter();
         vrSelectionControl = GameComponents.GetVRSelectionControl();
 
+        pc.DisableRotation();
+
         fade.fadeIn(1);
     }
 
@@ -73,11 +75,15 @@ public class GameController : MonoBehaviour
 
     public void StartTutorial()
     {
+    	pc.EnableRotation();
+
         tutorial.StartTutorial();
     }
 
     public void LoadLevel(Constants.LEVEL lvl)
     {
+    	pc.EnableRotation();
+
         if(lvl == Constants.LEVEL.Menu)
         {
             vrSelectionControl.ResetVRSelection();

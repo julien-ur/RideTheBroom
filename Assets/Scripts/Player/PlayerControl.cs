@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VR;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -30,6 +31,14 @@ public class PlayerControl : MonoBehaviour
     private float time;
 
     private float lastAngle = 0;
+
+    public bool useAbsoluteAngle = false;
+    private float lastAngleVertical;
+    private float targetAngleVertical;
+    public float timeToNextAngle = 0.1f;
+    public float timePassedSinceLastAngleUpdate = 0;
+
+    private bool isRotationEnabled = true;
 
     void Start()
     {
@@ -78,53 +87,67 @@ public class PlayerControl : MonoBehaviour
             if (invertHorizontal) inputHorizontal *= -1;
         }
 
-        float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
-        float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
-
-        
-
-        // rotate broom horizonatlly
-        if(useAndroidInput)
+        if(isRotationEnabled || !VRDevice.isPresent)
         {
-            //float absoluteAngleY = androidInput.getAngleVertical();
-            Vector3 tempAngles = transform.localEulerAngles;
-            if(lastAngle == androidInput.getAngleVertical())
+
+            float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
+            float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
+
+            
+
+            // rotate broom horizonatlly
+            if(useAbsoluteAngle)
             {
-                Debug.Log("SAME");
+                //float absoluteAngleY = androidInput.getAngleVertical();
+
+                Vector3 tempAngles = transform.localEulerAngles;
+
+                timePassedSinceLastAngleUpdate += Time.deltaTime;
+
+                if(targetAngleVertical != androidInput.getAngleVertical())
+                {
+                    lastAngleVertical = tempAngles.x;
+                    targetAngleVertical = androidInput.getAngleVertical();
+                    timePassedSinceLastAngleUpdate = 0;
+                }
+
+                tempAngles.x = Mathf.LerpAngle(lastAngleVertical, targetAngleVertical, (timePassedSinceLastAngleUpdate / timeToNextAngle));
+
+                Debug.Log(tempAngles.x);
+                //tempAngles.y = androidInput.getAngleHorizontal() * 3;
+                transform.localEulerAngles = tempAngles;
             }
             else
             {
-                lastAngle = androidInput.getAngleVertical();
+                // rotate broom vertically
+                transform.RotateAround(transform.position, transform.right, rotateX);
             }
-            tempAngles.x = androidInput.getAngleVertical();
-            //tempAngles.y = androidInput.getAngleHorizontal() * 3;
-            transform.localEulerAngles = tempAngles;
+
+            if (enableBroomRollback)
+                transform.RotateAround(transform.position, Vector3.up, rotateY);
+            else
+                transform.RotateAround(transform.position, transform.up, rotateY);
+        
+
+            // prevent overhead flying if broom rollback is enabled
+            if (enableBroomRollback && Mathf.Abs(inputVertical) < 0.1)
+            {
+                // back rotate brooms z Axis to zero degrees, when it was rotated
+                if (transform.eulerAngles.z != 0) PerformBroomRollback();
+
+                // rotate player camera horizontally
+                //cameraControl.RollCamera(inputHorizontal);
+            }
         }
-        else
+
+        if(VRDevice.isPresent)
         {
-            // rotate broom vertically
-            transform.RotateAround(transform.position, transform.right, rotateX);
+            InputTracking.Recenter();
         }
 
-        if (enableBroomRollback)
-            transform.RotateAround(transform.position, Vector3.up, rotateY);
-        else
-            transform.RotateAround(transform.position, transform.up, rotateY);
-    
-
-        // prevent overhead flying if broom rollback is enabled
-        if (enableBroomRollback && Mathf.Abs(inputVertical) < 0.1)
-        {
-            // back rotate brooms z Axis to zero degrees, when it was rotated
-            if (transform.eulerAngles.z != 0) PerformBroomRollback();
-
-            // rotate player camera horizontally
-            //cameraControl.RollCamera(inputHorizontal);
-        }
-
-        lastTime = time;
-        time = Time.realtimeSinceStartup;
-        Debug.Log("time: " + (time-lastTime));
+        //lastTime = time;
+        //time = Time.realtimeSinceStartup;
+        //Debug.Log("time: " + (time-lastTime));
     }
 
     private void PerformBroomRollback()
@@ -179,5 +202,15 @@ public class PlayerControl : MonoBehaviour
         }
 
         speed = targetSpeed;
+    }
+
+    public void EnableRotation()
+    {
+        isRotationEnabled = true;
+    }
+
+    public void DisableRotation()
+    {
+        isRotationEnabled = false;
     }
 }

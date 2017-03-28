@@ -33,6 +33,7 @@ public class LevelActions : MonoBehaviour
 
     IEnumerator LevelStartRoutine()
     {
+        pc.EnableRotation();
         yield return new WaitForSeconds(1);
 
         /*

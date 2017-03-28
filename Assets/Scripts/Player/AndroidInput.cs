@@ -72,14 +72,14 @@ public class AndroidInput : MonoBehaviour
 				y = (short) ( (data[3] << 8) | data[2] );
 				z = (short) ( (data[5] << 8) | data[4] );
 
-				if(y == lastY)
+				/*if(y == lastY)
 				{
 					Debug.Log("--- SAME ---");
 				}
 				else
 				{
 					lastY = y;
-				}
+				}*/
 
 				if(!isZset)
 				{

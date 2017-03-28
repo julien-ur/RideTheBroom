@@ -19726,6 +19726,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739ec71b267f5fa45b9a836fd3a06d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  billboardControl: {fileID: 0}
 --- !u!4 &1516005432
 Transform:
   m_ObjectHideFlags: 0
@@ -19750,7 +19751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ffe266eb42f4a0fb8ac8ee3b04a975, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   ghostPrefab: {fileID: 1872402328100162, guid: c2a0d10afca7e49a187707dc2f27aafe,
     type: 2}
 --- !u!1001 &1529980862
@@ -21328,6 +21328,9 @@ MonoBehaviour:
   androidInput: {fileID: 1616406093}
   enableBroomRollback: 1
   backRotationRate: 90
+  useAbsoluteAngle: 0
+  timeToNextAngle: 0.1
+  timePassedSinceLastAngleUpdate: 0
 --- !u!54 &1616406088
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -21399,8 +21402,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   port: 5005
-  inputDivisorVertical: 45
-  inputDivisorHorizontal: 60
+  inputDivisorVertical: 30
+  inputDivisorHorizontal: 45
   neutralAreaHorizontal: 10
 --- !u!4 &1617708031 stripped
 Transform:

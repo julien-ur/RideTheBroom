@@ -5,6 +5,8 @@ using UnityEngine.VR;
 
 public class PlayerVRRaycaster : MonoBehaviour {
 
+    public LayerMask layerMask;
+
     private VRSelectable currentHit;
     private VRSelectable lastHit;
 
@@ -14,7 +16,7 @@ public class PlayerVRRaycaster : MonoBehaviour {
         RaycastHit hit;
 
         Debug.DrawRay(transform.position, transform.forward * 50);
-        if (Physics.Raycast(transform.position, transform.forward * 50, out hit))
+        if (Physics.Raycast(transform.position, transform.forward * 50, out hit, layerMask))
         {
             currentHit = hit.transform.gameObject.GetComponent<VRSelectable>();
         }

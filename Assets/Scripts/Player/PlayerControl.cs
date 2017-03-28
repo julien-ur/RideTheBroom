@@ -124,7 +124,7 @@ public class PlayerControl : MonoBehaviour
 
         lastTime = time;
         time = Time.realtimeSinceStartup;
-        Debug.Log("time: " + (time-lastTime));
+        //Debug.Log("time: " + (time-lastTime));
     }
 
     private void PerformBroomRollback()

@@ -21401,7 +21401,7 @@ MonoBehaviour:
   port: 5005
   inputDivisorVertical: 45
   inputDivisorHorizontal: 60
-  neutralAreaHorizontal: 0
+  neutralAreaHorizontal: 10
 --- !u!4 &1617708031 stripped
 Transform:
   m_PrefabParentObject: {fileID: 434190, guid: 58bfc17884bb0b14789f41cc56e3d34f, type: 2}

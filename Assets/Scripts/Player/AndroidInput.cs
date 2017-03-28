@@ -6,6 +6,7 @@ using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+//using System.Diagnostics;
 
 public class AndroidInput : MonoBehaviour
 {
@@ -16,14 +17,19 @@ public class AndroidInput : MonoBehaviour
     private bool verticalInputError = false;
     private bool horizontalInputError = false;
 
-    public float inputDivisorVertical = 30.0f; // 45
-    public float inputDivisorHorizontal = 45.0f; // 60
-    public float neutralAreaHorizontal = 0.0f; // 10
+    public float inputDivisorVertical = 45.0f; // 45
+    public float inputDivisorHorizontal = 60.0f; // 60
+    public float neutralAreaHorizontal = 10.0f; // 10
 
     private float firstZ = 0;
     private float firstY = 0;
     private bool isZset = false;
     private bool isYset = false;
+
+    private float time = 0;
+    private float lastTime = 0;
+
+    private System.Diagnostics.Stopwatch stopwatch;
 
     Thread udpThread;
     UdpClient client;
@@ -32,6 +38,9 @@ public class AndroidInput : MonoBehaviour
 
 	void Start ()
 	{
+		//stopwatch = new System.Diagnostics.Stopwatch();
+		//stopwatch.Start();
+
 		udpThread = new Thread( new ThreadStart(ReceiveDataUDP) );
 		udpThread.IsBackground = true;
 		udpThread.Start();
@@ -46,8 +55,14 @@ public class AndroidInput : MonoBehaviour
 	{
 		client = new UdpClient(port);
 
+		short lastY = 0;
+
 		while(true)
 		{
+			/*lastTime = time;
+			time = stopwatch.ElapsedMilliseconds;
+			Debug.Log("pre:  " + (time - lastTime));*/
+
 			try
 			{
 				IPEndPoint ip = new IPEndPoint(IPAddress.Any, 0);
@@ -56,6 +71,15 @@ public class AndroidInput : MonoBehaviour
 				x = (short) ( (data[1] << 8) | data[0] );
 				y = (short) ( (data[3] << 8) | data[2] );
 				z = (short) ( (data[5] << 8) | data[4] );
+
+				if(y == lastY)
+				{
+					Debug.Log("--- SAME ---");
+				}
+				else
+				{
+					lastY = y;
+				}
 
 				if(!isZset)
 				{
@@ -68,14 +92,17 @@ public class AndroidInput : MonoBehaviour
 					firstY = y;
 					isYset = true;
 				}
-
-				Thread.Sleep(20);
 			}
 			catch (Exception e)
 			{
 				Debug.Log(e.ToString());
 				//serverError = true;
 			}
+
+			//Thread.Sleep(10);
+			/*lastTime = time;
+			time = stopwatch.ElapsedMilliseconds;
+			Debug.Log("post: " + (time - lastTime));*/
 		}
 	}
 
@@ -103,7 +130,7 @@ public class AndroidInput : MonoBehaviour
             try
             {
                 inputAxis = Mathf.Clamp(((y - firstY) % 360) / inputDivisorVertical, -1.0f, 1.0f); //TODO
-                Debug.Log(inputAxis);
+                //Debug.Log(inputAxis);
                 verticalInputError = false;
             }
             catch (System.Exception e)

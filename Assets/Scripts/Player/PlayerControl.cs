@@ -26,6 +26,11 @@ public class PlayerControl : MonoBehaviour
 
     private float speed;
 
+    private float lastTime;
+    private float time;
+
+    private float lastAngle = 0;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -76,14 +81,36 @@ public class PlayerControl : MonoBehaviour
         float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
         float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
 
-        // rotate broom horizontally
-        transform.RotateAround(transform.position, transform.right, rotateX);
+        
 
-        // rotate broom vertically
+        // rotate broom horizonatlly
+        if(useAndroidInput)
+        {
+            //float absoluteAngleY = androidInput.getAngleVertical();
+            Vector3 tempAngles = transform.localEulerAngles;
+            if(lastAngle == androidInput.getAngleVertical())
+            {
+                Debug.Log("SAME");
+            }
+            else
+            {
+                lastAngle = androidInput.getAngleVertical();
+            }
+            tempAngles.x = androidInput.getAngleVertical();
+            //tempAngles.y = androidInput.getAngleHorizontal() * 3;
+            transform.localEulerAngles = tempAngles;
+        }
+        else
+        {
+            // rotate broom vertically
+            transform.RotateAround(transform.position, transform.right, rotateX);
+        }
+
         if (enableBroomRollback)
             transform.RotateAround(transform.position, Vector3.up, rotateY);
         else
             transform.RotateAround(transform.position, transform.up, rotateY);
+    
 
         // prevent overhead flying if broom rollback is enabled
         if (enableBroomRollback && Mathf.Abs(inputVertical) < 0.1)
@@ -94,6 +121,10 @@ public class PlayerControl : MonoBehaviour
             // rotate player camera horizontally
             //cameraControl.RollCamera(inputHorizontal);
         }
+
+        lastTime = time;
+        time = Time.realtimeSinceStartup;
+        Debug.Log("time: " + (time-lastTime));
     }
 
     private void PerformBroomRollback()

@@ -20387,6 +20387,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f536630b6951b4e9e91b7c8c1eae93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!167 &1578113869
 AudioReverbZone:
   m_ObjectHideFlags: 0
@@ -20424,6 +20427,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f536630b6951b4e9e91b7c8c1eae93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1578113871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20436,6 +20442,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f536630b6951b4e9e91b7c8c1eae93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1578113872
 MonoBehaviour:
   m_ObjectHideFlags: 0

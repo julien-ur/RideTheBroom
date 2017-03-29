@@ -142,7 +142,10 @@ public class PlayerControl : MonoBehaviour
 
         if(VRDevice.isPresent)
         {
-            InputTracking.Recenter();
+            Transform broomTransform = transform.Find("Broom").transform;
+            Vector3 pos = broomTransform.localPosition;
+            pos.x = InputTracking.GetLocalPosition(VRNode.Head).x;
+            broomTransform.localPosition = pos;
         }
 
         //lastTime = time;

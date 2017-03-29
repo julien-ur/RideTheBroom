@@ -8,16 +8,9 @@ public class Fading : MonoBehaviour {
     private int drawDepth = -1000; // the texture's order in the draw hierachy: a low number means it renders on top
     private float alpha;
     private int fadeDir; // in = -1 or out = 1
-    private bool isFading = false;
 
     void OnGUI()
     {
-        if (!isFading) return;
-        else if (alpha == 0 && fadeDir == -1 || alpha == 1 && fadeDir == 1)
-        {
-            isFading = false;
-        }
-
         alpha += (Time.deltaTime / fadingTimeInSec) * fadeDir;
         alpha = Mathf.Clamp01(alpha);
 
@@ -31,7 +24,6 @@ public class Fading : MonoBehaviour {
         fadingTimeInSec = f;
         fadeDir = -1;
         alpha = 1;
-        isFading = true;
     }
 
     public void fadeOut (float f)
@@ -39,6 +31,5 @@ public class Fading : MonoBehaviour {
         fadingTimeInSec = f;
         fadeDir = 1;
         alpha = 0;
-        isFading = true;
     }
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LevelActions : MonoBehaviour
 {
-	private Transform player;
+    public BillboardControl billboardControl;
+
+    private Transform player;
 	private CompassControl compass;
     private Menu menu;
     private GameController gc;
@@ -36,15 +38,6 @@ public class LevelActions : MonoBehaviour
         pc.EnableRotation();
         yield return new WaitForSeconds(1);
 
-        /*
-         * TODO:
-         * - Lande Besenkammer
-         * - Öffne Tor
-         * - Überprüfe Level
-         * - Wenn Tutorial, trigger Tutorial Action
-         * - Wenn nicht, show Countdown -> Starte Besen
-         * 
-         */
         currentLevel = gc.GetActiveLevel();
 
         if (menu)
@@ -82,6 +75,13 @@ public class LevelActions : MonoBehaviour
         {
             o.SetActive(false);
         }
+    }
+
+    public void FinishLevel()
+    {
+        pc.changeSpeedToTargetSpeed(0, 0.5f);
+        gc.FinishLevel();
+        billboardControl.SetScore(gc.GetCurrentScore(), gc.GetHighScore());
     }
 
     public Transform GetNearestRing(Transform playerPosition)

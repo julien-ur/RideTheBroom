@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class LevelFinish : MonoBehaviour
 {
-	private GameController gc;
+	private LevelActions levelActions;
 
 	void Start ()
 	{
-		gc = GameComponents.GetGameController();
+        levelActions = GameComponents.GetLevelActions();
 	}
 
 	void OnTriggerEnter(Collider col)
 	{
 		if(col.gameObject.tag == "Player")
 		{
-			gc.FinishLevel();
+            levelActions.FinishLevel();
             GetComponent<Collider>().enabled = false;
 			//Debug.Log("FINISH - " + createTimeString(levelTime));
 		}

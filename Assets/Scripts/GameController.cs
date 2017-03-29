@@ -6,8 +6,6 @@ using System.IO;
 
 public class GameController : MonoBehaviour
 {
-    public BillboardControl billboardControl;
-
     private const string HIGHSCORE_FILE_PATH = "highscore.txt";
 
     private GameObject player;
@@ -124,23 +122,21 @@ public class GameController : MonoBehaviour
     public void FinishLevel()
     {
         PauseGame();
-        pc.changeSpeedToTargetSpeed(0, 0.5f);
-
-        Score currentScore = new Score(numRings, levelTime);
-        scores.Add(currentScore);
-        Score highScore = GetHighScore();
-        billboardControl.SetScore(currentScore, highScore);
-
+        scores.Add(GetCurrentScore());
         Debug.Log("Finished! Time: " + createTimeString(levelTime) + " Rings: " + numRings);
-
         SaveHighscoreFile();
-        ghostModeController.StopGhostModeLog();
-        ghostModeController.SaveGhostModeLog();
+        // ghostModeController.StopGhostModeLog();
+        // ghostModeController.SaveGhostModeLog();
 
         StartCoroutine(LoadMenu());
     }
 
-    private Score GetHighScore()
+    public Score GetCurrentScore()
+    {
+        return new Score(numRings, levelTime);
+    }
+
+    public Score GetHighScore()
     {
         float bestRingsPerSec = 0;
         Score bestScore = new Score(0, 0);
@@ -160,6 +156,7 @@ public class GameController : MonoBehaviour
     IEnumerator LoadMenu()
     {
         yield return new WaitForSeconds(6);
+        fade.fadeOut(1);
         LoadLevel(Constants.LEVEL.Menu);
     }
 

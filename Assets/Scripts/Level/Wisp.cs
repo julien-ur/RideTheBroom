@@ -23,6 +23,8 @@ public class Wisp : MonoBehaviour {
     private float maxPlayerDistanceVariance = 15;
     private float maxSpeedChangeFactor = 3;
 
+    private float lastOptPlayerDistanceDelta = 0;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();

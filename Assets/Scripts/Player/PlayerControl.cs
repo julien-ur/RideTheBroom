@@ -32,6 +32,10 @@ public class PlayerControl : MonoBehaviour
 
     private float lastAngle = 0;
 
+    private float headStartYPos;
+    private float maxHeadDelta = 0.7f;
+    private float maxSpeedChangeFactor = 1.7f;
+
     public bool useAbsoluteAngle = false;
     private float lastAngleVertical;
     private float targetAngleVertical;
@@ -45,14 +49,30 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cameraControl = GetComponentInChildren<PlayerCameraControl>();
         speed = 0;
+        headStartYPos = InputTracking.GetLocalPosition(VRNode.Head).y;
     }
 
     void Update()
     {
+        // VR leaning acceleration
+        float clampedHeadDelta = Mathf.Clamp(InputTracking.GetLocalPosition(VRNode.Head).y - headStartYPos, headStartYPos - maxHeadDelta, headStartYPos + maxHeadDelta);
+        float vrAccellerationFactor = 1;
+
+        if (clampedHeadDelta > 0)
+        {
+            vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, maxHeadDelta, 1, 1/maxSpeedChangeFactor);
+        }
+        else
+        {
+            vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, -maxHeadDelta, 1, maxSpeedChangeFactor);
+        }
+
+        Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
+
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
         // from the addForce method of the physical forward drive component
-        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * vrAccellerationFactor * Time.deltaTime);
 
         // physical forward drive component
         rb.AddForce(transform.forward * speed * forceDrivenFactor);

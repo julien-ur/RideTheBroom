@@ -72,6 +72,8 @@ public class AndroidInput : MonoBehaviour
 				y = (short) ( (data[3] << 8) | data[2] );
 				z = (short) ( (data[5] << 8) | data[4] );
 
+                //Debug.LogError("x: " + x + " y: " + y + " z: " + z);
+
 				/*if(y == lastY)
 				{
 					Debug.Log("--- SAME ---");
@@ -95,7 +97,7 @@ public class AndroidInput : MonoBehaviour
 			}
 			catch (Exception e)
 			{
-				Debug.Log(e.ToString());
+				Debug.LogError(e.ToString());
 				//serverError = true;
 			}
 

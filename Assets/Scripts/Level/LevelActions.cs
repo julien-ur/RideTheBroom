@@ -13,6 +13,7 @@ public class LevelActions : MonoBehaviour
     private PlayerControl pc;
     private Tutorial tut;
     private BroomCloset broomCloset;
+    
 
     private Constants.LEVEL currentLevel;
 
@@ -29,7 +30,7 @@ public class LevelActions : MonoBehaviour
         player = pc.GetComponent<Transform>();
         broomCloset = GameComponents.GetBroomCloset();
         compass = player.GetComponentInChildren<CompassControl>();
-
+        
         StartCoroutine(LevelStartRoutine());
     }
 
@@ -42,13 +43,26 @@ public class LevelActions : MonoBehaviour
 
         if (menu)
         {
-            Transform wispTrans = GameComponents.GetWisp().transform;
+            Wisp wisp = GameComponents.GetWisp();
+            Transform wispTrans = wisp.transform;
             player.parent = broomCloset.transform;
             wispTrans.parent = broomCloset.transform;
             float landingDuration = broomCloset.StartLanding();
             yield return new WaitForSeconds(landingDuration);
             player.parent = null;
             wispTrans.parent = null;
+
+            if (currentLevel == Constants.LEVEL.Tutorial)
+            {
+                wisp.talkToPlayer(wisp.ArrivalMountainWorld);
+                yield return new WaitForSeconds(wisp.ArrivalMountainWorld.length);
+            }
+            else if (currentLevel == Constants.LEVEL.FloatingRocks)
+            {
+                wisp.talkToPlayer(wisp.ArrivalFloatingRocks);
+                yield return new WaitForSeconds(wisp.ArrivalFloatingRocks.length);
+
+            }
 
             float doorOpenDuration = broomCloset.OpenDoors();
             yield return new WaitForSeconds(doorOpenDuration);
@@ -81,6 +95,7 @@ public class LevelActions : MonoBehaviour
     {
         pc.changeSpeedToTargetSpeed(0, 0.5f);
         gc.FinishLevel();
+
         billboardControl.SetScore(gc.GetCurrentScore(), gc.GetHighScore());
     }
 

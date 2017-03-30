@@ -6,10 +6,10 @@ public class LevelFinish : MonoBehaviour
 {
 	private LevelActions levelActions;
 
-	void Start ()
+    void Start ()
 	{
         levelActions = GameComponents.GetLevelActions();
-	}
+    }
 
 	void OnTriggerEnter(Collider col)
 	{

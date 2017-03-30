@@ -11,7 +11,7 @@ public class Tutorial : MonoBehaviour {
     private HUD hud;
     private Wisp wisp;
 
-    private float playerRotationDetectionAngle = 30;
+    private float playerRotationDetectionAngle = 70;
     private object activeWaypoint;
     private bool triggered = false;
 
@@ -26,40 +26,37 @@ public class Tutorial : MonoBehaviour {
 
     IEnumerator learnBroomControlRoutine()
     {
-        //float duration = wisp.saySomething();
-        //yield return new WaitForSeconds(duration + 1);
-
-        hud.show("Lehne dich jetzt bitte mal nach rechts..", 3);
+        wisp.talkToPlayer(wisp.TurnBroomRight);
         float lastAngle = player.transform.eulerAngles.y;
         float angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.y, ref angleCounter, true));
 
-        hud.show("Schön!", 2);
-        yield return new WaitForSeconds(2);
+        wisp.talkToPlayer(wisp.ComplimentGrandios);
+        yield return new WaitForSeconds(wisp.ComplimentGrandios.length + 0.5f);
 
-        hud.show("Lehne dich jetzt bitte mal nach links..", 3);
+        wisp.talkToPlayer(wisp.TurnBroomLeft);
         lastAngle = player.transform.eulerAngles.y;
         angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.y, ref angleCounter, false));
 
-        hud.show("Super!", 2);
-        yield return new WaitForSeconds(2);
+        wisp.talkToPlayer(wisp.ComplimentZauberhaft);
+        yield return new WaitForSeconds(wisp.ComplimentZauberhaft.length + 0.5f);
 
-        hud.show("Lehne dich jetzt bitte mal nach hinten..", 3);
+        wisp.talkToPlayer(wisp.TurnBroomUp);
         lastAngle = player.transform.eulerAngles.x;
         angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.x, ref angleCounter, false));
 
-        hud.show("Excellent!", 2);
-        yield return new WaitForSeconds(2);
+        wisp.talkToPlayer(wisp.ComplimentUnglaublich);
+        yield return new WaitForSeconds(wisp.ComplimentUnglaublich.length + 0.5f);
 
-        hud.show("Lehne dich jetzt bitte mal nach vorne..", 3);
+        wisp.talkToPlayer(wisp.TurnBroomDown);
         lastAngle = player.transform.eulerAngles.x;
         angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.x, ref angleCounter, true));
 
-        hud.show("Grandios!", 2);
-        yield return new WaitForSeconds(2);
+        wisp.talkToPlayer(wisp.ComplimentMotiviert);
+        yield return new WaitForSeconds(wisp.ComplimentMotiviert.length + 0.5f);
 
         onBroomControlLearned();
     }
@@ -88,9 +85,8 @@ public class Tutorial : MonoBehaviour {
 
     IEnumerator CallPlayerToFollow()
     {
-        hud.show("Ok lass uns losfliegen! Huiiiiii!", 3);
         wisp.initWaypoints();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         gc.StartGame();
     }
 
@@ -98,8 +94,8 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3, 0.5f);
-        hud.show("Siehst du die Ringe da vorne! Versuche durch alle hindurchzufliegen, du Lurch!", 4);
-        yield return new WaitForSeconds(4);
+        wisp.talkToPlayer(wisp.ExplainRings);
+        yield return new WaitForSeconds(wisp.ExplainRings.length);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
@@ -108,8 +104,8 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 1);
         wisp.changeSpeedToTargetSpeed(3, 1);
-        hud.show("Das da vorne, das so merkwürdig flimmert, das ist eine Windzonen. Wenn du genau durch sie hindurchfliegst, beschleunigt dein Besen und du wirst richt schnell. Flieg einfach mir nach!", 4);
-        yield return new WaitForSeconds(4);
+        wisp.talkToPlayer(wisp.ExplainWindzones);
+        yield return new WaitForSeconds(wisp.ExplainWindzones.length);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
@@ -118,8 +114,8 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3, 0.5f);
-        hud.show("Siehst du die bläuliche Energiekugel da vorne! Das ist eine Beschleuniger. Wenn du durch ihn Hindurchfliegst, wirst du regelrecht nach vorne geschleudert.", 4);
-        yield return new WaitForSeconds(4);
+        wisp.talkToPlayer(wisp.ExplainEnergyBoost);
+        yield return new WaitForSeconds(wisp.ExplainEnergyBoost.length);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
@@ -129,8 +125,8 @@ public class Tutorial : MonoBehaviour {
         float slowDownFactor = 0.1f;
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        hud.show("Huiiii ganz schön schnell. Die Wolke vor dir ist dazu da um zu bremsen. Besonders vor Kurven, oder nach einem Speedboost ist das hilfreich um auf der Strecke zu bleiben", 4 * slowDownFactor);
-        yield return new WaitForSeconds(4 * slowDownFactor);
+        wisp.talkToPlayer(wisp.ExplainSlowCloud);
+        yield return new WaitForSeconds(wisp.ExplainSlowCloud.length * slowDownFactor);
 
         while (Time.timeScale < 1)
         {

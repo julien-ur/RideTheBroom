@@ -37,8 +37,15 @@ public class GameController : MonoBehaviour
         vrSelectionControl = GameComponents.GetVRSelectionControl();
 
         pc.DisableRotation();
+        StartCoroutine(GameStartRoutine());
+    }
 
+    IEnumerator GameStartRoutine()
+    {
         fade.fadeIn(1);
+        yield return new WaitForSeconds(3f);
+        wisp.talkToPlayer(wisp.MenuIntro);
+        yield return new WaitForSeconds(wisp.MenuIntro.length + 0.3f);
     }
 
     void Update()
@@ -49,9 +56,17 @@ public class GameController : MonoBehaviour
 
     IEnumerator LoadScene(Constants.LEVEL levelToLoad)
     {
-        hud.show("Let's Go!", 3);
-        yield return new WaitForSeconds(3);
-
+        if (levelToLoad == Constants.LEVEL.Tutorial)
+        {
+            wisp.talkToPlayer(wisp.TutorialFinished);
+            yield return new WaitForSeconds(wisp.TutorialFinished.length);
+        }
+        else if (levelToLoad == Constants.LEVEL.FloatingRocks)
+        {
+            wisp.talkToPlayer(wisp.FloatingRocksSelected);
+            yield return new WaitForSeconds(wisp.FloatingRocksSelected.length);
+        }
+        
         Constants.LEVEL currentLevel = (Constants.LEVEL)(SceneManager.GetActiveScene().buildIndex);
         if (levelToLoad == currentLevel) yield break;
 
@@ -64,9 +79,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator StartGameAfterCountdownRoutine()
     {
-        // implement countdown sound and visuals
-        hud.show("Wisp Countdown", 3);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.5f);
         StartGame();
     }
 
@@ -74,7 +87,6 @@ public class GameController : MonoBehaviour
     public void StartTutorial()
     {
     	pc.EnableRotation();
-
         tutorial.StartTutorial();
     }
 
@@ -155,7 +167,8 @@ public class GameController : MonoBehaviour
 
     IEnumerator LoadMenu()
     {
-        yield return new WaitForSeconds(6);
+        wisp.talkToPlayer(wisp.FinishedMountainWorld);
+        yield return new WaitForSeconds(wisp.FinishedMountainWorld.length + 1f);
         fade.fadeOut(1);
         LoadLevel(Constants.LEVEL.Menu);
     }

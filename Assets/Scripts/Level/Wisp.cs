@@ -6,7 +6,33 @@ using UnityEngine.AI;
 
 public class Wisp : MonoBehaviour {
 
-    public AudioClip introductionClip;
+    public AudioClip MenuIntro;
+
+    public AudioClip TutorialSelected;
+    public AudioClip FloatingRocksSelected;
+
+    public AudioClip TurnBroomRight;
+    public AudioClip TurnBroomLeft;
+    public AudioClip TurnBroomUp;
+    public AudioClip TurnBroomDown;
+
+    public AudioClip ComplimentGrandios;
+    public AudioClip ComplimentZauberhaft;
+    public AudioClip ComplimentMotiviert;
+    public AudioClip ComplimentUnglaublich;
+
+    public AudioClip TutorialFinished;
+
+    public AudioClip ArrivalMountainWorld;
+    public AudioClip ArrivalFloatingRocks;
+
+    public AudioClip ExplainRings;
+    public AudioClip ExplainWindzones;
+    public AudioClip ExplainEnergyBoost;
+    public AudioClip ExplainSlowCloud;
+
+    public AudioClip FinishedMountainWorld;
+
     public float defaultSpeed = 12;
 
     private AudioSource audioSource;

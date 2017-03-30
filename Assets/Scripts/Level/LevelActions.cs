@@ -45,10 +45,12 @@ public class LevelActions : MonoBehaviour
         {
             Wisp wisp = GameComponents.GetWisp();
             Transform wispTrans = wisp.transform;
+            wisp.GetComponent<Animator>().enabled = false;
+
             player.parent = broomCloset.transform;
             wispTrans.parent = broomCloset.transform;
             float landingDuration = broomCloset.StartLanding();
-            yield return new WaitForSeconds(landingDuration);
+            yield return new WaitForSeconds(landingDuration + 0.5f);
             player.parent = null;
             wispTrans.parent = null;
 

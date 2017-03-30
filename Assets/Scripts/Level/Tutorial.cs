@@ -11,7 +11,7 @@ public class Tutorial : MonoBehaviour {
     private HUD hud;
     private Wisp wisp;
 
-    private float playerRotationDetectionAngle = 70;
+    private float playerRotationDetectionAngle = 50;
     private object activeWaypoint;
     private bool triggered = false;
 
@@ -26,6 +26,9 @@ public class Tutorial : MonoBehaviour {
 
     IEnumerator learnBroomControlRoutine()
     {
+        wisp.talkToPlayer(wisp.TutorialSelected);
+        yield return new WaitForSeconds(wisp.TutorialSelected.length);
+
         wisp.talkToPlayer(wisp.TurnBroomRight);
         float lastAngle = player.transform.eulerAngles.y;
         float angleCounter = 0;
@@ -93,7 +96,7 @@ public class Tutorial : MonoBehaviour {
     IEnumerator ExplainRings()
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
-        wisp.changeSpeedToTargetSpeed(3, 0.5f);
+        wisp.changeSpeedToTargetSpeed(3f, 0.5f);
         wisp.talkToPlayer(wisp.ExplainRings);
         yield return new WaitForSeconds(wisp.ExplainRings.length);
         pc.changeSpeedToDefaultSpeed(0.5f);
@@ -103,7 +106,7 @@ public class Tutorial : MonoBehaviour {
     IEnumerator ExplainWindzone()
     {
         pc.changeSpeedToTargetSpeed(2, 1);
-        wisp.changeSpeedToTargetSpeed(3, 1);
+        wisp.changeSpeedToTargetSpeed(3f, 1);
         wisp.talkToPlayer(wisp.ExplainWindzones);
         yield return new WaitForSeconds(wisp.ExplainWindzones.length);
         pc.changeSpeedToDefaultSpeed(0.5f);
@@ -113,7 +116,7 @@ public class Tutorial : MonoBehaviour {
     IEnumerator ExplainSpeedBoost()
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
-        wisp.changeSpeedToTargetSpeed(3, 0.5f);
+        wisp.changeSpeedToTargetSpeed(3f, 0.5f);
         wisp.talkToPlayer(wisp.ExplainEnergyBoost);
         yield return new WaitForSeconds(wisp.ExplainEnergyBoost.length);
         pc.changeSpeedToDefaultSpeed(0.5f);

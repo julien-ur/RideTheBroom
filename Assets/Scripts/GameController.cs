@@ -167,8 +167,11 @@ public class GameController : MonoBehaviour
 
     IEnumerator LoadMenu()
     {
-        wisp.talkToPlayer(wisp.FinishedMountainWorld);
-        yield return new WaitForSeconds(wisp.FinishedMountainWorld.length + 1f);
+        if (GetActiveLevel() == Constants.LEVEL.Tutorial)
+        {
+            wisp.talkToPlayer(wisp.FinishedMountainWorld);
+            yield return new WaitForSeconds(wisp.FinishedMountainWorld.length + 1f);
+        }
         fade.fadeOut(1);
         LoadLevel(Constants.LEVEL.Menu);
     }

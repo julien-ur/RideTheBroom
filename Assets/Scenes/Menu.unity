@@ -4528,6 +4528,11 @@ Prefab:
       propertyPath: ArrivalMountainWorld
       value: 
       objectReference: {fileID: 8300000, guid: 642aae5461a865d43ad0c5b70a276db6, type: 3}
+    - target: {fileID: 114989332941223470, guid: 2d63797de5297e04f85da69b11419913,
+        type: 2}
+      propertyPath: defaultSpeed
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d63797de5297e04f85da69b11419913, type: 2}
   m_IsPrefabParent: 0
@@ -5314,6 +5319,10 @@ Prefab:
     - target: {fileID: 4086442906560562, guid: c70744c07fd4c4b3789d43df3275248e, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821054719988324, guid: c70744c07fd4c4b3789d43df3275248e, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c70744c07fd4c4b3789d43df3275248e, type: 2}

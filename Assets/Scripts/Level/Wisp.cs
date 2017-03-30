@@ -45,8 +45,8 @@ public class Wisp : MonoBehaviour {
     private float speed;
     private int waypointCounter = 0;
     private double targetReachedDistance = 0.5;
-    private float optimalPlayerDistance = 5;
-    private float maxPlayerDistanceVariance = 15;
+    private float optimalPlayerDistance = 2;
+    private float maxPlayerDistanceVariance = 13;
     private float maxSpeedChangeFactor = 3;
 
     private float lastOptPlayerDistanceDelta = 0;
@@ -110,7 +110,15 @@ public class Wisp : MonoBehaviour {
         Vector3 relWispPos = playerTransform.InverseTransformPoint(transform.position);
 
         float optimalDistanceDelta = relWispPos.z - optimalPlayerDistance;
+        Debug.Log(optimalDistanceDelta);
 
+        if (Math.Abs(optimalDistanceDelta) > 30)
+        {
+            transform.position = playerTransform.position + playerTransform.TransformDirection(Vector3.back * 3);
+        }
+        
+
+        lastOptPlayerDistanceDelta = optimalDistanceDelta;
         float clampedDelta = Mathf.Clamp(optimalDistanceDelta, -maxPlayerDistanceVariance, maxPlayerDistanceVariance);
         float playerDistanceFactor = 1;
 

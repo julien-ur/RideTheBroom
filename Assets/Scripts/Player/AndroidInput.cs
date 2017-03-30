@@ -33,6 +33,7 @@ public class AndroidInput : MonoBehaviour
 
     Thread udpThread;
     UdpClient client;
+    bool runUdpThread;
 
     private short x, y, z;
 
@@ -48,16 +49,23 @@ public class AndroidInput : MonoBehaviour
 	
 	void Update ()
 	{
-		Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
+		//Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
+	}
+
+	void OnDestroy()
+	{
+		runUdpThread = false;
 	}
 
 	private void ReceiveDataUDP()
 	{
 		client = new UdpClient(port);
 
-		short lastY = 0;
+		//short lastY = 0;
 
-		while(true)
+		runUdpThread = true;
+
+		while(runUdpThread)
 		{
 			/*lastTime = time;
 			time = stopwatch.ElapsedMilliseconds;

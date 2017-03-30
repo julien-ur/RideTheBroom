@@ -3,12 +3,15 @@ using UnityEngine;
 public class MagicalRing : MonoBehaviour
 {
 	private bool active = true;
-	public Transform transform;
 
-	void Start()
-	{
-		transform = GetComponent<Transform>();
-	}
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.GetComponent<PlayerControl>())
+        {
+            GetComponent<Animation>().Play();
+            GetComponent<AudioSource>().Play();
+        }
+    }
 
     void OnTriggerExit(Collider col)
     {
@@ -16,7 +19,6 @@ public class MagicalRing : MonoBehaviour
         {
             GameComponents.GetGameController().RingActivated();
             GetComponent<MeshCollider>().enabled = false;
-
         	Hide();
         }
     }

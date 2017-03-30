@@ -75,6 +75,11 @@ public class GameController : MonoBehaviour
         AsyncOperation loadOp = SceneManager.LoadSceneAsync((int)(levelToLoad), mode);
         yield return new WaitUntil(() => loadOp.isDone);
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)(levelToLoad)));
+
+        if (levelToLoad == Constants.LEVEL.Menu)
+        {
+            wisp.talkToPlayer(wisp.BackToMenu);
+        }
     }
 
     IEnumerator StartGameAfterCountdownRoutine()

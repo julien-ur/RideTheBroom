@@ -32,6 +32,7 @@ public class Wisp : MonoBehaviour {
     public AudioClip ExplainSlowCloud;
 
     public AudioClip FinishedMountainWorld;
+    public AudioClip BackToMenu;
 
     public float defaultSpeed = 12;
 
@@ -56,6 +57,7 @@ public class Wisp : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         playerTransform = GameComponents.GetPlayer().transform;
         speed = 0;
+        defaultSpeed = GameComponents.GetPlayerControl().defaultSpeed + 1; 
     }
 
     public void initWaypoints()
@@ -110,13 +112,11 @@ public class Wisp : MonoBehaviour {
         Vector3 relWispPos = playerTransform.InverseTransformPoint(transform.position);
 
         float optimalDistanceDelta = relWispPos.z - optimalPlayerDistance;
-        Debug.Log(optimalDistanceDelta);
 
         if (Math.Abs(optimalDistanceDelta) > 30)
         {
             transform.position = playerTransform.position + playerTransform.TransformDirection(Vector3.back * 3);
         }
-        
 
         lastOptPlayerDistanceDelta = optimalDistanceDelta;
         float clampedDelta = Mathf.Clamp(optimalDistanceDelta, -maxPlayerDistanceVariance, maxPlayerDistanceVariance);

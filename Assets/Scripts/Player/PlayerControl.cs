@@ -56,21 +56,22 @@ public class PlayerControl : MonoBehaviour
     {
         float vrAccellerationFactor = 1; // VR leaning acceleration
 
-        if(VRDevice.isPresent)
-        {
-            float clampedHeadDelta = Mathf.Clamp(InputTracking.GetLocalPosition(VRNode.Head).y - headStartYPos, headStartYPos - maxHeadDelta, headStartYPos + maxHeadDelta);
+        //if(VRDevice.isPresent)
+        //{
+        //    float clampedHeadDelta = Mathf.Clamp(InputTracking.GetLocalPosition(VRNode.Head).y - headStartYPos, headStartYPos - maxHeadDelta, headStartYPos + maxHeadDelta);
             
-            if (clampedHeadDelta > 0)
-            {
-                vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, maxHeadDelta, 1, 1/maxSpeedChangeFactor);
-            }
-            else
-            {
-                vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, -maxHeadDelta, 1, maxSpeedChangeFactor);
-            }
+        //    if (clampedHeadDelta > 0)
+        //    {
+        //        vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, maxHeadDelta, 1, 1/maxSpeedChangeFactor);
+        //    }
+        //    else
+        //    {
+        //        vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, -maxHeadDelta, 1, maxSpeedChangeFactor);
+        //    }
 
-            //Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
-        }
+        //    Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
+        //}
+
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
         // from the addForce method of the physical forward drive component

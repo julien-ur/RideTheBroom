@@ -177,6 +177,10 @@ public class GameController : MonoBehaviour
             wisp.talkToPlayer(wisp.FinishedMountainWorld);
             yield return new WaitForSeconds(wisp.FinishedMountainWorld.length + 1f);
         }
+        else
+        {
+            yield return new WaitForSeconds(5f);
+        }
         fade.fadeOut(1);
         LoadLevel(Constants.LEVEL.Menu);
     }

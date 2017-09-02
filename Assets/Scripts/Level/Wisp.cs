@@ -139,10 +139,11 @@ public class Wisp : MonoBehaviour {
         changeSpeedToTargetSpeed(defaultSpeed, 2);
     }
 
-    public void talkToPlayer(AudioClip clip)
+    public float talkToPlayer(AudioClip clip)
     {
         audioSource.clip = clip;
         audioSource.Play();
+        return clip ? clip.length : 0;
     }
 
     public void changeSpeedToTargetSpeed(float targetSpeed, float duration)

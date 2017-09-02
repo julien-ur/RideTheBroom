@@ -26,40 +26,40 @@ public class Tutorial : MonoBehaviour {
 
     IEnumerator learnBroomControlRoutine()
     {
-        wisp.talkToPlayer(wisp.TutorialSelected);
-        yield return new WaitForSeconds(wisp.TutorialSelected.length);
+        float duration = wisp.talkToPlayer(wisp.TutorialSelected);
+        yield return new WaitForSeconds(duration);
 
         wisp.talkToPlayer(wisp.TurnBroomRight);
         float lastAngle = player.transform.eulerAngles.y;
         float angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.y, ref angleCounter, true));
 
-        wisp.talkToPlayer(wisp.ComplimentGrandios);
-        yield return new WaitForSeconds(wisp.ComplimentGrandios.length + 0.5f);
+        duration = wisp.talkToPlayer(wisp.ComplimentGrandios);
+        yield return new WaitForSeconds(duration + 0.5f);
 
         wisp.talkToPlayer(wisp.TurnBroomLeft);
         lastAngle = player.transform.eulerAngles.y;
         angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.y, ref angleCounter, false));
 
-        wisp.talkToPlayer(wisp.ComplimentZauberhaft);
-        yield return new WaitForSeconds(wisp.ComplimentZauberhaft.length + 0.5f);
+        duration = wisp.talkToPlayer(wisp.ComplimentZauberhaft);
+        yield return new WaitForSeconds(duration + 0.5f);
 
         wisp.talkToPlayer(wisp.TurnBroomUp);
         lastAngle = player.transform.eulerAngles.x;
         angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.x, ref angleCounter, false));
 
-        wisp.talkToPlayer(wisp.ComplimentUnglaublich);
-        yield return new WaitForSeconds(wisp.ComplimentUnglaublich.length + 0.5f);
+        duration = wisp.talkToPlayer(wisp.ComplimentUnglaublich);
+        yield return new WaitForSeconds(duration + 0.5f);
 
         wisp.talkToPlayer(wisp.TurnBroomDown);
         lastAngle = player.transform.eulerAngles.x;
         angleCounter = 0;
         yield return new WaitUntil(() => hasPlayerExecutedClaimedRotation(ref lastAngle, player.transform.eulerAngles.x, ref angleCounter, true));
 
-        wisp.talkToPlayer(wisp.ComplimentMotiviert);
-        yield return new WaitForSeconds(wisp.ComplimentMotiviert.length + 0.5f);
+        duration = wisp.talkToPlayer(wisp.ComplimentMotiviert);
+        yield return new WaitForSeconds(duration + 0.5f);
 
         onBroomControlLearned();
     }
@@ -97,8 +97,8 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3f, 0.5f);
-        wisp.talkToPlayer(wisp.ExplainRings);
-        yield return new WaitForSeconds(wisp.ExplainRings.length);
+        float duration = wisp.talkToPlayer(wisp.ExplainRings);
+        yield return new WaitForSeconds(duration);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
@@ -107,8 +107,8 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 1);
         wisp.changeSpeedToTargetSpeed(3f, 1);
-        wisp.talkToPlayer(wisp.ExplainWindzones);
-        yield return new WaitForSeconds(wisp.ExplainWindzones.length);
+        float duration = wisp.talkToPlayer(wisp.ExplainWindzones);
+        yield return new WaitForSeconds(duration);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
@@ -117,8 +117,8 @@ public class Tutorial : MonoBehaviour {
     {
         pc.changeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3f, 0.5f);
-        wisp.talkToPlayer(wisp.ExplainEnergyBoost);
-        yield return new WaitForSeconds(wisp.ExplainEnergyBoost.length);
+        float duration = wisp.talkToPlayer(wisp.ExplainEnergyBoost);
+        yield return new WaitForSeconds(duration);
         pc.changeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
@@ -128,8 +128,8 @@ public class Tutorial : MonoBehaviour {
         float slowDownFactor = 0.1f;
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        wisp.talkToPlayer(wisp.ExplainSlowCloud);
-        yield return new WaitForSeconds(wisp.ExplainSlowCloud.length * slowDownFactor);
+        float duration = wisp.talkToPlayer(wisp.ExplainSlowCloud);
+        yield return new WaitForSeconds(duration * slowDownFactor);
 
         while (Time.timeScale < 1)
         {

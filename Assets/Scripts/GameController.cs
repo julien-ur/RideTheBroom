@@ -44,8 +44,8 @@ public class GameController : MonoBehaviour
     {
         fade.fadeIn(1);
         yield return new WaitForSeconds(3f);
-        wisp.talkToPlayer(wisp.MenuIntro);
-        yield return new WaitForSeconds(wisp.MenuIntro.length + 0.3f);
+        float duration = wisp.talkToPlayer(wisp.MenuIntro);
+        yield return new WaitForSeconds(duration + 0.3f);
     }
 
     void Update()
@@ -58,13 +58,13 @@ public class GameController : MonoBehaviour
     {
         if (levelToLoad == Constants.LEVEL.Tutorial)
         {
-            wisp.talkToPlayer(wisp.TutorialFinished);
-            yield return new WaitForSeconds(wisp.TutorialFinished.length);
+            float duration = wisp.talkToPlayer(wisp.TutorialFinished);
+            yield return new WaitForSeconds(duration);
         }
         else if (levelToLoad == Constants.LEVEL.FloatingRocks)
         {
-            wisp.talkToPlayer(wisp.FloatingRocksSelected);
-            yield return new WaitForSeconds(wisp.FloatingRocksSelected.length);
+            float duration = wisp.talkToPlayer(wisp.FloatingRocksSelected);
+            yield return new WaitForSeconds(duration);
         }
         
         Constants.LEVEL currentLevel = (Constants.LEVEL)(SceneManager.GetActiveScene().buildIndex);
@@ -172,10 +172,12 @@ public class GameController : MonoBehaviour
 
     IEnumerator LoadMenu()
     {
+
         if (GetActiveLevel() == Constants.LEVEL.Tutorial)
         {
-            wisp.talkToPlayer(wisp.FinishedMountainWorld);
-            yield return new WaitForSeconds(wisp.FinishedMountainWorld.length + 1f);
+            float duration = wisp.talkToPlayer(wisp.FinishedMountainWorld);
+            //yield return new WaitForSeconds(duration + 1f);
+            yield return new WaitForSeconds(5f);
         }
         else
         {

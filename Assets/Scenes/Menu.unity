@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 371}
   - component: {fileID: 387}
   - component: {fileID: 391}
+  - component: {fileID: 443}
   m_Layer: 0
   m_Name: Wisp
   m_TagString: Wisp
@@ -19724,32 +19725,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fc3b546696c494d8fbca3620113c90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuIntro: {fileID: 8300000, guid: da4cd0333e6ba0847b6cdb0d459e9dc4, type: 3}
-  TutorialSelected: {fileID: 8300000, guid: 1a2741102e0c8234f90f84cf5cb50736, type: 3}
-  FloatingRocksSelected: {fileID: 8300000, guid: 439a2c6cf4d8bfe4ca83e0bde35a49eb,
-    type: 3}
-  TurnBroomRight: {fileID: 8300000, guid: 21a664d9b4d349548980be19633c88a6, type: 3}
-  TurnBroomLeft: {fileID: 8300000, guid: c6e241e1c24091d48a8435817f70f2cb, type: 3}
-  TurnBroomUp: {fileID: 8300000, guid: 4642465ad666223499b6a911519ce6a1, type: 3}
-  TurnBroomDown: {fileID: 8300000, guid: 23eb06d926780d24580b5e7b6bc8226a, type: 3}
-  ComplimentGrandios: {fileID: 8300000, guid: d39229efd4c4df143ad38ed40eb96808, type: 3}
-  ComplimentZauberhaft: {fileID: 8300000, guid: 6b2ea62c70011fa4291c12b26c2fcf5a,
-    type: 3}
-  ComplimentMotiviert: {fileID: 8300000, guid: 12f125424b870c34ab82c7a5544fef45, type: 3}
-  ComplimentUnglaublich: {fileID: 8300000, guid: 3f0933cd8b4aea4448d573f89c1cf3c0,
-    type: 3}
-  TutorialFinished: {fileID: 8300000, guid: 3151419cba28b77489c0b084605ad7d5, type: 3}
-  ArrivalMountainWorld: {fileID: 8300000, guid: 642aae5461a865d43ad0c5b70a276db6,
-    type: 3}
-  ArrivalFloatingRocks: {fileID: 8300000, guid: d36a946166ce3e34492dc6bdf3f7d5cc,
-    type: 3}
-  ExplainRings: {fileID: 8300000, guid: beb3bd84e73f3884f83ab84be271a908, type: 3}
-  ExplainWindzones: {fileID: 8300000, guid: de8e5004e688f5448b1b1ce4b7432743, type: 3}
-  ExplainEnergyBoost: {fileID: 8300000, guid: 73ade6ec054e74e469077ed0f996a709, type: 3}
-  ExplainSlowCloud: {fileID: 8300000, guid: fe3e46b881cff634c9e3fc94678582f2, type: 3}
-  FinishedMountainWorld: {fileID: 8300000, guid: fc63db1a388d7ea4b9be2315670f6948,
-    type: 3}
-  BackToMenu: {fileID: 8300000, guid: 1b847ec1f9585fd4ba78d28f34abacd4, type: 3}
+  MenuIntro: {fileID: 0}
+  TutorialSelected: {fileID: 0}
+  FloatingRocksSelected: {fileID: 0}
+  TurnBroomRight: {fileID: 0}
+  TurnBroomLeft: {fileID: 0}
+  TurnBroomUp: {fileID: 0}
+  TurnBroomDown: {fileID: 0}
+  ComplimentGrandios: {fileID: 0}
+  ComplimentZauberhaft: {fileID: 0}
+  ComplimentMotiviert: {fileID: 0}
+  ComplimentUnglaublich: {fileID: 0}
+  TutorialFinished: {fileID: 0}
+  ArrivalMountainWorld: {fileID: 0}
+  ArrivalFloatingRocks: {fileID: 0}
+  ExplainRings: {fileID: 0}
+  ExplainWindzones: {fileID: 0}
+  ExplainEnergyBoost: {fileID: 0}
+  ExplainSlowCloud: {fileID: 0}
+  FinishedMountainWorld: {fileID: 0}
+  BackToMenu: {fileID: 0}
   defaultSpeed: 8
 --- !u!114 &417
 MonoBehaviour:
@@ -19919,8 +19914,8 @@ MonoBehaviour:
   momentum: {x: 0, y: 0, z: 0}
   rotationFactorX: 120
   rotationFactorY: 120
-  useBroomHardware: 1
-  useAndroidInput: 1
+  useBroomHardware: 0
+  useAndroidInput: 0
   invertHorizontal: 0
   androidInput: {fileID: 430}
   enableBroomRollback: 1
@@ -20097,6 +20092,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b694b79d0964f58887479e0d736b35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 10}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fc3b546696c494d8fbca3620113c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuIntro: {fileID: 8300000, guid: da4cd0333e6ba0847b6cdb0d459e9dc4, type: 3}
+  TutorialSelected: {fileID: 8300000, guid: 1a2741102e0c8234f90f84cf5cb50736, type: 3}
+  FloatingRocksSelected: {fileID: 8300000, guid: 439a2c6cf4d8bfe4ca83e0bde35a49eb,
+    type: 3}
+  TurnBroomRight: {fileID: 8300000, guid: 21a664d9b4d349548980be19633c88a6, type: 3}
+  TurnBroomLeft: {fileID: 8300000, guid: c6e241e1c24091d48a8435817f70f2cb, type: 3}
+  TurnBroomUp: {fileID: 8300000, guid: 4642465ad666223499b6a911519ce6a1, type: 3}
+  TurnBroomDown: {fileID: 8300000, guid: 23eb06d926780d24580b5e7b6bc8226a, type: 3}
+  ComplimentGrandios: {fileID: 8300000, guid: d39229efd4c4df143ad38ed40eb96808, type: 3}
+  ComplimentZauberhaft: {fileID: 8300000, guid: 6b2ea62c70011fa4291c12b26c2fcf5a,
+    type: 3}
+  ComplimentMotiviert: {fileID: 8300000, guid: 12f125424b870c34ab82c7a5544fef45, type: 3}
+  ComplimentUnglaublich: {fileID: 8300000, guid: 3f0933cd8b4aea4448d573f89c1cf3c0,
+    type: 3}
+  TutorialFinished: {fileID: 8300000, guid: 3151419cba28b77489c0b084605ad7d5, type: 3}
+  ArrivalMountainWorld: {fileID: 8300000, guid: 642aae5461a865d43ad0c5b70a276db6,
+    type: 3}
+  ArrivalFloatingRocks: {fileID: 8300000, guid: d36a946166ce3e34492dc6bdf3f7d5cc,
+    type: 3}
+  ExplainRings: {fileID: 8300000, guid: beb3bd84e73f3884f83ab84be271a908, type: 3}
+  ExplainWindzones: {fileID: 8300000, guid: de8e5004e688f5448b1b1ce4b7432743, type: 3}
+  ExplainEnergyBoost: {fileID: 8300000, guid: 73ade6ec054e74e469077ed0f996a709, type: 3}
+  ExplainSlowCloud: {fileID: 8300000, guid: fe3e46b881cff634c9e3fc94678582f2, type: 3}
+  FinishedMountainWorld: {fileID: 8300000, guid: fc63db1a388d7ea4b9be2315670f6948,
+    type: 3}
+  BackToMenu: {fileID: 8300000, guid: 1b847ec1f9585fd4ba78d28f34abacd4, type: 3}
+  defaultSpeed: 8
 --- !u!1 &893086028
 GameObject:
   m_ObjectHideFlags: 0

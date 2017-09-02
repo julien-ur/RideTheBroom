@@ -8,6 +8,7 @@ public class LevelActions : MonoBehaviour
 
     private Transform player;
 	private CompassControl compass;
+    private GameObject menuProps;
     private Menu menu;
     private GameController gc;
     private PlayerControl pc;
@@ -51,18 +52,21 @@ public class LevelActions : MonoBehaviour
             wispTrans.parent = broomCloset.transform;
             float landingDuration = broomCloset.StartLanding();
             yield return new WaitForSeconds(landingDuration + 0.5f);
+
             player.parent = null;
             wispTrans.parent = null;
+            menuProps.active = false;
 
             if (currentLevel == Constants.LEVEL.Tutorial)
             {
-                wisp.talkToPlayer(wisp.ArrivalMountainWorld);
-                yield return new WaitForSeconds(wisp.ArrivalMountainWorld.length);
+
+                float duration = wisp.talkToPlayer(wisp.ArrivalMountainWorld);
+                yield return new WaitForSeconds(duration);
             }
             else if (currentLevel == Constants.LEVEL.FloatingRocks)
             {
-                wisp.talkToPlayer(wisp.ArrivalFloatingRocks);
-                yield return new WaitForSeconds(wisp.ArrivalFloatingRocks.length);
+                float duration = wisp.talkToPlayer(wisp.ArrivalFloatingRocks);
+                yield return new WaitForSeconds(duration);
 
             }
 
@@ -96,6 +100,7 @@ public class LevelActions : MonoBehaviour
     public void FinishLevel()
     {
         pc.changeSpeedToTargetSpeed(0, 0.5f);
+        menuProps.active = true;
         gc.FinishLevel();
 
         billboardControl.SetScore(gc.GetCurrentScore(), gc.GetHighScore());

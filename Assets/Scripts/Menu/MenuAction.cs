@@ -18,7 +18,8 @@ public class MenuAction : MonoBehaviour {
         switch (VRAction)
         {
             case ACTION.Tutorial:
-                gc.StartTutorial();
+                // gc.StartTutorial();
+                gc.LoadLevel(Constants.LEVEL.Tutorial);
                 break;
 
             case ACTION.FloatingRocks:

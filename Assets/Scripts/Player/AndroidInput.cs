@@ -55,7 +55,7 @@ public class AndroidInput : MonoBehaviour
 	void OnDestroy()
 	{
 		runUdpThread = false;
-	}
+    }
 
 	private void ReceiveDataUDP()
 	{
@@ -63,7 +63,7 @@ public class AndroidInput : MonoBehaviour
 
 		//short lastY = 0;
 
-		runUdpThread = true;
+		//runUdpThread = true;
 
 		while(runUdpThread)
 		{

@@ -39,6 +39,11 @@ public static class GameComponents {
         return (wo) ? wo.GetComponent<Wisp>() : null;
     }
 
+    public static GameObject[] GetAdditionalMenuProps()
+    {
+        return GameObject.FindGameObjectsWithTag("AdditionalMenuProps");
+    }
+
     public static HUD GetHUD()
     {
         GameObject ho = GameObject.FindGameObjectWithTag("HUD");

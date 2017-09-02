@@ -8,8 +8,8 @@ public class LevelActions : MonoBehaviour
 
     private Transform player;
 	private CompassControl compass;
-    private GameObject menuProps;
     private Menu menu;
+    private GameObject[] menuProps;
     private GameController gc;
     private PlayerControl pc;
     private Tutorial tut;
@@ -27,6 +27,7 @@ public class LevelActions : MonoBehaviour
 
         gc = GameComponents.GetGameController();
         pc = GameComponents.GetPlayerControl();
+        menuProps = GameComponents.GetAdditionalMenuProps();
         tut = GameComponents.GetTutorial();
         player = pc.GetComponent<Transform>();
         broomCloset = GameComponents.GetBroomCloset();
@@ -55,7 +56,10 @@ public class LevelActions : MonoBehaviour
 
             player.parent = null;
             wispTrans.parent = null;
-            menuProps.active = false;
+            foreach (GameObject p in menuProps)
+            {
+                p.SetActive(false);
+            }
 
             if (currentLevel == Constants.LEVEL.Tutorial)
             {
@@ -100,7 +104,10 @@ public class LevelActions : MonoBehaviour
     public void FinishLevel()
     {
         pc.changeSpeedToTargetSpeed(0, 0.5f);
-        menuProps.active = true;
+        foreach (GameObject p in menuProps)
+        {
+            p.SetActive(false);
+        }
         gc.FinishLevel();
 
         billboardControl.SetScore(gc.GetCurrentScore(), gc.GetHighScore());

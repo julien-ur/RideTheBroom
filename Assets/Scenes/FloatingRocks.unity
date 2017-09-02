@@ -19992,6 +19992,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: -0.84429824
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6acf282455bcbe49b74fd34fff0a6be, type: 3}
+      propertyPath: m_TagString
+      value: AdditionalMenuProps
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6acf282455bcbe49b74fd34fff0a6be, type: 3}
   m_IsPrefabParent: 0
@@ -24126,6 +24130,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 67.98699
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a6acf282455bcbe49b74fd34fff0a6be, type: 3}
+      propertyPath: m_TagString
+      value: AdditionalMenuProps
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6acf282455bcbe49b74fd34fff0a6be, type: 3}
   m_IsPrefabParent: 0
@@ -27932,7 +27940,7 @@ GameObject:
   - component: {fileID: 2077850381}
   m_Layer: 0
   m_Name: Particle System
-  m_TagString: Untagged
+  m_TagString: AdditionalMenuProps
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28043,7 +28051,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 582407960
+  randomSeed: 1171992960
   InitialModule:
     serializedVersion: 3
     enabled: 1

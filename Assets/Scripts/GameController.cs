@@ -78,7 +78,8 @@ public class GameController : MonoBehaviour
 
         if (levelToLoad == Constants.LEVEL.Menu)
         {
-            wisp.talkToPlayer(wisp.BackToMenu);
+            // wisp.talkToPlayer(wisp.BackToMenu);
+            LoadLevel(Constants.LEVEL.FloatingRocks);
         }
     }
 

@@ -17,7 +17,7 @@ public class LevelFinish : MonoBehaviour
 		{
             levelActions.FinishLevel();
             GetComponent<Collider>().enabled = false;
-			//Debug.Log("FINISH - " + createTimeString(levelTime));
+			// Debug.Log("FINISH - " + createTimeString(levelTime));
 		}
 	}
 }

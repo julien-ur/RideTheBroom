@@ -40534,6 +40534,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fc6448bf8dedd5f499e7a9f9b870819c, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &753860480 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1,
+    type: 2}
+  m_PrefabInternal: {fileID: 1812957225}
 --- !u!1001 &755216694
 Prefab:
   m_ObjectHideFlags: 0
@@ -48840,6 +48845,7 @@ Transform:
   - {fileID: 1032774658}
   - {fileID: 506859705}
   - {fileID: 2132576377}
+  - {fileID: 753860480}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68010,7 +68016,6 @@ GameObject:
   - component: {fileID: 1710818165}
   - component: {fileID: 1710818164}
   - component: {fileID: 1710818163}
-  - component: {fileID: 1710818167}
   m_Layer: 14
   m_Name: GameControl
   m_TagString: GameControl
@@ -68065,19 +68070,6 @@ Transform:
   m_Father: {fileID: 924179513}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1710818167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1710818162}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98ffe266eb42f4a0fb8ac8ee3b04a975, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1872402328100162, guid: c2a0d10afca7e49a187707dc2f27aafe,
-    type: 2}
 --- !u!1 &1711928928
 GameObject:
   m_ObjectHideFlags: 0
@@ -72478,51 +72470,51 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 924179513}
     m_Modifications:
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -89.72
+      value: 164.30206
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -4.39
+      value: 437.53497
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 382.41
+      value: 611.62054
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071067
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalScale.x
-      value: 1.234655
+      value: -1.462344
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.234656
+      value: -1.462346
       objectReference: {fileID: 0}
     - target: {fileID: 4404377979482024, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalScale.z
-      value: 1.234656
+      value: -1.462346
       objectReference: {fileID: 0}
     - target: {fileID: 4455583197528820, guid: 35296f586759d494e8a49426684f09a1, type: 2}
       propertyPath: m_LocalPosition.y

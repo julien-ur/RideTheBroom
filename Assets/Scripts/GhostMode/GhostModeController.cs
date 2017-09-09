@@ -58,20 +58,7 @@ public class GhostModeController : MonoBehaviour
 
 	void Start ()
 	{
-        //GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameObject.Find("LevelControl").GetComponent<LevelActions>().LEVEL_NAME + ".txt";
-        GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameComponents.GetGameController().GetActiveLevel().ToString() + ".txt";
-
-        player = GameComponents.GetPlayer().transform;
-        if (!File.Exists(GHOSTMODE_LOG_PATH))
-		{
-			isFirstRecord = true;
-		}
-		else
-		{
-			ghostModePathLoaded = LoadGhostModeLog(GHOSTMODE_LOG_PATH);
-			//BuildGhostPath();
-			SpawnGhost();
-		}
+        
 	}
 	
 	void Update ()
@@ -98,7 +85,7 @@ public class GhostModeController : MonoBehaviour
 
     public void SaveGhostModeLog()
     {
-    	if(ghostModePathLog != null && (isFirstRecord || ghostModePathLoaded[ghostModePathLoaded.Count].time > ghostModeLogTimer))
+    	if(ghostModePathLog != null && (isFirstRecord || ghostModePathLoaded[ghostModePathLoaded.Count-1].time > ghostModeLogTimer))
     	{
 	        string text = "";
 
@@ -106,14 +93,28 @@ public class GhostModeController : MonoBehaviour
 	        {
 	            text += node.ToString();
 	        }
-
 	        System.IO.File.WriteAllText(GHOSTMODE_LOG_PATH, text);
 	    }
     }
 
     public void StartGhostModeLog(Transform player)
     {
-    	this.player = player;
+        // GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameObject.Find("LevelControl").GetComponent<LevelActions>().LEVEL_NAME + ".txt";
+        GHOSTMODE_LOG_PATH = "ghostmodetest_" + GameComponents.GetGameController().GetActiveLevel().ToString() + ".txt";
+
+        player = GameComponents.GetPlayer().transform;
+        if (!File.Exists(GHOSTMODE_LOG_PATH))
+        {
+            isFirstRecord = true;
+        }
+        else
+        {
+            ghostModePathLoaded = LoadGhostModeLog(GHOSTMODE_LOG_PATH);
+            BuildGhostPath();
+            SpawnGhost();
+        }
+
+        this.player = player;
         ghostModePathLog = new List<GhostModePathNode>();
         isGhostModeLogRunning = true;
         ghostModeLogTimer = 0;
@@ -123,6 +124,7 @@ public class GhostModeController : MonoBehaviour
     public void StopGhostModeLog()
     {
         isGhostModeLogRunning = false;
+        ghostModePathLog.Add(new GhostModePathNode(player.transform.position, ghostModeLogTimer));
     }
 
     public void AbortGhostModeLog()
@@ -159,8 +161,8 @@ public class GhostModeController : MonoBehaviour
     {
     	if(!isFirstRecord)
     	{
-	    	if(ghostPrefab == null) ghost = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-	    	else ghost = Instantiate(ghostPrefab, Vector3.zero, Quaternion.identity).transform;
+            if (ghostPrefab == null) ghost = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+            else ghost = GameComponents.GetWisp().transform; // Instantiate(ghostPrefab, Vector3.zero, Quaternion.identity).transform;
 	    	isGhostMoving = true;
 	    }
     }
@@ -169,7 +171,7 @@ public class GhostModeController : MonoBehaviour
     {
     	if(isGhostMoving)
     	{
-	    	if(previousNode.defined == false) previousNode = ghostModePathLoaded[0];
+	    	if(previousNode.defined == false) previousNode = new GhostModePathNode(ghost.position - 1.5f * Vector3.forward, ghostModePathLoaded[0].time);
 	    	if(nextNode.defined == false) nextNode = ghostModePathLoaded[1];
 
 	    	if(ghostModeLogTimer > nextNode.time)
@@ -193,7 +195,7 @@ public class GhostModeController : MonoBehaviour
 
 	    	float interpolant = (ghostModeLogTimer - previousNode.time) / (nextNode.time - previousNode.time);
 
-	    	ghost.position = Vector3.Lerp(previousNode.position, nextNode.position, interpolant);
+	    	ghost.position = Vector3.Lerp(previousNode.position + 1.5f * Vector3.forward, nextNode.position + 1.5f * Vector3.forward, interpolant);
 	    }
     }
 }

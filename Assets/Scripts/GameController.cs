@@ -44,8 +44,8 @@ public class GameController : MonoBehaviour
     {
         fade.fadeIn(1);
         yield return new WaitForSeconds(3f);
-        float duration = wisp.talkToPlayer(wisp.MenuIntro);
-        yield return new WaitForSeconds(duration + 0.3f);
+        //float duration = wisp.talkToPlayer(wisp.MenuIntro);
+        //yield return new WaitForSeconds(duration + 0.3f);
     }
 
     void Update()
@@ -114,8 +114,8 @@ public class GameController : MonoBehaviour
         levelTime = 0;
         numRings = 0;
         UnpauseGame();
-        ghostModeController.StartGhostModeLog(player.GetComponent<Transform>());
         pc.startBroom();
+        ghostModeController.StartGhostModeLog(player.GetComponent<Transform>());
         if (wisp) wisp.startFlying();
     }
 
@@ -143,8 +143,8 @@ public class GameController : MonoBehaviour
         scores.Add(GetCurrentScore());
         Debug.Log("Finished! Time: " + createTimeString(levelTime) + " Rings: " + numRings);
         SaveHighscoreFile();
-        // ghostModeController.StopGhostModeLog();
-        // ghostModeController.SaveGhostModeLog();
+        ghostModeController.StopGhostModeLog();
+        ghostModeController.SaveGhostModeLog();
 
         StartCoroutine(LoadMenu());
     }

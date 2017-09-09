@@ -79,7 +79,8 @@ public class LevelActions : MonoBehaviour
 
             if (currentLevel == Constants.LEVEL.Tutorial)
             {
-                tut.TriggerAction(Constants.TUTORIAL_ACTION.Start);
+                // tut.TriggerAction(Constants.TUTORIAL_ACTION.Start);
+                gc.StartGameAfterCountdown();
             }
             else
             {
@@ -124,13 +125,12 @@ public class LevelActions : MonoBehaviour
 
     	foreach(MagicalRing ring in rings)
     	{
-    		if(nearest == null || (Vector3.Distance(ring.transform.position, playerPosition.position) < nearestDistance && ring.IsActive()))
-    		{
+    		if (ring.IsActive() && (nearest == null || Vector3.Distance(ring.transform.position, playerPosition.position) < nearestDistance) && Vector3.Distance(ring.transform.position, playerPosition.position) > 4)
+            {
     			nearest = ring.transform;
     			nearestDistance = Vector3.Distance(ring.transform.position, playerPosition.position);
     		}
     	}
-
     	return nearest;
     }
 

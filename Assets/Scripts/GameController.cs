@@ -66,6 +66,11 @@ public class GameController : MonoBehaviour
             float duration = wisp.talkToPlayer(wisp.FloatingRocksSelected);
             yield return new WaitForSeconds(duration);
         }
+        else if(levelToLoad == Constants.LEVEL.ForestCave)
+        {
+            float duration = wisp.talkToPlayer(wisp.ForestCaveSelected);
+            yield return new WaitForSeconds(duration);
+        }
         
         Constants.LEVEL currentLevel = (Constants.LEVEL)(SceneManager.GetActiveScene().buildIndex);
         if (levelToLoad == currentLevel) yield break;

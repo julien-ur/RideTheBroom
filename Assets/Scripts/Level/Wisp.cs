@@ -10,6 +10,7 @@ public class Wisp : MonoBehaviour {
 
     public AudioClip TutorialSelected;
     public AudioClip FloatingRocksSelected;
+    public AudioClip ForestCaveSelected;
 
     public AudioClip TurnBroomRight;
     public AudioClip TurnBroomLeft;

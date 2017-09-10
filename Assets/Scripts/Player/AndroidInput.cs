@@ -12,8 +12,8 @@ using System.IO.Ports;
 
 public class AndroidInput : MonoBehaviour
 {
-	const int PACKET_LENGTH = 6; // in bytes
-	enum InputMode {WiFi, USB};
+	private const int PACKET_LENGTH = 6; // in bytes
+	public enum InputMode {WiFi, USB};
 
 	//public string ipAdress = "192.168.0.232";
 	public int port = 5005;
@@ -28,25 +28,25 @@ public class AndroidInput : MonoBehaviour
 
     public InputMode AndroidInputMode = InputMode.WiFi;
 
-    private float firstZ = 0;
-    private float firstY = 0;
-    private bool isZset = false;
-    private bool isYset = false;
+    private volatile float firstZ = 0;
+    private volatile float firstY = 0;
+    private volatile bool isZset = false;
+    private volatile bool isYset = false;
 
     private float time = 0;
     private float lastTime = 0;
 
     private System.Diagnostics.Stopwatch stopwatch;
 
-    Thread udpThread;
-    UdpClient client;
-    bool runUdpThread;
+    private Thread udpThread;
+    private UdpClient client;
+    private volatile bool runUdpThread;
 
-    Thread usbThread;
-    SerialPort usbPort;
-    bool runUsbThread;
+    private Thread usbThread;
+    private SerialPort usbPort;
+    private volatile bool runUsbThread;
 
-    private short x, y, z;
+    private volatile short x, y, z;
 
 	void Start ()
 	{
@@ -71,7 +71,7 @@ public class AndroidInput : MonoBehaviour
 	
 	void Update ()
 	{
-		Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
+		//Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
 	}
 
 	void OnDestroy()
@@ -106,7 +106,7 @@ public class AndroidInput : MonoBehaviour
 				if(bufCount < PACKET_LENGTH) continue;
 
 				bufCount = 0;
-				byte[] data = new byte[PACKET_LENGTH];
+				data = new byte[PACKET_LENGTH];
 
                 x = (short) ( (data[1] << 8) | data[0] );
 				y = (short) ( (data[3] << 8) | data[2] );
@@ -141,6 +141,7 @@ public class AndroidInput : MonoBehaviour
 				//serverError = true;
 			}
         }
+        usbPort.Close();
     }
 
 	private void ReceiveDataUDP()

@@ -20232,7 +20232,7 @@ GameObject:
   - component: {fileID: 941073351}
   - component: {fileID: 941073350}
   m_Layer: 16
-  m_Name: Painting Floating Rocks (1)
+  m_Name: Painting Forrest Cave
   m_TagString: VRButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20261,7 +20261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0ae8ecb777e324ab247ac9077f02dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tintMaterial: {fileID: 2100000, guid: 6f72cf6927cc73b44b8f5db0d9e847fb, type: 2}
+  tintMaterial: {fileID: 2100000, guid: 3323dac0845064d49bb6e02cd87804df, type: 2}
   focusedColor: {r: 0.6691177, g: 0.8220081, b: 1, a: 1}
   selectedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &941073352

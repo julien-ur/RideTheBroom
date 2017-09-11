@@ -110,7 +110,7 @@ public class GhostModeController : MonoBehaviour
         else
         {
             ghostModePathLoaded = LoadGhostModeLog(GHOSTMODE_LOG_PATH);
-            BuildGhostPath();
+            // BuildGhostPath();
             SpawnGhost();
         }
 

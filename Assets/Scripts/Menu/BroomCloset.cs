@@ -6,6 +6,7 @@ public class BroomCloset : MonoBehaviour {
 
     public AnimationClip LandingMountainWorld;
     public AnimationClip LandingFloatingRocks;
+    public AnimationClip LandingForrestCave;
     public AnimationClip OpenBarnDoors;
     public AudioSource barnDoorAudioSource;
 
@@ -28,6 +29,10 @@ public class BroomCloset : MonoBehaviour {
         else if (activeLevel == Constants.LEVEL.FloatingRocks)
         {
             anim.clip = LandingFloatingRocks;
+        }
+        else if (activeLevel == Constants.LEVEL.ForestCave)
+        {
+            anim.clip = LandingForrestCave;
         }
 
         anim.Play();

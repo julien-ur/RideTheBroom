@@ -25,7 +25,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody rb;
     private PlayerCameraControl cameraControl;
 
-    private float speed;
+    public float speed;
 
     private float lastTime;
     private float time;
@@ -228,6 +228,11 @@ public class PlayerControl : MonoBehaviour
         }
 
         speed = targetSpeed;
+    }
+
+    public void changeSpeed(float targetSpeed)
+    {
+        defaultSpeed = targetSpeed;
     }
 
     public void EnableRotation()

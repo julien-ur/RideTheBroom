@@ -63,7 +63,6 @@ public class LevelActions : MonoBehaviour
 
             if (currentLevel == Constants.LEVEL.Tutorial)
             {
-
                 float duration = wisp.talkToPlayer(wisp.ArrivalMountainWorld);
                 yield return new WaitForSeconds(duration);
             }
@@ -71,7 +70,10 @@ public class LevelActions : MonoBehaviour
             {
                 float duration = wisp.talkToPlayer(wisp.ArrivalFloatingRocks);
                 yield return new WaitForSeconds(duration);
-
+            }
+            else if (currentLevel == Constants.LEVEL.ForestCave)
+            {
+                pc.changeSpeed(18);
             }
 
             float doorOpenDuration = broomCloset.OpenDoors();

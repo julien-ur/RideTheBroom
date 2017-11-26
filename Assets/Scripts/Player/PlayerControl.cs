@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
 
     public float defaultSpeed = 20;
     [HideInInspector] public Vector3 momentum;
+    public bool tiltAcceleration = true;
 
     public float rotationFactorX = 120;
     public float rotationFactorY = 120;
@@ -54,12 +55,13 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        float vrAccellerationFactor = 1; // VR leaning acceleration
+        // VR leaning acceleration
+        float vrAccellerationFactor = 1;
 
         //if(VRDevice.isPresent)
         //{
         //    float clampedHeadDelta = Mathf.Clamp(InputTracking.GetLocalPosition(VRNode.Head).y - headStartYPos, headStartYPos - maxHeadDelta, headStartYPos + maxHeadDelta);
-            
+
         //    if (clampedHeadDelta > 0)
         //    {
         //        vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, maxHeadDelta, 1, 1/maxSpeedChangeFactor);
@@ -72,10 +74,19 @@ public class PlayerControl : MonoBehaviour
         //    Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
         //}
 
+        // broom tilt acceleration
+        float tiltAccelerationFactor = 1;
+        if (tiltAcceleration)
+        {
+            float tiltAngle = transform.rotation.eulerAngles.x;
+            tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, 0.75f, 1.25f);
+        }
+
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
         // from the addForce method of the physical forward drive component
-        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * vrAccellerationFactor * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * tiltAccelerationFactor * vrAccellerationFactor * Time.deltaTime);
 
         // physical forward drive component
         rb.AddForce(transform.forward * speed * forceDrivenFactor);
@@ -84,7 +95,7 @@ public class PlayerControl : MonoBehaviour
         transform.Translate(momentum * Time.deltaTime, Space.World);
         momentum -= (momentum / Constants.WINDZONE_MOMENTUM_LOSS_TIME) * Time.deltaTime;
 
-        // Rotate broom based on input
+        // rotate broom based on input
         float inputVertical = 0;
         float inputHorizontal = 0;
 

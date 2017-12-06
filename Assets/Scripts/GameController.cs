@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
     private HUD hud;
     private Wisp wisp;
     private PlayerControl pc;
+    private ArduinoController arduino;
     private Fading fade;
     private GhostModeController ghostModeController;
     private MaterialResetter materialResetter;

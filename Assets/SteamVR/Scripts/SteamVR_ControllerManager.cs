@@ -72,7 +72,7 @@ public class SteamVR_ControllerManager : MonoBehaviour
 		{
 			var obj = objects[i];
 			if (obj != null)
-				obj.SetActive(false);
+				//obj.SetActive(false);
 
 			indices[i] = OpenVR.k_unTrackedDeviceIndexInvalid;
 		}
@@ -90,9 +90,9 @@ public class SteamVR_ControllerManager : MonoBehaviour
 
 	void OnDisable()
 	{
-		inputFocusAction.enabled = false;
-		deviceConnectedAction.enabled = false;
-		trackedDeviceRoleChangedAction.enabled = false;
+		//inputFocusAction.enabled = false;
+		//deviceConnectedAction.enabled = false;
+		//trackedDeviceRoleChangedAction.enabled = false;
 	}
 
 	static string hiddenPrefix = "hidden (", hiddenPostfix = ")";
@@ -101,7 +101,7 @@ public class SteamVR_ControllerManager : MonoBehaviour
 	// Hide controllers when the dashboard is up.
 	private void OnInputFocus(bool hasFocus)
 	{
-		if (hasFocus)
+		/*if (hasFocus)
 		{
 			for (int i = 0; i < objects.Length; i++)
 			{
@@ -124,7 +124,7 @@ public class SteamVR_ControllerManager : MonoBehaviour
 					HideObject(obj.transform, hiddenPrefix + label + hiddenPostfix);
 				}
 			}
-		}
+		}*/
 	}
 
 	// Reparents to a new object and deactivates that object (this allows
@@ -161,7 +161,7 @@ public class SteamVR_ControllerManager : MonoBehaviour
 				{
 					var obj = objects[i];
 					if (obj != null)
-						obj.SetActive(false);
+						//obj.SetActive(false);
 
 					indices[i] = OpenVR.k_unTrackedDeviceIndexInvalid;
 				}
@@ -177,7 +177,7 @@ public class SteamVR_ControllerManager : MonoBehaviour
 			if (obj != null)
 			{
 				if (trackedDeviceIndex == OpenVR.k_unTrackedDeviceIndexInvalid)
-					obj.SetActive(false);
+					obj.SetActive(true); //changed from false
 				else
 				{
 					obj.SetActive(true);

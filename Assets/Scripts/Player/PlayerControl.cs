@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
 
     public float defaultSpeed = 20;
     [HideInInspector] public Vector3 momentum;
+    public bool tiltAcceleration = true;
 
     public float rotationFactorX = 120;
     public float rotationFactorY = 120;
@@ -49,17 +50,18 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cameraControl = GetComponentInChildren<PlayerCameraControl>();
         speed = 0;
-        headStartYPos = InputTracking.GetLocalPosition(VRNode.Head).y;
+        headStartYPos = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).y;
     }
 
     void Update()
     {
-        float vrAccellerationFactor = 1; // VR leaning acceleration
+        // VR leaning acceleration
+        float vrAccellerationFactor = 1;
 
         //if(VRDevice.isPresent)
         //{
         //    float clampedHeadDelta = Mathf.Clamp(InputTracking.GetLocalPosition(VRNode.Head).y - headStartYPos, headStartYPos - maxHeadDelta, headStartYPos + maxHeadDelta);
-            
+
         //    if (clampedHeadDelta > 0)
         //    {
         //        vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, maxHeadDelta, 1, 1/maxSpeedChangeFactor);
@@ -72,10 +74,19 @@ public class PlayerControl : MonoBehaviour
         //    Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
         //}
 
+        // broom tilt acceleration
+        float tiltAccelerationFactor = 1;
+        if (tiltAcceleration)
+        {
+            float tiltAngle = transform.rotation.eulerAngles.x;
+            tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, 0.75f, 1.25f);
+        }
+
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
         // from the addForce method of the physical forward drive component
-        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * vrAccellerationFactor * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * tiltAccelerationFactor * vrAccellerationFactor * Time.deltaTime);
 
         // physical forward drive component
         rb.AddForce(transform.forward * speed * forceDrivenFactor);
@@ -84,7 +95,7 @@ public class PlayerControl : MonoBehaviour
         transform.Translate(momentum * Time.deltaTime, Space.World);
         momentum -= (momentum / Constants.WINDZONE_MOMENTUM_LOSS_TIME) * Time.deltaTime;
 
-        // Rotate broom based on input
+        // rotate broom based on input
         float inputVertical = 0;
         float inputHorizontal = 0;
 
@@ -110,7 +121,7 @@ public class PlayerControl : MonoBehaviour
             if (invertHorizontal) inputHorizontal *= -1;
         }
 
-        if(isRotationEnabled || !VRDevice.isPresent)
+        if(isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent)
         {
 
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
@@ -163,11 +174,12 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if(VRDevice.isPresent)
+		if(false)//UnityEngine.XR.XRDevice.isPresent)
         {
-            Transform broomTransform = transform.Find("Broom").transform;
+			
+			Transform broomTransform = transform.parent.Find("Broom").transform;
             Vector3 pos = broomTransform.localPosition;
-            pos.x = InputTracking.GetLocalPosition(VRNode.Head).x;
+            pos.x = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).x;
             broomTransform.localPosition = pos;
         }
 
@@ -238,6 +250,11 @@ public class PlayerControl : MonoBehaviour
     public void EnableRotation()
     {
         isRotationEnabled = true;
+    }
+
+    public float getCurrentSpeed()
+    {
+        return speed;
     }
 
     public void DisableRotation()

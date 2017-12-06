@@ -33,6 +33,12 @@ public static class GameComponents {
         return (player) ? player.GetComponent<PlayerControl>() : null;
     }
 
+    public static ArduinoController GetArduinoController()
+    {
+        GameObject gc = GetGameControl();
+        return (gc) ? gc.GetComponent<ArduinoController>() : null;
+    }
+
     public static Wisp GetWisp()
     {
         GameObject wo = GameObject.FindGameObjectWithTag("Wisp");

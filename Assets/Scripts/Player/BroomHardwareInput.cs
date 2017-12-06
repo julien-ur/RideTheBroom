@@ -12,7 +12,7 @@ using UnityEngine.VR;
 
 public class BroomHardwareInput : MonoBehaviour
 {
-    private static VRNode m_VRNode = VRNode.Head;
+    private static UnityEngine.XR.XRNode m_VRNode = UnityEngine.XR.XRNode.Head;
     private static string serverUrl = "http://132.199.196.245:5000/besen"; // old: http://192.168.0.104:5000/besen
 
     private static string serverDataString;

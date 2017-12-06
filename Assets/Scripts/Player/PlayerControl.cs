@@ -251,6 +251,11 @@ public class PlayerControl : MonoBehaviour
         isRotationEnabled = true;
     }
 
+    public float getCurrentSpeed()
+    {
+        return speed;
+    }
+
     public void DisableRotation()
     {
         isRotationEnabled = false;

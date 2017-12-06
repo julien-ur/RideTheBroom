@@ -5418,6 +5418,7 @@ MonoBehaviour:
   forceDrivenFactor: 0.5
   defaultSpeed: 12
   momentum: {x: 0, y: 0, z: 0}
+  tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
   useBroomHardware: 0
@@ -17771,6 +17772,7 @@ MonoBehaviour:
   forceDrivenFactor: 0
   defaultSpeed: 12
   momentum: {x: 0, y: 0, z: 0}
+  tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
   useBroomHardware: 0
@@ -21372,6 +21374,19 @@ Prefab:
     - target: {fileID: 1210211509481444, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
       propertyPath: m_Name
       value: Test Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1210211509481444, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 136891535617499480, guid: bd3cad7850ad6482cb32e41b4eb8b4ef,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1647333390481898, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd3cad7850ad6482cb32e41b4eb8b4ef, type: 2}
@@ -42518,6 +42533,7 @@ MonoBehaviour:
   forceDrivenFactor: 0.5
   defaultSpeed: 12
   momentum: {x: 0, y: 0, z: 0}
+  tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
   useBroomHardware: 0
@@ -66624,6 +66640,7 @@ MonoBehaviour:
   forceDrivenFactor: 0.5
   defaultSpeed: 12
   momentum: {x: 0, y: 0, z: 0}
+  tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
   useBroomHardware: 0
@@ -71258,6 +71275,7 @@ GameObject:
   - component: {fileID: 1710818164}
   - component: {fileID: 1710818163}
   - component: {fileID: 1710818167}
+  - component: {fileID: 1710818168}
   m_Layer: 14
   m_Name: GameControl
   m_TagString: GameControl
@@ -71324,6 +71342,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 0}
+--- !u!114 &1710818168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710818162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ea855c85aed0694e9ab71ba05b921e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 0
+  send: 0
 --- !u!1 &1711928928
 GameObject:
   m_ObjectHideFlags: 0
@@ -83796,6 +83827,7 @@ MonoBehaviour:
   forceDrivenFactor: 0.5
   defaultSpeed: 12
   momentum: {x: 0, y: 0, z: 0}
+  tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
   useBroomHardware: 0

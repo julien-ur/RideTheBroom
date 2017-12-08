@@ -22,7 +22,7 @@ public class ArduinoController : MonoBehaviour {
         }
         catch (Exception e)
         {
-            Debug.LogError(e);
+            Debug.LogWarning(e);
         }
 
         pc = GameComponents.GetPlayerControl();
@@ -35,7 +35,7 @@ public class ArduinoController : MonoBehaviour {
 
     void Update()
     {
-        if (stream == null) return;
+        if (!stream.IsOpen) return;
 
         Send("wind:" + CalcWindStrength().ToString());
         Send("heat:" + CalcHeatStrength().ToString());

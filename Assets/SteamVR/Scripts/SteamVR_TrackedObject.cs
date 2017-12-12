@@ -39,8 +39,10 @@ public class SteamVR_TrackedObject : MonoBehaviour
 
     private bool firstPos = true;
     private Quaternion rotCorr;
+    private Vector3 posCorr;
 
-	private void OnNewPoses(TrackedDevicePose_t[] poses)
+
+    private void OnNewPoses(TrackedDevicePose_t[] poses)
 	{
 		if (index == EIndex.None)
 			return;
@@ -64,7 +66,8 @@ public class SteamVR_TrackedObject : MonoBehaviour
         if (firstPos)
         {
             firstPos = false;
-            rotCorr = origin.rotation * Quaternion.Inverse(pose.rot);
+            rotCorr = pose.rot * Quaternion.Inverse(origin.rotation);
+            posCorr = pose.pos - origin.position;
         }
 
 		if (false) //origin != null)
@@ -74,14 +77,14 @@ public class SteamVR_TrackedObject : MonoBehaviour
 		}
 		else
 		{
-			//transform.localPosition = pose.pos;
+			transform.localPosition = pose.pos - posCorr;
 			transform.localRotation = pose.rot * rotCorr;
 		}
 	}
 
 	SteamVR_Events.Action newPosesAction;
 
-	SteamVR_TrackedObject()
+    SteamVR_TrackedObject()
 	{
 		newPosesAction = SteamVR_Events.NewPosesAction(OnNewPoses);
 	}

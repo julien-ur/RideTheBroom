@@ -36,7 +36,7 @@ public class BroomCloset : MonoBehaviour {
         }
 
         anim.Play();
-        return anim.clip.length;
+        return anim.clip ? anim.clip.length : 0;
     }
 
     public float OpenDoors()

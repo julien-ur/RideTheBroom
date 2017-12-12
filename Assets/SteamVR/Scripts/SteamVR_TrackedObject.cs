@@ -70,14 +70,14 @@ public class SteamVR_TrackedObject : MonoBehaviour
             posCorr = pose.pos - origin.position;
         }
 
-		if (false) //origin != null)
+		if (false)//origin != null)
 		{
 			transform.position = origin.transform.TransformPoint(pose.pos);
 			transform.rotation = origin.rotation * pose.rot;
 		}
 		else
 		{
-			transform.localPosition = pose.pos - posCorr;
+			// transform.localPosition = pose.pos - posCorr;
 			transform.localRotation = pose.rot * rotCorr;
 		}
 	}

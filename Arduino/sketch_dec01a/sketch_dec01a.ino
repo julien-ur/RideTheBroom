@@ -1,11 +1,11 @@
 /***  Declare constants and variables for the solar charger  ***/
-const byte controlPin = D1;       // Switch on/off for output voltage control
+#define controlPin D2       // Switch on/off for output voltage control
 int percentVolt = 50;
 int timeInMs = 20; //1ms: geht aus trotz 100%, 20ms: volle Leistung auf 100%, bei 15ms: leichter Abfall nach kurzer Zeit danach kontinuierlich langsamer
 
 void setup() {
   pinMode(controlPin, OUTPUT);                     // Pin to control the output voltage
-  digitalWrite(controlPin, LOW);                   // Switch on MOSFET to drive current to the output RC´
+  digitalWrite(controlPin, LOW);           743,        // Switch on MOSFET to drive current to the output RC´
   Serial.begin(9600);
 }
 

@@ -14,7 +14,13 @@ public class PlayerControl : MonoBehaviour
     public float rotationFactorX = 120;
     public float rotationFactorY = 120;
 
+    public bool useBroomHardware = false;  // use gamepad instead of broom hardware, for testing purposes
+    public bool useAndroidInput = false;
+    public bool useViveTracker = true;
     public bool invertHorizontal = false;
+
+    public AndroidInput androidInput;
+    public SteamVR_TrackedObject viveTracker;
 
     public bool enableBroomRollback = true;
     public float backRotationRate = 90; // degrees per second to roll back broom
@@ -33,6 +39,12 @@ public class PlayerControl : MonoBehaviour
     private float maxHeadDelta = 0.7f;
     private float maxSpeedChangeFactor = 1.7f;
 
+    public bool useAbsoluteAngle = false;
+    private float lastAngleVertical;
+    private float targetAngleVertical;
+    public float timeToNextAngle = 0.1f;
+    public float timePassedSinceLastAngleUpdate = 0;
+
     private bool isRotationEnabled = true;
 
     void Start()
@@ -45,6 +57,25 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        // VR leaning acceleration
+        float vrAccellerationFactor = 1;
+
+        //if(VRDevice.isPresent)
+        //{
+        //    float clampedHeadDelta = Mathf.Clamp(InputTracking.GetLocalPosition(VRNode.Head).y - headStartYPos, headStartYPos - maxHeadDelta, headStartYPos + maxHeadDelta);
+
+        //    if (clampedHeadDelta > 0)
+        //    {
+        //        vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, maxHeadDelta, 1, 1/maxSpeedChangeFactor);
+        //    }
+        //    else
+        //    {
+        //        vrAccellerationFactor = Utilities.Remap(clampedHeadDelta, 0, -maxHeadDelta, 1, maxSpeedChangeFactor);
+        //    }
+
+        //    Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
+        //}
+
         // broom tilt acceleration
         float tiltAccelerationFactor = 1;
         if (tiltAcceleration)
@@ -57,7 +88,7 @@ public class PlayerControl : MonoBehaviour
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
         // from the addForce method of the physical forward drive component
-        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * tiltAccelerationFactor  * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * tiltAccelerationFactor * vrAccellerationFactor * Time.deltaTime);
 
         // physical forward drive component
         rb.AddForce(transform.forward * speed * forceDrivenFactor);
@@ -70,35 +101,97 @@ public class PlayerControl : MonoBehaviour
         float inputVertical = 0;
         float inputHorizontal = 0;
 
-        inputVertical = -Input.GetAxis("Vertical");
-        inputHorizontal = -Input.GetAxis("Horizontal");
-
-        if (invertHorizontal) inputHorizontal *= -1;
-
-        if (true)//isRotationEnabled || FindObjectOfType<SteamVR_TrackedObject>().enabled)
+        if (useBroomHardware)
         {
+            if(useAndroidInput)
+            {
+                inputVertical = androidInput.GetAxis("Vertical");
+                inputHorizontal = androidInput.GetAxis("Horizontal");
+            }
+            else if(useViveTracker)
+            {
+                inputVertical = viveTracker.GetAxis("Vertical");
+                inputHorizontal = viveTracker.GetAxis("Horizontal");
+                Debug.Log(inputVertical);
+            }
+            else
+            {
+                inputVertical = BroomHardwareInput.GetAxis("Vertical");
+                inputHorizontal = BroomHardwareInput.GetAxis("Horizontal");
+            }
+        }
+
+        if (!useBroomHardware) // || BroomHardwareInput.HasThrownErrors())
+        {
+            inputVertical = -Input.GetAxis("Vertical");
+            inputHorizontal = -Input.GetAxis("Horizontal");
+
+            if (invertHorizontal) inputHorizontal *= -1;
+        }
+
+        if(true) //isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent)
+        {
+
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
             float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
 
-            // rotate broom vertically
-            transform.RotateAround(transform.position, transform.right, rotateX);
+            // rotate broom horizonatlly
+            if(useAbsoluteAngle)
+            {
+                //float absoluteAngleY = androidInput.getAngleVertical();
+
+                Vector3 tempAngles = transform.localEulerAngles;
+
+                timePassedSinceLastAngleUpdate += Time.deltaTime;
+
+                if(targetAngleVertical != androidInput.getAngleVertical())
+                {
+                    lastAngleVertical = tempAngles.x;
+                    targetAngleVertical = androidInput.getAngleVertical();
+                    timePassedSinceLastAngleUpdate = 0;
+                }
+
+                tempAngles.x = Mathf.LerpAngle(lastAngleVertical, targetAngleVertical, (timePassedSinceLastAngleUpdate / timeToNextAngle));
+
+                Debug.Log(tempAngles.x);
+                //tempAngles.y = androidInput.getAngleHorizontal() * 3;
+                transform.localEulerAngles = tempAngles;
+            }
+            else
+            {
+                // rotate broom vertically
+                transform.RotateAround(transform.position, transform.right, rotateX);
+            }
 
             if (enableBroomRollback)
                 transform.RotateAround(transform.position, Vector3.up, rotateY);
             else
                 transform.RotateAround(transform.position, transform.up, rotateY);
-
+        
 
             // prevent overhead flying if broom rollback is enabled
             if (enableBroomRollback && Mathf.Abs(inputVertical) < 0.1)
             {
-                // rotate brooms z Axis back to zero degrees, when it was rotated
+                // back rotate brooms z Axis to zero degrees, when it was rotated
                 if (transform.eulerAngles.z != 0) PerformBroomRollback();
 
                 // rotate player camera horizontally
-                // cameraControl.RollCamera(inputHorizontal);
+                //cameraControl.RollCamera(inputHorizontal);
             }
         }
+
+		if(false)//UnityEngine.XR.XRDevice.isPresent)
+        {
+			
+			Transform broomTransform = transform.parent.Find("Broom").transform;
+            Vector3 pos = broomTransform.localPosition;
+            pos.x = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).x;
+            broomTransform.localPosition = pos;
+        }
+
+        //lastTime = time;
+        //time = Time.realtimeSinceStartup;
+        //Debug.Log("time: " + (time-lastTime));
     }
 
     private void PerformBroomRollback()

@@ -48,4 +48,9 @@ public class PlayerCameraControl : MonoBehaviour {
             transform.Rotate(0, 0, backRotationDegrees);
         }
     }
+
+    public void SetOffset(Vector3 offset)
+    {
+        //transform.position += offset;
+    }
 }

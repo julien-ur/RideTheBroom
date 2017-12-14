@@ -56,13 +56,13 @@ public class ArduinoController : MonoBehaviour {
 
     private int CalcWindStrength()
     {
-        Debug.Log(pc.getCurrentSpeed());
+        //Debug.Log(pc.getCurrentSpeed());
         return 1000;
     }
 
     private int CalcHeatStrength()
     {
-        Debug.Log(rawHeatValues[rawHeatValues.Length - 1 - heat]);
+        //Debug.Log(rawHeatValues[rawHeatValues.Length - 1 - heat]);
         return rawHeatValues[rawHeatValues.Length - 1 - heat];
     }
 

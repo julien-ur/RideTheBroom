@@ -40,7 +40,10 @@ public class SteamVR_TrackedObject : MonoBehaviour
     private bool firstPos = true;
     private Quaternion rotCorr;
     private Vector3 posCorr;
-
+    private Vector3 startRot;
+    private Vector3 currRot;
+    private float inputDivisorHorizontal = 10.0f;
+    private float inputDivisorVertical = 45.0f;
 
     private void OnNewPoses(TrackedDevicePose_t[] poses)
 	{
@@ -62,12 +65,15 @@ public class SteamVR_TrackedObject : MonoBehaviour
         isValid = true;
 
 		var pose = new SteamVR_Utils.RigidTransform(poses[i].mDeviceToAbsoluteTracking);
+        currRot = pose.rot.eulerAngles;
 
         if (firstPos)
         {
             firstPos = false;
+            startRot = pose.rot.eulerAngles;
             rotCorr = pose.rot * Quaternion.Inverse(origin.rotation);
             posCorr = pose.pos - origin.position;
+            GameComponents.GetPlayer().GetComponentInChildren<PlayerCameraControl>().SetOffset(posCorr);
         }
 
 		if (false)//origin != null)
@@ -78,7 +84,7 @@ public class SteamVR_TrackedObject : MonoBehaviour
 		else
 		{
 			// transform.localPosition = pose.pos - posCorr;
-			transform.localRotation = pose.rot * rotCorr;
+			// transform.localRotation = pose.rot * rotCorr;
 		}
 	}
 
@@ -112,5 +118,22 @@ public class SteamVR_TrackedObject : MonoBehaviour
 		if (System.Enum.IsDefined(typeof(EIndex), index))
 			this.index = (EIndex)index;
 	}
-}
 
+    public float GetAxis(string axis)
+    {
+        float axisInput = 0;
+
+        if(axis == "Vertical")
+        {
+            //axisInput = Utilities.Remap(startRot.y - currRot.y, 55, -75, 1.0f, -1.0f);
+            axisInput = Mathf.Clamp((startRot.y - currRot.y) / inputDivisorVertical, -1.0f, 1.0f);
+        }
+        else if (axis == "Horizontal")
+        {
+            //axisInput = Utilities.Remap(startRot.x - currRot.x, 7, -14, 1.0f, -1.0f);
+            axisInput = Mathf.Clamp((startRot.x - currRot.x) / inputDivisorHorizontal, -1.0f, 1.0f);
+        }
+
+        return axisInput;
+    }
+}

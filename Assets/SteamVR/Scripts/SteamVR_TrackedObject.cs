@@ -40,10 +40,10 @@ public class SteamVR_TrackedObject : MonoBehaviour
     private bool firstPos = true;
     private Quaternion rotCorr;
     private Vector3 posCorr;
-    private Vector3 startRot;
-    private Vector3 currRot;
-    private float inputDivisorHorizontal = 10.0f;
-    private float inputDivisorVertical = 45.0f;
+    private Quaternion startRot;
+    private Quaternion currRot;
+    private float inputMultiplierVertical = 5f;
+    private float inputMultiplierHorizontal = 5f;
 
     private void OnNewPoses(TrackedDevicePose_t[] poses)
 	{
@@ -65,15 +65,17 @@ public class SteamVR_TrackedObject : MonoBehaviour
         isValid = true;
 
 		var pose = new SteamVR_Utils.RigidTransform(poses[i].mDeviceToAbsoluteTracking);
-        currRot = pose.rot.eulerAngles;
+        currRot = pose.rot;
 
         if (firstPos)
         {
             firstPos = false;
-            startRot = pose.rot.eulerAngles;
-            rotCorr = pose.rot * Quaternion.Inverse(origin.rotation);
-            posCorr = pose.pos - origin.position;
-            GameComponents.GetPlayer().GetComponentInChildren<PlayerCameraControl>().SetOffset(posCorr);
+            startRot = pose.rot;
+
+            Transform broom = GameObject.FindGameObjectWithTag("Broom").transform;
+            rotCorr = Quaternion.Inverse(pose.rot) * broom.rotation;
+
+            GameComponents.GetPlayer().GetComponentInChildren<PlayerCameraControl>().SetOffset(pose.pos);
         }
 
 		if (false)//origin != null)
@@ -83,9 +85,12 @@ public class SteamVR_TrackedObject : MonoBehaviour
 		}
 		else
 		{
-			// transform.localPosition = pose.pos - posCorr;
-			// transform.localRotation = pose.rot * rotCorr;
-		}
+            Transform broom = GameObject.FindGameObjectWithTag("Broom").transform;
+            broom.localRotation = pose.rot * rotCorr;
+
+            //transform.localPosition = pose.pos - posCorr;
+            //transform.rotation = pose.rot; // * rotCorr;
+        }
 	}
 
 	SteamVR_Events.Action newPosesAction;
@@ -126,12 +131,12 @@ public class SteamVR_TrackedObject : MonoBehaviour
         if(axis == "Vertical")
         {
             //axisInput = Utilities.Remap(startRot.y - currRot.y, 55, -75, 1.0f, -1.0f);
-            axisInput = Mathf.Clamp((startRot.y - currRot.y) / inputDivisorVertical, -1.0f, 1.0f);
+            axisInput = Mathf.Clamp((startRot.x - currRot.x) * -inputMultiplierVertical, -1.0f, 1.0f);
         }
         else if (axis == "Horizontal")
         {
             //axisInput = Utilities.Remap(startRot.x - currRot.x, 7, -14, 1.0f, -1.0f);
-            axisInput = Mathf.Clamp((startRot.x - currRot.x) / inputDivisorHorizontal, -1.0f, 1.0f);
+            axisInput = Mathf.Clamp((startRot.z - currRot.z) * inputMultiplierHorizontal, -1.0f, 1.0f);
         }
 
         return axisInput;

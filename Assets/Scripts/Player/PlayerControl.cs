@@ -112,7 +112,6 @@ public class PlayerControl : MonoBehaviour
             {
                 inputVertical = viveTracker.GetAxis("Vertical");
                 inputHorizontal = viveTracker.GetAxis("Horizontal");
-                Debug.Log(inputVertical);
             }
             else
             {

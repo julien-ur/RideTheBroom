@@ -5,6 +5,8 @@ public class PlayerCameraControl : MonoBehaviour {
 	public const float rotationRate = 60;       // degrees per second to roll camera horizontally in input direction
     public const float backRotationRate = 60;	// degrees per second to roll back camera to an upright postion, when no more horizontal input is made
 
+
+
 	public void RollCamera (float inputHorizontal)
 	{
         // if there is an horizontal input, roll camera on the z-Axis
@@ -51,6 +53,6 @@ public class PlayerCameraControl : MonoBehaviour {
 
     public void SetOffset(Vector3 offset)
     {
-        //transform.position += offset;
+        transform.position -= offset;
     }
 }

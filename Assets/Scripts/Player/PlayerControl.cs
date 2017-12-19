@@ -7,7 +7,10 @@ public class PlayerControl : MonoBehaviour
 {
     [Range(0.0f, 1.0f)] public float forceDrivenFactor = 0.5f;
 
-    public float defaultSpeed = 20;
+    public float defaultSpeed = 15;
+    public float minSpeed = 5;
+    public float maxSpeed = 25;
+
     [HideInInspector] public Vector3 momentum;
     public bool tiltAcceleration = true;
 
@@ -28,7 +31,7 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody rb;
     private PlayerCameraControl cameraControl;
 
-    public float speed;
+    private float speed;
 
     private float lastTime;
     private float time;
@@ -46,6 +49,8 @@ public class PlayerControl : MonoBehaviour
     public float timePassedSinceLastAngleUpdate = 0;
 
     private bool isRotationEnabled = true;
+    private bool adjustingSpeed = true;
+    private bool speedTargetOutOfBounds = false;
 
     void Start()
     {
@@ -82,16 +87,19 @@ public class PlayerControl : MonoBehaviour
         {
             float tiltAngle = transform.rotation.eulerAngles.x;
             tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
-            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, 0.75f, 1.25f);
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.3f, 0.3f);
         }
+        if (speed >= minSpeed && speed <= maxSpeed) speed += tiltAccelerationFactor;
+
+        if (!adjustingSpeed && !speedTargetOutOfBounds) speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
 
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
         // from the addForce method of the physical forward drive component
-        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * tiltAccelerationFactor * vrAccellerationFactor * Time.deltaTime);
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * vrAccellerationFactor * Time.deltaTime);
 
         // physical forward drive component
-        rb.AddForce(transform.forward * speed * forceDrivenFactor);
+        rb.AddForce(transform.forward * speed * forceDrivenFactor * vrAccellerationFactor);
 
         // fake physical momentum, used for windzones
         transform.Translate(momentum * Time.deltaTime, Space.World);
@@ -152,7 +160,7 @@ public class PlayerControl : MonoBehaviour
 
                 tempAngles.x = Mathf.LerpAngle(lastAngleVertical, targetAngleVertical, (timePassedSinceLastAngleUpdate / timeToNextAngle));
 
-                Debug.Log(tempAngles.x);
+                //Debug.Log(tempAngles.x);
                 //tempAngles.y = androidInput.getAngleHorizontal() * 3;
                 transform.localEulerAngles = tempAngles;
             }
@@ -217,11 +225,19 @@ public class PlayerControl : MonoBehaviour
 
     public void startBroom()
     {
+        Debug.Log("vroom vroom");
         changeSpeedToTargetSpeed(defaultSpeed, 2);
     }
 
     public void changeSpeedToTargetSpeed(float targetSpeed, float duration)
     {
+        if (targetSpeed > maxSpeed || targetSpeed < minSpeed) {
+            speedTargetOutOfBounds = true;
+        } else
+        {
+            speedTargetOutOfBounds = false;
+        }
+
         if (duration == 0)
             speed = targetSpeed;
         else
@@ -235,6 +251,8 @@ public class PlayerControl : MonoBehaviour
 
     IEnumerator adjustSpeed(float targetSpeed, float duration)
     {
+        adjustingSpeed = true;
+
         float startSpeed = speed;
         bool isSlowDown = (targetSpeed < startSpeed);
 
@@ -245,6 +263,8 @@ public class PlayerControl : MonoBehaviour
         }
 
         speed = targetSpeed;
+
+        adjustingSpeed = false;
     }
 
     public void changeSpeed(float targetSpeed)
@@ -260,6 +280,11 @@ public class PlayerControl : MonoBehaviour
     public float getCurrentSpeed()
     {
         return speed;
+    }
+
+    public float getMaxSpeed()
+    {
+        return maxSpeed;
     }
 
     public void DisableRotation()

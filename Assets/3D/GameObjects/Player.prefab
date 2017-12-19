@@ -1361,20 +1361,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDrivenFactor: 0
-  defaultSpeed: 10
+  defaultSpeed: 15
+  minSpeed: 7
+  maxSpeed: 30
   momentum: {x: 0, y: 0, z: 0}
-  tiltAcceleration: 0
+  tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
-  useBroomHardware: 1
+  useBroomHardware: 0
   useAndroidInput: 0
-  useViveTracker: 1
+  useViveTracker: 0
   invertHorizontal: 0
   androidInput: {fileID: 0}
-  viveTracker: {fileID: 114192339243405818}
+  viveTracker: {fileID: 0}
   enableBroomRollback: 0
   backRotationRate: 90
-  speed: 0
   useAbsoluteAngle: 0
   timeToNextAngle: 0.1
   timePassedSinceLastAngleUpdate: 0
@@ -1518,8 +1519,8 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.06
   m_Height: 2.55
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.15}
+  m_Direction: 0
+  m_Center: {x: -0.18, y: 0, z: 0.03}
 --- !u!136 &136593217456684702
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1531,8 +1532,8 @@ CapsuleCollider:
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 1.34
-  m_Direction: 0
-  m_Center: {x: 0.57, y: 0.36, z: 0}
+  m_Direction: 1
+  m_Center: {x: -0.02, y: 0.45, z: 0}
 --- !u!167 &167867904452187046
 AudioReverbZone:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 ﻿
 public static class Constants
 {
-    public enum LEVEL { Menu, Tutorial, FloatingRocks, ForestCave };
+    public enum LEVEL { Menu, Tutorial, FloatingRocks, ForestCave, ImmersionTest };
     public enum TUTORIAL_ACTION { Start, Rings, WindZone, SpeedBoost, SlowDown, HardRoute }
 
     // windzones

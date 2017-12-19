@@ -5,17 +5,14 @@ using UnityEngine;
 
 public class ArduinoController : MonoBehaviour {
 
-    //public int strength = 0;
-    //public bool send = false;
-
     private SerialPort stream;
     private PlayerControl pc;
+    
+    private int heatPercent = 0;
+    private int windPercent = 0;
+    private int defaultHeatPercent = 0;
 
-    private int[] rawHeatValues = { 0, 25, 50, 100, 250, 500, 1000, 2000 };
-    private int heat = 4;
-    private int defaultHeat = 4;
-
-    private float minPlayerSpeed, maxPlayerSpeed;
+    private float maxPlayerSpeed;
 
     void Start()
     {
@@ -31,6 +28,7 @@ public class ArduinoController : MonoBehaviour {
         }
 
         pc = GameComponents.GetPlayerControl();
+        maxPlayerSpeed = pc.getMaxSpeed();
     }
 
     void OnDestroy()
@@ -40,30 +38,18 @@ public class ArduinoController : MonoBehaviour {
 
     void Update()
     {
-        CalcWindStrength();
-        CalcHeatStrength();
-
         if (!stream.IsOpen) return;
 
-        Send("wind:" + CalcWindStrength().ToString());
-        Send("heat:" + CalcHeatStrength().ToString());
-        
-        //if (send)
-        //    Send(strength.ToString());
-        //    send = false;
-    }
-        
+        CalcWindStrength();
 
-    private int CalcWindStrength()
-    {
-        //Debug.Log(pc.getCurrentSpeed());
-        return 1000;
+        Send("wind" + windPercent);
+        Send("heat" + heatPercent);
     }
 
-    private int CalcHeatStrength()
+
+    private void CalcWindStrength()
     {
-        //Debug.Log(rawHeatValues[rawHeatValues.Length - 1 - heat]);
-        return rawHeatValues[rawHeatValues.Length - 1 - heat];
+        windPercent = (int)(pc.getCurrentSpeed() * (100 / maxPlayerSpeed));
     }
 
     private void Send(string message)
@@ -72,18 +58,19 @@ public class ArduinoController : MonoBehaviour {
         stream.BaseStream.Flush();
     }
 
-    public void SetHeat(int h)
+
+    public void SetHeatPercent(int h)
     {
-        heat = h;
+        heatPercent = h;
     }
 
-    public void SetDefaultHeat(int h)
+    public void SetDefaultHeatPercent(int h)
     {
-        defaultHeat = h;
+        defaultHeatPercent = h;
     }
 
-    public void SetHeatToDefaultHeat()
+    public void ResetToDefaultHeat()
     {
-        heat = defaultHeat;
+        heatPercent = defaultHeatPercent;
     }
 }

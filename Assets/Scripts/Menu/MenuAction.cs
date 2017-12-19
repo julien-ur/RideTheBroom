@@ -3,7 +3,7 @@
 public class MenuAction : MonoBehaviour {
 
     [SerializeField] private ACTION VRAction;
-    private enum ACTION { Tutorial, FloatingRocks, ForestCave }
+    private enum ACTION { Tutorial, FloatingRocks, ForestCave, ImmersionTest }
 
     private GameController gc;
     private bool activated = false;
@@ -27,6 +27,9 @@ public class MenuAction : MonoBehaviour {
                 break;
             case ACTION.ForestCave:
                 gc.LoadLevel(Constants.LEVEL.ForestCave);
+                break;
+            case ACTION.ImmersionTest:
+                gc.LoadLevel(Constants.LEVEL.ImmersionTest);
                 break;
         }
     }

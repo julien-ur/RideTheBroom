@@ -18,7 +18,6 @@ float pwmOnPercent = 0;
 int relayCycleStartTime;
 int pwmCycleStartTime;
 
-
 void setup()
 {
   pinMode(RELAY_PIN, OUTPUT);
@@ -38,6 +37,7 @@ void loop(){
   pwm(RELAY_PIN, RELAY_CYCLE_TIME, relayOnPercent, &relayCycleStartTime, true);
 }
 
+
 void pwm(byte controlPin, int fullCycleTime, float onPercent, int *cycleStartTime, bool inverseCycle) {
   if(millis() - *cycleStartTime > fullCycleTime) {
     *cycleStartTime = millis();
@@ -56,29 +56,30 @@ void updateSerialInput() {
   if (Serial.available()) { serialInputString = ""; serialInputAvailable = true; }
 
   while (Serial.available()) {
-    delay(3);  //delay to allow buffer to fill 
     if (Serial.available() > 0) {
       char c = Serial.read();  //gets one byte from serial buffer
       serialInputString += c; //makes the string serialInputString
     }
   }
-
+  
   if(serialInputAvailable) {
     serialInputAvailable = false;
 
-    if (serialInputString.indexOf("wind") != -1) {
-      pwmOnPercent = serialInputString.substring(4).toFloat();
-      pwmCycleStartTime = millis();
-      
-      Serial.print("PWM: Dauer des HIGH: ");
-      Serial.println(PWM_CYCLE_TIME * pwmOnPercent);
+    int windIndex = serialInputString.indexOf("w")+1;
+    int heatIndex = serialInputString.indexOf("h")+1;
+
+    if (windIndex < heatIndex)  {
+      pwmOnPercent = serialInputString.substring(windIndex, heatIndex).toFloat();
+      relayOnPercent = serialInputString.substring(heatIndex).toFloat();
     }
-    else if (serialInputString.indexOf("heat") != -1) {
-      relayOnPercent = serialInputString.substring(4).toFloat();
-      relayCycleStartTime = millis();
-      
-      Serial.print("Relay: Dauer des HIGH: ");
-      Serial.println(RELAY_CYCLE_TIME * relayOnPercent);
+    else {
+      relayOnPercent = serialInputString.substring(heatIndex, windIndex).toFloat();
+      pwmOnPercent = serialInputString.substring(windIndex).toFloat();
     }
+    
+    Serial.print("PWM: Dauer des HIGH: ");
+    Serial.println(PWM_CYCLE_TIME * pwmOnPercent);
+    Serial.print("Relay: Dauer des HIGH: ");
+    Serial.println(RELAY_CYCLE_TIME * relayOnPercent);
   }
 }

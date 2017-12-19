@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 33106219109691908}
   - component: {fileID: 135846328112158592}
   - component: {fileID: 23987045347819646}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,8 +519,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1050435560623236}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -263.7, y: 70.3, z: -299.8}
+  m_LocalRotation: {x: 0.12853608, y: 0, z: 0, w: -0.9917049}
+  m_LocalPosition: {x: 10.0036545, y: 515.066, z: -0.61401886}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4852072029471946}
@@ -629,13 +629,13 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 65
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967039
+    m_Bits: 4294835967
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1361,20 +1361,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDrivenFactor: 0
-  defaultSpeed: 15
+  defaultSpeed: 10
   minSpeed: 7
   maxSpeed: 30
   momentum: {x: 0, y: 0, z: 0}
   tiltAcceleration: 1
   rotationFactorX: 120
   rotationFactorY: 120
-  useBroomHardware: 0
+  useBroomHardware: 1
   useAndroidInput: 0
-  useViveTracker: 0
+  useViveTracker: 1
   invertHorizontal: 0
   androidInput: {fileID: 0}
-  viveTracker: {fileID: 0}
-  enableBroomRollback: 0
+  viveTracker: {fileID: 114192339243405818}
+  enableBroomRollback: 1
   backRotationRate: 90
   useAbsoluteAngle: 0
   timeToNextAngle: 0.1

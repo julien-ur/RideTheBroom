@@ -2,7 +2,7 @@
 
 public class HeatChange : MonoBehaviour {
 
-    public int heatPercent = 0;
+    public float heatPercent = 0;
     private ArduinoController arduino;
 
     void Start()
@@ -22,7 +22,7 @@ public class HeatChange : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            arduino.ResetToDefaultHeat();
+            arduino.SetHeatToDefaultHeat();
         }
     }
 }

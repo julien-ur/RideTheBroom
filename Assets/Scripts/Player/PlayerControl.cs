@@ -87,7 +87,7 @@ public class PlayerControl : MonoBehaviour
         {
             float tiltAngle = transform.rotation.eulerAngles.x;
             tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
-            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.3f, 0.3f);
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.1f, 0.f);
         }
         if (speed >= minSpeed && speed <= maxSpeed) speed += tiltAccelerationFactor;
 
@@ -136,7 +136,7 @@ public class PlayerControl : MonoBehaviour
             if (invertHorizontal) inputHorizontal *= -1;
         }
 
-        if(true) //isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent)
+        if(isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent)
         {
 
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
@@ -275,6 +275,13 @@ public class PlayerControl : MonoBehaviour
     public void EnableRotation()
     {
         isRotationEnabled = true;
+        GetComponent<SteamVR_TrackedObject>().enabled = true;
+    }
+
+    public void DisableRotation()
+    {
+        isRotationEnabled = false;
+        GetComponent<SteamVR_TrackedObject>().enabled = false;
     }
 
     public float getCurrentSpeed()
@@ -287,8 +294,5 @@ public class PlayerControl : MonoBehaviour
         return maxSpeed;
     }
 
-    public void DisableRotation()
-    {
-        isRotationEnabled = false;
-    }
+    
 }

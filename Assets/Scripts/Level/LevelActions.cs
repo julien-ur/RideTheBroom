@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelActions : MonoBehaviour
 {
     public BillboardControl billboardControl;
+    public float defaultHeatPercent = 0;
 
     private Transform player;
 	private CompassControl compass;
@@ -93,6 +94,10 @@ public class LevelActions : MonoBehaviour
         {
             gc.StartGame();
         }
+
+        ArduinoController arduino = gc.gameObject.GetComponent<ArduinoController>();
+        arduino.SetDefaultHeatPercent(defaultHeatPercent);
+        arduino.SetHeatToDefaultHeat();
     }
 
     private void deactivateTestingStuff()

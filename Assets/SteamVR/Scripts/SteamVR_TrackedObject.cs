@@ -42,8 +42,8 @@ public class SteamVR_TrackedObject : MonoBehaviour
     private Vector3 posCorr;
     private Quaternion startRot;
     private Quaternion currRot;
-    private float inputMultiplierVertical = 5f;
-    private float inputMultiplierHorizontal = 5f;
+    private float inputMultiplierVertical = 3f;
+    private float inputMultiplierHorizontal = 3f;
 
     private void OnNewPoses(TrackedDevicePose_t[] poses)
 	{

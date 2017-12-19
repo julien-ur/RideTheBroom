@@ -16,6 +16,7 @@ public class PlayerControl : MonoBehaviour
 
     public float rotationFactorX = 120;
     public float rotationFactorY = 120;
+    public bool noRotationBlocking = false;
 
     public bool useBroomHardware = false;  // use gamepad instead of broom hardware, for testing purposes
     public bool useAndroidInput = false;
@@ -87,11 +88,15 @@ public class PlayerControl : MonoBehaviour
         {
             float tiltAngle = transform.rotation.eulerAngles.x;
             tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
-            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.1f, 0.3f);
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.3f, 0.3f);
         }
         if (speed >= minSpeed && speed <= maxSpeed) speed += tiltAccelerationFactor;
 
-        if (!adjustingSpeed && !speedTargetOutOfBounds) speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
+        if (!adjustingSpeed && !speedTargetOutOfBounds)
+        {
+            speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
+            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.08f) speed -= 0.08f;
+        }
 
         // non physical forward drive component
         // can't set rigidbody velocity here, as it would override the calculated velocity 
@@ -136,7 +141,7 @@ public class PlayerControl : MonoBehaviour
             if (invertHorizontal) inputHorizontal *= -1;
         }
 
-        if(isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent)
+        if(isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent || noRotationBlocking)
         {
 
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
@@ -284,12 +289,17 @@ public class PlayerControl : MonoBehaviour
         GetComponent<SteamVR_TrackedObject>().enabled = false;
     }
 
-    public float getCurrentSpeed()
+    public float GetCurrentSpeed()
     {
         return speed;
     }
 
-    public float getMaxSpeed()
+    public float GetMinSpeed()
+    {
+        return minSpeed;
+    }
+
+    public float GetMaxSpeed()
     {
         return maxSpeed;
     }

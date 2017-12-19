@@ -44,7 +44,7 @@ public class HeatControl : MonoBehaviour {
         {
             heatSources.TryGetValue(heatSourceIds[sourceCount-1], out heatPercent);
         }
-        Debug.Log(heatPercent);
+
         return heatPercent;
     }
 }

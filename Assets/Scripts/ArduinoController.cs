@@ -14,9 +14,11 @@ public class ArduinoController : MonoBehaviour {
     private float windPercent = 0;
     private float heatPercent = 0;
     private float defaultHeatPercent = 0;
-    private float maxWindHeatDelta = 0.2f;
-    private float minWindForHeat = 0.2f;
 
+    private float maxWindHeatDelta = 0.3f;
+    private float minWindForHeat = 0.1f;
+
+    private float minPlayerSpeed;
     private float maxPlayerSpeed;
 
     private float lastUpdateTime;
@@ -38,14 +40,14 @@ public class ArduinoController : MonoBehaviour {
         pc = GameComponents.GetPlayerControl();
         heatControl = GameComponents.GetGameController().GetComponent<HeatControl>();
 
-        maxPlayerSpeed = pc.getMaxSpeed();
+        minPlayerSpeed = pc.GetMinSpeed();
+        maxPlayerSpeed = pc.GetMaxSpeed();
         lastUpdateTime = Time.time * 1000;
     }
 
     void OnDestroy()
     {
-        Send("heat0");
-        Send("wind0");
+        Send("w0h0");
         if (stream != null) stream.Close();
     }
 
@@ -71,7 +73,12 @@ public class ArduinoController : MonoBehaviour {
 
     private void CalcWindStrength()
     {
-        windPercent = pc.getCurrentSpeed() / maxPlayerSpeed;
+        windPercent = (pc.GetCurrentSpeed() - minPlayerSpeed) / (maxPlayerSpeed - minPlayerSpeed) + 0.2f;
+        if (pc.GetCurrentSpeed() < minPlayerSpeed)
+        {
+            windPercent = (pc.GetCurrentSpeed() / minPlayerSpeed) * 0.2f;
+        }
+        windPercent = Mathf.Clamp01(windPercent);
     }
 
     private void CalcHeatStrength()
@@ -83,9 +90,11 @@ public class ArduinoController : MonoBehaviour {
         {
             heatPercent = 0;
         }
-        else
+        else if (heatPercent > windPercent + maxWindHeatDelta)
         {
-            heatPercent = Mathf.Min(heatPercent, windPercent + maxWindHeatDelta);
+            heatPercent = windPercent + maxWindHeatDelta;
         }
+
+        heatPercent = Mathf.Clamp01(heatPercent);
     }
 }

@@ -5790,7 +5790,7 @@ GameObject:
   - component: {fileID: 506168817}
   - component: {fileID: 506168816}
   - component: {fileID: 506168815}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LowestLavaArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7134,7 +7134,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 769518877}
   m_LocalRotation: {x: -0.49568453, y: -0.51517326, z: -0.49474213, w: 0.49408868}
-  m_LocalPosition: {x: -6.6, y: -6.8, z: -1.2}
+  m_LocalPosition: {x: -6.6, y: -11, z: 14.24}
   m_LocalScale: {x: 70.30953, y: 98.09853, z: 70.30957}
   m_Children: []
   m_Father: {fileID: 1885661302}
@@ -14658,7 +14658,7 @@ GameObject:
   - component: {fileID: 966052149}
   - component: {fileID: 966052148}
   - component: {fileID: 966052147}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: WaterfallHeatTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14737,8 +14737,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 966052146}
   m_LocalRotation: {x: -0.67284137, y: -0.67284137, z: 0.21745008, w: 0.21744996}
-  m_LocalPosition: {x: 40.1, y: -12.2, z: 833.5}
-  m_LocalScale: {x: 184.18265, y: 104.320175, z: 16.24145}
+  m_LocalPosition: {x: 25.2, y: -12.2, z: 812.9}
+  m_LocalScale: {x: 184.18265, y: 104.320175, z: 35.29939}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 106
@@ -18185,7 +18185,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1088324285}
   m_LocalRotation: {x: -0.49568453, y: -0.51517326, z: -0.49474213, w: 0.49408868}
-  m_LocalPosition: {x: 3.0782166, y: -13.595474, z: 4.6566467}
+  m_LocalPosition: {x: 3.0782166, y: -13.595474, z: 14.24}
   m_LocalScale: {x: 34.753635, y: 115.66991, z: 34.753666}
   m_Children: []
   m_Father: {fileID: 1885661302}
@@ -18785,7 +18785,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1182341665}
   m_LocalRotation: {x: -0.49568453, y: -0.51517326, z: -0.49474213, w: 0.49408868}
-  m_LocalPosition: {x: -16.02179, y: -13.595474, z: 4.6566467}
+  m_LocalPosition: {x: -16.02179, y: -13.595474, z: 14.24}
   m_LocalScale: {x: 54.806458, y: 130.21277, z: 54.80644}
   m_Children: []
   m_Father: {fileID: 1885661302}
@@ -19013,7 +19013,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 2099649890
+  randomSeed: -1808478749
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -34020,7 +34020,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 58694460
+  randomSeed: -1409349476
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -37134,6 +37134,7 @@ GameObject:
   - component: {fileID: 1516005429}
   - component: {fileID: 1516005433}
   - component: {fileID: 1516005434}
+  - component: {fileID: 1516005435}
   m_Layer: 14
   m_Name: GameControl
   m_TagString: GameControl
@@ -37212,7 +37213,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea855c85aed0694e9ab71ba05b921e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateInterval: 1000
+  updateInterval: 200
+--- !u!114 &1516005435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1516005428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d3bf33be761014695a9c13cadffbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1523741742
 Prefab:
   m_ObjectHideFlags: 0
@@ -40800,7 +40812,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 581383166
+  randomSeed: -708141257
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -44091,7 +44103,7 @@ GameObject:
   - component: {fileID: 1573960405}
   - component: {fileID: 1573960404}
   - component: {fileID: 1573960403}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: HighestLavaArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45224,7 +45236,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1405199616
+  randomSeed: -725318000
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -52485,7 +52497,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 967917061
+  randomSeed: 1899662502
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -66316,7 +66328,7 @@ GameObject:
   - component: {fileID: 1899745300}
   - component: {fileID: 1899745299}
   - component: {fileID: 1899745298}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: MiddleLavaArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66759,6 +66771,21 @@ Prefab:
     - target: {fileID: 1648523931327756, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_Layer
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useBroomHardware
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useViveTracker
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: noRotationBlocking
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
@@ -67390,7 +67417,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1508400299
+  randomSeed: -1278135575
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -70627,7 +70654,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1864892021
+  randomSeed: -1441246505
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -74096,7 +74123,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
-  randomSeed: 1946150424
+  randomSeed: 1636025814
   InitialModule:
     serializedVersion: 3
     enabled: 1

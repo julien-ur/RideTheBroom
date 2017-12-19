@@ -43,11 +43,13 @@ void pwm(byte controlPin, int fullCycleTime, float onPercent, int *cycleStartTim
     *cycleStartTime = millis();
   }
   
+  byte level;
+  
   if(millis() - *cycleStartTime < fullCycleTime * onPercent) {
-    byte level = inverseCycle ? LOW : HIGH;
+    level = inverseCycle ? LOW : HIGH;
     digitalWrite(controlPin, level);
   } else {
-    byte level = inverseCycle ? HIGH : LOW;
+    level = inverseCycle ? HIGH : LOW;
     digitalWrite(controlPin, level);
   }
 }

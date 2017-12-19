@@ -3,18 +3,18 @@
 public class HeatChange : MonoBehaviour {
 
     public float heatPercent = 0;
-    private ArduinoController arduino;
+    private HeatControl hc;
 
     void Start()
     {
-        arduino = GameComponents.GetArduinoController();
+        hc = GameComponents.GetGameController().GetComponent<HeatControl>();
     }
 
     void OnTriggerEnter(Collider coll)
     {
         if (coll.gameObject.tag == "Player")
         {
-            arduino.SetHeatPercent(heatPercent);
+            hc.AddHeatSource(gameObject.GetInstanceID(), heatPercent);
         }
     }
 
@@ -22,7 +22,7 @@ public class HeatChange : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
-            arduino.SetHeatToDefaultHeat();
+            hc.RemoveHeatSource(gameObject.GetInstanceID());
         }
     }
 }

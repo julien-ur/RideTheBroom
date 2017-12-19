@@ -95,9 +95,8 @@ public class LevelActions : MonoBehaviour
             gc.StartGame();
         }
 
-        ArduinoController arduino = gc.gameObject.GetComponent<ArduinoController>();
-        arduino.SetDefaultHeatPercent(defaultHeatPercent);
-        arduino.SetHeatToDefaultHeat();
+        HeatControl hc = gc.GetComponent<HeatControl>();
+        hc.SetDefaultHeatPercent(defaultHeatPercent);
     }
 
     private void deactivateTestingStuff()

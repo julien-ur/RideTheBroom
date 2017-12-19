@@ -1361,9 +1361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDrivenFactor: 0
-  defaultSpeed: 10
+  defaultSpeed: 12
   minSpeed: 7
-  maxSpeed: 30
+  maxSpeed: 25
   momentum: {x: 0, y: 0, z: 0}
   tiltAcceleration: 1
   rotationFactorX: 120

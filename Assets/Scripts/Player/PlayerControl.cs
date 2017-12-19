@@ -87,7 +87,7 @@ public class PlayerControl : MonoBehaviour
         {
             float tiltAngle = transform.rotation.eulerAngles.x;
             tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
-            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.1f, 0.f);
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.1f, 0.3f);
         }
         if (speed >= minSpeed && speed <= maxSpeed) speed += tiltAccelerationFactor;
 

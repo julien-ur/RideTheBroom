@@ -9,6 +9,7 @@ public class ArduinoController : MonoBehaviour {
 
     private SerialPort stream;
     private PlayerControl pc;
+    private HeatControl heatControl;
 
     private float windPercent = 0;
     private float heatPercent = 0;
@@ -35,6 +36,8 @@ public class ArduinoController : MonoBehaviour {
         }
 
         pc = GameComponents.GetPlayerControl();
+        heatControl = GameComponents.GetGameController().GetComponent<HeatControl>();
+
         maxPlayerSpeed = pc.getMaxSpeed();
         lastUpdateTime = Time.time * 1000;
     }
@@ -52,8 +55,6 @@ public class ArduinoController : MonoBehaviour {
 
         CalcWindStrength();
         CalcHeatStrength();
-
-        Debug.Log(windPercent);
 
         Send("w" + windPercent + "h" + heatPercent);
 
@@ -75,6 +76,9 @@ public class ArduinoController : MonoBehaviour {
 
     private void CalcHeatStrength()
     {
+        heatPercent = heatControl.GetCurrentHeatPercent();
+
+        // Safety mechanism
         if (windPercent < minWindForHeat)
         {
             heatPercent = 0;
@@ -83,21 +87,5 @@ public class ArduinoController : MonoBehaviour {
         {
             heatPercent = Mathf.Min(heatPercent, windPercent + maxWindHeatDelta);
         }
-    }
-
-
-    public void SetHeatPercent(float h)
-    {
-        heatPercent = h;
-    }
-
-    public void SetDefaultHeatPercent(float h)
-    {
-        defaultHeatPercent = h;
-    }
-
-    public void SetHeatToDefaultHeat()
-    {
-        heatPercent = defaultHeatPercent;
     }
 }

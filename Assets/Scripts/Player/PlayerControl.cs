@@ -95,7 +95,7 @@ public class PlayerControl : MonoBehaviour
         if (!adjustingSpeed && !speedTargetOutOfBounds)
         {
             speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
-            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.08f) speed -= 0.08f;
+            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.08f) speed -= 0.03f;
         }
 
         // non physical forward drive component

@@ -291,7 +291,7 @@ public class PlayerControl : MonoBehaviour
 
     public float GetCurrentSpeed()
     {
-        return speed;
+        return speed + rb.velocity.z;
     }
 
     public float GetMinSpeed()

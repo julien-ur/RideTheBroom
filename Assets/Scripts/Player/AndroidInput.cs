@@ -71,7 +71,7 @@ public class AndroidInput : MonoBehaviour
 	
 	void Update ()
 	{
-		//Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
+		Debug.Log("x: " + x + ", y: " + y + ", z: " + z);
 	}
 
 	void OnDestroy()

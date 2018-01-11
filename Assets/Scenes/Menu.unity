@@ -1290,7 +1290,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 89}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96d3bf33be761014695a9c13cadffbb0, type: 3}
   m_Name: 
@@ -2324,7 +2324,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 89}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ea855c85aed0694e9ab71ba05b921e1, type: 3}
   m_Name: 
@@ -11381,7 +11381,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 379503185}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.23, y: 0.72, z: 0.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454842821}
@@ -15516,6 +15516,7 @@ GameObject:
   - component: {fileID: 618036106}
   - component: {fileID: 618036105}
   - component: {fileID: 618036104}
+  - component: {fileID: 618036110}
   - component: {fileID: 618036103}
   m_Layer: 2
   m_Name: Player
@@ -15642,10 +15643,10 @@ MonoBehaviour:
   rotationFactorY: 120
   noRotationBlocking: 0
   useBroomHardware: 1
-  useAndroidInput: 0
-  useViveTracker: 1
+  useAndroidInput: 1
+  useViveTracker: 0
   invertHorizontal: 0
-  androidInput: {fileID: 0}
+  androidInput: {fileID: 618036110}
   viveTracker: {fileID: 618036103}
   enableBroomRollback: 1
   backRotationRate: 90
@@ -15715,6 +15716,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -165.23, y: 180, z: 180}
+--- !u!114 &618036110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 618036102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8124f44f9d5d34731b88b75ff6cbb367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 5005
+  inputDivisorVertical: 45
+  inputDivisorHorizontal: 60
+  neutralAreaHorizontal: 10
+  AndroidInputMode: 0
 --- !u!1 &629633407
 GameObject:
   m_ObjectHideFlags: 0

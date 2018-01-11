@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         cameraControl = GetComponentInChildren<PlayerCameraControl>();
         speed = 0;
-        headStartYPos = InputTracking.GetLocalPosition(VRNode.Head).y;
+        headStartYPos = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).y;
     }
 
     void Update()
@@ -110,7 +110,7 @@ public class PlayerControl : MonoBehaviour
             if (invertHorizontal) inputHorizontal *= -1;
         }
 
-        if(isRotationEnabled || !VRDevice.isPresent)
+        if(isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent)
         {
 
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
@@ -163,11 +163,11 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if(VRDevice.isPresent)
+        if(UnityEngine.XR.XRDevice.isPresent)
         {
             Transform broomTransform = transform.Find("Broom").transform;
             Vector3 pos = broomTransform.localPosition;
-            pos.x = InputTracking.GetLocalPosition(VRNode.Head).x;
+            pos.x = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).x;
             broomTransform.localPosition = pos;
         }
 

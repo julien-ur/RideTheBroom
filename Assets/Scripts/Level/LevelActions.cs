@@ -74,7 +74,7 @@ public class LevelActions : MonoBehaviour
             }
             else if (currentLevel == Constants.LEVEL.ForestCave)
             {
-                pc.changeSpeed(18);
+                pc.changeSpeed(22);
             }
 
             float doorOpenDuration = broomCloset.OpenDoors();

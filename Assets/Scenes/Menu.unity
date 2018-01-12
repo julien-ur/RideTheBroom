@@ -10502,8 +10502,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0ae8ecb777e324ab247ac9077f02dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tintMaterial: {fileID: 2100000, guid: 3323dac0845064d49bb6e02cd87804df, type: 2}
-  focusedColor: {r: 0.6691177, g: 0.8220081, b: 1, a: 1}
+  tintMaterial: {fileID: 2100000, guid: 9b2b318d156edf94c8348cffb878f94b, type: 2}
+  focusedColor: {r: 1, g: 0.827451, b: 0.67058825, a: 1}
   selectedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!65 &541375534
 BoxCollider:
@@ -10533,7 +10533,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 479e5ad90db0dcf45b06b665200721bf, type: 2}
-  - {fileID: 2100000, guid: 3323dac0845064d49bb6e02cd87804df, type: 2}
+  - {fileID: 2100000, guid: 9b2b318d156edf94c8348cffb878f94b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

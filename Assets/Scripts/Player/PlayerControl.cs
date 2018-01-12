@@ -275,6 +275,8 @@ public class PlayerControl : MonoBehaviour
     public void changeSpeed(float targetSpeed)
     {
         defaultSpeed = targetSpeed;
+        minSpeed = targetSpeed - 4;
+        maxSpeed = targetSpeed + 10;
     }
 
     public void EnableRotation()

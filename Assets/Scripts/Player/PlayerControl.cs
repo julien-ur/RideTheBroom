@@ -86,7 +86,7 @@ public class PlayerControl : MonoBehaviour
         float tiltAccelerationFactor = 1;
         if (tiltAcceleration)
         {
-            float tiltAngle = transform.rotation.eulerAngles.x;
+            float tiltAngle = transform.localRotation.eulerAngles.x;
             tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
             tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.3f, 0.3f);
         }
@@ -95,7 +95,7 @@ public class PlayerControl : MonoBehaviour
         if (!adjustingSpeed && !speedTargetOutOfBounds)
         {
             speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
-            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.08f) speed -= 0.03f;
+            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.06f) speed -= 0.03f;
         }
 
         // non physical forward drive component
@@ -303,6 +303,4 @@ public class PlayerControl : MonoBehaviour
     {
         return maxSpeed;
     }
-
-    
 }

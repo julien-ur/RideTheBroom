@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour {
 
-    public float spawnStartDistance = 10;
-    public float spawnRadius = 10;
+    public float spawnDistanceStart = 10;
+    public float spawnDistanceEnd = 20;
     public float minSize = 20;
     public float maxSize = 100;
     public float obstacleCount = 300;
@@ -62,21 +62,30 @@ public class ObstacleSpawner : MonoBehaviour {
     private void SpawnNewObstacle(bool init=false)
     {
         GameObject o = obstacleObjects[Random.Range(0, obstacleObjects.Count)];
-        // o.transform.position = (Random.insideUnitSphere * spawnRadius) + playerTrans.position + (Vector3.forward * spawnRadius/2);
 
-        float rndFwd = Random.Range(init ? -(spawnStartDistance + spawnRadius): spawnStartDistance, spawnStartDistance + spawnRadius);
-        float rndRight = Random.Range(-spawnRadius, spawnRadius);
-        float rndUp = Random.Range(-spawnRadius, spawnRadius);
+        Vector3 posInSphere = Random.insideUnitSphere;
+        float length = posInSphere.magnitude;
+        float ratioRadius = spawnDistanceStart / spawnDistanceEnd;
+        Vector3 pos = (((1.0f - ratioRadius) * length + ratioRadius) / length) * spawnDistanceEnd * posInSphere;
 
-        o.transform.position = playerTrans.position + playerTrans.forward * rndFwd + playerTrans.up * rndUp + playerTrans.right * rndRight;
-        if (o.name != "MagicalRing01")
-            o.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
-        else
-            o.transform.eulerAngles = new Vector3(90, 0, 180);
+        o.transform.position = pos + playerTrans.position;
+
+        //float rndFwd = Random.Range(init ? -(spawnStartDistance + spawnRadius): spawnStartDistance, spawnStartDistance + spawnRadius);
+        //float rndRight = Random.Range(-spawnRadius, spawnRadius);
+        //float rndUp = Random.Range(-spawnRadius, spawnRadius);
+
+        //o.transform.position = playerTrans.position + playerTrans.forward * rndFwd + playerTrans.up * rndUp + playerTrans.right * rndRight;
+
+        o.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
+
 
         GameObject i = Instantiate(o);
         obstacles.Add(i);
         i.transform.parent = obstacleContainer.transform;
+        Rigidbody rb = i.GetComponent<Rigidbody>();
+        rb.AddTorque(Random.insideUnitSphere * 60);
+        rb.AddForce(Random.insideUnitSphere * 60);
+        
     }
 
     private void DestroyFarObstacles()
@@ -85,7 +94,7 @@ public class ObstacleSpawner : MonoBehaviour {
 
         foreach (GameObject o in obstacles)
         {
-            if (Vector3.Distance(o.transform.position, playerTrans.position) > spawnStartDistance + spawnRadius)
+            if (Vector3.Distance(o.transform.position, playerTrans.position) > spawnDistanceEnd)
             {
                 toRemove.Add(o);
             }

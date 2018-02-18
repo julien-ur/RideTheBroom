@@ -82,10 +82,10 @@ public class ObstacleSpawner : MonoBehaviour {
         GameObject i = Instantiate(o);
         obstacles.Add(i);
         i.transform.parent = obstacleContainer.transform;
+
         Rigidbody rb = i.GetComponent<Rigidbody>();
         rb.AddTorque(Random.insideUnitSphere * 60);
         rb.AddForce(Random.insideUnitSphere * 60);
-        
     }
 
     private void DestroyFarObstacles()

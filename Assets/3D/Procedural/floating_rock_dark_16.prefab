@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23090969336690462}
   - component: {fileID: 64022514687781484}
   - component: {fileID: 54115728576935094}
+  - component: {fileID: 114999963860411636}
   m_Layer: 0
   m_Name: floating_rock_dark_16
   m_TagString: Untagged
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1361028217816140}
   m_LocalRotation: {x: 0.0015794651, y: 0.988165, z: -0.010197983, w: 0.15304713}
-  m_LocalPosition: {x: 0.2896328, y: 591.7901, z: 281.4452}
-  m_LocalScale: {x: 52.202843, y: 52.202843, z: 52.202843}
+  m_LocalPosition: {x: 108.85636, y: 555.66864, z: 281.91428}
+  m_LocalScale: {x: 33.365513, y: 33.365513, z: 33.365513}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -113,3 +114,32 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 7919f0a5ecc5e41cd96ae017f59a4a81, type: 3}
+--- !u!114 &114999963860411636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361028217816140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be2e460dcc99b747bb47c1623267cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8083191
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0

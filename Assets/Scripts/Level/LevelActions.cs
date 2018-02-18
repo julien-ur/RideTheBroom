@@ -96,7 +96,7 @@ public class LevelActions : MonoBehaviour
         }
 
         HeatControl hc = gc.GetComponent<HeatControl>();
-        hc.SetDefaultHeatPercent(defaultHeatPercent);
+        if (hc) hc.SetDefaultHeatPercent(defaultHeatPercent);
     }
 
     private void deactivateTestingStuff()

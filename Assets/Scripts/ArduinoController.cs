@@ -34,7 +34,7 @@ public class ArduinoController : MonoBehaviour {
         }
         catch (Exception e)
         {
-            Debug.LogError(e);
+            Debug.Log(e);
         }
 
         pc = GameComponents.GetPlayerControl();

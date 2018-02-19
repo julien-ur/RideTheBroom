@@ -9,6 +9,7 @@ public class RingSpawner : MonoBehaviour {
     public float intervalMax = 8;
     public float widthRadius = 15;
     public float heightRadius = 15;
+    public float clearDistance = 50;
 
     public GameObject ring;
     private GameObject ringContainer;
@@ -28,27 +29,44 @@ public class RingSpawner : MonoBehaviour {
 		
 	}
 
+    private void SpawnRing()
+    {
+        float rndFwd = dist;
+        float rndRight = Random.Range(-widthRadius, widthRadius);
+        float rndUp = Random.Range(-heightRadius / 1.5f, heightRadius);
+
+        ring.transform.position = playerTrans.position + playerTrans.forward * dist + playerTrans.up * rndUp + playerTrans.right * rndRight;
+
+        GameObject i = Instantiate(ring);
+        rings.Add(i);
+
+        i.transform.rotation = playerTrans.rotation;
+        i.transform.Rotate(90, 0, 0);
+
+        i.transform.parent = ringContainer.transform;
+
+        lastRingTrans = i.transform;
+    }
+
+    private void DestroyDistantRings()
+    {
+        foreach(GameObject r in rings)
+        {
+            if (Vector3.Distance(r.transform.position, playerTrans.position) > clearDistance)
+            {
+                Destroy(r);
+            }
+        }
+    }
+
     IEnumerator SpawnRings()
     {
         yield return new WaitForSeconds(2);
 
         while(true)
         {
-            float rndFwd = dist;
-            float rndRight = Random.Range(-widthRadius, widthRadius);
-            float rndUp = Random.Range(-heightRadius/1.5f, heightRadius);
-
-            ring.transform.position = playerTrans.position + playerTrans.forward * dist + playerTrans.up * rndUp + playerTrans.right * rndRight;
-
-            GameObject i = Instantiate(ring);
-            rings.Add(i);
-
-            i.transform.rotation = playerTrans.rotation;
-            i.transform.Rotate(90, 0, 0);
-
-            i.transform.parent = ringContainer.transform;
-
-            lastRingTrans = i.transform;
+            SpawnRing();
+            DestroyDistantRings();
             yield return new WaitForSeconds(Random.Range(intervalMin, intervalMax));
         }
     }

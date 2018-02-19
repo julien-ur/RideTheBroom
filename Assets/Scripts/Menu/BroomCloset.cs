@@ -39,6 +39,10 @@ public class BroomCloset : MonoBehaviour {
         {
             anim.clip = LandingImmersionTest;
         }
+        else if (activeLevel == Constants.LEVEL.SpaceProcedural)
+        {
+            anim.clip = null;
+        }
 
         anim.Play();
         return anim.clip ? anim.clip.length : 0;

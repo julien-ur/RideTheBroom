@@ -16,7 +16,6 @@ public class LevelActions : MonoBehaviour
     private Tutorial tut;
     private BroomCloset broomCloset;
     
-
     private Constants.LEVEL currentLevel;
 
     public GameObject ringContainer;
@@ -75,6 +74,12 @@ public class LevelActions : MonoBehaviour
             else if (currentLevel == Constants.LEVEL.ForestCave)
             {
                 pc.changeSpeed(22);
+            }
+            else if (currentLevel == Constants.LEVEL.SpaceProcedural)
+            {
+                pc.changeSpeed(8, 5, 10);
+                pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+                pc.enableBroomRollback = false;
             }
 
             float doorOpenDuration = broomCloset.OpenDoors();

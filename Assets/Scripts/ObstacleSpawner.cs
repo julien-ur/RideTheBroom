@@ -32,11 +32,6 @@ public class ObstacleSpawner : MonoBehaviour {
         StartCoroutine(SpawnObstacles());
     }
 
-    private void Update() {
-
-    }
- 
-
     IEnumerator SpawnObstacles()
     {
         yield return new WaitForSeconds(2);
@@ -63,6 +58,7 @@ public class ObstacleSpawner : MonoBehaviour {
     {
         GameObject o = obstacleObjects[Random.Range(0, obstacleObjects.Count)];
 
+        // Source: https://answers.unity.com/answers/1324145/view.html
         Vector3 posInSphere = Random.insideUnitSphere;
         float length = posInSphere.magnitude;
         float ratioRadius = spawnDistanceStart / spawnDistanceEnd;
@@ -77,7 +73,6 @@ public class ObstacleSpawner : MonoBehaviour {
         //o.transform.position = playerTrans.position + playerTrans.forward * rndFwd + playerTrans.up * rndUp + playerTrans.right * rndRight;
 
         o.transform.localScale = Vector3.one * Random.Range(minSize, maxSize);
-
 
         GameObject i = Instantiate(o);
         obstacles.Add(i);

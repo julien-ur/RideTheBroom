@@ -6377,7 +6377,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -774367390
+  randomSeed: 2003978199
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9892,7 +9892,6 @@ MonoBehaviour:
   LandingForrestCave: {fileID: 7400000, guid: 243cfb8a1ef962041a61453c848e8b74, type: 2}
   LandingImmersionTest: {fileID: 7400000, guid: 243cfb8a1ef962041a61453c848e8b74,
     type: 2}
-  LandingSpaceProcedural: {fileID: 0}
   OpenBarnDoors: {fileID: 7400000, guid: d65ec298c1beb0441837a34fee261fc0, type: 2}
   barnDoorAudioSource: {fileID: 389}
 --- !u!114 &443

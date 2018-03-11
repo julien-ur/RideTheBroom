@@ -34,7 +34,7 @@ void loop(){
   updateSerialInput();
   
   pwm(PWM_PIN, PWM_CYCLE_TIME, pwmOnPercent, &pwmCycleStartTime, false);
-  pwm(RELAY_PIN, RELAY_CYCLE_TIME, relayOnPercent, &relayCycleStartTime, true);
+  pwm(RELAY_PIN, RELAY_CYCLE_TIME, relayOnPercent, &relayCycleStartTime, false);
 }
 
 

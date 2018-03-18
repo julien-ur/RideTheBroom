@@ -24,10 +24,6 @@ public class RingSpawner : MonoBehaviour {
         rings = new List<GameObject>();
         StartCoroutine(SpawnRings());
 	}
-	
-	void Update () {
-		
-	}
 
     private void SpawnRing()
     {
@@ -50,12 +46,21 @@ public class RingSpawner : MonoBehaviour {
 
     private void DestroyDistantRings()
     {
+        List<GameObject> toRemove = new List<GameObject>();
+
         foreach(GameObject r in rings)
         {
             if (Vector3.Distance(r.transform.position, playerTrans.position) > clearDistance)
             {
-                Destroy(r);
+                toRemove.Add(r);
+
             }
+        }
+        foreach (GameObject o in toRemove)
+        {
+            o.transform.parent = null;
+            Destroy(o);
+            rings.Remove(o);
         }
     }
 

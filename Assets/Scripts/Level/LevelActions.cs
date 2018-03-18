@@ -4,104 +4,101 @@ using UnityEngine;
 
 public class LevelActions : MonoBehaviour
 {
-    public BillboardControl billboardControl;
-    public float defaultHeatPercent = 0;
+    public GameObject RingContainer;
+    public BillboardControl BillboardControl;
+    public float DefaultHeatPercent = 0;
 
-    private Transform player;
-	private CompassControl compass;
-    private Menu menu;
-    private GameObject[] menuProps;
-    private GameController gc;
-    private PlayerControl pc;
-    private Tutorial tut;
-    private BroomCloset broomCloset;
+    private Transform _player;
+	private CompassControl _compass;
+    private Menu _menu;
+    private GameObject[] _menuProps;
+    private GameController _gc;
+    private PlayerControl _pc;
+    private BroomCloset _broomCloset;
     
-    private Constants.LEVEL currentLevel;
-
-    public GameObject ringContainer;
+    private Constants.LEVEL _currentLevel;
 
 
-    void Start () {
-        menu = GameComponents.GetMenu();
-        if (menu) deactivateTestingStuff(); // deactivates all objects of the layer "testing stuff"
+    private void Start () {
+        _menu = GameComponents.GetMenu();
+        if (_menu) deactivateTestingStuff(); // deactivates all objects of the layer "testing stuff"
 
-        gc = GameComponents.GetGameController();
-        pc = GameComponents.GetPlayerControl();
-        menuProps = GameComponents.GetAdditionalMenuProps();
-        tut = GameComponents.GetTutorial();
-        player = pc.GetComponent<Transform>();
-        broomCloset = GameComponents.GetBroomCloset();
-        compass = player.GetComponentInChildren<CompassControl>();
+        _gc = GameComponents.GetGameController();
+        _pc = GameComponents.GetPlayerControl();
+         _menuProps = GameComponents.GetAdditionalMenuProps();
+        _player = _pc.GetComponent<Transform>();
+        _broomCloset = GameComponents.GetBroomCloset();
+        _compass = _player.GetComponentInChildren<CompassControl>();
         
         StartCoroutine(LevelStartRoutine());
     }
 
-    IEnumerator LevelStartRoutine()
+    private IEnumerator LevelStartRoutine()
     {
-        pc.EnableRotation();
+        _pc.EnableRotation();
         yield return new WaitForSeconds(1);
 
-        currentLevel = gc.GetActiveLevel();
+        _currentLevel = _gc.GetActiveLevel();
 
-        if (menu)
+        if (_menu)
         {
             Wisp wisp = GameComponents.GetWisp();
             Transform wispTrans = wisp.transform;
             wisp.GetComponent<Animator>().enabled = false;
 
-            player.parent = broomCloset.transform;
-            wispTrans.parent = broomCloset.transform;
-            float landingDuration = broomCloset.StartLanding();
+            _player.parent = _broomCloset.transform;
+            wispTrans.parent = _broomCloset.transform;
+            float landingDuration = _broomCloset.StartLanding();
             yield return new WaitForSeconds(landingDuration + 0.5f);
 
-            player.parent = null;
+            _player.parent = null;
             wispTrans.parent = null;
-            foreach (GameObject p in menuProps)
+            foreach (GameObject p in _menuProps)
             {
                 p.SetActive(false);
             }
 
-            if (currentLevel == Constants.LEVEL.Tutorial)
+            if (_currentLevel == Constants.LEVEL.Tutorial)
             {
                 float duration = wisp.talkToPlayer(wisp.ArrivalMountainWorld);
                 yield return new WaitForSeconds(duration);
             }
-            else if (currentLevel == Constants.LEVEL.FloatingRocks)
+            else if (_currentLevel == Constants.LEVEL.FloatingRocks)
             {
                 float duration = wisp.talkToPlayer(wisp.ArrivalFloatingRocks);
                 yield return new WaitForSeconds(duration);
             }
-            else if (currentLevel == Constants.LEVEL.ForestCave)
+            else if (_currentLevel == Constants.LEVEL.ForestCave)
             {
-                pc.changeSpeed(22);
+                _pc.changeSpeed(22);
             }
-            else if (currentLevel == Constants.LEVEL.SpaceProcedural)
+            else if (_currentLevel == Constants.LEVEL.SpaceProcedural)
             {
-                pc.changeSpeed(8, 5, 10);
-                pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
-                pc.enableBroomRollback = false;
+                _pc.changeSpeed(8, 5, 10);
+                _pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
+                _pc.enableBroomRollback = false;
             }
 
-            float doorOpenDuration = broomCloset.OpenDoors();
+            float doorOpenDuration = _broomCloset.OpenDoors();
             yield return new WaitForSeconds(doorOpenDuration);
 
-            if (currentLevel == Constants.LEVEL.Tutorial)
+            if (_currentLevel == Constants.LEVEL.Tutorial)
             {
                 // tut.TriggerAction(Constants.TUTORIAL_ACTION.Start);
-                gc.StartGameAfterCountdown();
+                _gc.StartGameAfterCountdown();
             }
             else
             {
-                gc.StartGameAfterCountdown();
+                _gc.StartGameAfterCountdown();
             }
         }
         else
         {
-            gc.StartGame();
+            _gc.StartGame();
         }
 
-        HeatControl hc = gc.GetComponent<HeatControl>();
-        if (hc) hc.SetDefaultHeatPercent(defaultHeatPercent);
+        HeatControl hc = _gc.GetComponent<HeatControl>();
+        if (hc) hc.SetDefaultHeatPercent(DefaultHeatPercent);
     }
 
     private void deactivateTestingStuff()
@@ -115,21 +112,21 @@ public class LevelActions : MonoBehaviour
 
     public void FinishLevel()
     {
-        pc.changeSpeedToTargetSpeed(0, 0.5f);
-        foreach (GameObject p in menuProps)
+        _pc.changeSpeedToTargetSpeed(0, 0.5f);
+        foreach (GameObject p in _menuProps)
         {
             p.SetActive(false);
         }
-        gc.FinishLevel();
+        _gc.FinishLevel();
 
-        billboardControl.SetScore(gc.GetCurrentScore(), gc.GetHighScore());
+        BillboardControl.SetScore(_gc.GetCurrentScore(), _gc.GetHighScore());
     }
 
     public Transform GetNearestRing(Transform playerPosition)
     {
-    	if(ringContainer == null) return null;
+    	if(RingContainer == null) return null;
 
-    	MagicalRing[] rings = ringContainer.GetComponentsInChildren<MagicalRing>();
+    	MagicalRing[] rings = RingContainer.GetComponentsInChildren<MagicalRing>();
 
     	Transform nearest = null;
     	float nearestDistance = 0;
@@ -147,8 +144,8 @@ public class LevelActions : MonoBehaviour
 
     void Update()
     {
-    	Transform nearestRing = GetNearestRing(player);
+    	Transform nearestRing = GetNearestRing(_player);
 
-    	if(nearestRing && compass) compass.PointAtTarget(nearestRing);
+    	if(nearestRing && _compass) _compass.PointAtTarget(nearestRing);
     }
 }

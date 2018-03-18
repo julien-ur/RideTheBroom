@@ -5,31 +5,31 @@ using UnityEngine;
 
 public class ArduinoController : MonoBehaviour {
 
-    public float updateInterval = 200;
+    public float UpdateInterval = 200;
 
-    private SerialPort stream;
-    private PlayerControl pc;
-    private HeatControl heatControl;
+    private SerialPort _stream;
+    private PlayerControl _pc;
+    private HeatControl _heatControl;
 
-    private float windPercent = 0;
-    private float heatPercent = 0;
-    private float defaultHeatPercent = 0;
+    private float _windPercent = 0;
+    private float _heatPercent = 0;
+    private float _defaultHeatPercent = 0;
 
-    private float maxWindHeatDelta = 0.3f;
-    private float minWindForHeat = 0.1f;
+    private float _maxWindHeatDelta = 0.3f;
+    private float _minWindForHeat = 0.1f;
 
-    private float minPlayerSpeed;
-    private float maxPlayerSpeed;
+    private float _minPlayerSpeed;
+    private float _maxPlayerSpeed;
 
-    private float lastUpdateTime;
+    private float _lastUpdateTime;
 
-    void Start()
+    private void Start()
     {
         try
         {
-            stream = new SerialPort("COM3", 9600);
-            stream.ReadTimeout = 50;
-            stream.Open();
+            _stream = new SerialPort("COM3", 9600);
+            _stream.ReadTimeout = 50;
+            _stream.Open();
             Debug.Log("Connected to Arduino..");
         }
         catch (Exception e)
@@ -37,64 +37,64 @@ public class ArduinoController : MonoBehaviour {
             Debug.Log(e);
         }
 
-        pc = GameComponents.GetPlayerControl();
-        heatControl = GameComponents.GetGameController().GetComponent<HeatControl>();
+        _pc = GameComponents.GetPlayerControl();
+        _heatControl = GameComponents.GetGameController().GetComponent<HeatControl>();
 
-        minPlayerSpeed = pc.GetMinSpeed();
-        maxPlayerSpeed = pc.GetMaxSpeed();
-        lastUpdateTime = Time.time * 1000;
+        _minPlayerSpeed = _pc.GetMinSpeed();
+        _maxPlayerSpeed = _pc.GetMaxSpeed();
+        _lastUpdateTime = Time.time * 1000;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         Send("w0h0");
-        if (stream != null) stream.Close();
+        if (_stream != null) _stream.Close();
     }
 
-    void Update()
+    private void Update()
     {
-        if (!stream.IsOpen || Time.time * 1000 - lastUpdateTime < updateInterval) return;
+        if (!_stream.IsOpen || Time.time * 1000 - _lastUpdateTime < UpdateInterval) return;
 
         CalcWindStrength();
         CalcHeatStrength();
 
-        Send("w" + windPercent + "h" + heatPercent);
+        Send("w" + _windPercent + "h" + _heatPercent);
 
-        lastUpdateTime = Time.time * 1000;
+        _lastUpdateTime = Time.time * 1000;
     }
 
 
     private void Send(string message)
     {
-        stream.Write(message);
-        stream.BaseStream.Flush();
+        _stream.Write(message);
+        _stream.BaseStream.Flush();
     }
 
 
     private void CalcWindStrength()
     {
-        windPercent = (pc.GetCurrentSpeed() - minPlayerSpeed) / (maxPlayerSpeed - minPlayerSpeed) + 0.2f;
-        if (pc.GetCurrentSpeed() < minPlayerSpeed)
+        _windPercent = (_pc.GetCurrentSpeed() - _minPlayerSpeed) / (_maxPlayerSpeed - _minPlayerSpeed) + 0.2f;
+        if (_pc.GetCurrentSpeed() < _minPlayerSpeed)
         {
-            windPercent = (pc.GetCurrentSpeed() / minPlayerSpeed) * 0.2f;
+            _windPercent = (_pc.GetCurrentSpeed() / _minPlayerSpeed) * 0.2f;
         }
-        windPercent = Mathf.Clamp01(windPercent);
+        _windPercent = Mathf.Clamp01(_windPercent);
     }
 
     private void CalcHeatStrength()
     {
-        heatPercent = heatControl.GetCurrentHeatPercent();
+        _heatPercent = _heatControl.GetCurrentHeatPercent();
 
         // Safety mechanism
-        if (windPercent < minWindForHeat)
+        if (_windPercent < _minWindForHeat)
         {
-            heatPercent = 0;
+            _heatPercent = 0;
         }
-        else if (heatPercent > windPercent + maxWindHeatDelta)
+        else if (_heatPercent > _windPercent + _maxWindHeatDelta)
         {
-            heatPercent = windPercent + maxWindHeatDelta;
+            _heatPercent = _windPercent + _maxWindHeatDelta;
         }
 
-        heatPercent = Mathf.Clamp01(heatPercent);
+        _heatPercent = Mathf.Clamp01(_heatPercent);
     }
 }

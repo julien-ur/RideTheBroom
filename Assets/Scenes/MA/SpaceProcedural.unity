@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 362748212}
   - component: {fileID: 362748214}
   - component: {fileID: 362748215}
+  - component: {fileID: 362748216}
   m_Layer: 0
   m_Name: LevelControl
   m_TagString: Untagged
@@ -374,7 +375,19 @@ MonoBehaviour:
   intervalMax: 4
   widthRadius: 8
   heightRadius: 6
+  clearDistance: 50
   ring: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
+--- !u!114 &362748216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362748211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4414389679d3c194a965c69d8896fd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &671125086
 GameObject:
   m_ObjectHideFlags: 0

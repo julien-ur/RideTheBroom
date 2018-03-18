@@ -13,11 +13,12 @@ public class USAction : MonoBehaviour {
 
     public enum TYPE { SlowDown, RefillTank, POV }
 
+    public event EventHandler<USActionEventArgs> ActionStarted;
     public event EventHandler<USActionEventArgs> ActionSuccess;
     public event EventHandler<USActionEventArgs> ActionTimeOut;
 
     private PlayerControl _pc;
-    private const float MaxTimeForCompletion = 10;
+    private const float MaxTimeForCompletion = 5;
 
     public void Awake()
     {
@@ -27,16 +28,15 @@ public class USAction : MonoBehaviour {
     public void StartNewAction(TYPE t, int count)
     {
         Func<bool> condition = GetCondition(t);
-        StartCoroutine(CheckFullfilment(t, condition, count));
+        var args = new USActionEventArgs {ActionType = t, Count = count};
+
+        InitSpecialPreconditions(t);
+
+        OnActionStarted(args);
+        StartCoroutine(CheckFullfilment(condition, args));
     }
 
-
-    private bool HasPlayerSlowedDown()
-    {
-        return _pc.GetCurrentSpeed() <= _pc.GetMinSpeed() + 1;
-    }
-
-    private IEnumerator CheckFullfilment(TYPE type, Func<bool> condition, int count)
+    private IEnumerator CheckFullfilment(Func<bool> condition, USActionEventArgs args)
     {
         float timer = 0;
 
@@ -44,14 +44,34 @@ public class USAction : MonoBehaviour {
         {
             if ((timer += Time.deltaTime) > MaxTimeForCompletion)
             {
-                OnActionTimeOut(type, count);
+                OnActionTimeOut(args);
                 yield break;
             }
 
             yield return new WaitForEndOfFrame();
         }
 
-        OnActionSuccess(type, count);
+        OnActionSuccess(args);
+    }
+
+    private void SpawnFuelItem()
+    {
+        Debug.Log("Spawn Fuel");
+    }
+
+    private bool HasPlayerSlowedDown()
+    {
+        return _pc.GetCurrentSpeed() <= _pc.GetMinSpeed() + 1;
+    }
+
+    private bool HasPlayerRefilledTank()
+    {
+        return _pc.GetCurrentSpeed() <= _pc.GetMinSpeed() + 1;
+    }
+
+    private bool HasPlayerSeenPOV()
+    {
+        return _pc.GetCurrentSpeed() <= _pc.GetMinSpeed() + 1;
     }
 
     private Func<bool> GetCondition(TYPE t)
@@ -62,25 +82,47 @@ public class USAction : MonoBehaviour {
                 return HasPlayerSlowedDown;
 
             case TYPE.RefillTank:
-                return HasPlayerSlowedDown;
+                return HasPlayerRefilledTank;
 
             case TYPE.POV:
-                return HasPlayerSlowedDown;
+                return HasPlayerSeenPOV;
         }
 
         return null;
     }
 
-    protected virtual void OnActionSuccess(TYPE type, int count)
+    private void InitSpecialPreconditions(TYPE t)
     {
-        if (ActionSuccess != null)
-            ActionSuccess(this, new USActionEventArgs() { ActionType = type, Count = count });
+        switch (t)
+        {
+            case TYPE.SlowDown:
+                break;
+
+            case TYPE.RefillTank:
+                SpawnFuelItem();
+                break;
+
+            case TYPE.POV:
+                break;
+        }
     }
 
-    protected virtual void OnActionTimeOut(TYPE type, int count)
+    protected virtual void OnActionStarted(USActionEventArgs args)
+    {
+        if (ActionStarted != null)
+            ActionStarted(this, args);
+    }
+
+    protected virtual void OnActionSuccess(USActionEventArgs args)
+    {
+        if (ActionSuccess != null)
+            ActionSuccess(this, args);
+    }
+
+    protected virtual void OnActionTimeOut(USActionEventArgs args)
     {
         if (ActionTimeOut != null)
-            ActionTimeOut(this, new USActionEventArgs() { ActionType = type, Count = count });
+            ActionTimeOut(this, args);
     }
 
     public int GetTypeCount()

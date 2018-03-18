@@ -1,5 +1,4 @@
 #include <FS.h>                   //this needs to be first, or it all crashes and burns...
-
 #include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
 
 //needed for library
@@ -49,7 +48,7 @@ void initRoutes() {
   server->on("/", handleRoot);
 
   server->on("/led", []() {
-    server->send(200, "text/plain", "this works as well");
+    server->send(200, "text/plain", "test");
     tick();
   });
 
@@ -58,26 +57,11 @@ void initRoutes() {
     resetWebServer();
   });
 
-  server->on("/wind", []() {
-    serialInputString = "w1h1";
-
-    int windIndex = serialInputString.indexOf("w")+1;
-    int heatIndex = serialInputString.indexOf("h")+1;
-
-    if (windIndex < heatIndex)  {
-      pwmOnPercent = serialInputString.substring(windIndex, heatIndex).toFloat();
-      relayOnPercent = serialInputString.substring(heatIndex).toFloat();
-    }
-    else {
-      relayOnPercent = serialInputString.substring(heatIndex, windIndex).toFloat();
-      pwmOnPercent = serialInputString.substring(windIndex).toFloat();
-    }
+  server->on("/update", []() {
+    pwmOnPercent = getProcessedValue();
+    String name = server->argName(0)
     
-    Serial.print("PWM: Dauer des HIGH: ");
-    Serial.println(PWM_CYCLE_TIME * pwmOnPercent);
-    Serial.print("Relay: Dauer des HIGH: ");
-    Serial.println(RELAY_CYCLE_TIME * relayOnPercent);
-    
+    Serial.println(pwmOnPercent);
     server->send(200, "text/plain", "changed settings");
   });
 
@@ -86,6 +70,12 @@ void initRoutes() {
 
 void handleRoot() {
   server->send(200, "text/plain", "hello from esp8266!");
+}
+
+void getProcessedValue() {
+    String raw = server->arg(0);
+    float val = raw.toFloat();
+    return constrain(val, 0, 1);
 }
 
 void tick()

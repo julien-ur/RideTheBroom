@@ -94,6 +94,11 @@ public static class GameComponents {
         return (mo) ? mo.GetComponent<MaterialResetter>() : null;
     }
 
+    public static GameObject GetLevelControl()
+    {
+        return GameObject.FindGameObjectWithTag("LevelControl");
+    }
+
     public static LevelActions GetLevelActions()
     {
         GameObject lo = GameObject.FindGameObjectWithTag("LevelControl");

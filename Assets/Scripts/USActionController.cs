@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class USActionController : MonoBehaviour {
-
-    private FeedbackServerRequests _fsr;
+public class USActionController : MonoBehaviour
+{
+    private UserStudyControl _usc;
+    private FeedbackServer _fsr;
     private ScoreDisplayControl _scc;
     private AudioSource _audioSource;
+
     private AudioClip _timeOutSound;
     private AudioClip _successSound;
     private float _timeOutVolume;
@@ -14,15 +16,20 @@ public class USActionController : MonoBehaviour {
 
     void Awake()
     {
-        _audioSource = GetComponent<AudioSource>();
+        _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
+        _fsr = GameComponents.GetGameController().GetComponent<FeedbackServer>();
         _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
-        _fsr = GameComponents.GetGameController().GetComponent<FeedbackServerRequests>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnActionStarted(object sender, USActionEventArgs args)
     {
         Debug.Log("Action Started " + args.ActionType + " " + args.Count);
-        _fsr.PostAction(args.ActionType);
+        string feedbackData = _usc.GetFeedbackData(args.ActionType);
+
+        if (feedbackData == null) return;
+
+        _fsr.TempFeedbackChange(feedbackData);
     }
 
     public void OnActionSuccess(object sender, USActionEventArgs args)

@@ -58,7 +58,6 @@ public class USActionSpawner : MonoBehaviour {
 
     public void OnActionFinished(object sender, USActionEventArgs args)
     {
-        Debug.Log("Action finished");
         _actionFinished = true;
     }
 

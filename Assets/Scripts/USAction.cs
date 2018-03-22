@@ -11,7 +11,7 @@ public class USActionEventArgs : EventArgs
 
 public class USAction : MonoBehaviour {
 
-    public enum TYPE { SlowDown, RefillTank, POV }
+    public enum TYPE { Accelerate, RefillTank, POV }
 
     public event EventHandler<USActionEventArgs> ActionStarted;
     public event EventHandler<USActionEventArgs> ActionSuccess;
@@ -78,7 +78,7 @@ public class USAction : MonoBehaviour {
     {
         switch (t)
         {
-            case TYPE.SlowDown:
+            case TYPE.Accelerate:
                 return HasPlayerSlowedDown;
 
             case TYPE.RefillTank:
@@ -95,7 +95,7 @@ public class USAction : MonoBehaviour {
     {
         switch (t)
         {
-            case TYPE.SlowDown:
+            case TYPE.Accelerate:
                 break;
 
             case TYPE.RefillTank:

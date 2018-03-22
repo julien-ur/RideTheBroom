@@ -1,14 +1,34 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UserStudyControl : MonoBehaviour
 {
 
-    public enum RoundType { Heat, Smell, Vibration }
-    public string[] RoundNames = { "Wärme", "Geruch", "Vibration" };
-    public RoundType[] Rounds = { RoundType.Smell, RoundType.Vibration, RoundType.Heat };
+    public enum FeedbackType { Heat, Smell, Vibration }
+    public string[] FeedbackLabels = { "Wärme", "Geruch", "Vibration" };
+    public FeedbackType[] Rounds = { FeedbackType.Smell, FeedbackType.Vibration, FeedbackType.Heat };
+
+    public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
+    {
+        { "" + FeedbackType.Heat + USAction.TYPE.RefillTank, FeedbackServer.HEAT_TAG + "0, 2"},
+        { "" + FeedbackType.Heat + USAction.TYPE.Accelerate, FeedbackServer.HEAT_TAG + "1, 2"},
+        { "" + FeedbackType.Heat + USAction.TYPE.POV, FeedbackServer.HEAT_TAG + "1, 0.5"},
+
+        { "" + FeedbackType.Smell + USAction.TYPE.RefillTank, FeedbackServer.SMELL_TAG + Constants.SMELL_WOODY + ", 2"},
+        { "" + FeedbackType.Smell + USAction.TYPE.Accelerate, FeedbackServer.SMELL_TAG + Constants.SMELL_LEMON + ", 2"},
+        { "" + FeedbackType.Smell + USAction.TYPE.POV, FeedbackServer.SMELL_TAG + Constants.SMELL_BERRY + ", 2"},
+
+        { "" + FeedbackType.Vibration + USAction.TYPE.RefillTank, FeedbackServer.VIBRATION_TAG + "0.4, 2"},
+        { "" + FeedbackType.Vibration + USAction.TYPE.Accelerate, FeedbackServer.VIBRATION_TAG + "1, 2"},
+        { "" + FeedbackType.Vibration + USAction.TYPE.POV, FeedbackServer.VIBRATION_TAG + "0.4, 0.3;" + 
+                                                           FeedbackServer.PAUSE_TAG + "0.5;" + 
+                                                           FeedbackServer.VIBRATION_TAG + "0.4, 0.3;" + 
+                                                           FeedbackServer.PAUSE_TAG + " 0.5p;" + 
+                                                           FeedbackServer.VIBRATION_TAG + "0.4, 0.3"}
+    };
 
     public AudioClip TimeOutSound;
     public float TimeOutVolume = 0.3f;
@@ -17,14 +37,17 @@ public class UserStudyControl : MonoBehaviour
     public float SuccessVolume = 0.3f;
 
     private USActionSpawner _spawner;
+    private USActionController _actionControl;
     private Text _infoText;
     private Fading _fading;
 
+    private FeedbackType _currentFeedbackType;
     private bool _roundFinished;
 
     private void Start()
     {
         _fading = GameComponents.GetFading();
+
         StartCoroutine(StartStudy());
     }
 
@@ -36,7 +59,7 @@ public class UserStudyControl : MonoBehaviour
 
         Debug.Log("Study Started");
 
-        foreach (RoundType round in Rounds)
+        foreach (FeedbackType f in Rounds)
         {
             _roundFinished = false;
             _spawner.ResetActionCount();
@@ -44,7 +67,7 @@ public class UserStudyControl : MonoBehaviour
             _fading.FadeOut(1, true);
             yield return new WaitForSecondsRealtime(1.5f);
 
-            _infoText.text = RoundNames[(int)round];
+            _infoText.text = FeedbackLabels[(int)f];
             yield return new WaitForSecondsRealtime(3);
 
             _infoText.text = "";
@@ -81,23 +104,22 @@ public class UserStudyControl : MonoBehaviour
         _infoText.resizeTextForBestFit = true;
 
         _spawner = u.AddComponent<USActionSpawner>();
-
+        _actionControl = u.AddComponent<USActionController>();
         var action = u.AddComponent<USAction>();
-        var actionControl = u.AddComponent<USActionController>();
 
-        RegisterListener(action, actionControl);
+        RegisterListener(action);
     }
 
-    private void RegisterListener(USAction action, USActionController actionControl)
+    private void RegisterListener(USAction action)
     {
-        actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
-        actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
+        _actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
+        _actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
 
-        action.ActionStarted += actionControl.OnActionStarted;
+        action.ActionStarted += _actionControl.OnActionStarted;
         action.ActionSuccess += _spawner.OnActionFinished;
-        action.ActionSuccess += actionControl.OnActionSuccess;
+        action.ActionSuccess += _actionControl.OnActionSuccess;
         action.ActionTimeOut += _spawner.OnActionFinished;
-        action.ActionTimeOut += actionControl.OnActionTimeOut;
+        action.ActionTimeOut += _actionControl.OnActionTimeOut;
 
         _spawner.ActionCountReached += OnRoundFinished;
     }
@@ -121,5 +143,23 @@ public class UserStudyControl : MonoBehaviour
     {
         Debug.Log("Round Finished");
         _roundFinished = true;
+    }
+
+    public string GetCurrentFeedbackType()
+    {
+        return "" + _currentFeedbackType;
+    }
+
+    public string GetFeedbackData(USAction.TYPE actionType)
+    {
+        string feedbackData;
+        FEEDBACK_DICT.TryGetValue("" + _currentFeedbackType + actionType, out feedbackData);
+
+        if (feedbackData != null)
+            feedbackData = feedbackData.Replace(" ", "");
+        else
+            Debug.LogError("No feedback data for " + _currentFeedbackType + " " + actionType);
+
+        return feedbackData;
     }
 }

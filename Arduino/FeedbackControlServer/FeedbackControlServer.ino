@@ -58,22 +58,28 @@ void initRoutes() {
     resetWebServer();
   });
 
-  server->on("/update", []() {
+  server->on("/temp_update", []() {
 
     for (int i = 0; i < server->args(); i++) {
       String type = server->argName(i);
-      String rawVal = server->arg(i);
-  
+      String data = server->arg(i);
+      int separatorIndex = data.indexOf(",");
+
+      float value = data.substring(0, separatorIndex).toFloat();
+      float duration = data.substring(separatorIndex+1).toFloat();
+
+      Serial.println(type + " " + value + " " + duration);
+      
       if (type == "wind") {
-        pwmOnPercent = constrain(rawVal.toFloat(), 0, 1);
+        pwmOnPercent = constrain(value, 0, 1);
         Serial.println(type + " " + pwmOnPercent);
       }
       else if (type == "heat") {
-        relayOnPercent = constrain(rawVal.toFloat(), 0, 1);
+        relayOnPercent = constrain(value, 0, 1);
         Serial.println(type + " " + relayOnPercent);
       }
       else if (type == "scent") {  
-        scentNum = constrain(rawVal.toInt(), 0, 4);
+        scentNum = constrain((int)value, 0, 4);
         Serial.println(type + " " + scentNum);
       }
     }

@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 public static class Constants
 {
     public enum LEVEL { Menu, Tutorial, FloatingRocks, ForestCave, ImmersionTest, SpaceProcedural };
@@ -12,4 +14,9 @@ public static class Constants
     public const float SLOWDOWN_TIME = 0.3f; // in sec
     public const float SLOWDOWN_RECOVERY_TIME = 1f; // in sec
     public const float SLOWDOWN_TARGET_SPEED = 7f;
+
+    //smell feedback
+    public const int SMELL_LEMON = 1;
+    public const int SMELL_WOODY = 2;
+    public const int SMELL_BERRY = 3;
 }

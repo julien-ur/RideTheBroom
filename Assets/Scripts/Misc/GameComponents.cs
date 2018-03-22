@@ -50,10 +50,9 @@ public static class GameComponents {
         return GameObject.FindGameObjectsWithTag("AdditionalMenuProps");
     }
 
-    public static HUD GetHUD()
+    public static GameObject GetHUD()
     {
-        GameObject ho = GameObject.FindGameObjectWithTag("HUD");
-        return (ho) ? ho.GetComponent<HUD>() : null;
+        return GameObject.FindGameObjectWithTag("HUD");
     }
 
     public static GameObject GetPlayer()

@@ -33,6 +33,7 @@ bool serialInputAvailable = false;
 
 float relayOnPercent = 0;
 float pwmOnPercent = 0;
+int scentNum = 0; // 0 = no scent
 int relayCycleStartTime;
 int pwmCycleStartTime;
 
@@ -58,11 +59,26 @@ void initRoutes() {
   });
 
   server->on("/update", []() {
-    pwmOnPercent = getProcessedValue();
-    String name = server->argName(0)
+
+    for (int i = 0; i < server->args(); i++) {
+      String type = server->argName(i);
+      String rawVal = server->arg(i);
+  
+      if (type == "wind") {
+        pwmOnPercent = constrain(rawVal.toFloat(), 0, 1);
+        Serial.println(type + " " + pwmOnPercent);
+      }
+      else if (type == "heat") {
+        relayOnPercent = constrain(rawVal.toFloat(), 0, 1);
+        Serial.println(type + " " + relayOnPercent);
+      }
+      else if (type == "scent") {  
+        scentNum = constrain(rawVal.toInt(), 0, 4);
+        Serial.println(type + " " + scentNum);
+      }
+    }
     
-    Serial.println(pwmOnPercent);
-    server->send(200, "text/plain", "changed settings");
+    server->send(200, "text/plain", "updated settings");
   });
 
   server->onNotFound(handleNotFound);
@@ -70,12 +86,6 @@ void initRoutes() {
 
 void handleRoot() {
   server->send(200, "text/plain", "hello from esp8266!");
-}
-
-void getProcessedValue() {
-    String raw = server->arg(0);
-    float val = raw.toFloat();
-    return constrain(val, 0, 1);
 }
 
 void tick()
@@ -186,7 +196,7 @@ void connectTheBadBoy() {
   //if it does not connect it starts an access point with the specified name
   //here  "AutoConnectAP"
   //and goes into a blocking loop awaiting configuration
-  if (!wifiManager.autoConnect("AutoConnectAP", "broomsday")) {
+  if (!wifiManager.autoConnect("BroomFeedbackSystemAP", "broomsday")) {
     Serial.println("failed to connect and hit timeout");
     delay(3000);
     //reset and try again, or maybe put it to deep sleep

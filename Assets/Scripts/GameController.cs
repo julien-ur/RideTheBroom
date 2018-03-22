@@ -10,7 +10,6 @@ public class GameController : MonoBehaviour
 
     private GameObject player;
     private Tutorial tutorial;
-    private HUD hud;
     private Wisp wisp;
     private PlayerControl pc;
     private ArduinoController arduino;
@@ -28,7 +27,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         player = GameComponents.GetPlayer();
-        hud = GameComponents.GetHUD();
         wisp = GameComponents.GetWisp();
         tutorial = GameComponents.GetTutorial();
         fade = GameComponents.GetFading();
@@ -43,7 +41,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator GameStartRoutine()
     {
-        fade.fadeIn(1);
+        fade.FadeIn(1);
         yield return new WaitForSeconds(3f);
         //float duration = wisp.talkToPlayer(wisp.MenuIntro);
         //yield return new WaitForSeconds(duration + 0.3f);
@@ -132,7 +130,6 @@ public class GameController : MonoBehaviour
 
     public void RingActivated()
     {
-        //hud.show("Ring Activated", 2);
         //player.Find("armature_score").GetComponent<ScoreDisplayControl>().AddScore(1);
         numRings++;
         player.GetComponentInChildren<ScoreDisplayControl>().AddScore(1);
@@ -140,7 +137,6 @@ public class GameController : MonoBehaviour
 
     public void ShowResults(float durationInSec)
     {
-        //hud.show("Ringe: " + score.getActivatedRings() + "  --  Zeit: " + Time.realtimeSinceStartup, durationInSec);
     }
 
     public void FinishLevel()
@@ -190,7 +186,7 @@ public class GameController : MonoBehaviour
         {
             yield return new WaitForSeconds(5f);
         }
-        fade.fadeOut(1);
+        fade.FadeOut(1);
         LoadLevel(Constants.LEVEL.Menu);
     }
 

@@ -8,7 +8,7 @@ public class Tutorial : MonoBehaviour {
     private GameController gc;
     private GameObject player;
     private PlayerControl pc;
-    private HUD hud;
+
     private Wisp wisp;
 
     private float playerRotationDetectionAngle = 50;
@@ -19,7 +19,6 @@ public class Tutorial : MonoBehaviour {
     void Start () {
         gc = GameComponents.GetGameController();
         player = GameComponents.GetPlayer();
-        hud = GameComponents.GetHUD();
         wisp = GameComponents.GetWisp();
         pc = GameComponents.GetPlayerControl();
     }
@@ -144,7 +143,6 @@ public class Tutorial : MonoBehaviour {
         float slowDownFactor = 0.1f;
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
-        hud.show("Aaah moment, warte. Siehst du das Schild da vorne?! Das steht überall da wo es alternative Streckenabschnitte gibt. Doch sei gewarnt, diese Absschnitte sind zumeist besonders schwer zu meistern und nicht geeignet für unerfahrerne Abenteurer!", 6 * slowDownFactor);
         yield return new WaitForSeconds(6 * slowDownFactor);
 
         while (Time.timeScale < 1)

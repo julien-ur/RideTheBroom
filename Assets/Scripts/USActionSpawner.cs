@@ -7,7 +7,8 @@ using Random = UnityEngine.Random;
 public class USActionSpawner : MonoBehaviour {
 
     public int ActionsToSpawn = 5;
-    public float MinTimeBetweenActions = 3; //secs
+    public float MinTimeBetweenActions = 5; //secs
+    public float MaxTimeBetweenActions = 20; //secs
 
     public EventHandler ActionCountReached;
 
@@ -15,28 +16,28 @@ public class USActionSpawner : MonoBehaviour {
     private int _actionCount = 0;
     private bool _actionFinished = false;
 
-
-    public void Start()
+    void Start()
     {
         _action = GetComponent<USAction>();
-        StartCoroutine(Spawner());
     }
 
     private void StartNewAction()
     {
+        _actionFinished = false;
         var rndType = (USAction.TYPE) Random.Range(0, _action.GetTypeCount() - 1);
         _action.StartNewAction(rndType, _actionCount);
-        _actionFinished = false;
         _actionCount++;
     }
 
     private IEnumerator Spawner()
     {
+        yield return new WaitForSeconds(Random.Range(MinTimeBetweenActions, MaxTimeBetweenActions));
+
         while (true)
         {
             yield return new WaitUntil(IsPlayerReady);
-            
             StartNewAction();
+
             yield return new WaitUntil(() => _actionFinished);
 
             if (_actionCount >= ActionsToSpawn)
@@ -46,7 +47,7 @@ public class USActionSpawner : MonoBehaviour {
                 yield break;
             }
 
-            yield return new WaitForSeconds(MinTimeBetweenActions);
+            yield return new WaitForSeconds(Random.Range(MinTimeBetweenActions, MaxTimeBetweenActions));
         }
     }
 
@@ -57,6 +58,7 @@ public class USActionSpawner : MonoBehaviour {
 
     public void OnActionFinished(object sender, USActionEventArgs args)
     {
+        Debug.Log("Action finished");
         _actionFinished = true;
     }
 
@@ -64,5 +66,15 @@ public class USActionSpawner : MonoBehaviour {
     {
         if (ActionCountReached != null)
             ActionCountReached(this, EventArgs.Empty);
+    }
+
+    public void StartSpawning()
+    {
+        StartCoroutine(Spawner());
+    }
+
+    public void ResetActionCount()
+    {
+        _actionCount = 0;
     }
 }

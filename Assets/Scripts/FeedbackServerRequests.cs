@@ -10,6 +10,7 @@ public class FeedbackServerRequests : MonoBehaviour
 
     public String address = "192.168.1.100";
     public float wind = 5;
+    public float duration = 1; // in secs
     public bool shouldPost;
 
 	void Update ()
@@ -22,7 +23,8 @@ public class FeedbackServerRequests : MonoBehaviour
     IEnumerator post()
     {
         WWWForm form = new WWWForm();
-        form.AddField("wind", wind.ToString());
+        form.AddField("wind", wind.ToString() + "," + duration);
+
 
         using (UnityWebRequest www = UnityWebRequest.Post(address + "/update", form))
         {
@@ -37,5 +39,10 @@ public class FeedbackServerRequests : MonoBehaviour
                 Debug.Log("Form upload complete!");
             }
         }
+    }
+
+    public void PostAction(USAction.TYPE argsActionType)
+    {
+        Debug.Log(argsActionType);
     }
 }

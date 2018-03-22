@@ -1,44 +1,105 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class UserStudyControl : MonoBehaviour {
+public class UserStudyControl : MonoBehaviour
+{
+
+    public enum RoundType { Heat, Smell, Vibration }
+    public string[] RoundNames = { "Wärme", "Geruch", "Vibration" };
+    public RoundType[] Rounds = { RoundType.Smell, RoundType.Vibration, RoundType.Heat };
+
+    public AudioClip TimeOutSound;
+    public float TimeOutVolume = 0.3f;
+
+    public AudioClip SuccessSound;
+    public float SuccessVolume = 0.3f;
+
+    private USActionSpawner _spawner;
+    private Text _infoText;
+    private Fading _fading;
+
+    private bool _roundFinished;
 
     private void Start()
     {
-        StartCoroutine(InitStudy());
+        _fading = GameComponents.GetFading();
+        StartCoroutine(StartStudy());
     }
 
-    private IEnumerator InitStudy()
+    IEnumerator StartStudy()
     {
         // yield return new WaitUntil(IsPlayerReady);
         yield return new WaitForSeconds(5);
-        StartStudy();
+        CreateStudyObject();
+
         Debug.Log("Study Started");
+
+        foreach (RoundType round in Rounds)
+        {
+            _roundFinished = false;
+            _spawner.ResetActionCount();
+
+            _fading.FadeOut(1, true);
+            yield return new WaitForSecondsRealtime(1.5f);
+
+            _infoText.text = RoundNames[(int)round];
+            yield return new WaitForSecondsRealtime(3);
+
+            _infoText.text = "";
+            _fading.FadeIn(2);
+            yield return new WaitForSecondsRealtime(2);
+
+            _spawner.StartSpawning();
+            StartLogging();
+
+            yield return new WaitUntil(() => _roundFinished);
+        }
+
+        Debug.Log("Study Finished");
+        FinishLogging();
+
+        _fading.FadeOut(2, true);
+        yield return new WaitForSecondsRealtime(2);
+        _infoText.text = "Danke für deine Teilnahme!";
+        _infoText.resizeTextForBestFit = true;
+
+        yield return new WaitForSecondsRealtime(5);
+
+        _infoText.text = "";
+        _fading.FadeIn(2);
+        yield return new WaitForSecondsRealtime(2);
     }
 
-    private void StartStudy()
+    private void CreateStudyObject()
     {
-        var u = new GameObject()
-        {
-            name = "User Study"
-        };
+        var u = new GameObject(){ name = "User Study" };
 
-        var spawner = u.AddComponent<USActionSpawner>();
+        u.AddComponent<AudioSource>();
+        _infoText = GameObject.FindGameObjectWithTag("HUD").transform.Find("StudyInfoText").GetComponentInChildren<Text>();
+        _infoText.resizeTextForBestFit = true;
+
+        _spawner = u.AddComponent<USActionSpawner>();
+
         var action = u.AddComponent<USAction>();
         var actionControl = u.AddComponent<USActionController>();
 
+        RegisterListener(action, actionControl);
+    }
+
+    private void RegisterListener(USAction action, USActionController actionControl)
+    {
+        actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
+        actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
+
         action.ActionStarted += actionControl.OnActionStarted;
-
-        action.ActionSuccess += spawner.OnActionFinished;
+        action.ActionSuccess += _spawner.OnActionFinished;
         action.ActionSuccess += actionControl.OnActionSuccess;
-
-        action.ActionTimeOut += spawner.OnActionFinished;
+        action.ActionTimeOut += _spawner.OnActionFinished;
         action.ActionTimeOut += actionControl.OnActionTimeOut;
 
-        spawner.ActionCountReached += OnStudyFinished;
-
-        StartLogging();
+        _spawner.ActionCountReached += OnRoundFinished;
     }
 
     private void StartLogging()
@@ -56,9 +117,9 @@ public class UserStudyControl : MonoBehaviour {
         return true;
     }
 
-    public void OnStudyFinished(object sender, EventArgs args)
+    public void OnRoundFinished(object sender, EventArgs args)
     {
-        Debug.Log("Study Finished");
-        FinishLogging();
+        Debug.Log("Round Finished");
+        _roundFinished = true;
     }
 }

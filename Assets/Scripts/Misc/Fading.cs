@@ -1,35 +1,61 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Fading : MonoBehaviour {
 
-    public Texture2D fadeOutTexture;
+    private Image _fadingImage;
+    private RectTransform _fadingRect;
 
-    private float fadingTimeInSec = 3;
-    private int drawDepth = -1000; // the texture's order in the draw hierachy: a low number means it renders on top
-    private float alpha;
-    private int fadeDir; // in = -1 or out = 1
+    private float _fadingTimeInSec;
+    private int _fadeDir;
+    private float _alpha;
+    private bool _withFreeze;
 
-    void OnGUI()
+
+    void Awake()
     {
-        alpha += (Time.deltaTime / fadingTimeInSec) * fadeDir;
-        alpha = Mathf.Clamp01(alpha);
-
-        GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
-        GUI.depth = drawDepth;
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeOutTexture);
+        Transform fadingObj = GameComponents.GetHUD().transform.Find("Fading");
+        _fadingRect = fadingObj.GetComponent<RectTransform>();
+        _fadingImage = fadingObj.GetComponent<Image>();
     }
 
-    public void fadeIn(float f)
+    IEnumerator Fade()
     {
-        fadingTimeInSec = f;
-        fadeDir = -1;
-        alpha = 1;
+        while (_fadeDir == -1 && _alpha > 0 || _fadeDir == 1 && _alpha < 1)
+        {
+            _alpha += (Time.unscaledDeltaTime / _fadingTimeInSec) * _fadeDir;
+            _alpha = Mathf.Clamp01(_alpha);
+
+            if (_withFreeze || _fadeDir == -1 && Time.timeScale < 1)
+            {
+                float tmpTimeScale = Time.timeScale;
+                tmpTimeScale += (Time.deltaTime / _fadingTimeInSec) * _fadeDir * -1;
+                tmpTimeScale = Mathf.Clamp01(tmpTimeScale);
+                Time.timeScale = tmpTimeScale;
+            }
+
+            _fadingRect.sizeDelta = new Vector2(Screen.width, Screen.height);
+            _fadingImage.color = new Color(0, 0, 0, _alpha);
+
+            yield return new WaitForEndOfFrame();
+        };
     }
 
-    public void fadeOut (float f)
+    public void FadeIn (float f)
     {
-        fadingTimeInSec = f;
-        fadeDir = 1;
-        alpha = 0;
+        _fadingTimeInSec = f;
+        _fadeDir = -1;
+        _alpha = 1;
+        StartCoroutine(Fade());
+    }
+
+    public void FadeOut (float f, bool withFreeze=false)
+    {
+        _fadingTimeInSec = f;
+        _fadeDir = 1;
+        _alpha = 0;
+        _withFreeze = withFreeze;
+        StartCoroutine(Fade());
     }
 }

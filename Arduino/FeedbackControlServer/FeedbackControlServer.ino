@@ -1,5 +1,6 @@
 #include <FS.h>                   //this needs to be first, or it all crashes and burns...
 #include <ESP8266WiFi.h>          //https://github.com/esp8266/Arduino
+#include <AsyncDelay.h>           //https://github.com/stevemarple/AsyncDelay
 
 //needed for library
 #include <DNSServer.h>
@@ -20,29 +21,50 @@ char static_sn[16] = "255.255.255.0";
 bool shouldSaveConfig = false;
 
 // PINs
-#define RELAY_PIN D1
-#define PWM_PIN D2
+#define HEAT_PIN D1
+#define WIND_PIN D2
 
 // Constants
-const int RELAY_CYCLE_TIME = 400; // in ms
-const int PWM_CYCLE_TIME = 20; // in ms
+const int HEAT_CYCLE_TIME = 400; // in ms
+const int WIND_CYCLE_TIME = 20; // in ms
 
 // Variables
-String serialInputString = "0";
-bool serialInputAvailable = false;
+int heatCycleStartTime;
+int windCycleStartTime;
 
-float relayOnPercent = 0;
-float pwmOnPercent = 0;
+float heatPercent = 0;
+float windPercent = 0;
+float vibrationPercent = 0;
 int scentNum = 0; // 0 = no scent
-int relayCycleStartTime;
-int pwmCycleStartTime;
 
+struct feedbackData 
+{
+    float currentVal = 0;
+    float defaultVal = 0;
+    AsyncDelay revertChangeDelay;
+};
+typedef struct feedbackData FeedbackData;
+
+struct requestData
+{
+  String type;
+  float value;
+  float duration;
+};
+typedef struct requestData RequestData;
+
+FeedbackData heatData;
+
+float defaultHeatPercent = 0;
+AsyncDelay heatChangeDelay;
 
 void loop() {
   server->handleClient();
+  
+  if (heatData.revertChangeDelay.isExpired()) heatPercent = defaultHeatPercent;
 
-  pwm(PWM_PIN, PWM_CYCLE_TIME, pwmOnPercent, &pwmCycleStartTime, false);
-  pwm(RELAY_PIN, RELAY_CYCLE_TIME, relayOnPercent, &relayCycleStartTime, false);
+  pwm(WIND_PIN, WIND_CYCLE_TIME, windPercent, &windCycleStartTime, false);
+  pwm(HEAT_PIN, HEAT_CYCLE_TIME, heatPercent, &heatCycleStartTime, false);
 }
 
 void initRoutes() {
@@ -58,33 +80,25 @@ void initRoutes() {
     resetWebServer();
   });
 
-  server->on("/temp_update", []() {
+  server->on("/update", []() {
 
     for (int i = 0; i < server->args(); i++) {
-      String type = server->argName(i);
-      String data = server->arg(i);
-      int separatorIndex = data.indexOf(",");
+      RequestData reqData = ExtractDataFromArgs(i);
 
-      float value = data.substring(0, separatorIndex).toFloat();
-      float duration = data.substring(separatorIndex+1).toFloat();
-
-      Serial.println(type + " " + value + " " + duration);
-      
-      if (type == "wind") {
-        pwmOnPercent = constrain(value, 0, 1);
-        Serial.println(type + " " + pwmOnPercent);
+      if (reqData.type == "w") {
+        windPercent = constrain(reqData.value, 0, 1);
+        Serial.println(reqData.type + " " + windPercent);
       }
-      else if (type == "heat") {
-        relayOnPercent = constrain(value, 0, 1);
-        Serial.println(type + " " + relayOnPercent);
+      else if (reqData.type == "h") {
+        UpdateFeedbackData(heatData, reqData);
       }
-      else if (type == "scent") {  
-        scentNum = constrain((int)value, 0, 4);
-        Serial.println(type + " " + scentNum);
+      else if (reqData.type == "s") {  
+        scentNum = constrain((int)reqData.value, 0, 4);
+        Serial.println(reqData.type + " " + scentNum);
       }
     }
     
-    server->send(200, "text/plain", "updated settings");
+    server->send(200, "text/plain", "temp update");
   });
 
   server->onNotFound(handleNotFound);
@@ -92,6 +106,30 @@ void initRoutes() {
 
 void handleRoot() {
   server->send(200, "text/plain", "hello from esp8266!");
+}
+
+void UpdateFeedbackData(FeedbackData fbData, RequestData reqData) {
+  fbData.currentVal = constrain(reqData.value, 0, 1);
+
+  if (reqData.duration == 0)
+    fbData.defaultVal = fbData.currentVal;
+  else 
+    fbData.revertChangeDelay.start(reqData.duration * 1000, AsyncDelay::MILLIS);
+
+  Serial.println(reqData.type + " " + fbData.currentVal);
+}
+
+RequestData ExtractDataFromArgs(int i) {
+    RequestData data;
+
+    data.type = server->argName(i);
+    String argString = server->arg(i);
+    int separatorIndex = argString.indexOf(",");
+
+    data.value = argString.substring(0, separatorIndex).toFloat();
+    data.duration = argString.substring(separatorIndex+1).toFloat();
+
+    return data;
 }
 
 void tick()
@@ -121,9 +159,9 @@ void setup() {
   Serial.begin(115200);
   Serial.println();
 
-  pinMode(RELAY_PIN, OUTPUT);
-  pinMode(PWM_PIN, OUTPUT);
-  digitalWrite(PWM_PIN, LOW);
+  pinMode(HEAT_PIN, OUTPUT);
+  pinMode(WIND_PIN, OUTPUT);
+  digitalWrite(WIND_PIN, LOW);
 
   pinMode(BUILTIN_LED, OUTPUT);
   digitalWrite(BUILTIN_LED, HIGH);
@@ -146,8 +184,8 @@ void setup() {
   Serial.println(WiFi.gatewayIP());
   Serial.println(WiFi.subnetMask());
 
-  pwmCycleStartTime = millis();
-  relayCycleStartTime = millis();
+  windCycleStartTime = millis();
+  heatCycleStartTime = millis();
 }
 
 void mountFSAndReadConfig() {

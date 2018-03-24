@@ -19,6 +19,7 @@ public class LevelActions : MonoBehaviour
     private Constants.LEVEL _currentLevel;
 
 
+
     private void Start () {
         _menu = GameComponents.GetMenu();
         if (_menu) deactivateTestingStuff(); // deactivates all objects of the layer "testing stuff"

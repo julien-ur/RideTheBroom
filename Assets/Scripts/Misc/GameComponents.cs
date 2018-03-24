@@ -76,6 +76,11 @@ public static class GameComponents {
         return (mo) ? mo.GetComponent<Menu>() : null;
     }
 
+    public static MenuCabinTrigger GetMenuCabinTrigger()
+    {
+        return GetMenu().GetComponentInChildren<MenuCabinTrigger>();
+    }
+
     public static BroomCloset GetBroomCloset()
     {
         GameObject mo = GetMenuObject();

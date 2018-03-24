@@ -29,7 +29,7 @@ public class USActionController : MonoBehaviour
 
         if (feedbackData == null) return;
 
-        _fsr.TempFeedbackChange(feedbackData);
+        _fsr.PostChange(feedbackData);
     }
 
     public void OnActionSuccess(object sender, USActionEventArgs args)

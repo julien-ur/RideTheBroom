@@ -7,18 +7,28 @@ using UnityEngine.Networking;
 
 public class FeedbackServer : MonoBehaviour {
 
-    public String Address = "192.168.1.100";
+    private String _address = "192.168.1.100";
+    private String _updateRoute = "/update";
+    private String _resetRoute = "/reset";
+
+    public const int SMELL_LEMON_VAL = 1;
+    public const int SMELL_WOODY_VAL = 2;
+    public const int SMELL_BERRY_VAL = 3;
+
     public const string WIND_TAG = "w";
     public const string HEAT_TAG = "h";
     public const string SMELL_TAG = "s";
     public const string VIBRATION_TAG = "v";
     public const string PAUSE_TAG = "p";
 
+    public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG, PAUSE_TAG };
+
+
     private IEnumerator Post(string route, string rawData)
     {
         WWWForm form = ConvertRawDataToForm(rawData);
 
-        using (UnityWebRequest www = UnityWebRequest.Post(Address + route, form))
+        using (UnityWebRequest www = UnityWebRequest.Post(_address + _updateRoute, form))
         {
             yield return www.SendWebRequest();
 
@@ -41,31 +51,17 @@ public class FeedbackServer : MonoBehaviour {
 
         foreach (string s in instructions)
         {
-            if (s.Contains("s"))
-                form.AddField("smell", s.Replace("s", ""));
-
-            else if (s.Contains("h"))
-                form.AddField("heat", s.Replace("h", ""));
-
-            else if (s.Contains("v"))
-                form.AddField("vibration", s.Replace("v", ""));
-
-            else if (s.Contains(WIND_TAG))
-                form.AddField("wind", s.Replace("w", ""));
-
-            else if (s.Contains("p"))
-                form.AddField("pause", s.Replace("w", ""));
+            foreach (string tag in ALL_TAGS)
+            {
+                if (s.Contains(tag))
+                    form.AddField(tag, s.Replace(tag, ""));
+            }
         }
 
         return form;
     }
 
-    public void TempFeedbackChange(string rawData)
-    {
-        StartCoroutine(Post("/temp_update", rawData));
-    }
-
-    public void PermanentFeedbackChange(string rawData)
+    public void PostChange(string rawData)
     {
         StartCoroutine(Post("/update", rawData));
     }

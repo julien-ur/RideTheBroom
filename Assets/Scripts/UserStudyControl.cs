@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserStudyControl : MonoBehaviour
-{
+public class UserStudyControl : MonoBehaviour {
 
     public enum FeedbackType { Heat, Smell, Vibration }
     public string[] FeedbackLabels = { "Wärme", "Geruch", "Vibration" };
@@ -13,21 +12,21 @@ public class UserStudyControl : MonoBehaviour
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
-        { "" + FeedbackType.Heat + USAction.TYPE.RefillTank, FeedbackServer.HEAT_TAG + "0, 2"},
-        { "" + FeedbackType.Heat + USAction.TYPE.Accelerate, FeedbackServer.HEAT_TAG + "1, 2"},
-        { "" + FeedbackType.Heat + USAction.TYPE.POV, FeedbackServer.HEAT_TAG + "1, 0.5"},
+        { "" + FeedbackType.Heat + USAction.TYPE.RefillTank, FeedbackServer.HEAT_TAG + "0, 2" },
+        { "" + FeedbackType.Heat + USAction.TYPE.Accelerate, FeedbackServer.HEAT_TAG + "1, 2" },
+        { "" + FeedbackType.Heat + USAction.TYPE.POV, FeedbackServer.HEAT_TAG + "1, 0.5" },
 
-        { "" + FeedbackType.Smell + USAction.TYPE.RefillTank, FeedbackServer.SMELL_TAG + Constants.SMELL_WOODY + ", 2"},
-        { "" + FeedbackType.Smell + USAction.TYPE.Accelerate, FeedbackServer.SMELL_TAG + Constants.SMELL_LEMON + ", 2"},
-        { "" + FeedbackType.Smell + USAction.TYPE.POV, FeedbackServer.SMELL_TAG + Constants.SMELL_BERRY + ", 2"},
+        { "" + FeedbackType.Smell + USAction.TYPE.RefillTank, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USAction.TYPE.Accelerate, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USAction.TYPE.POV, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
 
-        { "" + FeedbackType.Vibration + USAction.TYPE.RefillTank, FeedbackServer.VIBRATION_TAG + "0.4, 2"},
-        { "" + FeedbackType.Vibration + USAction.TYPE.Accelerate, FeedbackServer.VIBRATION_TAG + "1, 2"},
-        { "" + FeedbackType.Vibration + USAction.TYPE.POV, FeedbackServer.VIBRATION_TAG + "0.4, 0.3;" + 
-                                                           FeedbackServer.PAUSE_TAG + "0.5;" + 
-                                                           FeedbackServer.VIBRATION_TAG + "0.4, 0.3;" + 
-                                                           FeedbackServer.PAUSE_TAG + " 0.5p;" + 
-                                                           FeedbackServer.VIBRATION_TAG + "0.4, 0.3"}
+        { "" + FeedbackType.Vibration + USAction.TYPE.RefillTank, FeedbackServer.VIBRATION_TAG + "0.4, 2;" },
+        { "" + FeedbackType.Vibration + USAction.TYPE.Accelerate, FeedbackServer.VIBRATION_TAG + "1, 2;" },
+        { "" + FeedbackType.Vibration + USAction.TYPE.POV, FeedbackServer.VIBRATION_TAG + "0.4, 0.3;" +
+                                                         FeedbackServer.PAUSE_TAG + "0.5;" +
+                                                         FeedbackServer.VIBRATION_TAG + "0.4, 0.3;" +
+                                                         FeedbackServer.PAUSE_TAG + " 0.5;" +
+                                                         FeedbackServer.VIBRATION_TAG + "0.4, 0.3" }
     };
 
     public AudioClip TimeOutSound;
@@ -40,6 +39,7 @@ public class UserStudyControl : MonoBehaviour
     private USActionController _actionControl;
     private Text _infoText;
     private Fading _fading;
+    private MenuCabinTrigger _mct;
 
     private FeedbackType _currentFeedbackType;
     private bool _roundFinished;
@@ -47,21 +47,25 @@ public class UserStudyControl : MonoBehaviour
     private void Start()
     {
         _fading = GameComponents.GetFading();
+        _mct = GameComponents.GetMenuCabinTrigger();
 
+        CreateStudyObjects();
+        RegisterListener();
+    }
+
+    public void OnPlayerLeftTheBuilding(object sender, EventArgs args)
+    {
         StartCoroutine(StartStudy());
     }
 
     IEnumerator StartStudy()
     {
-        // yield return new WaitUntil(IsPlayerReady);
-        yield return new WaitForSeconds(5);
-        CreateStudyObject();
-
         Debug.Log("Study Started");
 
         foreach (FeedbackType f in Rounds)
         {
             _roundFinished = false;
+            _currentFeedbackType = f;
             _spawner.ResetActionCount();
 
             _fading.FadeOut(1, true);
@@ -95,7 +99,7 @@ public class UserStudyControl : MonoBehaviour
         yield return new WaitForSecondsRealtime(2);
     }
 
-    private void CreateStudyObject()
+    private void CreateStudyObjects()
     {
         var u = new GameObject(){ name = "User Study" };
 
@@ -105,16 +109,15 @@ public class UserStudyControl : MonoBehaviour
 
         _spawner = u.AddComponent<USActionSpawner>();
         _actionControl = u.AddComponent<USActionController>();
-        var action = u.AddComponent<USAction>();
-
-        RegisterListener(action);
+        u.AddComponent<USAction>();
     }
 
-    private void RegisterListener(USAction action)
+    private void RegisterListener()
     {
         _actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
         _actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
 
+        var action = GetComponent<USAction>();
         action.ActionStarted += _actionControl.OnActionStarted;
         action.ActionSuccess += _spawner.OnActionFinished;
         action.ActionSuccess += _actionControl.OnActionSuccess;
@@ -122,6 +125,7 @@ public class UserStudyControl : MonoBehaviour
         action.ActionTimeOut += _actionControl.OnActionTimeOut;
 
         _spawner.ActionCountReached += OnRoundFinished;
+        _mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
     }
 
     private void StartLogging()
@@ -132,11 +136,6 @@ public class UserStudyControl : MonoBehaviour
     private void FinishLogging()
     {
 
-    }
-
-    private bool IsPlayerReady()
-    {
-        return true;
     }
 
     public void OnRoundFinished(object sender, EventArgs args)

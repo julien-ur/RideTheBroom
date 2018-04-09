@@ -29,19 +29,22 @@ public class GameController : MonoBehaviour
         player = GameComponents.GetPlayer();
         wisp = GameComponents.GetWisp();
         tutorial = GameComponents.GetTutorial();
-        fade = GameComponents.GetFading();
         pc = GameComponents.GetPlayerControl();
         ghostModeController = GameComponents.GetGhostModeController();
         materialResetter = GameComponents.GetMaterialResetter();
         vrSelectionControl = GameComponents.GetVRSelectionControl();
 
         pc.DisableRotation();
+
+        fade = GameComponents.GetFading();
         StartCoroutine(GameStartRoutine());
     }
 
     IEnumerator GameStartRoutine()
     {
-        fade.FadeIn(1);
+        fade.FadeOut(0f);
+        yield return new WaitForSeconds(0.5f);
+        fade.FadeIn(2.5f);
         yield return new WaitForSeconds(3f);
         //float duration = wisp.talkToPlayer(wisp.MenuIntro);
         //yield return new WaitForSeconds(duration + 0.3f);

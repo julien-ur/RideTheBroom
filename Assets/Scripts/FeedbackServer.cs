@@ -23,6 +23,7 @@ public class FeedbackServer : MonoBehaviour {
 
     public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG, PAUSE_TAG };
 
+    public EventHandler<UserStudyControlEventArgs> FeedbackRequestSent;
 
     private IEnumerator Post(string route, string rawData)
     {
@@ -39,8 +40,15 @@ public class FeedbackServer : MonoBehaviour {
             else
             {
                 Debug.Log("feedback request successful");
+                OnFeedbackRequestSent();
             }
         }
+    }
+
+    protected virtual void OnFeedbackRequestSent()
+    {
+        if (FeedbackRequestSent != null)
+            FeedbackRequestSent(this, new UserStudyControlEventArgs() { EventInfo = "FeedbackRequest Sent" });
     }
 
     private WWWForm ConvertRawDataToForm(string data)

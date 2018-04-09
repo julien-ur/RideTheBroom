@@ -7,9 +7,9 @@ public class MenuCabinTrigger : MonoBehaviour {
 
     public EventHandler PlayerLeftTheBuilding;
 
-    void OnTriggerLeave(Collider other)
+    void OnTriggerExit(Collider other)
     {
-        if (other.name == "Player")
+        if (other.tag == "Player")
         {
             OnPlayerLEftTheBuilding();
         }
@@ -21,3 +21,4 @@ public class MenuCabinTrigger : MonoBehaviour {
             PlayerLeftTheBuilding(this, EventArgs.Empty);
     }
 }
+

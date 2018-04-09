@@ -33,6 +33,12 @@ public static class GameComponents {
         return (player) ? player.GetComponent<PlayerControl>() : null;
     }
 
+    public static VRSelectionControl GetVRSelectionControl()
+    {
+        GameObject player = GetPlayer();
+        return (player) ? player.GetComponentInChildren<VRSelectionControl>() : null;
+    }
+
     public static ArduinoController GetArduinoController()
     {
         GameObject gc = GetGameControl();
@@ -78,19 +84,14 @@ public static class GameComponents {
 
     public static MenuCabinTrigger GetMenuCabinTrigger()
     {
-        return GetMenu().GetComponentInChildren<MenuCabinTrigger>();
+        GameObject mo = GetMenuObject();
+        return (mo) ? mo.GetComponentInChildren<MenuCabinTrigger>() : null;
     }
 
     public static BroomCloset GetBroomCloset()
     {
         GameObject mo = GetMenuObject();
         return (mo) ? mo.GetComponent<BroomCloset>() : null;
-    }
-
-    public static VRSelectionControl GetVRSelectionControl()
-    {
-        GameObject mo = GetMenuObject();
-        return (mo) ? mo.GetComponent<VRSelectionControl>() : null;
     }
 
     public static MaterialResetter GetMaterialResetter()

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,14 @@ public class Fading : MonoBehaviour {
         _fadingImage = fadingObj.GetComponent<Image>();
     }
 
+    void Update()
+    {
+        if (!(_fadeDir == -1 && _alpha == 0))
+        {
+            _fadingRect.sizeDelta = new Vector2(Screen.width, Screen.height);
+        }
+    }
+
     IEnumerator Fade()
     {
         while (_fadeDir == -1 && _alpha > 0 || _fadeDir == 1 && _alpha < 1)
@@ -35,7 +44,6 @@ public class Fading : MonoBehaviour {
                 Time.timeScale = tmpTimeScale;
             }
 
-            _fadingRect.sizeDelta = new Vector2(Screen.width, Screen.height);
             _fadingImage.color = new Color(0, 0, 0, _alpha);
 
             yield return new WaitForEndOfFrame();

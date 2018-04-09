@@ -212,20 +212,20 @@ public class SteamVR_LoadLevel : MonoBehaviour
 	// Fade our overlays in/out over time.
 	void Update()
 	{
-		if (_active != this)
-			return;
+		//if (_active != this)
+		//	return;
 
-		alpha = Mathf.Clamp01(alpha + fadeRate * Time.deltaTime);
+		//alpha = Mathf.Clamp01(alpha + fadeRate * Time.deltaTime);
 
-		var overlay = OpenVR.Overlay;
-		if (overlay != null)
-		{
-			if (loadingScreenOverlayHandle != OpenVR.k_ulOverlayHandleInvalid)
-				overlay.SetOverlayAlpha(loadingScreenOverlayHandle, alpha);
+		//var overlay = OpenVR.Overlay;
+		//if (overlay != null)
+		//{
+		//	if (loadingScreenOverlayHandle != OpenVR.k_ulOverlayHandleInvalid)
+		//		overlay.SetOverlayAlpha(loadingScreenOverlayHandle, alpha);
 
-			if (progressBarOverlayHandle != OpenVR.k_ulOverlayHandleInvalid)
-				overlay.SetOverlayAlpha(progressBarOverlayHandle, alpha);
-		}
+		//	if (progressBarOverlayHandle != OpenVR.k_ulOverlayHandleInvalid)
+		//		overlay.SetOverlayAlpha(progressBarOverlayHandle, alpha);
+		//}
 	}
 
 	// Corourtine to handle all the steps across loading boundaries.

@@ -131,19 +131,18 @@ public class USAction : MonoBehaviour {
         rightPovContainer.transform.parent = _actionItem.transform;
 
         // move pov container to player
-        Transform playerTrans = _pc.transform;
-        Vector3 posWithoutSideAxes = playerTrans.position + (1 * playerTrans.up)
-                                                          + (-32 * playerTrans.forward);
-        Vector3 leftSideShift = (-43 * playerTrans.right);
+        //Transform playerTrans = _pc.transform;
+        //Vector3 posWithoutSideAxes = playerTrans.position + (1 * playerTrans.up)
+        //                                                  + (-32 * playerTrans.forward);
+        //Vector3 leftSideShift = (-43 * playerTrans.right);
 
-        leftPovContainer.position = posWithoutSideAxes + leftSideShift;
-        rightPovContainer.position = posWithoutSideAxes - leftSideShift;
+        //leftPovContainer.position = posWithoutSideAxes + leftSideShift;
+        //rightPovContainer.position = posWithoutSideAxes - leftSideShift;
 
-        rightPovContainer.localScale = Vector3.Scale(rightPovContainer.localScale, new Vector3(-1, 1, 1));
+        //rightPovContainer.localScale = Vector3.Scale(rightPovContainer.localScale, new Vector3(-1, 1, 1));
 
-        leftPovContainer.rotation = playerTrans.rotation;
-        rightPovContainer.rotation = playerTrans.rotation;
-
+        //leftPovContainer.rotation = playerTrans.rotation;
+        //rightPovContainer.rotation = playerTrans.rotation;
         // ---------------------------------------------------------
 
         var selectables = rightPovContainer.GetComponentsInChildren<USPovSelectable>();

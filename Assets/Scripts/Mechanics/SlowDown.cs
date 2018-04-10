@@ -19,9 +19,9 @@ public class SlowDown : MonoBehaviour {
     {
         float defaultDrag = rb.drag;
         rb.drag = 50;
-        player.changeSpeedToTargetSpeed(Constants.SLOWDOWN_TARGET_SPEED, Constants.SLOWDOWN_TIME);
+        player.ChangeSpeedToTargetSpeed(Constants.SLOWDOWN_TARGET_SPEED, Constants.SLOWDOWN_TIME);
         yield return new WaitForSeconds(Constants.SLOWDOWN_TIME);
-        player.changeSpeedToDefaultSpeed(Constants.SLOWDOWN_RECOVERY_TIME);
+        player.ChangeSpeedToDefaultSpeed(Constants.SLOWDOWN_RECOVERY_TIME);
         rb.drag = defaultDrag;
     }
 }

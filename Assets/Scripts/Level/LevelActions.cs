@@ -71,11 +71,11 @@ public class LevelActions : MonoBehaviour
             }
             else if (_currentLevel == Constants.LEVEL.ForestCave)
             {
-                _pc.changeSpeed(22);
+                _pc.ChangeSpeed(22);
             }
             else if (_currentLevel == Constants.LEVEL.SpaceProcedural)
             {
-                _pc.changeSpeed(8, 5, 10);
+                _pc.ChangeSpeed(8, 5, 10);
                 _pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
                 _pc.enableBroomRollback = false;
             }
@@ -113,7 +113,7 @@ public class LevelActions : MonoBehaviour
 
     public void FinishLevel()
     {
-        _pc.changeSpeedToTargetSpeed(0, 0.5f);
+        _pc.ChangeSpeedToTargetSpeed(0, 0.5f);
         foreach (GameObject p in _menuProps)
         {
             p.SetActive(false);

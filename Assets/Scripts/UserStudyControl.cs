@@ -13,8 +13,8 @@ public class UserStudyControlEventArgs : EventArgs
 
 public class UserStudyControl : MonoBehaviour {
 
-    public enum FeedbackType { Heat, Smell, Vibration }
-    public string[] FeedbackLabels = { "Wärme", "Geruch", "Vibration" };
+    public enum FeedbackType { Heat, Smell, Vibration, Audio }
+    private readonly string[] _feedbackLabels = { "Wärme", "Geruch", "Vibration", "Übung" };
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
@@ -26,8 +26,8 @@ public class UserStudyControl : MonoBehaviour {
         { "" + FeedbackType.Smell + USAction.TYPE.Accelerate, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
         { "" + FeedbackType.Smell + USAction.TYPE.POV, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
 
-        { "" + FeedbackType.Vibration + USAction.TYPE.RefillTank, FeedbackServer.VIBRATION_TAG + "0.4, 2;" },
-        { "" + FeedbackType.Vibration + USAction.TYPE.Accelerate, FeedbackServer.VIBRATION_TAG + "1, 2;" },
+        { "" + FeedbackType.Vibration + USAction.TYPE.RefillTank, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
+        { "" + FeedbackType.Vibration + USAction.TYPE.Accelerate, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
         { "" + FeedbackType.Vibration + USAction.TYPE.POV, FeedbackServer.VIBRATION_TAG + "0.4, 2;" }
     };
 
@@ -39,6 +39,11 @@ public class UserStudyControl : MonoBehaviour {
 
     public AudioClip PovSelectingSound;
     public float PovSelectingVolume = 0.3f;
+
+    public AudioClip VoiceAccelerate;
+    public AudioClip VoiceRefillTank;
+    public AudioClip VoicePov;
+    public float ActionVoiceVolume = 1f;
 
     public GameObject RefillTankItem;
     public GameObject PovContainer;
@@ -58,13 +63,14 @@ public class UserStudyControl : MonoBehaviour {
     private bool _playerReady;
     private bool _roundFinished;
     private USLogging _logging;
+    private PlayerControl _pc;
 
     void Awake()
     {
         InitStudyObjects();
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType>();
+        _rounds = new List<FeedbackType> { FeedbackType.Audio };
 
         if (File.Exists(RoundConfigPath) && TryGetRoundConfigEntry()) return;
 
@@ -72,57 +78,10 @@ public class UserStudyControl : MonoBehaviour {
         TryGetRoundConfigEntry();
     }
 
-    private void CreateNewRoundConfig()
-    {
-        FeedbackType[] feedbackTypes = Enum.GetValues(typeof(FeedbackType)).Cast<FeedbackType>().ToArray();
-          
-        using (StreamWriter sw = File.AppendText(RoundConfigPath))
-        {
-            foreach (FeedbackType[] feedbackOrder in Utilities.Permutations(feedbackTypes))
-            {
-                if (_subjectId == 0)
-                    _rounds = feedbackOrder.ToList();
-
-                var line = "";
-                foreach (FeedbackType t in feedbackOrder)
-                {
-                    line += FeedbackLabels[(int) t] + ",";
-                }
-
-                sw.WriteLine(line.TrimEnd(','));
-            }
-        }
-    }
-
-    private bool TryGetRoundConfigEntry()
-    {
-        var lines = File.ReadAllLines(RoundConfigPath);
-        if (lines.Length != 6) return false;
-
-        try
-        {
-            string line = lines[_subjectId % 6];
-            var roundOrder = line.Split(',');
-
-            var fll = FeedbackLabels.ToList();
-
-            foreach (string typeLabel in roundOrder)
-            {
-                _rounds.Add((FeedbackType) fll.IndexOf(typeLabel));
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e);
-            return false;
-        }
-
-        return true;
-    }
-
     void Start()
     {
         _fading = GameComponents.GetFading();
+        _pc = GameComponents.GetPlayerControl();
 
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) _playerReady = true;
@@ -141,7 +100,7 @@ public class UserStudyControl : MonoBehaviour {
         yield return new WaitUntil(() => _playerReady);
         yield return new WaitForSecondsRealtime(2f);
         
-        Debug.Log("Study Started");
+        Debug.Log("Study Started - Subject #" + _subjectId);
         _logging.StartLogging("Subject #" + _subjectId);
 
         foreach (FeedbackType f in _rounds)
@@ -150,20 +109,36 @@ public class UserStudyControl : MonoBehaviour {
             _currentFeedbackType = f;
             _spawner.ResetActionCount();
 
-            //_fading.FadeOut(1);
-            //_pc.changeSpeedToTargetSpeed(0, 1);
-            //yield return new WaitForSecondsRealtime(1.5f);
+            _fading.FadeOut(1);
+            _pc.ChangeSpeedToTargetSpeed(0, 1);
+            yield return new WaitForSecondsRealtime(1.5f);
+            Time.timeScale = 0;
 
-            //_infoText.text = FeedbackLabels[(int)f];
-            //yield return new WaitForSecondsRealtime(3);
+            // pause game for questionaires
+            _infoText.text = (f != FeedbackType.Audio) ? "Time to answer some questions" : _feedbackLabels[(int)f];
+            yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            _infoText.text = "";
+            yield return new WaitForSecondsRealtime(1.5f);
 
-            //_infoText.text = "";
-            //_fading.FadeIn(2);
-            //_pc.changeSpeedToDefaultSpeed(2);
-            //yield return new WaitForSecondsRealtime(2);
+            // show round label
+            if (f != FeedbackType.Audio)
+            {
+                _infoText.text = _feedbackLabels[(int)f];
+                yield return new WaitForSecondsRealtime(3);
+                _infoText.text = "";
+            }
 
-            _spawner.StartSpawning();
-            
+            Time.timeScale = 1;
+
+            _fading.FadeIn(2);
+            _pc.ChangeSpeedToDefaultSpeed(2);
+            yield return new WaitForSecondsRealtime(2);
+
+            if (f == FeedbackType.Audio)
+                _spawner.StartSpawning(true);
+            else
+                _spawner.StartSpawning();
+
             yield return new WaitUntil(() => _roundFinished);
         }
 
@@ -228,6 +203,54 @@ public class UserStudyControl : MonoBehaviour {
         _spawner.ActionCountReached += OnRoundFinished;
     }
 
+    private void CreateNewRoundConfig()
+    {
+        FeedbackType[] feedbackTypes = Enum.GetValues(typeof(FeedbackType)).Cast<FeedbackType>().ToArray();
+
+        using (StreamWriter sw = File.AppendText(RoundConfigPath))
+        {
+            foreach (FeedbackType[] feedbackOrder in Utilities.Permutations(feedbackTypes))
+            {
+                if (_subjectId == 0)
+                    _rounds = feedbackOrder.ToList();
+
+                var line = "";
+                foreach (FeedbackType t in feedbackOrder)
+                {
+                    line += _feedbackLabels[(int)t] + ",";
+                }
+
+                sw.WriteLine(line.TrimEnd(','));
+            }
+        }
+    }
+
+    private bool TryGetRoundConfigEntry()
+    {
+        var lines = File.ReadAllLines(RoundConfigPath);
+        if (lines.Length != 6) return false;
+
+        try
+        {
+            string line = lines[_subjectId % 6];
+            var roundOrder = line.Split(',');
+
+            var fll = _feedbackLabels.ToList();
+
+            foreach (string typeLabel in roundOrder)
+            {
+                _rounds.Add((FeedbackType)fll.IndexOf(typeLabel));
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+            return false;
+        }
+
+        return true;
+    }
+
     public void OnRoundFinished(object sender, EventArgs args)
     {
         Debug.Log("Round Finished");
@@ -242,6 +265,18 @@ public class UserStudyControl : MonoBehaviour {
     public GameObject GetPovContainer()
     {
         return PovContainer;
+    }
+
+    public AudioClip GetVoiceForAction(USAction.TYPE actionType)
+    {
+        if (actionType == USAction.TYPE.Accelerate)
+            return VoiceAccelerate;
+        if (actionType == USAction.TYPE.RefillTank)
+            return VoiceRefillTank;
+        if (actionType == USAction.TYPE.POV)
+            return VoicePov;
+
+        return null;
     }
 
     public FeedbackType GetCurrentFeedbackType()

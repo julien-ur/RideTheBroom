@@ -280,7 +280,7 @@ Prefab:
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: maxSpeed
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
@@ -401,6 +401,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: tiltAcceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: spaceTiltAcceleration
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
   m_IsPrefabParent: 0
@@ -498,18 +508,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4414389679d3c194a965c69d8896fd73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SubjectId: 0
-  FeedbackLabels:
-  - "W\xE4rme"
-  - Geruch
-  - Vibration
-  Rounds: 010000000200000000000000
   TimeOutSound: {fileID: 8300000, guid: b0c220f028c1d7f4c9788fe40f0a7b89, type: 3}
   TimeOutVolume: 0.3
   SuccessSound: {fileID: 8300000, guid: 35dee669c4e9836448b9823e52c25182, type: 3}
   SuccessVolume: 0.3
   PovSelectingSound: {fileID: 8300000, guid: 48d3cc2e5089bd34e96607074c2b06ea, type: 3}
   PovSelectingVolume: 0.4
+  VoiceAccelerate: {fileID: 8300000, guid: ba09ce1579022da49a488a5b6b746562, type: 3}
+  VoiceRefillTank: {fileID: 8300000, guid: ecf92b18b32ef634e9976d98ca38865b, type: 3}
+  VoicePov: {fileID: 8300000, guid: 7a787fb9729c95a4d98a00f4eca24db6, type: 3}
+  ActionVoiceVolume: 1
   RefillTankItem: {fileID: 1663299291929462, guid: 8691d9e58a91e854d8b8000d007a928f,
     type: 2}
   PovContainer: {fileID: 1106963318441436, guid: d659bcf02e09ffe4db4b2f010ed1c6f5,
@@ -11699,7 +11707,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2008174519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 519.7153, y: 76.80942, z: -186.66428}
+  m_LocalPosition: {x: 524.2153, y: 213.30942, z: -186.66428}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1223587913}

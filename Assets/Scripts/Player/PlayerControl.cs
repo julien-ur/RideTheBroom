@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
 
     [HideInInspector] public Vector3 momentum;
     public bool tiltAcceleration = true;
+    public bool spaceTiltAcceleration = false;
 
     public float rotationFactorX = 120;
     public float rotationFactorY = 120;
@@ -82,34 +83,6 @@ public class PlayerControl : MonoBehaviour
         //    Debug.LogError("headStartYPos: " + headStartYPos + " actualYHeadPos: " + InputTracking.GetLocalPosition(VRNode.Head).y + " clampedHeadDelta: " + clampedHeadDelta + " vrAccellerationFactor: " + vrAccellerationFactor);
         //}
 
-        // broom tilt acceleration
-        float tiltAccelerationFactor = 1;
-        if (tiltAcceleration)
-        {
-            float tiltAngle = transform.localRotation.eulerAngles.x;
-            tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
-            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.3f, 0.3f);
-        }
-        if (speed >= minSpeed && speed <= maxSpeed) speed += tiltAccelerationFactor;
-
-        if (!adjustingSpeed && !speedTargetOutOfBounds)
-        {
-            speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
-            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.06f) speed -= 0.03f;
-        }
-
-        // non physical forward drive component
-        // can't set rigidbody velocity here, as it would override the calculated velocity 
-        // from the addForce method of the physical forward drive component
-        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * vrAccellerationFactor * Time.deltaTime);
-
-        // physical forward drive component
-        rb.AddForce(transform.forward * speed * forceDrivenFactor * vrAccellerationFactor);
-
-        // fake physical momentum, used for windzones
-        transform.Translate(momentum * Time.deltaTime, Space.World);
-        momentum -= (momentum / Constants.WINDZONE_MOMENTUM_LOSS_TIME) * Time.deltaTime;
-
         // rotate broom based on input
         float inputVertical = 0;
         float inputHorizontal = 0;
@@ -141,7 +114,40 @@ public class PlayerControl : MonoBehaviour
             if (invertHorizontal) inputHorizontal *= -1;
         }
 
-        if(isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent || noRotationBlocking)
+        // broom tilt acceleration
+        float tiltAccelerationFactor = 0;
+        if (tiltAcceleration)
+        {
+            float tiltAngle = transform.localRotation.eulerAngles.x;
+            tiltAngle = (tiltAngle > 180) ? tiltAngle - 360 : tiltAngle;
+            tiltAccelerationFactor = Utilities.Remap(tiltAngle, -45, 45, -0.3f, 0.3f);
+        }
+        else if (spaceTiltAcceleration)
+        {
+            tiltAccelerationFactor = inputVertical * 2f;
+        }
+
+        // non physical forward drive component
+        // can't set rigidbody velocity here, as it would override the calculated velocity 
+        // from the addForce method of the physical forward drive component
+        transform.Translate(Vector3.forward * speed * (1 - forceDrivenFactor) * vrAccellerationFactor * Time.deltaTime);
+
+        // physical forward drive component
+        rb.AddForce(transform.forward * speed * forceDrivenFactor * vrAccellerationFactor);
+
+        // fake physical momentum, used for windzones
+        transform.Translate(momentum * Time.deltaTime, Space.World);
+        momentum -= (momentum / Constants.WINDZONE_MOMENTUM_LOSS_TIME) * Time.deltaTime;
+
+        if (speed >= minSpeed && speed <= maxSpeed) speed += tiltAccelerationFactor;
+
+        if (!adjustingSpeed && !speedTargetOutOfBounds)
+        {
+            speed = Mathf.Max(Mathf.Min(speed, maxSpeed), minSpeed);
+            if (speed > defaultSpeed && Mathf.Abs(tiltAccelerationFactor) < 0.06f) speed -= (spaceTiltAcceleration) ? 0.06f : 0.03f;
+        }
+
+        if (isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent || noRotationBlocking)
         {
 
             float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
@@ -228,33 +234,34 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
-    public void startBroom()
+    public void StartBroom()
     {
         Debug.Log("vroom vroom");
-        changeSpeedToTargetSpeed(defaultSpeed, 2);
+        ChangeSpeedToTargetSpeed(defaultSpeed, 2);
     }
 
-    public void changeSpeedToTargetSpeed(float targetSpeed, float duration)
+    public void ChangeSpeedToTargetSpeed(float targetSpeed, float duration)
     {
+        StopAllCoroutines();
+
         if (targetSpeed > maxSpeed || targetSpeed < minSpeed) {
             speedTargetOutOfBounds = true;
         } else
         {
             speedTargetOutOfBounds = false;
         }
-
         if (duration == 0)
             speed = targetSpeed;
         else
-            StartCoroutine(adjustSpeed(targetSpeed, duration));
+            StartCoroutine(AdjustSpeed(targetSpeed, duration));
     }
 
-    public void changeSpeedToDefaultSpeed(float duration)
+    public void ChangeSpeedToDefaultSpeed(float duration)
     {
-        StartCoroutine(adjustSpeed(defaultSpeed, duration));
+        StartCoroutine(AdjustSpeed(defaultSpeed, duration));
     }
 
-    IEnumerator adjustSpeed(float targetSpeed, float duration)
+    private IEnumerator AdjustSpeed(float targetSpeed, float duration)
     {
         adjustingSpeed = true;
 
@@ -272,14 +279,14 @@ public class PlayerControl : MonoBehaviour
         adjustingSpeed = false;
     }
 
-    public void changeSpeed(float targetSpeed)
+    public void ChangeSpeed(float targetSpeed)
     {
         defaultSpeed = targetSpeed;
         minSpeed = targetSpeed - 4;
         maxSpeed = targetSpeed + 10;
     }
 
-    public void changeSpeed(float target, float min, float max)
+    public void ChangeSpeed(float target, float min, float max)
     {
         defaultSpeed = target;
         minSpeed = min;

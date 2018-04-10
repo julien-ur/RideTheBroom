@@ -94,31 +94,31 @@ public class Tutorial : MonoBehaviour {
 
     IEnumerator ExplainRings()
     {
-        pc.changeSpeedToTargetSpeed(2, 0.5f);
+        pc.ChangeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3f, 0.5f);
         float duration = wisp.talkToPlayer(wisp.ExplainRings);
         yield return new WaitForSeconds(duration);
-        pc.changeSpeedToDefaultSpeed(0.5f);
+        pc.ChangeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
 
     IEnumerator ExplainWindzone()
     {
-        pc.changeSpeedToTargetSpeed(2, 1);
+        pc.ChangeSpeedToTargetSpeed(2, 1);
         wisp.changeSpeedToTargetSpeed(3f, 1);
         float duration = wisp.talkToPlayer(wisp.ExplainWindzones);
         yield return new WaitForSeconds(duration);
-        pc.changeSpeedToDefaultSpeed(0.5f);
+        pc.ChangeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
 
     IEnumerator ExplainSpeedBoost()
     {
-        pc.changeSpeedToTargetSpeed(2, 0.5f);
+        pc.ChangeSpeedToTargetSpeed(2, 0.5f);
         wisp.changeSpeedToTargetSpeed(3f, 0.5f);
         float duration = wisp.talkToPlayer(wisp.ExplainEnergyBoost);
         yield return new WaitForSeconds(duration);
-        pc.changeSpeedToDefaultSpeed(0.5f);
+        pc.ChangeSpeedToDefaultSpeed(0.5f);
         wisp.changeSpeedToDefaultSpeed(0.5f);
     }
 

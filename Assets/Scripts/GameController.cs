@@ -121,7 +121,7 @@ public class GameController : MonoBehaviour
         levelTime = 0;
         numRings = 0;
         UnpauseGame();
-        pc.startBroom();
+        pc.StartBroom();
         ghostModeController.StartGhostModeLog(player.GetComponent<Transform>());
         if (wisp) wisp.startFlying();
     }

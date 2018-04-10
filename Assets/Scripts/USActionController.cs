@@ -25,11 +25,16 @@ public class USActionController : MonoBehaviour
     public void OnActionStarted(object sender, USActionEventArgs args)
     {
         Debug.Log("Action Started " + args.ActionType + " " + args.Count);
-        string feedbackData = _usc.GetFeedbackData(args.ActionType);
-
-        if (feedbackData == null) return;
-
-        _fsr.PostChange(feedbackData);
+        if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
+        {
+            _audioSource.PlayOneShot(_usc.GetVoiceForAction(args.ActionType), _usc.ActionVoiceVolume);
+        }
+        else
+        {
+            string feedbackData = _usc.GetFeedbackData(args.ActionType);
+            if (feedbackData == null) return;
+            _fsr.PostChange(feedbackData);
+        }
     }
 
     public void OnActionSuccess(object sender, USActionEventArgs args)

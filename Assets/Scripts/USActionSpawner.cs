@@ -7,29 +7,42 @@ using Random = UnityEngine.Random;
 
 public class USActionSpawner : MonoBehaviour {
 
+    public enum POOL_TYPE { Training, Study }
+    public POOL_TYPE PoolType;
+
     public int CompleteCounterbalanceRepetitions = 3;
-    public float MinTimeBetweenActions = 2;//5;
-    public float MaxTimeBetweenActions = 5;//20;
+    public int TrainingActionRepetitions = 3;
+    public float MinTimeBetweenActions = 5;
+    public float MaxTimeBetweenActions = 20;
 
     public EventHandler ActionCountReached;
 
     private USAction _action;
-    private int _actionCount = 0;
     private List<List<USAction.TYPE>> _actionSequencePool;
+    private List<USAction.TYPE> _trainingPool;
     private List<USAction.TYPE> _currentActionSequence;
+
+    private bool _isTrainingRound;
+    private int _trainingActionsToSpawn;
     private int _actionPoolRefillCount = 0;
+    private int _actionCount = 0;
     private bool _actionFinished = false;
+
 
     void Start()
     {
         _action = GetComponent<USAction>();
         FillActionSequencePool();
         _currentActionSequence = TakeActionSequenceFromPool();
+
+        if (PoolType == POOL_TYPE.Study) return;
+        _trainingPool = new List<USAction.TYPE>();
+        FillTrainingPool();
     }
 
     private IEnumerator Spawner()
     {
-        yield return new WaitForSeconds(Random.Range(MinTimeBetweenActions, MaxTimeBetweenActions));
+        yield return new WaitForSeconds(Random.Range(15, 30));
 
         while (true)
         {
@@ -38,7 +51,8 @@ public class USActionSpawner : MonoBehaviour {
 
             yield return new WaitUntil(() => _actionFinished);
 
-            if (_actionPoolRefillCount >= CompleteCounterbalanceRepetitions && _currentActionSequence.Count == 0)
+            if ((_actionPoolRefillCount >= CompleteCounterbalanceRepetitions && _currentActionSequence.Count == 0) 
+                || PoolType == POOL_TYPE.Training && _actionCount == _trainingPool.Count)
             {
                 yield return new WaitForSeconds(1);
                 OnActionCountReached();
@@ -52,12 +66,15 @@ public class USActionSpawner : MonoBehaviour {
     private void StartNewAction()
     {
         _actionFinished = false;
-        _action.StartNewAction(USAction.TYPE.POV, _actionCount);
+        _action.StartNewAction(GetNextActionFromPool(), _actionCount);
         _actionCount++;
     }
 
     private USAction.TYPE GetNextActionFromPool()
     {
+        if (PoolType == POOL_TYPE.Training)
+            return _trainingPool[_actionCount];
+
         if (_actionSequencePool.Count == 0)
         {
             FillActionSequencePool();
@@ -86,6 +103,23 @@ public class USActionSpawner : MonoBehaviour {
         _actionSequencePool = _action.GetAllPossibleActionTypeOrders();
     }
 
+    private void FillTrainingPool()
+    {
+        for (var rep = 0; rep < Mathf.Ceil(TrainingActionRepetitions/2f); rep++)
+        {
+            Debug.Log(rep);
+            for (var t = 0; t < _action.GetTypeCount(); t++)
+            {
+                int rest = (rep == Mathf.Floor(TrainingActionRepetitions/2f)) ? TrainingActionRepetitions % 2 : 0;
+                for (var r = 0; r < 2 - rest; r++)
+                {
+                    _trainingPool.Add((USAction.TYPE)t);
+                    Debug.Log(t);
+                }
+            }
+        }
+    }
+
     private bool IsPlayerReady()
     {
         return true;
@@ -102,8 +136,9 @@ public class USActionSpawner : MonoBehaviour {
             ActionCountReached(this, EventArgs.Empty);
     }
 
-    public void StartSpawning()
+    public void StartSpawning(POOL_TYPE p = POOL_TYPE.Study)
     {
+        PoolType = p;
         StartCoroutine(Spawner());
     }
 

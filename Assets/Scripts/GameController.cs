@@ -24,17 +24,20 @@ public class GameController : MonoBehaviour
 
     private int numRings;
 
+    void Awake()
+    {
+        pc = GameComponents.GetPlayerControl();
+        pc.DisableRotation();
+    }
+
     void Start()
     {
         player = GameComponents.GetPlayer();
         wisp = GameComponents.GetWisp();
         tutorial = GameComponents.GetTutorial();
-        pc = GameComponents.GetPlayerControl();
         ghostModeController = GameComponents.GetGhostModeController();
         materialResetter = GameComponents.GetMaterialResetter();
         vrSelectionControl = GameComponents.GetVRSelectionControl();
-
-        pc.DisableRotation();
 
         fade = GameComponents.GetFading();
         StartCoroutine(GameStartRoutine());

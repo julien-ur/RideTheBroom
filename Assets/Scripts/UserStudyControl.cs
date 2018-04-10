@@ -94,6 +94,7 @@ public class UserStudyControl : MonoBehaviour {
     public void OnPlayerLeftTheBuilding(object sender, EventArgs args)
     {
         _playerReady = true;
+        GameComponents.GetMenuObject().SetActive(false);
     }
 
     IEnumerator StartStudy()

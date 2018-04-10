@@ -258,6 +258,7 @@ public class PlayerControl : MonoBehaviour
 
     public void ChangeSpeedToDefaultSpeed(float duration)
     {
+        speedTargetOutOfBounds = false;
         StartCoroutine(AdjustSpeed(defaultSpeed, duration));
     }
 

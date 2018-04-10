@@ -155,9 +155,59 @@ Prefab:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 4852072029471946, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: spaceTiltAcceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: tiltAcceleration
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useViveTracker
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useBroomHardware
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: enableBroomRollback
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114192339243405818, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: index
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &71893448 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1050435560623236, guid: 6f810fdc65734ea44aa66f93d3f222df,
+    type: 2}
+  m_PrefabInternal: {fileID: 71893447}
+--- !u!114 &71893449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 71893448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e798642284576f41b6f238a6402fbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &362748211
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,8 +309,8 @@ MonoBehaviour:
   PovSelectingSound: {fileID: 8300000, guid: 48d3cc2e5089bd34e96607074c2b06ea, type: 3}
   PovSelectingVolume: 0.4
   VoiceAccelerate: {fileID: 8300000, guid: ba09ce1579022da49a488a5b6b746562, type: 3}
-  VoiceRefillTank: {fileID: 8300000, guid: 7a787fb9729c95a4d98a00f4eca24db6, type: 3}
-  VoicePov: {fileID: 8300000, guid: ecf92b18b32ef634e9976d98ca38865b, type: 3}
+  VoiceRefillTank: {fileID: 8300000, guid: ecf92b18b32ef634e9976d98ca38865b, type: 3}
+  VoicePov: {fileID: 8300000, guid: 7a787fb9729c95a4d98a00f4eca24db6, type: 3}
   ActionVoiceVolume: 1
   RefillTankItem: {fileID: 1663299291929462, guid: 8691d9e58a91e854d8b8000d007a928f,
     type: 2}
@@ -7873,11 +7923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d40c6c0179eb4d741be9f6c5aa2ef97f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTexture: {fileID: 2800000, guid: 7285d045341b25c41ae4e2f59881c224, type: 3}
-  fadingTimeInSec: 3
-  drawDepth: -1000
-  alpha: 0
-  fadeDir: 0
 --- !u!114 &1691091802
 MonoBehaviour:
   m_ObjectHideFlags: 0

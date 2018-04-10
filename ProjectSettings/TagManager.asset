@@ -13,8 +13,10 @@ TagManager:
   - AdditionalMenuProps
   - Broom
   - FxTemporaire
-  - StudyHUD
   - POV
+  - Fire
+  - projectile
+  - VR-HUD
   layers:
   - Default
   - TransparentFX
@@ -49,9 +51,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: GUI
-    uniqueID: 2379361113
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GUI
+    uniqueID: 2379361113
     locked: 0

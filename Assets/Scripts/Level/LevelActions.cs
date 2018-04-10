@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelActions : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class LevelActions : MonoBehaviour
     
     private Constants.LEVEL _currentLevel;
 
-
     private void Start () {
         _menu = GameComponents.GetMenu();
         if (_menu) deactivateTestingStuff(); // deactivates all objects of the layer "testing stuff"
@@ -29,7 +29,10 @@ public class LevelActions : MonoBehaviour
         _player = _pc.GetComponent<Transform>();
         _broomCloset = GameComponents.GetBroomCloset();
         _compass = _player.GetComponentInChildren<CompassControl>();
-        
+
+        Text crosshair = GameComponents.GetVrHUD().transform.Find("Crosshair").GetComponentInChildren<Text>();
+        crosshair.text = "";
+
         StartCoroutine(LevelStartRoutine());
     }
 

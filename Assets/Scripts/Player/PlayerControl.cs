@@ -295,14 +295,12 @@ public class PlayerControl : MonoBehaviour
 
     public void EnableRotation()
     {
-        Debug.Log("Rotation Enabled");
         isRotationEnabled = true;
         GetComponent<SteamVR_TrackedObject>().enabled = true;
     }
 
     public void DisableRotation()
     {
-        Debug.Log("Rotation Disabled");
         isRotationEnabled = false;
         GetComponent<SteamVR_TrackedObject>().enabled = false;
     }

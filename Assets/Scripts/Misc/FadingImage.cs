@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Fading : MonoBehaviour {
+public class FadingImage : MonoBehaviour {
 
     private Image _fadingImage;
     private RectTransform _fadingRect;

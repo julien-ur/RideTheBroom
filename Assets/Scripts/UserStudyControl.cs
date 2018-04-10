@@ -55,7 +55,7 @@ public class UserStudyControl : MonoBehaviour {
     private USActionSpawner _spawner;
     private USActionController _actionControl;
     private Text _infoText;
-    private Fading _fading;
+    private LoadingOverlay _loadingOverlay;
      
     private int _subjectId;
     private List<FeedbackType> _rounds;
@@ -80,8 +80,9 @@ public class UserStudyControl : MonoBehaviour {
 
     void Start()
     {
-        _fading = GameComponents.GetFading();
         _pc = GameComponents.GetPlayerControl();
+        _loadingOverlay = GameComponents.GetLoadingOverlay();
+        _infoText = GameComponents.GetVrHUD().transform.Find("StudyInfoText").GetComponentInChildren<Text>();
 
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) _playerReady = true;
@@ -109,7 +110,7 @@ public class UserStudyControl : MonoBehaviour {
             _currentFeedbackType = f;
             _spawner.ResetActionCount();
 
-            _fading.FadeOut(1);
+            _loadingOverlay.FadeOut(1);
             _pc.ChangeSpeedToTargetSpeed(0, 1);
             yield return new WaitForSecondsRealtime(1.5f);
             Time.timeScale = 0;
@@ -130,7 +131,7 @@ public class UserStudyControl : MonoBehaviour {
 
             Time.timeScale = 1;
 
-            _fading.FadeIn(2);
+            _loadingOverlay.FadeIn(2);
             _pc.ChangeSpeedToDefaultSpeed(2);
             yield return new WaitForSecondsRealtime(2);
 
@@ -145,7 +146,7 @@ public class UserStudyControl : MonoBehaviour {
         Debug.Log("Study Finished");
         _logging.FinishLogging();
 
-        _fading.FadeOut(2);
+        _loadingOverlay.FadeOut(2);
         yield return new WaitForSecondsRealtime(2);
         _infoText.text = "Danke für deine Teilnahme!";
         _infoText.resizeTextForBestFit = true;
@@ -153,7 +154,7 @@ public class UserStudyControl : MonoBehaviour {
         yield return new WaitForSecondsRealtime(5);
 
         _infoText.text = "";
-        _fading.FadeIn(2);
+        _loadingOverlay.FadeIn(2);
         yield return new WaitForSecondsRealtime(2);
     }
 
@@ -170,9 +171,6 @@ public class UserStudyControl : MonoBehaviour {
 
         _actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
         _actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
-
-        _infoText = GameObject.FindGameObjectWithTag("HUD").transform.Find("StudyInfoText").GetComponentInChildren<Text>();
-        _infoText.resizeTextForBestFit = true;
 
         RegisterListener(action, prd);
     }

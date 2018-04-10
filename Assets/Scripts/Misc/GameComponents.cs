@@ -15,10 +15,9 @@ public static class GameComponents {
         return (gc) ? gc.GetComponent<Tutorial>() : null;
     }
 
-    public static Fading GetFading()
+    public static LoadingOverlay GetLoadingOverlay()
     {
-        GameObject gc = GetGameControl();
-        return (gc) ? gc.GetComponent<Fading>() : null;
+        return Camera.main.GetComponentInChildren<LoadingOverlay>();
     }
 
     public static GhostModeController GetGhostModeController()
@@ -59,6 +58,11 @@ public static class GameComponents {
     public static GameObject GetHUD()
     {
         return GameObject.FindGameObjectWithTag("HUD");
+    }
+
+    public static GameObject GetVrHUD()
+    {
+        return GameObject.FindGameObjectWithTag("VR-HUD");
     }
 
     public static GameObject GetPlayer()

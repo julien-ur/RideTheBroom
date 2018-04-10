@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class GameController : MonoBehaviour
     private Wisp wisp;
     private PlayerControl pc;
     private ArduinoController arduino;
-    private Fading fade;
+    private LoadingOverlay _loadingOverlay;
     private GhostModeController ghostModeController;
     private MaterialResetter materialResetter;
     private VRSelectionControl vrSelectionControl;
@@ -23,11 +24,15 @@ public class GameController : MonoBehaviour
     private bool isGamePaused;
 
     private int numRings;
+    private Text _crosshair;
 
     void Awake()
     {
         pc = GameComponents.GetPlayerControl();
         pc.DisableRotation();
+
+        _crosshair = GameComponents.GetVrHUD().transform.Find("Crosshair").GetComponentInChildren<Text>();
+        _crosshair.text = ".";
     }
 
     void Start()
@@ -39,16 +44,17 @@ public class GameController : MonoBehaviour
         materialResetter = GameComponents.GetMaterialResetter();
         vrSelectionControl = GameComponents.GetVRSelectionControl();
 
-        fade = GameComponents.GetFading();
+        _loadingOverlay = GameComponents.GetLoadingOverlay();
         StartCoroutine(GameStartRoutine());
     }
 
     IEnumerator GameStartRoutine()
     {
-        fade.FadeOut(0f);
+        _loadingOverlay.FadeOut(0f);
         yield return new WaitForSeconds(0.5f);
-        fade.FadeIn(2.5f);
+        _loadingOverlay.FadeIn(2.5f);
         yield return new WaitForSeconds(3f);
+        
         //float duration = wisp.talkToPlayer(wisp.MenuIntro);
         //yield return new WaitForSeconds(duration + 0.3f);
     }
@@ -109,11 +115,17 @@ public class GameController : MonoBehaviour
     public void LoadLevel(Constants.LEVEL lvl)
     {
     	pc.EnableRotation();
+        
 
-        if(lvl == Constants.LEVEL.Menu)
+        if (lvl == Constants.LEVEL.Menu)
         {
+            _crosshair.text = ".";
             vrSelectionControl.ResetVRSelection();
             materialResetter.ResetTintedMaterials();
+        }
+        else
+        {
+            _crosshair.text = "";
         }
 
         StartCoroutine(LoadScene(lvl));
@@ -192,7 +204,7 @@ public class GameController : MonoBehaviour
         {
             yield return new WaitForSeconds(5f);
         }
-        fade.FadeOut(1);
+        _loadingOverlay.FadeOut(1);
         LoadLevel(Constants.LEVEL.Menu);
     }
 

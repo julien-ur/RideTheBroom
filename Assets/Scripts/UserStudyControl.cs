@@ -111,30 +111,30 @@ public class UserStudyControl : MonoBehaviour {
             _currentFeedbackType = f;
             _spawner.ResetActionCount();
 
-            //_loadingOverlay.FadeOut(1);
-            //_pc.ChangeSpeedToTargetSpeed(0, 1);
-            //yield return new WaitForSecondsRealtime(1.5f);
-            //Time.timeScale = 0;
+            _loadingOverlay.FadeOut(1);
+            _pc.ChangeSpeedToTargetSpeed(0, 1);
+            yield return new WaitForSecondsRealtime(1.5f);
+            Time.timeScale = 0;
 
-            //// pause game for questionaires
-            //_infoText.text = (f != FeedbackType.Audio) ? "Time to answer some questions" : _feedbackLabels[(int)f];
-            //yield return new WaitUntil(() => Input.GetKeyDown("space"));
-            //_infoText.text = "";
-            //yield return new WaitForSecondsRealtime(1.5f);
+            // pause game for questionaires
+            _infoText.text = (f != FeedbackType.Audio) ? "Time to answer some questions" : _feedbackLabels[(int)f];
+            yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            _infoText.text = "";
+            yield return new WaitForSecondsRealtime(1.5f);
 
-            //// show round label
-            //if (f != FeedbackType.Audio)
-            //{
-            //    _infoText.text = _feedbackLabels[(int)f];
-            //    yield return new WaitForSecondsRealtime(3);
-            //    _infoText.text = "";
-            //}
+            // show round label
+            if (f != FeedbackType.Audio)
+            {
+                _infoText.text = _feedbackLabels[(int)f];
+                yield return new WaitForSecondsRealtime(3);
+                _infoText.text = "";
+            }
 
-            //Time.timeScale = 1;
+            Time.timeScale = 1;
 
-            //_loadingOverlay.FadeIn(2);
-            //_pc.ChangeSpeedToDefaultSpeed(2);
-            //yield return new WaitForSecondsRealtime(2);
+            _loadingOverlay.FadeIn(2);
+            _pc.ChangeSpeedToDefaultSpeed(2);
+            yield return new WaitForSecondsRealtime(2);
 
             if (f == FeedbackType.Audio)
                 _spawner.StartSpawning();

@@ -20,6 +20,7 @@ public class USPovControl : MonoBehaviour {
         _pc = GameComponents.GetPlayer();
         _playerDeltaAtStart = _pc.transform.position - transform.position;
         InitPovs();
+        UpdateChildPositionAndRotation();
     }
 
     private void InitPovs()
@@ -48,8 +49,8 @@ public class USPovControl : MonoBehaviour {
     {
         transform.position = _pc.transform.position - _playerDeltaAtStart;
 
-        if (!_povActive)
-            UpdateChildPositionAndRotation();
+        //if (!_povActive)
+        //    UpdateChildPositionAndRotation();
     }
 
     private void UpdateChildPositionAndRotation()

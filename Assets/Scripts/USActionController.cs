@@ -24,14 +24,15 @@ public class USActionController : MonoBehaviour
 
     public void OnActionStarted(object sender, USActionEventArgs args)
     {
-        Debug.Log("Action Started " + args.ActionType + " " + args.Count);
+        Debug.Log("Action Started " + args.MainTaskPos + " " + args.SecondaryTaskPos + " " + args.Count);
         if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
         {
-            _audioSource.PlayOneShot(_usc.GetVoiceForAction(args.ActionType), _usc.ActionVoiceVolume);
+            if (args.SecondaryTaskPos != USAction.POSITION.None) return;
+            _audioSource.PlayOneShot(_usc.GetVoiceForAction(args.SecondaryTaskPos), _usc.ActionVoiceVolume);
         }
         else
         {
-            string feedbackData = _usc.GetFeedbackData(args.ActionType);
+            string feedbackData = _usc.GetFeedbackData(args.MainTaskPos);
             if (feedbackData == null) return;
             _fsr.PostChange(feedbackData);
         }
@@ -39,14 +40,14 @@ public class USActionController : MonoBehaviour
 
     public void OnActionSuccess(object sender, USActionEventArgs args)
     {
-        Debug.Log("Action Success " + args.ActionType + " " + args.Count);
+        Debug.Log("Action Success " + args.MainTaskPos + " " + args.SecondaryTaskPos + " " + args.Count);
         _audioSource.PlayOneShot(_successSound, _successVolume);
         _scc.AddScore(5);
     }
 
     public void OnActionTimeOut(object sender, USActionEventArgs args)
     {
-        Debug.Log("Action Timeout " + args.ActionType + " " + args.Count);
+        Debug.Log("Action Timeout " + args.MainTaskPos + " " + args.SecondaryTaskPos + " " + args.Count);
         _audioSource.PlayOneShot(_timeOutSound, _timeOutVolume);
         _scc.AddScore(-2);
     }

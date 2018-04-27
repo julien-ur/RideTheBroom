@@ -8,7 +8,8 @@ public struct USLogRecord
     public string SubjectName { get; set; }
     public string Timestamp { get; set; }
     public string FeedbackType { get; set; }
-    public string ActionType { get; set; }
+    public string MainTask { get; set; }
+    public string SecondaryTask { get; set; }
     public string EventInfo { get; set; }
     public float HorizontalPlayerRot { get; set; }
     public float VerticalPlayerRot { get; set; }
@@ -76,7 +77,8 @@ public class USLogging : MonoBehaviour
             SubjectName = _subjectName,
             Timestamp = (Time.realtimeSinceStartup - _loggingStartTime).ToString("F3"),
             FeedbackType = _usc.GetCurrentFeedbackType().ToString(),
-            ActionType = _action.IsActionRunning() ? _action.GetCurrentActionName() : "No Action",
+            MainTask = _action.IsActionRunning() ? _action.GetCurrentMainTaskPosition() : "None",
+            SecondaryTask = _action.IsActionRunning() ? _action.GetCurrentSecondaryTaskPosition() : "None",
             EventInfo = _latestEvent ?? "no event",
             HorizontalPlayerRot = _playerTransform.eulerAngles.y,
             VerticalPlayerRot = _playerTransform.eulerAngles.x,

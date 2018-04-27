@@ -6,93 +6,92 @@ public class USPovControl : MonoBehaviour {
 
     public AudioClip SelectingSound;
 
-    private Transform[] _povContainerTransforms;
-    private AudioSource[] _audioSources;
-    private USPovObject[] _rndChosenPovs;
+    private USAction.POSITION _povPos;
+    private AudioSource _audioSource;
+    private USPovObject _rndChosenPov;
 
     private GameObject _pc;
-    private Vector3 _playerDeltaAtStart;
-
-    private bool _povActive = false;
+    private Vector3 _posRelativeToPlayer;
 
     void Awake()
     {
         _pc = GameComponents.GetPlayer();
-        _playerDeltaAtStart = _pc.transform.position - transform.position;
+    }
+
+    void Start()
+    {
         InitPovs();
-        UpdateChildPositionAndRotation();
+        UpdateRelativePositionAndRotation();
     }
 
     private void InitPovs()
     {
-        _rndChosenPovs = new USPovObject[2];
-        _audioSources = new AudioSource[2];
-        _povContainerTransforms = new Transform[2];
+        var availablePovObjects = GetComponentsInChildren<USPovObject>();
+        int rndPovIndex = Random.Range(0, availablePovObjects.Length - 1);
 
-        int rndPovIndex = 0;
-
-        for (int i = 0; i < 2; i++)
-        {
-            Transform child = transform.GetChild(i);
-            USPovSelectable.SIDE side = child.GetComponent<USPovSelectable>().Side;
-            var povsForSide = child.GetComponentsInChildren<USPovObject>();
-
-            if (i == 0) rndPovIndex = Random.Range(0, povsForSide.Length - 1);
-
-            _rndChosenPovs[(int)side] = povsForSide[rndPovIndex];
-            _audioSources[(int)side] = child.GetComponent<AudioSource>();
-            _povContainerTransforms[(int)side] = child;
-        }
+        _rndChosenPov = availablePovObjects[rndPovIndex];
+        _audioSource = GetComponentInChildren<AudioSource>();
     }
 
     void Update()
     {
-        transform.position = _pc.transform.position - _playerDeltaAtStart;
+        transform.position = _pc.transform.position + _posRelativeToPlayer;
 
         //if (!_povActive)
         //    UpdateChildPositionAndRotation();
     }
 
-    private void UpdateChildPositionAndRotation()
+    private void UpdateRelativePositionAndRotation()
     {
-        Transform leftPovContainer = _povContainerTransforms[(int)USPovSelectable.SIDE.Left];
-        Transform rightPovContainer = _povContainerTransforms[(int)USPovSelectable.SIDE.Right];
         Transform playerTrans = _pc.transform;
 
-        Vector3 posWithoutSideAxes = playerTrans.position + (1 * playerTrans.up) + (-32 * playerTrans.forward);
-        Vector3 leftSideShift = -43 * playerTrans.right;
+        Vector3 relPos, relRot;
 
-        leftPovContainer.position = posWithoutSideAxes + leftSideShift;
-        rightPovContainer.position = posWithoutSideAxes - leftSideShift;
+        if (_povPos == USAction.POSITION.Right)
+        {
+            relPos = new Vector3(43, 1, -8);
+            relRot = new Vector3(0, -90, 0);
+        }
+        else if (_povPos == USAction.POSITION.Left)
+        {
+            relPos = new Vector3(-43, 1, -8);
+            relRot = new Vector3(0, 90, 0);
+        }
+        else
+        {
+            relPos = new Vector3(0, 55, 55);
+            relRot = new Vector3(40, 180, -18);
+        }
 
-        leftPovContainer.rotation = playerTrans.rotation;
-        rightPovContainer.rotation = playerTrans.rotation;
+        _posRelativeToPlayer = (relPos.x * playerTrans.right) + (relPos.y * playerTrans.up) + (relPos.z * playerTrans.forward);
+        transform.rotation = playerTrans.rotation;
+        transform.Rotate(relRot, Space.Self);
     }
 
-    public void ActivateCurrentPov(int side)
+    public void ActivateCurrentPov()
     {
-        _povActive = true;
-        _rndChosenPovs[side].Activate();
+        _rndChosenPov.Activate();
     }
 
-    public void DeactivateCurrentPov(int side)
+    public void DeactivateCurrentPov()
     {
-        _rndChosenPovs[side].Deactivate(() => _povActive = false);
+        _rndChosenPov.Deactivate();
     }
 
-    public void StartSelectionProcess(int side)
+    public void StartSelectionProcess()
     {
-        _audioSources[side].PlayOneShot(SelectingSound, 0.5f);
-
-        if (_rndChosenPovs[side])
-            _rndChosenPovs[side].StartSelectionProcess();
+        _audioSource.PlayOneShot(SelectingSound, 0.5f);
+        _rndChosenPov.StartSelectionProcess();
     }
 
-    public void StopSelectionProcess(int side)
+    public void StopSelectionProcess()
     {
-        _audioSources[side].Stop();
+        _audioSource.Stop();
+        _rndChosenPov.StopSelectionProcess();
+    }
 
-        if (_rndChosenPovs[side])
-            _rndChosenPovs[side].StopSelectionProcess();
+    public void SetPos(USAction.POSITION pos)
+    {
+        _povPos = pos;
     }
 }

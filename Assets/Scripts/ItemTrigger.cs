@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -11,7 +9,7 @@ public class ItemTriggerEventArgs : EventArgs
 
 public class ItemTrigger : MonoBehaviour {
 
-    public enum ITEM { RefillTank, Pov };
+    public enum ITEM { RefillTank, Pov, Ring };
     public ITEM Item;
     public static EventHandler<ItemTriggerEventArgs> PlayerTriggered;
 
@@ -28,7 +26,7 @@ public class ItemTrigger : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
-            //Destroy(gameObject);
+            // Destroy(gameObject);
         }
     }
 

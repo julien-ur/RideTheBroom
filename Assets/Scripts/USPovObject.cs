@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class USPovObject : MonoBehaviour
@@ -23,10 +22,10 @@ public class USPovObject : MonoBehaviour
         StartCoroutine(Activating());
     }
 
-    public void Deactivate(Action callback)
+    public void Deactivate()
     {
         StopAllCoroutines();
-        StartCoroutine(Deactivating(callback));
+        StartCoroutine(Deactivating());
     }
 
     public void LifeMakesNoSenseNow()
@@ -58,7 +57,7 @@ public class USPovObject : MonoBehaviour
         });
     }
 
-    private IEnumerator Deactivating(Action callback)
+    private IEnumerator Deactivating()
     {
         yield return new WaitUntil(() =>
         {
@@ -68,7 +67,6 @@ public class USPovObject : MonoBehaviour
         PresentationLight.range = 0;
         PresentationLight.GetComponent<Light>().enabled = false;
         GetComponent<MeshRenderer>().enabled = false;
-        callback();
     }
 
     private IEnumerator Finale()

@@ -18,17 +18,17 @@ public class UserStudyControl : MonoBehaviour {
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
-        { "" + FeedbackType.Heat + USAction.TYPE.RefillTank, FeedbackServer.HEAT_TAG + "0, 2" },
-        { "" + FeedbackType.Heat + USAction.TYPE.Accelerate, FeedbackServer.HEAT_TAG + "1, 2" },
-        { "" + FeedbackType.Heat + USAction.TYPE.POV, FeedbackServer.HEAT_TAG + "1, 0.5" },
+        { "" + FeedbackType.Heat + USAction.POSITION.Left, FeedbackServer.HEAT_TAG + "0, 2" },
+        { "" + FeedbackType.Heat + USAction.POSITION.Middle, FeedbackServer.HEAT_TAG + "1, 2" },
+        { "" + FeedbackType.Heat + USAction.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 0.5" },
 
-        { "" + FeedbackType.Smell + USAction.TYPE.RefillTank, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USAction.TYPE.Accelerate, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USAction.TYPE.POV, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USAction.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USAction.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USAction.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
 
-        { "" + FeedbackType.Vibration + USAction.TYPE.RefillTank, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
-        { "" + FeedbackType.Vibration + USAction.TYPE.Accelerate, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
-        { "" + FeedbackType.Vibration + USAction.TYPE.POV, FeedbackServer.VIBRATION_TAG + "0.4, 2;" }
+        { "" + FeedbackType.Vibration + USAction.POSITION.Left, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
+        { "" + FeedbackType.Vibration + USAction.POSITION.Middle, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
+        { "" + FeedbackType.Vibration + USAction.POSITION.Right, FeedbackServer.VIBRATION_TAG + "0.4, 2;" }
     };
 
     public AudioClip TimeOutSound;
@@ -40,13 +40,15 @@ public class UserStudyControl : MonoBehaviour {
     public AudioClip PovSelectingSound;
     public float PovSelectingVolume = 0.3f;
 
-    public AudioClip VoiceAccelerate;
-    public AudioClip VoiceRefillTank;
-    public AudioClip VoicePov;
+    public AudioClip VoicePovLeft;
+    public AudioClip VoicePovMiddle;
+    public AudioClip VoicePovRight;
     public float ActionVoiceVolume = 1f;
 
     public GameObject RefillTankItem;
     public GameObject PovContainer;
+    public GameObject RingObject;
+    private GameObject RingInactiveObject;
 
     public static string UserStudyPath = "UserStudy";
     public static string RoundConfigName = "round_config.ini";
@@ -70,12 +72,9 @@ public class UserStudyControl : MonoBehaviour {
         InitStudyObjects();
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> { FeedbackType.Audio };
+        _rounds = new List<FeedbackType> { };
 
-        if (File.Exists(RoundConfigPath) && TryGetRoundConfigEntry()) return;
-
-        CreateNewRoundConfig();
-        TryGetRoundConfigEntry();
+        AddRoundsFromRoundConfig();
     }
 
     void Start()
@@ -109,37 +108,34 @@ public class UserStudyControl : MonoBehaviour {
         {
             _roundFinished = false;
             _currentFeedbackType = f;
-            _spawner.ResetActionCount();
+            _spawner.InitNewRound(f == FeedbackType.Audio);
 
-            _loadingOverlay.FadeOut(1);
-            _pc.ChangeSpeedToTargetSpeed(0, 1);
-            yield return new WaitForSecondsRealtime(1.5f);
-            Time.timeScale = 0;
+            //_loadingOverlay.FadeOut(1);
+            //_pc.ChangeSpeedToTargetSpeed(0, 1);
+            //yield return new WaitForSecondsRealtime(1.5f);
+            //Time.timeScale = 0;
 
-            // pause game for questionaires
-            _infoText.text = (f != FeedbackType.Audio) ? "Time to answer some questions" : _feedbackLabels[(int)f];
-            yield return new WaitUntil(() => Input.GetKeyDown("space"));
-            _infoText.text = "";
-            yield return new WaitForSecondsRealtime(1.5f);
+            //// pause game for questionaires
+            //_infoText.text = (f != FeedbackType.Audio) ? "Time to answer some questions" : _feedbackLabels[(int)f];
+            //yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            //_infoText.text = "";
+            //yield return new WaitForSecondsRealtime(1.5f);
 
-            // show round label
-            if (f != FeedbackType.Audio)
-            {
-                _infoText.text = _feedbackLabels[(int)f];
-                yield return new WaitForSecondsRealtime(3);
-                _infoText.text = "";
-            }
+            //// show round label
+            //if (f != FeedbackType.Audio)
+            //{
+            //    _infoText.text = _feedbackLabels[(int)f];
+            //    yield return new WaitForSecondsRealtime(3);
+            //    _infoText.text = "";
+            //}
 
-            Time.timeScale = 1;
+            //Time.timeScale = 1;
 
-            _loadingOverlay.FadeIn(2);
-            _pc.ChangeSpeedToDefaultSpeed(2);
-            yield return new WaitForSecondsRealtime(2);
+            //_loadingOverlay.FadeIn(2);
+            //_pc.ChangeSpeedToDefaultSpeed(2);
+            //yield return new WaitForSecondsRealtime(2);
 
-            if (f == FeedbackType.Audio)
-                _spawner.StartSpawning();
-            else
-                _spawner.StartSpawning();
+            _spawner.StartSpawning();
 
             yield return new WaitUntil(() => _roundFinished);
         }
@@ -167,67 +163,39 @@ public class UserStudyControl : MonoBehaviour {
         _spawner = u.AddComponent<USActionSpawner>();
         _actionControl = u.AddComponent<USActionController>();
         var action = u.AddComponent<USAction>();
-        var prd = u.AddComponent<USPlayerReactionDetection>();
         _logging = u.AddComponent<USLogging>();
 
         _actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
         _actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
 
-        RegisterListener(action, prd);
+        RegisterListener(action);
     }
 
-    private void RegisterListener(USAction action, USPlayerReactionDetection prd)
+    private void RegisterListener(USAction action)
     {
         var fsr = GameComponents.GetGameController().GetComponent<FeedbackServer>();
 
         fsr.FeedbackRequestSent += _logging.OnRelevantStudyEvent;
 
         action.ActionStarted += _actionControl.OnActionStarted;
-        action.ActionStarted += prd.OnActionStarted;
         action.ActionStarted += _logging.OnRelevantStudyEvent;
 
         action.ActionSuccess += _spawner.OnActionFinished;
         action.ActionSuccess += _actionControl.OnActionSuccess;
-        action.ActionSuccess += prd.OnActionFinished;
         action.ActionSuccess += _logging.OnRelevantStudyEvent;
 
         action.ActionTimeOut += _spawner.OnActionFinished;
         action.ActionTimeOut += _actionControl.OnActionTimeOut;
-        action.ActionTimeOut += prd.OnActionFinished;
         action.ActionTimeOut += _logging.OnRelevantStudyEvent;
-
-        prd.ReactionDetectedUnsave += _logging.OnRelevantStudyEvent;
-        prd.ReactionDetectedSave += _logging.OnRelevantStudyEvent;
 
         _spawner.ActionCountReached += OnRoundFinished;
     }
 
-    private void CreateNewRoundConfig()
-    {
-        FeedbackType[] feedbackTypes = Enum.GetValues(typeof(FeedbackType)).Cast<FeedbackType>().ToArray();
-
-        using (StreamWriter sw = File.AppendText(RoundConfigPath))
-        {
-            foreach (FeedbackType[] feedbackOrder in Utilities.Permutations(feedbackTypes))
-            {
-                if (_subjectId == 0)
-                    _rounds = feedbackOrder.ToList();
-
-                var line = "";
-                foreach (FeedbackType t in feedbackOrder)
-                {
-                    line += _feedbackLabels[(int)t] + ",";
-                }
-
-                sw.WriteLine(line.TrimEnd(','));
-            }
-        }
-    }
-
-    private bool TryGetRoundConfigEntry()
+    private void AddRoundsFromRoundConfig()
     {
         var lines = File.ReadAllLines(RoundConfigPath);
-        if (lines.Length != 6) return false;
+        if (lines.Length != 6)
+            Debug.LogError("Not the right amount of entries (6) in round config");
 
         try
         {
@@ -244,10 +212,7 @@ public class UserStudyControl : MonoBehaviour {
         catch (Exception e)
         {
             Debug.LogError(e);
-            return false;
         }
-
-        return true;
     }
 
     public void OnRoundFinished(object sender, EventArgs args)
@@ -261,19 +226,29 @@ public class UserStudyControl : MonoBehaviour {
         return RefillTankItem;
     }
 
+    public GameObject GetRingObject()
+    {
+        return RingObject;
+    }
+
+    public GameObject GetRingInactiveObject()
+    {
+        return RingInactiveObject;
+    }
+
     public GameObject GetPovContainer()
     {
         return PovContainer;
     }
 
-    public AudioClip GetVoiceForAction(USAction.TYPE actionType)
+    public AudioClip GetVoiceForAction(USAction.POSITION pos)
     {
-        if (actionType == USAction.TYPE.Accelerate)
-            return VoiceAccelerate;
-        if (actionType == USAction.TYPE.RefillTank)
-            return VoiceRefillTank;
-        if (actionType == USAction.TYPE.POV)
-            return VoicePov;
+        if (pos == USAction.POSITION.Left)
+            return VoicePovLeft;
+        if (pos == USAction.POSITION.Middle)
+            return VoicePovMiddle;
+        if (pos == USAction.POSITION.Right)
+            return VoicePovRight;
 
         return null;
     }
@@ -283,15 +258,15 @@ public class UserStudyControl : MonoBehaviour {
         return _currentFeedbackType;
     }
 
-    public string GetFeedbackData(USAction.TYPE actionType)
+    public string GetFeedbackData(USAction.POSITION actionPosition)
     {
         string feedbackData;
-        FEEDBACK_DICT.TryGetValue("" + _currentFeedbackType + actionType, out feedbackData);
+        FEEDBACK_DICT.TryGetValue("" + _currentFeedbackType + actionPosition, out feedbackData);
 
         if (feedbackData != null)
             feedbackData = feedbackData.Replace(" ", "");
         else
-            Debug.LogError("No feedback data for " + _currentFeedbackType + " " + actionType);
+            Debug.LogError("No feedback data for " + _currentFeedbackType + " " + actionPosition);
 
         return feedbackData;
     }

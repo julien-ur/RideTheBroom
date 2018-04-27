@@ -24,6 +24,44 @@ public static class Utilities {
         }
         return (trs.Count != 0) ? trs : null;
     }
+    // Source: http://euanfreeman.co.uk/balanced-latin-squares/
+    public static int[,] GetLatinSquare(int n)
+    {
+        // 1. Create initial square.
+        int[,] latinSquare = new int[n, n];
+
+        // 2. Initialise first row.
+        latinSquare[0, 0] = 1;
+        latinSquare[0, 1] = 2;
+
+        for (int i = 2, j = 3, k = 0; i < n; i++)
+        {
+            if (i % 2 == 1)
+                latinSquare[0, i] = j++;
+            else
+                latinSquare[0, i] = n - (k++);
+        }
+
+        // 3. Initialise first column.
+        for (int i = 1; i <= n; i++)
+        {
+            latinSquare[i - 1, 0] = i;
+        }
+
+        // 4. Fill in the rest of the square.
+        for (int row = 1; row < n; row++)
+        {
+            for (int col = 1; col < n; col++)
+            {
+                latinSquare[row, col] = (latinSquare[row - 1, col] + 1) % n;
+
+                if (latinSquare[row, col] == 0)
+                    latinSquare[row, col] = n;
+            }
+        }
+
+        return latinSquare;
+    }
 
     public static IEnumerable<T[]> Permutations<T>(T[] values, int fromInd = 0)
     {

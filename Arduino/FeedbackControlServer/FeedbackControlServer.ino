@@ -24,9 +24,9 @@ char vibrationServerIP[16] = "192.168.137.101";
 bool shouldSaveConfig = false;
 
 // PINs
-#define HEAT_PIN D7
+#define HEAT_PIN D1
 #define WIND_PIN D8
-#define SCENT_1_PIN D1
+#define SCENT_1_PIN D7
 #define SCENT_2_PIN D6
 #define SCENT_3_PIN D5
 #define SCENT_4_PIN D0

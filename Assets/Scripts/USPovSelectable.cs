@@ -2,9 +2,6 @@
 
 public class USPovSelectable : VRSelectable
 {
-    public enum SIDE { Left, Right }
-    public SIDE Side;
-
     public enum CONTAINER_TYPE { Visibility, Selection }
     public CONTAINER_TYPE ContainerType;
 
@@ -19,11 +16,11 @@ public class USPovSelectable : VRSelectable
     {
         if (ContainerType == CONTAINER_TYPE.Visibility)
         {
-            _povControl.ActivateCurrentPov((int)Side);
+            _povControl.ActivateCurrentPov();
         }
         else
         {
-            _povControl.StartSelectionProcess((int)Side);
+            _povControl.StartSelectionProcess();
         }
     }
 
@@ -31,11 +28,11 @@ public class USPovSelectable : VRSelectable
     {
         if (ContainerType == CONTAINER_TYPE.Selection)
         {
-            _povControl.StopSelectionProcess((int)Side);
+            _povControl.StopSelectionProcess();
         }
         else
         {
-            _povControl.DeactivateCurrentPov((int)Side);
+            _povControl.DeactivateCurrentPov();
         }
     }
 }

@@ -134,11 +134,7 @@ public class USActionPoolGenerator : MonoBehaviour
 
     private static USAction.POSITION GetRandomPositionExcluding(USAction.POSITION posToExclude)
     {
-        USAction.POSITION[] remainingPositions = Enum.GetValues(typeof(USAction.POSITION))
-            .Cast<USAction.POSITION>()
-            .Where(pos => pos != posToExclude && pos != USAction.POSITION.None)
-            .ToArray();
-
+        USAction.POSITION[] remainingPositions = USAction.GetPositionsExcluding(new []{ posToExclude, USAction.POSITION.None });
         return remainingPositions[Random.Range(0, remainingPositions.Length)];
     }
 }

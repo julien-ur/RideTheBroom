@@ -48,7 +48,7 @@ public class UserStudyControl : MonoBehaviour {
     public GameObject RefillTankItem;
     public GameObject PovContainer;
     public GameObject RingObject;
-    private GameObject RingInactiveObject;
+    public GameObject RingInactiveObject;
 
     public static string UserStudyPath = "UserStudy";
     public static string RoundConfigName = "round_config.ini";

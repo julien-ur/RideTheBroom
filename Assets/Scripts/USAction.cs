@@ -27,11 +27,13 @@ public class USAction : MonoBehaviour {
 
     private UserStudyControl _usc;
     private Transform _playerTrans;
-    private GameObject _povContainer;
+
+    private GameObject _povObject;
     private GameObject _ringObject;
     private GameObject _ringInactiveObject;
 
-    private GameObject _actionItem;
+    private GameObject _actionRings;
+    private GameObject _actionPov;
     private USActionEventArgs _currentArgs;
     private bool _actionExecuted;
     private bool _actionRunning;
@@ -41,9 +43,10 @@ public class USAction : MonoBehaviour {
     {
         _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
         _playerTrans = GameComponents.GetPlayer().transform;
+
         _ringObject = _usc.GetRingObject();
         _ringInactiveObject = _usc.GetRingInactiveObject();
-        _povContainer = _usc.GetPovContainer();
+        _povObject = _usc.GetPovContainer();
 
         ItemTrigger.PlayerTriggered += OnPlayerTriggeredItem;
     }
@@ -82,32 +85,40 @@ public class USAction : MonoBehaviour {
         OnActionSuccess(args);
     }
 
-    private void SpawnRings(POSITION pos)
+    private void SpawnRings(POSITION activePos)
     {
-        Transform ringTrans = Instantiate(_ringObject).transform;
-        ringTrans.position = _playerTrans.position + 40 * _playerTrans.forward;
+        _actionRings = new GameObject() { name = "ActionRings" };
+        var positions = GetPositionsExcluding(new[] { POSITION.None });
 
-        int sideShift = 23;
-        if (pos == POSITION.Left)
-            ringTrans.position -= sideShift * _playerTrans.right;
+        foreach (POSITION pos in positions)
+        {
+            Transform ringTrans = Instantiate(pos == activePos ? _ringObject : _ringInactiveObject).transform;
+            ringTrans.position = _playerTrans.position + 40 * _playerTrans.forward;
 
-        else if (pos == POSITION.Right)
-            ringTrans.position += sideShift * _playerTrans.right;
+            int sideShift = 15;
+            if (pos == POSITION.Left)
+                ringTrans.position -= sideShift * _playerTrans.right;
 
-        ringTrans.localRotation = _playerTrans.rotation;
-        ringTrans.Rotate(new Vector3(-90, 0, 0));
+            else if (pos == POSITION.Right)
+                ringTrans.position += sideShift * _playerTrans.right;
+
+            ringTrans.localRotation = _playerTrans.rotation;
+            ringTrans.Rotate(new Vector3(-90, 0, 0));
+
+            ringTrans.parent = _actionRings.transform;
+        }
     }
 
-    private void SpawnPov(POSITION pos)
+    private void SpawnPov(POSITION activePos)
     {
-        Transform povContainerTrans = Instantiate(_povContainer).transform;
+        Transform povContainerTrans = Instantiate(_povObject).transform;
 
-        _actionItem = new GameObject() { name = "PovItem" };
-        povContainerTrans.parent = _actionItem.transform;
+        _actionPov = new GameObject() { name = "ActionPov" };
+        povContainerTrans.parent = _actionPov.transform;
 
-        var povControl = _actionItem.AddComponent<USPovControl>();
+        var povControl = _actionPov.AddComponent<USPovControl>();
         povControl.SelectingSound = _usc.PovSelectingSound;
-        povControl.SetPos(pos);
+        povControl.SetPos(activePos);
         USPovObject.PovAdmirationComplete += OnPlayerTriggeredItem;
     }
 
@@ -136,7 +147,8 @@ public class USAction : MonoBehaviour {
     protected virtual void OnActionTimeOut(USActionEventArgs args)
     {
         _actionRunning = false;
-        if (_actionItem) Destroy(_actionItem);
+        if (_actionPov) Destroy(_actionPov);
+        if (_actionRings) Destroy(_actionRings);
 
         if (ActionTimeOut != null)
         {
@@ -157,6 +169,14 @@ public class USAction : MonoBehaviour {
     public bool IsActionRunning()
     {
         return _actionRunning;
+    }
+
+    public static POSITION[] GetPositionsExcluding(POSITION[] positionsToExclude)
+    {
+        return Enum.GetValues(typeof(POSITION))
+            .Cast<POSITION>()
+            .Where(pos => !positionsToExclude.Contains(pos))
+            .ToArray();
     }
 
     public string GetCurrentMainTaskPosition()

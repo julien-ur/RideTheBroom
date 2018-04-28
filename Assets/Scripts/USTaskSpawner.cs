@@ -4,24 +4,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class USActionSpawner : MonoBehaviour {
+public class USTaskSpawner : MonoBehaviour {
 
     public EventHandler ActionCountReached;
 
     public float MinTimeBetweenActions = 3;
     public float MaxTimeBetweenActions = 5;
 
-    private USAction _action;
-    private USActionPoolGenerator _poolGenerator;
+    private USTaskPoolGenerator _poolGenerator;
+    private USTaskController _taskControl;
     private List<PoolItem> _actionPool;
 
-    private int _actionCount;
-    private bool _actionFinished;
+    private int _spawnCount;
+    private int _runningTaskCount;
+    private bool _readyForNextSpawn;
 
     void Start()
     {
-        _action = GetComponent<USAction>();
-        _poolGenerator = new USActionPoolGenerator();
+        _taskControl = GetComponent<USTaskController>();
+        _poolGenerator = new USTaskPoolGenerator();
+
+        _taskControl.TaskEnded += OnTaskEnded;
     }
 
     private IEnumerator Spawner()
@@ -35,9 +38,9 @@ public class USActionSpawner : MonoBehaviour {
             PoolItem nextPoolItem = _actionPool[0];
             _actionPool.RemoveAt(0);
 
-            StartAction(nextPoolItem);
+            StartTasks(nextPoolItem);
 
-            yield return new WaitUntil(() => _actionFinished);
+            yield return new WaitUntil(() => _readyForNextSpawn);
             yield return new WaitForSeconds(Random.Range(MinTimeBetweenActions, MaxTimeBetweenActions));
         }
 
@@ -45,11 +48,12 @@ public class USActionSpawner : MonoBehaviour {
         OnActionCountReached();
     }
 
-    private void StartAction(PoolItem item)
+    private void StartTasks(PoolItem item)
     {
-        _actionFinished = false;
-        _action.StartNewAction(item.MainTaskPos, item.SecondaryTaskPos, _actionCount);
-        _actionCount++;
+        _readyForNextSpawn = false;
+        _runningTaskCount = item.GetTaskCount();
+        _taskControl.StartTasks(item, _spawnCount);
+        _spawnCount++;
     }
 
     private bool IsPlayerReady()
@@ -57,9 +61,12 @@ public class USActionSpawner : MonoBehaviour {
         return true;
     }
 
-    public void OnActionFinished(object sender, USActionEventArgs args)
+    public void OnTaskEnded(object sender, USTaskControllerEventArgs args)
     {
-        _actionFinished = true;
+        _runningTaskCount--;
+
+        if(_runningTaskCount == 0)
+            _readyForNextSpawn = true;
     }
 
     protected virtual void OnActionCountReached()
@@ -75,7 +82,7 @@ public class USActionSpawner : MonoBehaviour {
 
     public void InitNewRound(bool trainingRound)
     {
-        _actionCount = 0;
+        _spawnCount = 0;
         _actionPool = _poolGenerator.GeneratePool(trainingRound);
     }
 }

@@ -7,25 +7,38 @@ using Random = UnityEngine.Random;
 
 public struct PoolItem
 {
-    public USAction.POSITION MainTaskPos;
-    public USAction.POSITION SecondaryTaskPos;
+    public USTask.POSITION MainTaskPos;
+    public USTask.POSITION SecondaryTaskPos;
 
-    public PoolItem(USAction.POSITION mainTaskPos, USAction.POSITION secondaryTaskPos)
+    public PoolItem(USTask.POSITION mainTaskPos, USTask.POSITION secondaryTaskPos)
     {
         MainTaskPos = mainTaskPos;
         SecondaryTaskPos = secondaryTaskPos;
     }
+
+    public int GetTaskCount()
+    {
+        int taskCount = 0;
+        if (MainTaskPos != USTask.POSITION.None)
+            taskCount ++;
+        if (SecondaryTaskPos != USTask.POSITION.None)
+            taskCount ++;
+
+        return taskCount;
+    }
 }
 
-public class USActionPoolGenerator : MonoBehaviour
+public class USTaskPoolGenerator : MonoBehaviour
 {
-    private const int ActionPositions = 3;
+    public enum RELATION { Synchronous, Asynchronous }
+
+    private const int TaskPositions = 3;
 
     private const int SecondaryTaskConditions = 6;
     private const int SecondaryTaskConditionRepetitions = 4;
 
-    private const int MinMainTasksOnlyBeforeSecondaryTask = 2;
-    private const int MaxMainTasksOnlyBeforeSecondaryTask = 6;
+    private const int MinMainTasksOnlyBeforeSecondaryTask = 1;
+    private const int MaxMainTasksOnlyBeforeSecondaryTask = 2;
 
     private const int TrainingMainTaskRepetitions = 6;
     private const int TrainingSecondaryTaskRepetitions = 3;
@@ -42,14 +55,14 @@ public class USActionPoolGenerator : MonoBehaviour
 
         for (int i = 0; i < mainTaskRepetitions; i++)
         {
-            int rndPos = Random.Range(0, ActionPositions);
-            var poolItem = new PoolItem((USAction.POSITION)rndPos, USAction.POSITION.None);
+            int rndPos = Random.Range(0, TaskPositions);
+            var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
             actionPool.Add(poolItem);
         }
 
-        for (int i = 0; i < ActionPositions; i++)
+        for (int i = 0; i < TaskPositions; i++)
         {
-            var poolItem = new PoolItem(USAction.POSITION.None, (USAction.POSITION) i);
+            var poolItem = new PoolItem(USTask.POSITION.None, (USTask.POSITION) i);
 
             for (int j = 0; j < secondaryTaskRepetitions - 1; j++)
             {
@@ -57,9 +70,9 @@ public class USActionPoolGenerator : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < ActionPositions; i++)
+        for (int i = 0; i < TaskPositions; i++)
         {
-            var poolItem = new PoolItem(USAction.POSITION.None, (USAction.POSITION)i);
+            var poolItem = new PoolItem(USTask.POSITION.None, (USTask.POSITION)i);
             actionPool.Add(poolItem);
         }
 
@@ -71,7 +84,7 @@ public class USActionPoolGenerator : MonoBehaviour
         List<int> secondaryTaskPool = CreateSecondaryTaskPool();
         var actionPool = new List<PoolItem>();
 
-        int secondaryTaskCounter = MaxMainTasksOnlyBeforeSecondaryTask;
+        int secondaryTaskCounter = 0;
 
         while (secondaryTaskPool.Count > 0)
         {
@@ -84,8 +97,8 @@ public class USActionPoolGenerator : MonoBehaviour
             }
             else
             {
-                var rndPos = (USAction.POSITION)Random.Range(0, ActionPositions);
-                poolItem = new PoolItem(rndPos, USAction.POSITION.None);
+                var rndPos = (USTask.POSITION)Random.Range(0, TaskPositions);
+                poolItem = new PoolItem(rndPos, USTask.POSITION.None);
             }
 
             actionPool.Add(poolItem);
@@ -100,7 +113,7 @@ public class USActionPoolGenerator : MonoBehaviour
 
         for (int i = 0; i < SecondaryTaskConditionRepetitions; i++)
         {
-            secondaryTaskPool.AddRange(Enumerable.Range(1, SecondaryTaskConditions));
+            secondaryTaskPool.AddRange(Enumerable.Range(0, SecondaryTaskConditions));
         }
 
         return secondaryTaskPool;
@@ -110,11 +123,11 @@ public class USActionPoolGenerator : MonoBehaviour
     {
         int secondaryTaskCondition = TakeRandomConditionFromPool(ref secondaryTaskPool);
 
-        var secondaryTaskPosition = (USAction.POSITION)(secondaryTaskCondition / 2);
-        var taskRelation = (USAction.RELATION)((secondaryTaskCondition / 2) + 1);
+        var secondaryTaskPosition = (USTask.POSITION)(secondaryTaskCondition / 2);
+        var taskRelation = (RELATION)(secondaryTaskCondition % 2);
 
         var mainTaskPosition = secondaryTaskPosition;
-        if (taskRelation == USAction.RELATION.Asynchronous)
+        if (taskRelation == RELATION.Asynchronous)
         {
             mainTaskPosition = GetRandomPositionExcluding(secondaryTaskPosition);
         }
@@ -132,9 +145,9 @@ public class USActionPoolGenerator : MonoBehaviour
         return condition;
     }
 
-    private static USAction.POSITION GetRandomPositionExcluding(USAction.POSITION posToExclude)
+    private static USTask.POSITION GetRandomPositionExcluding(USTask.POSITION posToExclude)
     {
-        USAction.POSITION[] remainingPositions = USAction.GetPositionsExcluding(new []{ posToExclude, USAction.POSITION.None });
+        USTask.POSITION[] remainingPositions = USTask.GetPositionsExcluding(new []{ posToExclude, USTask.POSITION.None });
         return remainingPositions[Random.Range(0, remainingPositions.Length)];
     }
 }

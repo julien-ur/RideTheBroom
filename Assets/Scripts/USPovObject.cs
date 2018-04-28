@@ -5,10 +5,6 @@ using UnityEngine;
 public class USPovObject : MonoBehaviour
 {
     public Light PresentationLight;
-
-    public static EventHandler<ItemTriggerEventArgs> PovAdmirationComplete;
-    public static EventHandler LastWish;
-
     private float _lightStartIntensity;
 
     void Awake()
@@ -28,16 +24,10 @@ public class USPovObject : MonoBehaviour
         StartCoroutine(Deactivating());
     }
 
-    public void LifeMakesNoSenseNow()
+    public void StartSelectionProcess(Action callback)
     {
         StopAllCoroutines();
-        StartCoroutine(Finale());
-    }
-
-    public void StartSelectionProcess()
-    {
-        StopAllCoroutines();
-        StartCoroutine(OnSelecting());
+        StartCoroutine(OnSelecting(callback));
     }
 
     public void StopSelectionProcess()
@@ -69,6 +59,37 @@ public class USPovObject : MonoBehaviour
         GetComponent<MeshRenderer>().enabled = false;
     }
 
+    private IEnumerator OnSelecting(Action callback)
+    {
+        float timer = 0;
+        while((timer += Time.deltaTime) < 1.5f)
+        {
+            PresentationLight.range += 3;
+            PresentationLight.intensity += 0.03f;
+            yield return new WaitForEndOfFrame();
+        }
+
+        callback();
+        LifeMakesNoSenseNow();
+    }
+
+    private IEnumerator RevertSelection()
+    {
+        while (PresentationLight.range > 50)
+        {
+            PresentationLight.range -= 10;
+            yield return new WaitForEndOfFrame();
+        }
+        PresentationLight.intensity = _lightStartIntensity;
+        PresentationLight.range = 50;
+    }
+
+    private void LifeMakesNoSenseNow()
+    {
+        StopAllCoroutines();
+        StartCoroutine(Finale());
+    }
+
     private IEnumerator Finale()
     {
         GameObject povVisibilityContainer = transform.parent.parent.gameObject;
@@ -88,36 +109,5 @@ public class USPovObject : MonoBehaviour
         }
 
         Destroy(povVisibilityContainer.transform.parent.gameObject);
-    }
-
-    private IEnumerator OnSelecting()
-    {
-        float timer = 0;
-        while((timer += Time.deltaTime) < 1.5f)
-        {
-            PresentationLight.range += 3;
-            PresentationLight.intensity += 0.03f;
-            yield return new WaitForEndOfFrame();
-        }
-
-        OnPovAdmirationComplete();
-        LifeMakesNoSenseNow();
-    }
-
-    private IEnumerator RevertSelection()
-    {
-        while (PresentationLight.range > 50)
-        {
-            PresentationLight.range -= 10;
-            yield return new WaitForEndOfFrame();
-        }
-        PresentationLight.intensity = _lightStartIntensity;
-        PresentationLight.range = 50;
-    }
-
-    protected virtual void OnPovAdmirationComplete()
-    {
-        if (PovAdmirationComplete != null)
-            PovAdmirationComplete(this, new ItemTriggerEventArgs() { Item = ItemTrigger.ITEM.Pov });
     }
 }

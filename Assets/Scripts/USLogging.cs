@@ -9,7 +9,9 @@ public struct USLogRecord
     public string Timestamp { get; set; }
     public string FeedbackType { get; set; }
     public string MainTask { get; set; }
+    public string MainTaskInfo { get; set; }
     public string SecondaryTask { get; set; }
+    public string SecondaryTaskInfo { get; set; }
     public string EventInfo { get; set; }
     public float HorizontalPlayerRot { get; set; }
     public float VerticalPlayerRot { get; set; }
@@ -34,7 +36,6 @@ public class USLogging : MonoBehaviour
     public int LogsPerSecond = 10;
 
     private UserStudyControl _usc;
-    private USAction _action;
     private Coroutine _loggingCoroutine;
     private Transform _playerTransform;
     private Transform _mainCameraTransform;
@@ -42,14 +43,26 @@ public class USLogging : MonoBehaviour
     private bool _logging;
     private float _loggingStartTime;
     private string _subjectName;
-    private string _latestEvent;
+
+    private USTaskControllerEventArgs[] _taskInfo;
 
     void Start()
     {
+        _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
         _playerTransform = GameComponents.GetPlayer().transform;
         _mainCameraTransform = Camera.main.transform;
-        _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
-        _action = GetComponent<USAction>();
+        _taskInfo = new USTaskControllerEventArgs[2];
+
+        var taskControl = GetComponent<USTaskController>();
+        taskControl.TaskStarted += OnTaskStarted;
+        taskControl.TaskEnded += OnTaskEnded;
+
+        var fsr = GameComponents.GetGameController().GetComponent<FeedbackServer>();
+        fsr.FeedbackRequestSuccessful += OnFeedbackRequestSuccessful;
+
+        var emptyTaskInfo = new USTaskControllerEventArgs { Position = USTask.POSITION.None, EventInfo = "" };
+        _taskInfo[0] = emptyTaskInfo;
+        _taskInfo[1] = emptyTaskInfo;
     }
 
     IEnumerator CSVLogger()
@@ -72,28 +85,45 @@ public class USLogging : MonoBehaviour
 
     private USLogRecord CreateNewRecord()
     {
+        USTaskControllerEventArgs _mainTaskInfo = _taskInfo[(int)USTask.TYPE.Main];
+        USTaskControllerEventArgs _secondaryTaskInfo = _taskInfo[(int)USTask.TYPE.Secondary];
+
         var record = new USLogRecord()
         {
             SubjectName = _subjectName,
             Timestamp = (Time.realtimeSinceStartup - _loggingStartTime).ToString("F3"),
             FeedbackType = _usc.GetCurrentFeedbackType().ToString(),
-            MainTask = _action.IsActionRunning() ? _action.GetCurrentMainTaskPosition() : "None",
-            SecondaryTask = _action.IsActionRunning() ? _action.GetCurrentSecondaryTaskPosition() : "None",
-            EventInfo = _latestEvent ?? "no event",
+            MainTask = _mainTaskInfo.Position.ToString(),
+            MainTaskInfo = _mainTaskInfo.EventInfo,
+            SecondaryTask = _secondaryTaskInfo.Position.ToString(),
+            SecondaryTaskInfo = _secondaryTaskInfo.EventInfo,
             HorizontalPlayerRot = _playerTransform.eulerAngles.y,
             VerticalPlayerRot = _playerTransform.eulerAngles.x,
             HorizontalHmdRot = _mainCameraTransform.eulerAngles.y,
             VerticalHmdRot = _mainCameraTransform.eulerAngles.x
         };
 
-        _latestEvent = null;
+        _mainTaskInfo.EventInfo = "";
+        _secondaryTaskInfo.EventInfo = "";
 
         return record;
     }
 
-    public void OnRelevantStudyEvent(object sender, UserStudyControlEventArgs args)
+    public void OnFeedbackRequestSuccessful(object sender, FeedbackServerEventArgs args)
     {
-        _latestEvent = args.EventInfo;
+        _taskInfo[(int)USTask.TYPE.Secondary].EventInfo = args.EventInfo;
+    }
+
+    public void OnTaskStarted(object sender, USTaskControllerEventArgs args)
+    {
+        _taskInfo[(int)args.Type].Position = args.Position;
+        _taskInfo[(int)args.Type].EventInfo = args.EventInfo;
+    }
+
+    public void OnTaskEnded(object sender, USTaskControllerEventArgs args)
+    {
+        _taskInfo[(int)args.Type].Position = USTask.POSITION.None;
+        _taskInfo[(int)args.Type].EventInfo = args.EventInfo;
     }
 
     public void StartLogging(string subjectName)

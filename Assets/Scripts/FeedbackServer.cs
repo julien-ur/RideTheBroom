@@ -5,11 +5,14 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 
+public class FeedbackServerEventArgs : EventArgs
+{
+    public string EventInfo;
+}
+
 public class FeedbackServer : MonoBehaviour {
 
-    private String _address = "192.168.1.100";
-    private String _updateRoute = "/update";
-    private String _resetRoute = "/reset";
+    public EventHandler<FeedbackServerEventArgs> FeedbackRequestSuccessful;
 
     public const int SMELL_LEMON_VAL = 1;
     public const int SMELL_WOODY_VAL = 2;
@@ -21,11 +24,15 @@ public class FeedbackServer : MonoBehaviour {
     public const string VIBRATION_TAG = "v";
     public const string PAUSE_TAG = "p";
 
+
+    private String _address = "192.168.1.100";
+    private String _updateRoute = "/update";
+    private String _resetRoute = "/reset";
+
     public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG, PAUSE_TAG };
 
-    public EventHandler<UserStudyControlEventArgs> FeedbackRequestSent;
 
-    private IEnumerator Post(string route, string rawData)
+    private IEnumerator Post(string route, string rawData, Action callback)
     {
         WWWForm form = ConvertRawDataToForm(rawData);
 
@@ -35,20 +42,22 @@ public class FeedbackServer : MonoBehaviour {
 
             if (www.isNetworkError || www.isHttpError)
             {
-                Debug.Log(www.error);
+                Debug.LogError(www.error);
+                callback();
             }
             else
             {
                 Debug.Log("feedback request successful");
-                OnFeedbackRequestSent();
+                OnFeedbackRequestSuccessful();
+                callback();
             }
         }
     }
 
-    protected virtual void OnFeedbackRequestSent()
+    protected virtual void OnFeedbackRequestSuccessful()
     {
-        if (FeedbackRequestSent != null)
-            FeedbackRequestSent(this, new UserStudyControlEventArgs() { EventInfo = "FeedbackRequest Sent" });
+        if (FeedbackRequestSuccessful != null)
+            FeedbackRequestSuccessful(this, new FeedbackServerEventArgs { EventInfo = "FeedbackRequest successful" });
     }
 
     private WWWForm ConvertRawDataToForm(string data)
@@ -69,8 +78,8 @@ public class FeedbackServer : MonoBehaviour {
         return form;
     }
 
-    public void PostChange(string rawData)
+    public void PostChange(string rawData, Action callback)
     {
-        StartCoroutine(Post("/update", rawData));
+        StartCoroutine(Post("/update", rawData, callback));
     }
 }

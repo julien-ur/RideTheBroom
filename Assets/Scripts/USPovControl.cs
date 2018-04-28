@@ -2,16 +2,19 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class USPovControl : MonoBehaviour {
+public class USPovControl : MonoBehaviour
+{
+    public EventHandler PovSelected;
 
-    public AudioClip SelectingSound;
+    public AudioClip SelectingSound { get; set; }
+    public USTask.POSITION PovPos { get; set; }
 
-    private USAction.POSITION _povPos;
+    private GameObject _pc;
     private AudioSource _audioSource;
     private USPovObject _rndChosenPov;
 
-    private GameObject _pc;
     private Vector3 _posRelativeToPlayer;
+
 
     void Awake()
     {
@@ -47,12 +50,12 @@ public class USPovControl : MonoBehaviour {
 
         Vector3 relPos, relRot;
 
-        if (_povPos == USAction.POSITION.Right)
+        if (PovPos == USTask.POSITION.Right)
         {
             relPos = new Vector3(43, 1, -8);
             relRot = new Vector3(0, -90, 0);
         }
-        else if (_povPos == USAction.POSITION.Left)
+        else if (PovPos == USTask.POSITION.Left)
         {
             relPos = new Vector3(-43, 1, -8);
             relRot = new Vector3(0, 90, 0);
@@ -81,17 +84,16 @@ public class USPovControl : MonoBehaviour {
     public void StartSelectionProcess()
     {
         _audioSource.PlayOneShot(SelectingSound, 0.5f);
-        _rndChosenPov.StartSelectionProcess();
+        _rndChosenPov.StartSelectionProcess(() =>
+        {
+            if (PovSelected != null)
+                PovSelected(this, EventArgs.Empty);
+        });
     }
 
     public void StopSelectionProcess()
     {
         _audioSource.Stop();
         _rndChosenPov.StopSelectionProcess();
-    }
-
-    public void SetPos(USAction.POSITION pos)
-    {
-        _povPos = pos;
     }
 }

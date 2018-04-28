@@ -80,6 +80,8 @@ public class LevelActions : MonoBehaviour
                 _pc.ChangeSpeed(7, 7, 7);
                 _pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
                 _pc.enableBroomRollback = false;
+                _pc.tiltAcceleration = false;
+                _pc.spaceTiltAcceleration = false;
             }
 
             float doorOpenDuration = _broomCloset.OpenDoors();

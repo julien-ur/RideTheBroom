@@ -6,11 +6,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UserStudyControlEventArgs : EventArgs
-{
-    public string EventInfo { get; set; }
-}
-
 public class UserStudyControl : MonoBehaviour {
 
     public enum FeedbackType { Heat, Smell, Vibration, Audio }
@@ -18,17 +13,17 @@ public class UserStudyControl : MonoBehaviour {
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
-        { "" + FeedbackType.Heat + USAction.POSITION.Left, FeedbackServer.HEAT_TAG + "0, 2" },
-        { "" + FeedbackType.Heat + USAction.POSITION.Middle, FeedbackServer.HEAT_TAG + "1, 2" },
-        { "" + FeedbackType.Heat + USAction.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 0.5" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackServer.HEAT_TAG + "0, 2" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "1, 2" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 0.5" },
 
-        { "" + FeedbackType.Smell + USAction.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USAction.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USAction.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
 
-        { "" + FeedbackType.Vibration + USAction.POSITION.Left, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
-        { "" + FeedbackType.Vibration + USAction.POSITION.Middle, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
-        { "" + FeedbackType.Vibration + USAction.POSITION.Right, FeedbackServer.VIBRATION_TAG + "0.4, 2;" }
+        { "" + FeedbackType.Vibration + USTask.POSITION.Left, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
+        { "" + FeedbackType.Vibration + USTask.POSITION.Middle, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
+        { "" + FeedbackType.Vibration + USTask.POSITION.Right, FeedbackServer.VIBRATION_TAG + "0.4, 2;" }
     };
 
     public AudioClip TimeOutSound;
@@ -43,7 +38,7 @@ public class UserStudyControl : MonoBehaviour {
     public AudioClip VoicePovLeft;
     public AudioClip VoicePovMiddle;
     public AudioClip VoicePovRight;
-    public float ActionVoiceVolume = 1f;
+    public float TaskVoiceVolume = 1f;
 
     public GameObject RefillTankItem;
     public GameObject PovContainer;
@@ -54,8 +49,8 @@ public class UserStudyControl : MonoBehaviour {
     public static string RoundConfigName = "round_config.ini";
     public static string RoundConfigPath = UserStudyPath + "/" + RoundConfigName;
 
-    private USActionSpawner _spawner;
-    private USActionController _actionControl;
+    private USTaskSpawner _spawner;
+    private USTaskController _taskControl;
     private Text _infoText;
     private LoadingOverlay _loadingOverlay;
      
@@ -69,7 +64,14 @@ public class UserStudyControl : MonoBehaviour {
 
     void Awake()
     {
-        InitStudyObjects();
+        var u = new GameObject() { name = "User Study" };
+
+        u.AddComponent<AudioSource>();
+        _spawner = u.AddComponent<USTaskSpawner>();
+        _taskControl = u.AddComponent<USTaskController>();
+        _logging = u.AddComponent<USLogging>();
+
+        _spawner.ActionCountReached += OnRoundFinished;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
         _rounds = new List<FeedbackType> { };
@@ -155,42 +157,6 @@ public class UserStudyControl : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2);
     }
 
-    private void InitStudyObjects()
-    {
-        var u = new GameObject(){ name = "User Study" };
-
-        u.AddComponent<AudioSource>();
-        _spawner = u.AddComponent<USActionSpawner>();
-        _actionControl = u.AddComponent<USActionController>();
-        var action = u.AddComponent<USAction>();
-        _logging = u.AddComponent<USLogging>();
-
-        _actionControl.SetTimeOutSound(TimeOutSound, TimeOutVolume);
-        _actionControl.SetSuccessSound(SuccessSound, SuccessVolume);
-
-        RegisterListener(action);
-    }
-
-    private void RegisterListener(USAction action)
-    {
-        var fsr = GameComponents.GetGameController().GetComponent<FeedbackServer>();
-
-        fsr.FeedbackRequestSent += _logging.OnRelevantStudyEvent;
-
-        action.ActionStarted += _actionControl.OnActionStarted;
-        action.ActionStarted += _logging.OnRelevantStudyEvent;
-
-        action.ActionSuccess += _spawner.OnActionFinished;
-        action.ActionSuccess += _actionControl.OnActionSuccess;
-        action.ActionSuccess += _logging.OnRelevantStudyEvent;
-
-        action.ActionTimeOut += _spawner.OnActionFinished;
-        action.ActionTimeOut += _actionControl.OnActionTimeOut;
-        action.ActionTimeOut += _logging.OnRelevantStudyEvent;
-
-        _spawner.ActionCountReached += OnRoundFinished;
-    }
-
     private void AddRoundsFromRoundConfig()
     {
         var lines = File.ReadAllLines(RoundConfigPath);
@@ -221,44 +187,12 @@ public class UserStudyControl : MonoBehaviour {
         _roundFinished = true;
     }
 
-    public GameObject GetRefillTankItem()
-    {
-        return RefillTankItem;
-    }
-
-    public GameObject GetRingObject()
-    {
-        return RingObject;
-    }
-
-    public GameObject GetRingInactiveObject()
-    {
-        return RingInactiveObject;
-    }
-
-    public GameObject GetPovContainer()
-    {
-        return PovContainer;
-    }
-
-    public AudioClip GetVoiceForAction(USAction.POSITION pos)
-    {
-        if (pos == USAction.POSITION.Left)
-            return VoicePovLeft;
-        if (pos == USAction.POSITION.Middle)
-            return VoicePovMiddle;
-        if (pos == USAction.POSITION.Right)
-            return VoicePovRight;
-
-        return null;
-    }
-
     public FeedbackType GetCurrentFeedbackType()
     {
         return _currentFeedbackType;
     }
 
-    public string GetFeedbackData(USAction.POSITION actionPosition)
+    public string GetFeedbackData(USTask.POSITION actionPosition)
     {
         string feedbackData;
         FEEDBACK_DICT.TryGetValue("" + _currentFeedbackType + actionPosition, out feedbackData);

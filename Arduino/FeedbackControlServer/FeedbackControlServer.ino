@@ -45,6 +45,7 @@ struct feedbackData
 {
     String type;
     float currentVal = 0;
+    float nextVal = 0;
     float defaultVal = 0;
     AsyncDelay *revertChangeDelay = NULL;
 };
@@ -109,6 +110,7 @@ void setup() {
 void handleRevertDelay(FeedbackData &d, void (*revertFun)(FeedbackData) = NULL) {
    if (d.revertChangeDelay && d.revertChangeDelay->isExpired()) {
     d.currentVal = d.defaultVal;
+    d.nextVal = d.defaultVal;
     d.revertChangeDelay = NULL;
     if (revertFun) revertFun(d);
     Serial.println("reverted " + d.type + " to " + d.currentVal);
@@ -122,8 +124,8 @@ void loop() {
   handleRevertDelay(windData);
   handleRevertDelay(scentData, &handleScent);
   
-  pwm(WIND_PIN, WIND_CYCLE_TIME, windData.currentVal, &windCycleStartTime, false);
-  pwm(HEAT_PIN, HEAT_CYCLE_TIME, heatData.currentVal, &heatCycleStartTime, false);
+  pwm(WIND_PIN, WIND_CYCLE_TIME, &windData, &windCycleStartTime, false);
+  pwm(HEAT_PIN, HEAT_CYCLE_TIME, &heatData, &heatCycleStartTime, false);
 }
 
 void initRoutes() {
@@ -157,13 +159,13 @@ void initRoutes() {
 
 void UpdateFeedbackSettings(FeedbackData *fbData, RequestData reqData) {
   if (fbData->type != "scent") {
-    fbData->currentVal = constrain(reqData.value, 0, 1);
+    fbData->nextVal = constrain(reqData.value, 0, 1);
   } else {
     fbData->currentVal = constrain((int)reqData.value, 0, 4);
   }
 
   if (reqData.duration == 0 && fbData->type != "scent") {
-    fbData->defaultVal = fbData->currentVal;
+    fbData->defaultVal = fbData->nextVal;
   } else {
     fbData->revertChangeDelay = new AsyncDelay(reqData.duration * 1000, AsyncDelay::MILLIS);
   }
@@ -179,14 +181,24 @@ RequestData ExtractDataFromArgs(int i) {
     int separatorIndex = argString.indexOf(",");
 
     data.value = argString.substring(0, separatorIndex).toFloat();
-    data.duration = argString.substring(separatorIndex+1).toFloat();
+
+    if (separatorIndex != -1) {
+      data.duration = argString.substring(separatorIndex+1).toFloat();
+    } else {
+      data.duration = 0;
+    }
 
     return data;
 }
 
-void pwm(byte controlPin, int fullCycleTime, float onPercent, int *cycleStartTime, bool inverseCycle) {
+void pwm(byte controlPin, int fullCycleTime, FeedbackData *data, int *cycleStartTime, bool inverseCycle) {
+  float onPercent = data->currentVal;
+  if (data->type == "heat") Serial.println(onPercent);
+
   if(millis() - *cycleStartTime > fullCycleTime) {
     *cycleStartTime = millis();
+    data->currentVal = data->nextVal;
+    if (data->type == "heat") Serial.println("changed after cycle");
   }
   
   byte level;

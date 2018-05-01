@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -28,14 +26,17 @@ public struct PoolItem
     }
 }
 
-public class USTaskPoolGenerator : MonoBehaviour
+public class USTaskPoolGenerator
 {
     public enum RELATION { Synchronous, Asynchronous }
 
     private const int TaskPositions = 3;
+    private const int RelationNum = 2;
+
+    private readonly List<USTask.POSITION>[] _asychronousPositionPool;
 
     private const int SecondaryTaskConditions = 6;
-    private const int SecondaryTaskConditionRepetitions = 4;
+    private const int SecondaryTaskConditionRepetitions = 7;
 
     private const int MinMainTasksOnlyBeforeSecondaryTask = 1;
     private const int MaxMainTasksOnlyBeforeSecondaryTask = 2;
@@ -43,6 +44,10 @@ public class USTaskPoolGenerator : MonoBehaviour
     private const int TrainingMainTaskRepetitions = 6;
     private const int TrainingSecondaryTaskRepetitions = 3;
 
+    public USTaskPoolGenerator()
+    {
+        _asychronousPositionPool = CreateAsynchronousPositionsPool();
+    }
 
     public List<PoolItem> GeneratePool(bool forTraining)
     {
@@ -119,27 +124,60 @@ public class USTaskPoolGenerator : MonoBehaviour
         return secondaryTaskPool;
     }
 
-    private static PoolItem CreateDoubleTaskPoolItem(ref List<int> secondaryTaskPool)
+    private static List<USTask.POSITION>[] CreateAsynchronousPositionsPool()
+    {
+        var asychronousPool = new List<USTask.POSITION>[3];
+
+        foreach (var pos in USTask.GetPositionsExcluding(new[] { USTask.POSITION.None }))
+        {
+            var balancedPosList = new List<USTask.POSITION>();
+            var remainingPositions = USTask.GetPositionsExcluding(new[] { pos, USTask.POSITION.None });
+
+            foreach (var rp in remainingPositions)
+            {
+                for (int i = 0; i < SecondaryTaskConditionRepetitions / RelationNum; i++)
+                {
+                    balancedPosList.Add(rp);
+                }
+            }
+
+            int rest = SecondaryTaskConditionRepetitions % RelationNum;
+            if (rest > 0)
+            {
+                for (int j = 0; j < rest; j++)
+                {
+                    balancedPosList.Add(GetRandomPositionExcluding(pos));
+                }
+            }
+            asychronousPool[(int)pos] = balancedPosList;
+        }
+
+        return asychronousPool;
+    }
+
+    private PoolItem CreateDoubleTaskPoolItem(ref List<int> secondaryTaskPool)
     {
         int secondaryTaskCondition = TakeRandomConditionFromPool(ref secondaryTaskPool);
 
         var secondaryTaskPosition = (USTask.POSITION)(secondaryTaskCondition / 2);
         var taskRelation = (RELATION)(secondaryTaskCondition % 2);
 
-        var mainTaskPosition = secondaryTaskPosition;
+        USTask.POSITION mainTaskPosition = secondaryTaskPosition;
         if (taskRelation == RELATION.Asynchronous)
         {
-            mainTaskPosition = GetRandomPositionExcluding(secondaryTaskPosition);
+            mainTaskPosition = TakeRandomConditionFromPool(ref _asychronousPositionPool[(int)secondaryTaskPosition]);
         }
+
+        Debug.Log(secondaryTaskPosition + " " + taskRelation + " " + mainTaskPosition);
 
         return new PoolItem(mainTaskPosition, secondaryTaskPosition);
     }
 
-    private static int TakeRandomConditionFromPool(ref List<int> pool)
+    private static T TakeRandomConditionFromPool<T>(ref List<T> pool)
     {
         int taskIdx = Random.Range(0, pool.Count);
 
-        int condition = pool[taskIdx];
+        T condition = pool[taskIdx];
         pool.RemoveAt(taskIdx);
 
         return condition;

@@ -35,6 +35,7 @@ public class FeedbackServer : MonoBehaviour {
     private IEnumerator Post(string route, string rawData, Action callback)
     {
         WWWForm form = ConvertRawDataToForm(rawData);
+        callback();
 
         using (UnityWebRequest www = UnityWebRequest.Post(_address + _updateRoute, form))
         {
@@ -43,7 +44,6 @@ public class FeedbackServer : MonoBehaviour {
             if (www.isNetworkError || www.isHttpError)
             {
                 Debug.LogError(www.error);
-                callback();
             }
             else
             {

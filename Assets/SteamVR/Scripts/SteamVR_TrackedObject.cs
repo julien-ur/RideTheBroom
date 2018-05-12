@@ -131,7 +131,8 @@ public class SteamVR_TrackedObject : MonoBehaviour
         if(axis == "Vertical")
         {
             //axisInput = Utilities.Remap(startRot.y - currRot.y, 55, -75, 1.0f, -1.0f);
-            axisInput = Mathf.Clamp((startRot.x - currRot.x) * -inputMultiplierVertical, -1.0f, 1.0f);
+            //axisInput = Mathf.Clamp((startRot.x - currRot.x) * -inputMultiplierVertical, -1.0f, 1.0f);
+            axisInput = 0;
         }
         else if (axis == "Horizontal")
         {

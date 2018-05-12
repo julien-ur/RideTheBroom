@@ -184,7 +184,7 @@ public class PlayerControl : MonoBehaviour
             if (enableBroomRollback)
                 transform.RotateAround(transform.position, Vector3.up, rotateY);
             else
-                transform.RotateAround(transform.position, transform.up, rotateY);
+               transform.RotateAround(transform.position, transform.up, rotateY);
         
 
             // prevent overhead flying if broom rollback is enabled

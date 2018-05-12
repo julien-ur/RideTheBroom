@@ -205,6 +205,26 @@ Prefab:
       propertyPath: m_AllowMSAA
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: noRotationBlocking
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: invertHorizontal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useViveTracker
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useBroomHardware
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
   m_IsPrefabParent: 0
@@ -403,7 +423,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 362748211}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55b164a7558cea544afb1577760b3a8a, type: 3}
   m_Name: 
@@ -413,7 +433,9 @@ MonoBehaviour:
   minSize: 20
   maxSize: 100
   obstacleCount: 300
-  obstacleObjects: []
+  obstacleObjects:
+  - {fileID: 1876231204148738, guid: a15447f77dc4f1d48b39a54948e9bef6, type: 2}
+  - {fileID: 1361028217816140, guid: 79c310b823369da47bf29271a9145a36, type: 2}
 --- !u!114 &362748215
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -89,8 +89,8 @@ public class UserStudyControl : MonoBehaviour {
         if (!mct) _playerReady = true;
         else mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
 
-        //_pc.LimitRotationScopeByAxis('x', 10);
-        //_pc.LimitRotationScopeByAxis('y', 65);
+        _pc.SetBlockedRotationAxes("x");
+        _pc.LimitRotationScopeByAxis('y', 65);
 
         StartCoroutine(StartStudy());
     }

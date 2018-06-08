@@ -79,7 +79,7 @@ public class USTask : MonoBehaviour {
             Transform ringTrans = Instantiate(ringPrefab).transform;
             ringTrans.parent = _taskItem.transform;
 
-            ringTrans.position = _playerTrans.position + 60 * _playerTrans.forward;
+            ringTrans.position = _playerTrans.position + 80 * _playerTrans.forward;
 
             int sideShift = 20;
             if (pos == POSITION.Left)

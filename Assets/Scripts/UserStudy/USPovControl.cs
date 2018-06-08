@@ -15,6 +15,7 @@ public class USPovControl : MonoBehaviour
 
     private Vector3 _posRelativeToPlayer;
     private Vector3 _rotAxis;
+    private float _rotAngle;
 
 
     void Awake()
@@ -40,11 +41,11 @@ public class USPovControl : MonoBehaviour
     void Update()
     {
         transform.rotation = _pc.transform.rotation;
-        transform.Rotate(transform.InverseTransformVector(_rotAxis), 75);
-        _posRelativeToPlayer = transform.forward * 50;
+        transform.rotation *= Quaternion.AngleAxis(_rotAngle, transform.InverseTransformVector(_rotAxis));
+        _posRelativeToPlayer = transform.forward * 75;
 
         transform.position = _pc.transform.position + _posRelativeToPlayer;
-        
+
         //if (!_povActive)
         //{
         //    UpdateChildPositionAndRotation();
@@ -58,14 +59,17 @@ public class USPovControl : MonoBehaviour
         if (PovPos == USTask.POSITION.Right)
         {
             _rotAxis = playerTrans.up;
+            _rotAngle = 75;
         }
         else if (PovPos == USTask.POSITION.Left)
         {
-            _rotAxis = -playerTrans.up;
+            _rotAxis = playerTrans.up;
+            _rotAngle = -75;
         }
         else
         {
-            _rotAxis = -playerTrans.right;
+            _rotAxis = playerTrans.right;
+            _rotAngle = -40;
         }
 
         //transform.rotation = playerTrans.rotation;

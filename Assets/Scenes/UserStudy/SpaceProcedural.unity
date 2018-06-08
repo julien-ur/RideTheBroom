@@ -218,12 +218,12 @@ Prefab:
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: useViveTracker
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: useBroomHardware
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -232,6 +232,30 @@ Prefab:
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 189.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}

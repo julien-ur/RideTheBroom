@@ -14,6 +14,7 @@ public class USPovControl : MonoBehaviour
     private USPovObject _rndChosenPov;
 
     private Vector3 _posRelativeToPlayer;
+    private Vector3 _rotAxis;
 
 
     void Awake()
@@ -38,37 +39,39 @@ public class USPovControl : MonoBehaviour
 
     void Update()
     {
-        transform.position = _pc.transform.position + _posRelativeToPlayer;
+        transform.rotation = _pc.transform.rotation;
+        transform.Rotate(transform.InverseTransformVector(_rotAxis), 75);
+        _posRelativeToPlayer = transform.forward * 50;
 
+        transform.position = _pc.transform.position + _posRelativeToPlayer;
+        
         //if (!_povActive)
+        //{
         //    UpdateChildPositionAndRotation();
+        //}
     }
 
     private void UpdateRelativePositionAndRotation()
     {
         Transform playerTrans = _pc.transform;
 
-        Vector3 relPos, relRot;
-
         if (PovPos == USTask.POSITION.Right)
         {
-            relPos = new Vector3(43, 1, -8);
-            relRot = new Vector3(0, -90, 0);
+            _rotAxis = playerTrans.up;
         }
         else if (PovPos == USTask.POSITION.Left)
         {
-            relPos = new Vector3(-43, 1, -8);
-            relRot = new Vector3(0, 90, 0);
+            _rotAxis = -playerTrans.up;
         }
         else
         {
-            relPos = new Vector3(0, 55, 55);
-            relRot = new Vector3(40, 180, -18);
+            _rotAxis = -playerTrans.right;
         }
 
-        _posRelativeToPlayer = (relPos.x * playerTrans.right) + (relPos.y * playerTrans.up) + (relPos.z * playerTrans.forward);
-        transform.rotation = playerTrans.rotation;
-        transform.Rotate(relRot, Space.Self);
+        //transform.rotation = playerTrans.rotation;
+        //transform.Rotate(transform.InverseTransformVector(_rotAxis), 75);
+        ////transform.rotation *= Quaternion.AngleAxis(75, transform.InverseTransformVector(rotAxis));
+        //_posRelativeToPlayer = transform.forward * 50;
     }
 
     public void ActivateCurrentPov()

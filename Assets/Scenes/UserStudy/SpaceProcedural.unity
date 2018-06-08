@@ -17,7 +17,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.05
+  m_FogDensity: 0.02
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -137,7 +137,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.08480811
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalRotation.z
@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.9963974
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_RootOrder
@@ -154,7 +154,7 @@ Prefab:
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: enableBroomRollback
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
@@ -218,12 +218,20 @@ Prefab:
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: useViveTracker
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: useBroomHardware
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 189.73
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
@@ -433,9 +441,7 @@ MonoBehaviour:
   minSize: 20
   maxSize: 100
   obstacleCount: 300
-  obstacleObjects:
-  - {fileID: 1876231204148738, guid: a15447f77dc4f1d48b39a54948e9bef6, type: 2}
-  - {fileID: 1361028217816140, guid: 79c310b823369da47bf29271a9145a36, type: 2}
+  obstacleObjects: []
 --- !u!114 &362748215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8248,7 +8254,6 @@ MonoBehaviour:
   - h
   - s
   - v
-  - p
 --- !u!1 &1787460151
 GameObject:
   m_ObjectHideFlags: 0

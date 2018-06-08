@@ -74,7 +74,7 @@ public class UserStudyControl : MonoBehaviour {
         _spawner.ActionCountReached += OnRoundFinished;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> { FeedbackType.Audio };
+        _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
 
         AddRoundsFromRoundConfig();
     }
@@ -88,6 +88,9 @@ public class UserStudyControl : MonoBehaviour {
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) _playerReady = true;
         else mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
+
+        //_pc.LimitRotationScopeByAxis('x', 10);
+        //_pc.LimitRotationScopeByAxis('y', 65);
 
         StartCoroutine(StartStudy());
     }
@@ -106,11 +109,13 @@ public class UserStudyControl : MonoBehaviour {
         Debug.Log("Study Started - Subject #" + _subjectId);
         _logging.StartLogging("Subject #" + _subjectId);
 
+        var roundCount = 0;
+
         foreach (FeedbackType f in _rounds)
         {
             _roundFinished = false;
             _currentFeedbackType = f;
-            _spawner.InitNewRound(f == FeedbackType.Audio);
+            _spawner.InitNewRound(++roundCount == 1);
 
             //_loadingOverlay.FadeOut(1);
             //_pc.ChangeSpeedToTargetSpeed(0, 1);

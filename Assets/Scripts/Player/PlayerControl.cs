@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
 
     private float lastAngle = 0;
 
+    private Vector3 rotationScopeCenter;
     private float headStartYPos;
     private float maxHeadDelta = 0.7f;
     private float maxSpeedChangeFactor = 1.7f;
@@ -51,8 +52,12 @@ public class PlayerControl : MonoBehaviour
     public float timePassedSinceLastAngleUpdate = 0;
 
     private bool isRotationEnabled = true;
+    private bool horizontalRotationBlocked;
+    private bool verticalRotationBlocked;
     private bool adjustingSpeed = true;
     private bool speedTargetOutOfBounds = false;
+    private float verticalRotationLimit = 180;
+    private float horizontalRotationLimit = 180;
 
     void Start()
     {
@@ -60,6 +65,7 @@ public class PlayerControl : MonoBehaviour
         cameraControl = GetComponentInChildren<PlayerCameraControl>();
         speed = 0;
         headStartYPos = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).y;
+        rotationScopeCenter = transform.rotation.eulerAngles;
     }
 
     void Update()
@@ -150,11 +156,24 @@ public class PlayerControl : MonoBehaviour
         if (isRotationEnabled || !UnityEngine.XR.XRDevice.isPresent || noRotationBlocking)
         {
 
-            float rotateX = inputVertical * rotationFactorX * Time.deltaTime;
-            float rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
+            float rotateX = 0;
+            float rotateY = 0;
+
+            if (!(verticalRotationBlocked ||
+                  inputVertical < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) > verticalRotationLimit ||
+                  inputVertical > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) < -verticalRotationLimit))
+            {
+                rotateX = inputVertical * rotationFactorX * Time.deltaTime;
+            }
+            if (!(horizontalRotationBlocked ||
+                  inputHorizontal > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) > horizontalRotationLimit ||
+                  inputHorizontal < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) < -horizontalRotationLimit))
+            {
+                rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
+            }
 
             // rotate broom horizonatlly
-            if(useAbsoluteAngle)
+            if (useAbsoluteAngle)
             {
                 //float absoluteAngleY = androidInput.getAngleVertical();
 
@@ -182,7 +201,7 @@ public class PlayerControl : MonoBehaviour
             }
 
             if (enableBroomRollback)
-                transform.RotateAround(transform.position, Vector3.up, rotateY);
+               transform.RotateAround(transform.position, Vector3.up, rotateY);
             else
                transform.RotateAround(transform.position, transform.up, rotateY);
         
@@ -304,6 +323,29 @@ public class PlayerControl : MonoBehaviour
     {
         isRotationEnabled = false;
         GetComponent<SteamVR_TrackedObject>().enabled = false;
+    }
+
+    public void SetBlockedRotationAxes(string blockedAxes)
+    {
+        verticalRotationBlocked = blockedAxes.Contains("x");
+        horizontalRotationBlocked = blockedAxes.Contains("y");
+    }
+
+    public void LimitRotationScopeByAxis(char axis, float degreesInOneDirection)
+    {
+        if (axis == 'x')
+        {
+            verticalRotationLimit = degreesInOneDirection;
+        }
+        else if (axis == 'y')
+        {
+            horizontalRotationLimit = degreesInOneDirection;
+        }
+    }
+
+    public void UpdateRotationScopeCenter()
+    {
+        rotationScopeCenter = transform.rotation.eulerAngles;
     }
 
     public float GetCurrentSpeed()

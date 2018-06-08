@@ -41,8 +41,8 @@ public class USTaskPoolGenerator
     private const int MinMainTasksOnlyBeforeSecondaryTask = 1;
     private const int MaxMainTasksOnlyBeforeSecondaryTask = 2;
 
-    private const int TrainingMainTaskRepetitions = 6;
-    private const int TrainingSecondaryTaskRepetitions = 3;
+    private const int TrainingMainTaskRepetitions = 0;//6;
+    private const int TrainingSecondaryTaskRepetitions = 1;//3;
 
     public USTaskPoolGenerator()
     {

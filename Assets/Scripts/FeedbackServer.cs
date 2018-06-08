@@ -10,8 +10,8 @@ public class FeedbackServerEventArgs : EventArgs
     public string EventInfo;
 }
 
-public class FeedbackServer : MonoBehaviour {
-
+public class FeedbackServer : MonoBehaviour
+{
     public EventHandler<FeedbackServerEventArgs> FeedbackRequestSuccessful;
 
     public const int SMELL_LEMON_VAL = 1;
@@ -22,19 +22,25 @@ public class FeedbackServer : MonoBehaviour {
     public const string HEAT_TAG = "h";
     public const string SMELL_TAG = "s";
     public const string VIBRATION_TAG = "v";
-    public const string PAUSE_TAG = "p";
 
+    public static Dictionary<string, float> SENSE_LATENCY_DICT = new Dictionary<string, float>
+    {
+        { HEAT_TAG, 0.2f },
+        { SMELL_TAG, 0.6f },
+        { VIBRATION_TAG, 0.1f }
+    };
 
-    private String _address = "192.168.1.100";
-    private String _updateRoute = "/update";
-    private String _resetRoute = "/reset";
+    private string _address = "192.168.1.100";
+    private string _updateRoute = "/update";
+    private string _resetRoute = "/reset";
 
-    public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG, PAUSE_TAG };
+    public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG };
 
 
     private IEnumerator Post(string route, string rawData, Action callback)
     {
-        WWWForm form = ConvertRawDataToForm(rawData);
+        string feedbackTag = GetFeedbackTag(rawData);
+        WWWForm form = ConvertRawDataToForm(feedbackTag, rawData);
         callback();
 
         using (UnityWebRequest www = UnityWebRequest.Post(_address + _updateRoute, form))
@@ -49,7 +55,9 @@ public class FeedbackServer : MonoBehaviour {
             {
                 Debug.Log("feedback request successful");
                 OnFeedbackRequestSuccessful();
-                callback();
+                yield return new WaitForSecondsRealtime(SENSE_LATENCY_DICT[feedbackTag]);
+                Debug.Log("feedback at player");
+                // callback();
             }
         }
     }
@@ -60,22 +68,45 @@ public class FeedbackServer : MonoBehaviour {
             FeedbackRequestSuccessful(this, new FeedbackServerEventArgs { EventInfo = "FeedbackRequest successful" });
     }
 
-    private WWWForm ConvertRawDataToForm(string data)
+    private string GetFeedbackTag(string d)
+    {
+        foreach (string tag in ALL_TAGS)
+        {
+            if (d.Contains(tag))
+                return tag;
+        }
+
+        return "";
+    }
+
+    private WWWForm ConvertRawDataToForm(string feedbackTag, string data)
     {
         WWWForm form = new WWWForm();
 
+        data = data.Replace(feedbackTag, "");
+
         string[] instructions = data.Split(';');
 
-        foreach (string s in instructions)
+        foreach (string i in instructions)
         {
-            foreach (string tag in ALL_TAGS)
-            {
-                if (s.Contains(tag))
-                    form.AddField(tag, s.Replace(tag, ""));
-            }
+            form.AddField(feedbackTag, i);
         }
 
         return form;
+    }
+
+    public float GetLatencyForFeedbackType(UserStudyControl.FeedbackType fType)
+    {
+        var fTag = "";
+
+        if (fType == UserStudyControl.FeedbackType.Heat)
+            fTag = HEAT_TAG;
+        else if (fType == UserStudyControl.FeedbackType.Smell)
+            fTag = SMELL_TAG;
+        else if (fType == UserStudyControl.FeedbackType.Vibration)
+            fTag = VIBRATION_TAG;
+
+        return SENSE_LATENCY_DICT[fTag];
     }
 
     public void PostChange(string rawData, Action callback)

@@ -17,15 +17,13 @@ char static_ip[16] = "192.168.137.100";
 char static_gw[16] = "192.168.137.1";
 char static_sn[16] = "255.255.255.0";
 
-//default vibration server ip
-char vibrationServerIP[16] = "192.168.137.101";
-
 //flag for saving data
 bool shouldSaveConfig = false;
 
 // PINs
 #define HEAT_PIN D1
 #define WIND_PIN D8
+#define VIBRATION_PIN D4
 #define SCENT_1_PIN D7
 #define SCENT_2_PIN D6
 #define SCENT_3_PIN D5
@@ -33,13 +31,24 @@ bool shouldSaveConfig = false;
 #define RESET_PIN D3
 
 // Constants
-static const uint8_t SCENT_PINS[] = { SCENT_1_PIN, SCENT_2_PIN, SCENT_3_PIN, SCENT_4_PIN };
+static const uint8_t OUTPUT_PINS[] = { HEAT_PIN, WIND_PIN, VIBRATION_PIN, SCENT_1_PIN, SCENT_2_PIN, SCENT_3_PIN, SCENT_4_PIN };
+static const uint8_t *SCENT_PINS = OUTPUT_PINS + 3;
 static const int HEAT_CYCLE_TIME = 400; // in ms
 static const int WIND_CYCLE_TIME = 20; // in ms
+static const int VIBRATION_CYCLE_TIME = 20; // in ms
 
 // Variables
 int heatCycleStartTime;
 int windCycleStartTime;
+int vibrationCycleStartTime;
+
+struct requestData
+{
+  String type;
+  float value;
+  float duration;
+};
+typedef struct requestData RequestData;
 
 struct feedbackData 
 {
@@ -51,41 +60,24 @@ struct feedbackData
 };
 typedef struct feedbackData FeedbackData;
 
-struct requestData
-{
-  String type;
-  float value;
-  float duration;
-};
-typedef struct requestData RequestData;
-
 FeedbackData windData;
 FeedbackData heatData;
+FeedbackData vibrationData;
 FeedbackData scentData;
 
 void setup() {
   Serial.begin(115200);
   Serial.println();
 
-  pinMode(HEAT_PIN, OUTPUT);
-  pinMode(WIND_PIN, OUTPUT);
-  pinMode(SCENT_1_PIN, OUTPUT);
-  pinMode(SCENT_2_PIN, OUTPUT);
-  pinMode(SCENT_3_PIN, OUTPUT);
-  pinMode(SCENT_4_PIN, OUTPUT);
-  pinMode(RESET_PIN, INPUT_PULLUP);
+  foreach(OUTPUT_PINS, sizeof(OUTPUT_PINS), pinMode, OUTPUT);
+  foreach(OUTPUT_PINS, sizeof(OUTPUT_PINS), digitalWrite, LOW);
   
-  digitalWrite(HEAT_PIN, LOW);
-  digitalWrite(WIND_PIN, LOW);
-  digitalWrite(SCENT_1_PIN, LOW);
-  digitalWrite(SCENT_2_PIN, LOW);
-  digitalWrite(SCENT_3_PIN, LOW);
-  digitalWrite(SCENT_4_PIN, LOW);
-
+  pinMode(RESET_PIN, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(RESET_PIN), resetWebServer, HIGH);
   
   windData.type = "wind";
   heatData.type = "heat";
+  vibrationData.type = "vibration";
   scentData.type = "scent";
 
   mountFSAndReadConfig();
@@ -120,12 +112,14 @@ void handleRevertDelay(FeedbackData &d, void (*revertFun)(FeedbackData) = NULL) 
 void loop() {
   server->handleClient();
 
-  handleRevertDelay(heatData);
   handleRevertDelay(windData);
+  handleRevertDelay(heatData);
+  handleRevertDelay(vibrationData);
   handleRevertDelay(scentData, &handleScent);
   
   pwm(WIND_PIN, WIND_CYCLE_TIME, &windData, &windCycleStartTime, false);
   pwm(HEAT_PIN, HEAT_CYCLE_TIME, &heatData, &heatCycleStartTime, false);
+  pwm(VIBRATION_PIN, VIBRATION_CYCLE_TIME, &vibrationData, &vibrationCycleStartTime, false);
 }
 
 void initRoutes() {
@@ -148,6 +142,9 @@ void initRoutes() {
       else if (reqData.type == "h") {
         UpdateFeedbackSettings(&heatData, reqData);
       }
+      else if (reqData.type == "v") {          
+        UpdateFeedbackSettings(&vibrationData, reqData);
+      }
       else if (reqData.type == "s") {          
         UpdateFeedbackSettings(&scentData, reqData);
         handleScent(scentData);
@@ -161,7 +158,8 @@ void UpdateFeedbackSettings(FeedbackData *fbData, RequestData reqData) {
   if (fbData->type != "scent") {
     fbData->nextVal = constrain(reqData.value, 0, 1);
   } else {
-    fbData->currentVal = constrain((int)reqData.value, 0, 4);
+    fbData->nextVal = constrain((int)reqData.value, 0, 4);
+    fbData->currentVal = fbData->nextVal;
   }
 
   if (reqData.duration == 0 && fbData->type != "scent") {
@@ -169,8 +167,8 @@ void UpdateFeedbackSettings(FeedbackData *fbData, RequestData reqData) {
   } else {
     fbData->revertChangeDelay = new AsyncDelay(reqData.duration * 1000, AsyncDelay::MILLIS);
   }
-  
-  Serial.println(fbData->type + " val: " + fbData->currentVal + " dur: " + reqData.duration);
+
+  Serial.println(fbData->type + " val: " + fbData->nextVal + " dur: " + reqData.duration);
 }
 
 RequestData ExtractDataFromArgs(int i) {
@@ -193,12 +191,10 @@ RequestData ExtractDataFromArgs(int i) {
 
 void pwm(byte controlPin, int fullCycleTime, FeedbackData *data, int *cycleStartTime, bool inverseCycle) {
   float onPercent = data->currentVal;
-  if (data->type == "heat") Serial.println(onPercent);
 
   if(millis() - *cycleStartTime > fullCycleTime) {
     *cycleStartTime = millis();
     data->currentVal = data->nextVal;
-    if (data->type == "heat") Serial.println("changed after cycle");
   }
   
   byte level;
@@ -213,6 +209,7 @@ void pwm(byte controlPin, int fullCycleTime, FeedbackData *data, int *cycleStart
 
 void handleScent(FeedbackData scentData) {
   foreach(SCENT_PINS, sizeof(SCENT_PINS), digitalWrite, LOW);
+
   int scentNum = int(scentData.currentVal);
   if (scentNum != 0) {
     digitalWrite(SCENT_PINS[scentNum-1], HIGH);
@@ -223,11 +220,6 @@ void connectTheBadBoy() {
   //WiFiManager
   //Local intialization. Once its business is done, there is no need to keep it around
   WiFiManager wifiManager;
-
-  // The extra parameters to be configured (can be either global or just in the setup)
-  // After connecting, parameter.getValue() will get you the configured value
-  // id/name placeholder/prompt default length
-  WiFiManagerParameter custom_vibration_server_ip("vibration_server_ip", "vibration server ip", vibrationServerIP, 16);
   
   //set config save notify callback
   wifiManager.setSaveConfigCallback(saveConfigCallback);
@@ -239,9 +231,6 @@ void connectTheBadBoy() {
   _sn.fromString(static_sn);
 
   wifiManager.setSTAStaticIPConfig(_ip, _gw, _sn);
-
-  //add all your parameters here
-  wifiManager.addParameter(&custom_vibration_server_ip);
   
   //reset settings - for testing
   //wifiManager.resetSettings();
@@ -269,9 +258,6 @@ void connectTheBadBoy() {
 
   //if you get here you have connected to the WiFi
   Serial.println("connected...yeey :)");
-
-  //read updated parameters
-  strcpy(vibrationServerIP, custom_vibration_server_ip.getValue());
 }
 
 void mountFSAndReadConfig() {
@@ -311,8 +297,6 @@ void readConfig() {
     if (json.success()) {
       Serial.println("\nparsed json");
       
-      strcpy(vibrationServerIP, json["vibrationServerIP"]);
-      
       if(json["ip"]) {
         Serial.println("setting custom ip from config");
         strcpy(static_ip, json["ip"]);
@@ -326,7 +310,6 @@ void readConfig() {
       Serial.println("failed to load json config");
     }
   }
-  Serial.println("vibration server ip: " + (String)vibrationServerIP);
 }
 
 void saveConfig() {
@@ -338,8 +321,6 @@ void saveConfig() {
   json["ip"] = WiFi.localIP().toString();
   json["gateway"] = WiFi.gatewayIP().toString();
   json["subnet"] = WiFi.subnetMask().toString();
-
-  json["vibration_server_ip"] = vibrationServerIP;
 
   File configFile = SPIFFS.open("/config.json", "w");
   if (!configFile) {

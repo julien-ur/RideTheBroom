@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class USTaskControllerEventArgs : EventArgs
@@ -20,6 +21,8 @@ public class USTaskController : MonoBehaviour
     private ScoreDisplayControl _scc;
     private AudioSource _audioSource;
 
+    private float MainTaskActivationDelay = 2f;
+
     private AudioClip _timeOutSound;
     private AudioClip _successSound;
     private float _timeOutVolume;
@@ -33,48 +36,68 @@ public class USTaskController : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void StartTasks(PoolItem item, int spawnCount)
+    public void StartTasks(PoolItem tpi, int spawnCount)
     {
-        Debug.Log("Tasks Spawned " + item.MainTaskPos + " " + item.SecondaryTaskPos + " " + spawnCount);
-        
-        if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
+        Debug.Log("Tasks Spawned " + tpi.MainTaskPos + " " + tpi.SecondaryTaskPos + " " + spawnCount);
+
+        USTask mainTask = null;
+
+        if (tpi.MainTaskPos != USTask.POSITION.None)
         {
-            if (item.MainTaskPos != USTask.POSITION.None)
-            {
-                SpawnMainTask(item.MainTaskPos, spawnCount);
-            }
-            if (item.SecondaryTaskPos != USTask.POSITION.None)
-            {
-                _audioSource.PlayOneShot(GetVoiceForSecondaryTask(item.SecondaryTaskPos), _usc.TaskVoiceVolume);
-                SpawnSecondaryTask(item.SecondaryTaskPos, spawnCount);
-            }
+            mainTask = SpawnMainTask(tpi.MainTaskPos, spawnCount);
+        }
+
+        StartCoroutine(WaitForTaskActivation(tpi, spawnCount, mainTask));
+    }
+
+    private IEnumerator WaitForTaskActivation(PoolItem tpi, int spawnCount, USTask mainTask)
+    {
+        if (tpi.SecondaryTaskPos == USTask.POSITION.None)
+        {
+            yield return new WaitForSecondsRealtime(3f);
+            mainTask.Activate();
+        }
+        else if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
+        {
+            StartCoroutine(StartAudioTask(tpi, spawnCount, mainTask));
         }
         else
         {
-            if (item.MainTaskPos != USTask.POSITION.None && item.SecondaryTaskPos == USTask.POSITION.None)
-            {
-                SpawnMainTask(item.MainTaskPos, spawnCount);
-            }
-            else if (item.SecondaryTaskPos != USTask.POSITION.None)
-            {
-                string feedbackData = _usc.GetFeedbackData(item.MainTaskPos);
-                if (feedbackData == null) return;
-                _fsr.PostChange(feedbackData, () =>
-                {
-                    SpawnSecondaryTask(item.SecondaryTaskPos, spawnCount);
-
-                    if (item.MainTaskPos != USTask.POSITION.None)
-                        SpawnMainTask(item.MainTaskPos, spawnCount);
-                });
-            }
+            StartCoroutine(StartSenseTask(tpi, spawnCount, mainTask));
         }
     }
 
-    private void SpawnMainTask(USTask.POSITION pos, int spawnCount)
+    private IEnumerator StartAudioTask(PoolItem tpi, int spawnCount, USTask mainTask)
+    {
+        AudioClip voice = GetVoiceForSecondaryTask(tpi.SecondaryTaskPos);
+        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + voice.length - 0.5f);
+
+        _audioSource.PlayOneShot(voice, _usc.TaskVoiceVolume);
+        SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
+        if (mainTask != null) mainTask.Activate();
+    }
+
+    private IEnumerator StartSenseTask(PoolItem tpi, int spawnCount, USTask mainTask)
+    {
+        string feedbackData = _usc.GetFeedbackData(tpi.MainTaskPos);
+        if (feedbackData == null) Debug.LogError("No feedback data for main task pos");
+
+        float senseLatency = _fsr.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType());
+        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + senseLatency);
+
+        _fsr.PostChange(feedbackData, () =>
+        {
+            // callback waits till feedback is perceptible by player
+            SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
+            if (mainTask != null) mainTask.Activate();
+        });
+    }
+
+    private USTask SpawnMainTask(USTask.POSITION pos, int spawnCount)
     {
         var mainTask = gameObject.AddComponent<USTask>();
 
-        mainTask.StartNewAction(USTask.TYPE.Main, pos, (success) =>
+        mainTask.StartNewTask(USTask.TYPE.Main, pos, (success) =>
         {
             OnTaskEnded(USTask.TYPE.Main, pos, spawnCount, success ? "Success" : "Timeout");
             Debug.Log("Main Task " + (success ? "Success" : "Timeout") + " " + spawnCount);
@@ -82,13 +105,15 @@ public class USTaskController : MonoBehaviour
         });
 
         OnTaskStarted(USTask.TYPE.Main, pos, spawnCount);
+
+        return mainTask;
     }
 
     private void SpawnSecondaryTask(USTask.POSITION pos, int spawnCount)
     {
         var secondaryTask = gameObject.AddComponent<USTask>();
 
-        secondaryTask.StartNewAction(USTask.TYPE.Secondary, pos, (success) =>
+        secondaryTask.StartNewTask(USTask.TYPE.Secondary, pos, (success) =>
         {
             HandleSecondaryTaskEnded(pos, spawnCount, success);
             Destroy(secondaryTask);

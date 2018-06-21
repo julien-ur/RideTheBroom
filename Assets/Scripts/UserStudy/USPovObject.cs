@@ -64,8 +64,8 @@ public class USPovObject : MonoBehaviour
         float timer = 0;
         while((timer += Time.deltaTime) < 1.5f)
         {
-            PresentationLight.range += 3;
-            PresentationLight.intensity += 0.03f;
+            PresentationLight.range += 2;
+            PresentationLight.intensity += 0.02f;
             yield return new WaitForEndOfFrame();
         }
 
@@ -104,7 +104,7 @@ public class USPovObject : MonoBehaviour
         while ((timer += Time.deltaTime) < 0.08f)
         {
             transform.localScale += Vector3.one * 0.03f;
-            PresentationLight.intensity += 3.5f;
+            PresentationLight.intensity += 2f;
             yield return new WaitForEndOfFrame();
         }
 

@@ -20,9 +20,9 @@ public class USTask : MonoBehaviour {
     private PlayerControl _pc;
     private Transform _playerTrans;
     private const string ACTIVATION_TAG = "forActivation";
-    private Action _ringActivationCallback;
 
     private GameObject _taskItem;
+    private Transform _activeRingTrans;
     private bool _taskSuccess;
     private Action<bool> _successCallback;
 
@@ -82,6 +82,9 @@ public class USTask : MonoBehaviour {
             ringTrans.position = _playerTrans.position + 80 * _playerTrans.forward;
 
             int sideShift = 20;
+            if (pos == POSITION.Middle)
+                ringTrans.position += sideShift/1.5f * _playerTrans.up;
+
             if (pos == POSITION.Left)
                 ringTrans.position -= sideShift * _playerTrans.right;
 
@@ -92,7 +95,10 @@ public class USTask : MonoBehaviour {
             ringTrans.Rotate(new Vector3(-90, 0, 0));
 
             if (pos == activePos)
+            {
+                _activeRingTrans = ringTrans;
                 ringTrans.gameObject.name = ACTIVATION_TAG;
+            }
         }
 
         _pc.UpdateRotationScopeCenter();
@@ -127,14 +133,15 @@ public class USTask : MonoBehaviour {
         StartCoroutine(CheckFullfilment(type, _successCallback));
     }
 
-    public void OnTaskActivated(Action callback)
-    {
-        _ringActivationCallback = callback;
-    }
-
     public void OnTaskSuccess(object sender, EventArgs args)
     {
         _taskSuccess = true;
+    }
+    
+    public Vector3 GetActiveRingPosition()
+    {
+        Debug.Log(_activeRingTrans.position + " " + _activeRingTrans.localPosition);
+        return _activeRingTrans.position;
     }
 
     public static POSITION[] GetPositionsExcluding(POSITION[] positionsToExclude)

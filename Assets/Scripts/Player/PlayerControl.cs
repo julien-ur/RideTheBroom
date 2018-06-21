@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
 
     private float lastAngle = 0;
 
+    private Vector3 startRotation;
     private Vector3 rotationScopeCenter;
     private float headStartYPos;
     private float maxHeadDelta = 0.7f;
@@ -54,10 +55,13 @@ public class PlayerControl : MonoBehaviour
     private bool isRotationEnabled = true;
     private bool horizontalRotationBlocked;
     private bool verticalRotationBlocked;
-    private bool adjustingSpeed = true;
-    private bool speedTargetOutOfBounds = false;
+    private bool horizontalRotationLimited;
+    private bool verticalRotationLimited;
     private float verticalRotationLimit = 180;
     private float horizontalRotationLimit = 180;
+    private bool adjustingSpeed = true;
+    private bool speedTargetOutOfBounds = false;
+
 
     void Start()
     {
@@ -65,7 +69,7 @@ public class PlayerControl : MonoBehaviour
         cameraControl = GetComponentInChildren<PlayerCameraControl>();
         speed = 0;
         headStartYPos = UnityEngine.XR.InputTracking.GetLocalPosition(UnityEngine.XR.XRNode.Head).y;
-        rotationScopeCenter = transform.rotation.eulerAngles;
+        startRotation = rotationScopeCenter = transform.rotation.eulerAngles;
     }
 
     void Update()
@@ -159,15 +163,15 @@ public class PlayerControl : MonoBehaviour
             float rotateX = 0;
             float rotateY = 0;
 
-            if (!(verticalRotationBlocked ||
-                  inputVertical < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) > verticalRotationLimit ||
-                  inputVertical > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) < -verticalRotationLimit))
+            if (noRotationBlocking || !verticalRotationLimited || !verticalRotationBlocked &&
+                  (inputVertical < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) <= verticalRotationLimit ||
+                  inputVertical > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) >= -verticalRotationLimit))
             {
                 rotateX = inputVertical * rotationFactorX * Time.deltaTime;
             }
-            if (!(horizontalRotationBlocked ||
-                  inputHorizontal > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) > horizontalRotationLimit ||
-                  inputHorizontal < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) < -horizontalRotationLimit))
+            if (noRotationBlocking || !horizontalRotationLimited || !horizontalRotationBlocked &&
+                  (inputHorizontal > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) <= horizontalRotationLimit ||
+                  inputHorizontal < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) >= -horizontalRotationLimit))
             {
                 rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
             }
@@ -299,6 +303,44 @@ public class PlayerControl : MonoBehaviour
         adjustingSpeed = false;
     }
 
+    private IEnumerator BlockRotation(string blockedAxes, bool withXRollback, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (blockedAxes.Contains("x")) verticalRotationBlocked = verticalRotationLimited = true;
+        if (blockedAxes.Contains("y")) horizontalRotationBlocked = horizontalRotationLimited = true;
+        if (withXRollback) StartCoroutine(RollBackToStartRotation());
+    }
+
+    private IEnumerator RollBackToStartRotation()
+    {
+        float backRotationDegrees = Time.deltaTime * 50;
+
+        int xFactor = 1;
+        int yFactor = 1;
+        if (transform.rotation.eulerAngles.x < 180) xFactor = -1;
+        if (transform.rotation.eulerAngles.y < 180) yFactor = -1;
+
+        while (xFactor != 0 || yFactor != 0)
+        {
+            if (Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.x, startRotation.x)) <
+                Mathf.Abs(backRotationDegrees))
+            {
+                transform.Rotate(startRotation.x - transform.rotation.eulerAngles.x, 0, 0);
+                xFactor = 0;
+            }
+
+            if (Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.y, startRotation.y)) <
+                Mathf.Abs(backRotationDegrees))
+            {
+                transform.Rotate(0, startRotation.y - transform.rotation.eulerAngles.y, 0);
+                yFactor = 0;
+            }
+
+            transform.Rotate(backRotationDegrees * xFactor, backRotationDegrees * yFactor, 0);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void ChangeSpeed(float targetSpeed)
     {
         defaultSpeed = targetSpeed;
@@ -325,21 +367,30 @@ public class PlayerControl : MonoBehaviour
         GetComponent<SteamVR_TrackedObject>().enabled = false;
     }
 
-    public void SetBlockedRotationAxes(string blockedAxes)
+    public void BlockRotationForAxis(string blockedAxes, bool withXRoolback=false, float delay=0)
     {
-        verticalRotationBlocked = blockedAxes.Contains("x");
-        horizontalRotationBlocked = blockedAxes.Contains("y");
+        StartCoroutine(BlockRotation(blockedAxes, withXRoolback, delay));
     }
 
-    public void LimitRotationScopeByAxis(char axis, float degreesInOneDirection)
+    public void RemoveRotationLimitFromAxes(string freeAxes)
+    {
+        if (freeAxes.Contains("x")) verticalRotationBlocked = verticalRotationLimited = false;
+        if (freeAxes.Contains("y")) horizontalRotationBlocked = horizontalRotationLimited = false;
+    }
+
+    public void LimitRotationScopeByAxis(char axis, float halfDegrees)
     {
         if (axis == 'x')
         {
-            verticalRotationLimit = degreesInOneDirection;
+            verticalRotationLimited = (halfDegrees < 180);
+            verticalRotationBlocked = (halfDegrees == 0);
+            verticalRotationLimit = halfDegrees;
         }
         else if (axis == 'y')
         {
-            horizontalRotationLimit = degreesInOneDirection;
+            horizontalRotationLimited = (halfDegrees < 180);
+            horizontalRotationBlocked = (halfDegrees == 0);
+            horizontalRotationLimit = halfDegrees;
         }
     }
 

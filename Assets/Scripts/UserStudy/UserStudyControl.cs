@@ -50,7 +50,6 @@ public class UserStudyControl : MonoBehaviour {
     public static string RoundConfigPath = UserStudyPath + "/" + RoundConfigName;
 
     private USTaskSpawner _spawner;
-    private USTaskController _taskControl;
     private Text _infoText;
     private LoadingOverlay _loadingOverlay;
      
@@ -68,16 +67,20 @@ public class UserStudyControl : MonoBehaviour {
 
         u.AddComponent<AudioSource>();
         _spawner = u.AddComponent<USTaskSpawner>();
-        _taskControl = u.AddComponent<USTaskController>();
+        var taskControl = u.AddComponent<USTaskController>();
+        
         _logging = u.AddComponent<USLogging>();
 
         _spawner.ActionCountReached += OnRoundFinished;
+        taskControl.TaskStarted += OnTaskStarted;
+        taskControl.TaskEnded += OnTaskEnded;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
         _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
 
         AddRoundsFromRoundConfig();
     }
+
 
     void Start()
     {
@@ -88,9 +91,6 @@ public class UserStudyControl : MonoBehaviour {
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) _playerReady = true;
         else mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
-
-        _pc.SetBlockedRotationAxes("x");
-        _pc.LimitRotationScopeByAxis('y', 65);
 
         StartCoroutine(StartStudy());
     }
@@ -115,7 +115,7 @@ public class UserStudyControl : MonoBehaviour {
         {
             _roundFinished = false;
             _currentFeedbackType = f;
-            _spawner.InitNewRound(++roundCount == 1);
+            _spawner.InitNewRound(++roundCount == -1);
 
             //_loadingOverlay.FadeOut(1);
             //_pc.ChangeSpeedToTargetSpeed(0, 1);
@@ -183,6 +183,23 @@ public class UserStudyControl : MonoBehaviour {
         catch (Exception e)
         {
             Debug.LogError(e);
+        }
+    }
+
+    private void OnTaskStarted(object sender, USTaskControllerEventArgs args)
+    {
+        if (args.Type == USTask.TYPE.Main)
+        {
+            _pc.LimitRotationScopeByAxis('x', 30);
+            _pc.LimitRotationScopeByAxis('y', 65);
+        }
+    }
+
+    private void OnTaskEnded(object sender, USTaskControllerEventArgs args)
+    {
+        if (args.Type == USTask.TYPE.Main)
+        {
+            _pc.BlockRotationForAxis("xy", true);
         }
     }
 

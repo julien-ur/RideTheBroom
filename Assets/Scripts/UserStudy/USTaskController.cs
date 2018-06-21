@@ -2,12 +2,18 @@
 using System.Collections;
 using UnityEngine;
 
-public class USTaskControllerEventArgs : EventArgs
+public class USTaskControllerEventArgs : EventArgs, ICloneable
 {
     public USTask.TYPE Type;
     public USTask.POSITION Position;
     public int SpawnCount;
     public string EventInfo;
+    public USTask Task;
+
+    public object Clone()
+    {
+        return MemberwiseClone();
+    }
 }
 
 public class USTaskController : MonoBehaviour
@@ -56,6 +62,7 @@ public class USTaskController : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(3f);
             mainTask.Activate();
+            OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
         }
         else if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
         {
@@ -74,7 +81,9 @@ public class USTaskController : MonoBehaviour
 
         _audioSource.PlayOneShot(voice, _usc.TaskVoiceVolume);
         SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-        if (mainTask != null) mainTask.Activate();
+        if (mainTask == null) yield break;
+        mainTask.Activate();
+        OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
     }
 
     private IEnumerator StartSenseTask(PoolItem tpi, int spawnCount, USTask mainTask)
@@ -89,7 +98,9 @@ public class USTaskController : MonoBehaviour
         {
             // callback waits till feedback is perceptible by player
             SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-            if (mainTask != null) mainTask.Activate();
+            if (mainTask == null) return;
+            mainTask.Activate();
+            OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
         });
     }
 
@@ -104,7 +115,7 @@ public class USTaskController : MonoBehaviour
             Destroy(mainTask);
         });
 
-        OnTaskStarted(USTask.TYPE.Main, pos, spawnCount);
+        OnTaskSpawned(USTask.TYPE.Main, mainTask, pos, spawnCount);
 
         return mainTask;
     }
@@ -148,6 +159,12 @@ public class USTaskController : MonoBehaviour
             return _usc.VoicePovRight;
 
         return _usc.VoicePovMiddle;
+    }
+
+    protected virtual void OnTaskSpawned(USTask.TYPE t, USTask task, USTask.POSITION p, int c)
+    {
+        if (TaskSpawned != null)
+            TaskSpawned(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c, Task = task });
     }
 
     protected virtual void OnTaskStarted(USTask.TYPE t, USTask.POSITION p, int c)

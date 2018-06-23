@@ -105,7 +105,6 @@ public class USTaskPoolGenerator
                 var rndPos = (USTask.POSITION)Random.Range(0, TaskPositions);
                 poolItem = new PoolItem(rndPos, USTask.POSITION.None);
             }
-
             actionPool.Add(poolItem);
         }
         

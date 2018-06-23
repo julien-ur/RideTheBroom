@@ -11,7 +11,7 @@ public class USTask : MonoBehaviour {
 
     private TYPE type;
 
-    public float MaxCompletionTimeMainTask = 5;
+    public float MaxCompletionTimeMainTask = 8;
     public float MaxCompletionTimeSecondaryTask = 5;
 
     private EventHandler MainTaskActivated;
@@ -140,7 +140,6 @@ public class USTask : MonoBehaviour {
     
     public Vector3 GetActiveRingPosition()
     {
-        Debug.Log(_activeRingTrans.position + " " + _activeRingTrans.localPosition);
         return _activeRingTrans.position;
     }
 

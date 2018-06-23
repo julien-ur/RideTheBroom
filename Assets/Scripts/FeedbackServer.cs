@@ -14,9 +14,9 @@ public class FeedbackServer : MonoBehaviour
 {
     public EventHandler<FeedbackServerEventArgs> FeedbackRequestSuccessful;
 
-    public const int SMELL_LEMON_VAL = 1;
-    public const int SMELL_WOODY_VAL = 2;
-    public const int SMELL_BERRY_VAL = 3;
+    public const float SMELL_LEMON_VAL = 1f;
+    public const float SMELL_WOODY_VAL = 2f;
+    public const float SMELL_BERRY_VAL = 0.6f;
 
     public const string WIND_TAG = "w";
     public const string HEAT_TAG = "h";
@@ -30,18 +30,24 @@ public class FeedbackServer : MonoBehaviour
         { VIBRATION_TAG, 0.1f }
     };
 
-    private string _address = "192.168.1.100";
+    private string _address = "192.168.137.100";
     private string _updateRoute = "/update";
     private string _resetRoute = "/reset";
 
     public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG };
 
+    void OnDestroy()
+    {
+        WWWForm form = new WWWForm();
+        form.AddField(WIND_TAG, 0);
+        WWW www = new WWW(_address + _updateRoute, form);
+    }
 
-    private IEnumerator Post(string route, string rawData, Action callback)
+    private IEnumerator Post(string route, string rawData, Action callback=null)
     {
         string feedbackTag = GetFeedbackTag(rawData);
         WWWForm form = ConvertRawDataToForm(feedbackTag, rawData);
-        callback();
+        // if (callback != null) callback();
 
         using (UnityWebRequest www = UnityWebRequest.Post(_address + _updateRoute, form))
         {
@@ -57,7 +63,7 @@ public class FeedbackServer : MonoBehaviour
                 OnFeedbackRequestSuccessful();
                 yield return new WaitForSecondsRealtime(SENSE_LATENCY_DICT[feedbackTag]);
                 Debug.Log("feedback at player");
-                // callback();
+                if (callback != null) callback();
             }
         }
     }
@@ -89,7 +95,7 @@ public class FeedbackServer : MonoBehaviour
 
         foreach (string i in instructions)
         {
-            form.AddField(feedbackTag, i);
+            form.AddField(feedbackTag != "w" ? "s" : "w", i);
         }
 
         return form;
@@ -112,5 +118,11 @@ public class FeedbackServer : MonoBehaviour
     public void PostChange(string rawData, Action callback)
     {
         StartCoroutine(Post("/update", rawData, callback));
+    }
+
+    public void Set(string tag, float val)
+    {
+        string rawData = tag + val;
+        StartCoroutine(Post("/update", rawData));
     }
 }

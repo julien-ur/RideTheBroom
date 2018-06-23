@@ -56,6 +56,7 @@ public class UserStudyControl : MonoBehaviour {
     private int _subjectId;
     private List<FeedbackType> _rounds;
     private FeedbackType _currentFeedbackType;
+    private FeedbackServer _fbs;
     private bool _playerReady;
     private bool _roundFinished;
     private USLogging _logging;
@@ -76,7 +77,7 @@ public class UserStudyControl : MonoBehaviour {
         taskControl.TaskEnded += OnTaskEnded;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
+        _rounds = new List<FeedbackType> {  };
 
         AddRoundsFromRoundConfig();
     }
@@ -85,13 +86,19 @@ public class UserStudyControl : MonoBehaviour {
     void Start()
     {
         _pc = GameComponents.GetPlayerControl();
+        _fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
         _loadingOverlay = GameComponents.GetLoadingOverlay();
         _infoText = GameComponents.GetVrHUD().transform.Find("StudyInfoText").GetComponentInChildren<Text>();
 
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
-        if (!mct) _playerReady = true;
-        else mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
-
+        if (!mct) {
+            _playerReady = true;
+            _fbs.Set(FeedbackServer.WIND_TAG, 0.3f);
+        }
+        else
+        {
+            mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
+        }
         StartCoroutine(StartStudy());
     }
 
@@ -99,6 +106,7 @@ public class UserStudyControl : MonoBehaviour {
     {
         _playerReady = true;
         GameComponents.GetMenuObject().SetActive(false);
+        _fbs.Set(FeedbackServer.WIND_TAG, 0.3f);
     }
 
     IEnumerator StartStudy()
@@ -115,7 +123,7 @@ public class UserStudyControl : MonoBehaviour {
         {
             _roundFinished = false;
             _currentFeedbackType = f;
-            _spawner.InitNewRound(++roundCount == -1);
+            _spawner.InitNewRound(roundCount++ == -1);
 
             //_loadingOverlay.FadeOut(1);
             //_pc.ChangeSpeedToTargetSpeed(0, 1);

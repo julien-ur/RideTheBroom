@@ -13,9 +13,9 @@ public class UserStudyControl : MonoBehaviour {
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
-        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackServer.HEAT_TAG + "0, 2" },
-        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "1, 2" },
-        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 0.5" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackServer.HEAT_TAG + "0.3, 3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "0.5, 3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 3" },
 
         { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
         { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
@@ -73,11 +73,11 @@ public class UserStudyControl : MonoBehaviour {
         _logging = u.AddComponent<USLogging>();
 
         _spawner.ActionCountReached += OnRoundFinished;
-        taskControl.TaskStarted += OnTaskStarted;
+        taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> {  };
+        _rounds = new List<FeedbackType> { FeedbackType.Heat };
 
         AddRoundsFromRoundConfig();
     }
@@ -93,12 +93,15 @@ public class UserStudyControl : MonoBehaviour {
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) {
             _playerReady = true;
-            _fbs.Set(FeedbackServer.WIND_TAG, 0.3f);
+            _fbs.Set(FeedbackServer.WIND_TAG, 0.2f);
+            _fbs.Set(FeedbackServer.HEAT_TAG, 0f);
         }
         else
         {
             mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
         }
+
+        _pc.BlockRotationForAxis("xy", true);
         StartCoroutine(StartStudy());
     }
 
@@ -198,8 +201,8 @@ public class UserStudyControl : MonoBehaviour {
     {
         if (args.Type == USTask.TYPE.Main)
         {
-            _pc.LimitRotationScopeByAxis('x', 30);
-            _pc.LimitRotationScopeByAxis('y', 65);
+            //_pc.LimitRotationScopeByAxis('x', 30);
+            //_pc.LimitRotationScopeByAxis('y', 65);
         }
     }
 

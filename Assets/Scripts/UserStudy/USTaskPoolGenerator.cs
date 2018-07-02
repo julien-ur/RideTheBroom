@@ -38,11 +38,11 @@ public class USTaskPoolGenerator
     private const int SecondaryTaskConditions = 6;
     private const int SecondaryTaskConditionRepetitions = 4;
 
-    private const int MinMainTasksOnlyBeforeSecondaryTask = 1;
-    private const int MaxMainTasksOnlyBeforeSecondaryTask = 2;
+    private const int MinMainTasksOnlyBeforeSecondaryTask = 0; //1;
+    private const int MaxMainTasksOnlyBeforeSecondaryTask = 0; //2;
 
-    private const int TrainingMainTaskRepetitions = 0;//6;
-    private const int TrainingSecondaryTaskRepetitions = 1;//3;
+    private const int TrainingMainTaskRepetitions = 0; //6;
+    private const int TrainingSecondaryTaskRepetitions = 1; //3;
 
     public USTaskPoolGenerator()
     {
@@ -58,12 +58,12 @@ public class USTaskPoolGenerator
     {
         List<PoolItem> actionPool = new List<PoolItem>();
 
-        for (int i = 0; i < mainTaskRepetitions; i++)
-        {
-            int rndPos = Random.Range(0, TaskPositions);
-            var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
-            actionPool.Add(poolItem);
-        }
+        //for (int i = 0; i < mainTaskRepetitions; i++)
+        //{
+        //    int rndPos = Random.Range(0, TaskPositions);
+        //    var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
+        //    actionPool.Add(poolItem);
+        //}
 
         for (int i = 0; i < TaskPositions; i++)
         {
@@ -168,6 +168,7 @@ public class USTaskPoolGenerator
         }
 
         Debug.Log(secondaryTaskPosition + " " + taskRelation + " " + mainTaskPosition);
+        mainTaskPosition = USTask.POSITION.None;
 
         return new PoolItem(mainTaskPosition, secondaryTaskPosition);
     }

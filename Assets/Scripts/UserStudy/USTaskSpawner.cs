@@ -8,8 +8,8 @@ public class USTaskSpawner : MonoBehaviour {
 
     public EventHandler ActionCountReached;
 
-    public float MinTimeBetweenActions = 3;
-    public float MaxTimeBetweenActions = 5;
+    public float MinTimeBetweenActions = 5;
+    public float MaxTimeBetweenActions = 7;
 
     private USTaskPoolGenerator _poolGenerator;
     private USTaskController _taskControl;

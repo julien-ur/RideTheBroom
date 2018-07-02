@@ -426,9 +426,9 @@ MonoBehaviour:
   rotationFactorX: 120
   rotationFactorY: 120
   noRotationBlocking: 0
-  useBroomHardware: 0
+  useBroomHardware: 1
   useAndroidInput: 0
-  useViveTracker: 0
+  useViveTracker: 1
   invertHorizontal: 0
   androidInput: {fileID: 71893454}
   viveTracker: {fileID: 71893453}
@@ -702,13 +702,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bceac91b71eb8544ba93337d88c6e1ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dist: 8
-  intervalMin: 2
-  intervalMax: 8
+  dist: 100
+  intervalMin: 3
+  intervalMax: 3
   widthRadius: 15
-  heightRadius: 15
-  clearDistance: 50
-  ring: {fileID: 0}
+  heightRadius: 8
+  ring: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
 --- !u!114 &362748216
 MonoBehaviour:
   m_ObjectHideFlags: 0

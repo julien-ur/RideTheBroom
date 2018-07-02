@@ -14,9 +14,9 @@ public class FeedbackServer : MonoBehaviour
 {
     public EventHandler<FeedbackServerEventArgs> FeedbackRequestSuccessful;
 
-    public const float SMELL_LEMON_VAL = 1f;
-    public const float SMELL_WOODY_VAL = 2f;
-    public const float SMELL_BERRY_VAL = 0.6f;
+    public const int SMELL_LEMON_VAL = 3;
+    public const int SMELL_WOODY_VAL = 1;
+    public const int SMELL_BERRY_VAL = 4;
 
     public const string WIND_TAG = "w";
     public const string HEAT_TAG = "h";
@@ -40,6 +40,7 @@ public class FeedbackServer : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         form.AddField(WIND_TAG, 0);
+        form.AddField(HEAT_TAG, 0);
         WWW www = new WWW(_address + _updateRoute, form);
     }
 
@@ -95,7 +96,7 @@ public class FeedbackServer : MonoBehaviour
 
         foreach (string i in instructions)
         {
-            form.AddField(feedbackTag != "w" ? "s" : "w", i);
+            form.AddField(feedbackTag, i);
         }
 
         return form;

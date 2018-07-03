@@ -10,6 +10,9 @@ public class USTaskSpawner : MonoBehaviour {
 
     public float MinTimeBetweenActions = 5;
     public float MaxTimeBetweenActions = 7;
+    public float MinTimeBetweenRings = 2;
+    public float TimeBetweenRings = 4;
+    public float TimeBetweenRingAndPov = 0;
 
     private USTaskPoolGenerator _poolGenerator;
     private USTaskController _taskControl;
@@ -36,12 +39,27 @@ public class USTaskSpawner : MonoBehaviour {
             yield return new WaitUntil(IsPlayerReady);
 
             PoolItem nextPoolItem = _actionPool[0];
+
+
+            float waitDuration = Random.Range(MinTimeBetweenRings, TimeBetweenRings);
+
+            if (_actionPool.Count > 1 && _actionPool[1].SecondaryTaskPos != USTask.POSITION.None)
+            {
+                waitDuration = TimeBetweenRingAndPov;
+            }
+            else if (nextPoolItem.SecondaryTaskPos != USTask.POSITION.None)
+            {
+                waitDuration = TimeBetweenRings - TimeBetweenRingAndPov;
+            }
+
             _actionPool.RemoveAt(0);
 
             StartTasks(nextPoolItem);
 
+            _readyForNextSpawn = true;
+
             yield return new WaitUntil(() => _readyForNextSpawn);
-            yield return new WaitForSeconds(Random.Range(MinTimeBetweenActions, MaxTimeBetweenActions));
+            yield return new WaitForSeconds(waitDuration);
         }
 
         yield return new WaitForSeconds(1);

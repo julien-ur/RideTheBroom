@@ -30,11 +30,11 @@ public class FeedbackServer : MonoBehaviour
         { VIBRATION_TAG, 0.1f }
     };
 
-    private string _address = "192.168.137.100";
+    private string _address = "192.168.137.102";
     private string _updateRoute = "/update";
     private string _resetRoute = "/reset";
 
-    public string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG };
+    private string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG };
 
     void OnDestroy()
     {
@@ -48,7 +48,7 @@ public class FeedbackServer : MonoBehaviour
     {
         string feedbackTag = GetFeedbackTag(rawData);
         WWWForm form = ConvertRawDataToForm(feedbackTag, rawData);
-        // if (callback != null) callback();
+        if (callback != null) callback();
 
         using (UnityWebRequest www = UnityWebRequest.Post(_address + _updateRoute, form))
         {
@@ -64,7 +64,7 @@ public class FeedbackServer : MonoBehaviour
                 OnFeedbackRequestSuccessful();
                 yield return new WaitForSecondsRealtime(SENSE_LATENCY_DICT[feedbackTag]);
                 Debug.Log("feedback at player");
-                if (callback != null) callback();
+                // if (callback != null) callback();
             }
         }
     }

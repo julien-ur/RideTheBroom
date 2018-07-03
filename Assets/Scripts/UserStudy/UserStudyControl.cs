@@ -17,9 +17,9 @@ public class UserStudyControl : MonoBehaviour {
         { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "0.5, 3" },
         { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 3" },
 
-        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 0.8" },
 
         { "" + FeedbackType.Vibration + USTask.POSITION.Left, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
         { "" + FeedbackType.Vibration + USTask.POSITION.Middle, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
@@ -101,7 +101,7 @@ public class UserStudyControl : MonoBehaviour {
             mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
         }
 
-        _pc.BlockRotationForAxis("xy", true);
+        _pc.BlockRotationForAxis("x");
         StartCoroutine(StartStudy());
     }
 
@@ -210,7 +210,7 @@ public class UserStudyControl : MonoBehaviour {
     {
         if (args.Type == USTask.TYPE.Main)
         {
-            _pc.BlockRotationForAxis("xy", true);
+            //_pc.BlockRotationForAxis("xy", true);
         }
     }
 

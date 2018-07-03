@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  index: 3
+  index: 2
   origin: {fileID: 0}
 --- !u!114 &71893454
 MonoBehaviour:
@@ -417,9 +417,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forceDrivenFactor: 0
-  defaultSpeed: 12
-  minSpeed: 12
-  maxSpeed: 12
+  defaultSpeed: 20
+  minSpeed: 20
+  maxSpeed: 20
   momentum: {x: 0, y: 0, z: 0}
   tiltAcceleration: 0
   spaceTiltAcceleration: 0
@@ -432,7 +432,7 @@ MonoBehaviour:
   invertHorizontal: 0
   androidInput: {fileID: 71893454}
   viveTracker: {fileID: 71893453}
-  enableBroomRollback: 1
+  enableBroomRollback: 0
   backRotationRate: 90
   useAbsoluteAngle: 0
   timeToNextAngle: 0.1
@@ -9669,11 +9669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce228e2058f2ab4bb6d5da8064e0c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ALL_TAGS:
-  - w
-  - h
-  - s
-  - v
 --- !u!1 &1787460151
 GameObject:
   m_ObjectHideFlags: 0

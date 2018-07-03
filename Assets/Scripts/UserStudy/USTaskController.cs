@@ -60,8 +60,8 @@ public class USTaskController : MonoBehaviour
     {
         if (tpi.SecondaryTaskPos == USTask.POSITION.None)
         {
-            yield return new WaitForSecondsRealtime(MainTaskActivationDelay + 0.5f);
-            mainTask.Activate();
+            yield return new WaitForSecondsRealtime(MainTaskActivationDelay);
+            mainTask.TryActivate();
             OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
         }
         else if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
@@ -81,9 +81,8 @@ public class USTaskController : MonoBehaviour
 
         _audioSource.PlayOneShot(voice, _usc.TaskVoiceVolume);
         SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-        if (mainTask == null) yield break;
-        mainTask.Activate();
-        OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
+        ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
+        
     }
 
     private IEnumerator StartSenseTask(PoolItem tpi, int spawnCount, USTask mainTask)
@@ -98,10 +97,15 @@ public class USTaskController : MonoBehaviour
         {
             // callback waits till feedback is perceptible by player
             SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-            if (mainTask == null) return;
-            mainTask.Activate();
-            OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
+            ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
         });
+    }
+
+    private void ActivateTask(USTask task, USTask.POSITION pos, int spawnCount)
+    {
+        if (task == null) return;
+        task.TryActivate();
+        OnTaskStarted(USTask.TYPE.Main, pos, spawnCount);
     }
 
     private USTask SpawnMainTask(USTask.POSITION pos, int spawnCount)

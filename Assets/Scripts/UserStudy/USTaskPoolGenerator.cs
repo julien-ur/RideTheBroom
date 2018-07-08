@@ -38,11 +38,11 @@ public class USTaskPoolGenerator
     private const int SecondaryTaskConditions = 6;
     private const int SecondaryTaskConditionRepetitions = 4;
 
-    private const int MinMainTasksOnlyBeforeSecondaryTask = 1;
-    private const int MaxMainTasksOnlyBeforeSecondaryTask = 2;
+    private const int MinMainTasksOnlyBeforeSecondaryTask = 3;
+    private const int MaxMainTasksOnlyBeforeSecondaryTask = 5;
 
-    private const int TrainingMainTaskRepetitions = 0;//6;
-    private const int TrainingSecondaryTaskRepetitions = 1;//3;
+    private const int TrainingMainTaskRepetitions = 0; //6;
+    private const int TrainingSecondaryTaskRepetitions = 1; //3;
 
     public USTaskPoolGenerator()
     {
@@ -58,12 +58,12 @@ public class USTaskPoolGenerator
     {
         List<PoolItem> actionPool = new List<PoolItem>();
 
-        for (int i = 0; i < mainTaskRepetitions; i++)
-        {
-            int rndPos = Random.Range(0, TaskPositions);
-            var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
-            actionPool.Add(poolItem);
-        }
+        //for (int i = 0; i < mainTaskRepetitions; i++)
+        //{
+        //    int rndPos = Random.Range(0, TaskPositions);
+        //    var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
+        //    actionPool.Add(poolItem);
+        //}
 
         for (int i = 0; i < TaskPositions; i++)
         {
@@ -105,7 +105,6 @@ public class USTaskPoolGenerator
                 var rndPos = (USTask.POSITION)Random.Range(0, TaskPositions);
                 poolItem = new PoolItem(rndPos, USTask.POSITION.None);
             }
-
             actionPool.Add(poolItem);
         }
         
@@ -163,10 +162,11 @@ public class USTaskPoolGenerator
         var taskRelation = (RELATION)(secondaryTaskCondition % 2);
 
         USTask.POSITION mainTaskPosition = secondaryTaskPosition;
-        if (taskRelation == RELATION.Asynchronous)
-        {
-            mainTaskPosition = TakeRandomConditionFromPool(ref _asychronousPositionPool[(int)secondaryTaskPosition]);
-        }
+        //if (taskRelation == RELATION.Asynchronous)
+        //{
+        //    mainTaskPosition = TakeRandomConditionFromPool(ref _asychronousPositionPool[(int)secondaryTaskPosition]);
+        //}
+        mainTaskPosition = USTask.POSITION.None;
 
         Debug.Log(secondaryTaskPosition + " " + taskRelation + " " + mainTaskPosition);
 

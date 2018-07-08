@@ -6,6 +6,7 @@ public class USPovObject : MonoBehaviour
 {
     public Light PresentationLight;
     private float _lightStartIntensity;
+    private const double SelectionTime = 0.8f;
 
     void Awake()
     {
@@ -62,7 +63,7 @@ public class USPovObject : MonoBehaviour
     private IEnumerator OnSelecting(Action callback)
     {
         float timer = 0;
-        while((timer += Time.deltaTime) < 1.5f)
+        while((timer += Time.deltaTime) < SelectionTime)
         {
             PresentationLight.range += 2;
             PresentationLight.intensity += 0.02f;

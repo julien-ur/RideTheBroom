@@ -11,7 +11,7 @@ public class USTask : MonoBehaviour {
 
     private TYPE type;
 
-    public float MaxCompletionTimeMainTask = 5;
+    public float MaxCompletionTimeMainTask = 8;
     public float MaxCompletionTimeSecondaryTask = 5;
 
     private EventHandler MainTaskActivated;
@@ -23,6 +23,7 @@ public class USTask : MonoBehaviour {
 
     private GameObject _taskItem;
     private Transform _activeRingTrans;
+    private bool _activated;
     private bool _taskSuccess;
     private Action<bool> _successCallback;
 
@@ -40,13 +41,15 @@ public class USTask : MonoBehaviour {
 
         if (type == TYPE.Main)
         {
-            SpawnRings(pos);
+            //Spawn3Rings(pos);
+            SpawnRing();
         }
         else
         {
             SpawnPov(pos);
-            StartCoroutine(CheckFullfilment(type, callback));
         }
+
+        StartCoroutine(CheckFullfilment(type, callback));
     }
 
     private IEnumerator CheckFullfilment(TYPE type, Action<bool> callback)
@@ -68,7 +71,30 @@ public class USTask : MonoBehaviour {
         callback(true);
     }
 
-    private void SpawnRings(POSITION activePos)
+    private void SpawnRing()
+    {
+        _activated = true;
+        _taskItem = Instantiate(_usc.RingObject);
+
+        Transform ringTrans = _taskItem.transform;
+        ringTrans.position = _playerTrans.position + 80 * _playerTrans.forward;
+
+        float widthRadius = 12;
+        float heightRadius = 0;
+
+        float rndRight = UnityEngine.Random.Range(-widthRadius, widthRadius);
+        float rndUp = UnityEngine.Random.Range(-heightRadius, heightRadius);
+
+        ringTrans.position += _playerTrans.up * rndUp + _playerTrans.right * rndRight;
+
+        ringTrans.rotation = _playerTrans.rotation;
+        ringTrans.Rotate(90, 0, 0);
+
+        ringTrans.GetComponent<USTaskTrigger>().TaskSuccess += OnTaskSuccess;
+        _activeRingTrans = ringTrans;
+    }
+
+    private void Spawn3Rings(POSITION activePos)
     {
         _taskItem = new GameObject() { name = "ActionRings" };
         var positions = GetPositionsExcluding(new[] { POSITION.None });
@@ -118,9 +144,13 @@ public class USTask : MonoBehaviour {
         povControl.PovSelected = OnTaskSuccess;
     }
 
-    public void Activate()
+    public void TryActivate()
     {
-        if (type == TYPE.Secondary) Debug.Log("Nothing to activate!");
+        if (_activated || type == TYPE.Secondary)
+        {
+            Debug.Log("Nothing to activate!");
+            return;
+        }
 
         GameObject ringToReplace = _taskItem.transform.Find(ACTIVATION_TAG).gameObject;
         GameObject activeRing = Instantiate(_usc.RingObject);
@@ -140,7 +170,6 @@ public class USTask : MonoBehaviour {
     
     public Vector3 GetActiveRingPosition()
     {
-        Debug.Log(_activeRingTrans.position + " " + _activeRingTrans.localPosition);
         return _activeRingTrans.position;
     }
 

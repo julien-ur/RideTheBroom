@@ -308,10 +308,10 @@ public class PlayerControl : MonoBehaviour
         yield return new WaitForSeconds(delay);
         if (blockedAxes.Contains("x")) verticalRotationBlocked = verticalRotationLimited = true;
         if (blockedAxes.Contains("y")) horizontalRotationBlocked = horizontalRotationLimited = true;
-        if (withXRollback) StartCoroutine(RollBackToStartRotation());
+        if (withXRollback) StartCoroutine(RollBackToStartRotation("x"));
     }
 
-    private IEnumerator RollBackToStartRotation()
+    private IEnumerator RollBackToStartRotation(string axis)
     {
         float backRotationDegrees = Time.deltaTime * 50;
 
@@ -319,17 +319,19 @@ public class PlayerControl : MonoBehaviour
         int yFactor = 1;
         if (transform.rotation.eulerAngles.x < 180) xFactor = -1;
         if (transform.rotation.eulerAngles.y < 180) yFactor = -1;
+        if (axis.Contains("x")) xFactor = 0;
+        if (axis.Contains("y")) yFactor = 0;
 
         while (xFactor != 0 || yFactor != 0)
         {
-            if (Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.x, startRotation.x)) <
+            if (xFactor != 0 && Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.x, startRotation.x)) <
                 Mathf.Abs(backRotationDegrees))
             {
                 transform.Rotate(startRotation.x - transform.rotation.eulerAngles.x, 0, 0);
                 xFactor = 0;
             }
 
-            if (Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.y, startRotation.y)) <
+            if (yFactor != 0 && Mathf.Abs(Mathf.DeltaAngle(transform.rotation.eulerAngles.y, startRotation.y)) <
                 Mathf.Abs(backRotationDegrees))
             {
                 transform.Rotate(0, startRotation.y - transform.rotation.eulerAngles.y, 0);

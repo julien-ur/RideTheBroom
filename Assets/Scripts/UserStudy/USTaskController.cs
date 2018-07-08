@@ -23,11 +23,11 @@ public class USTaskController : MonoBehaviour
     public EventHandler<USTaskControllerEventArgs> TaskEnded;
 
     private UserStudyControl _usc;
-    private FeedbackServer _fsr;
+    private FeedbackServer _fbs;
     private ScoreDisplayControl _scc;
     private AudioSource _audioSource;
 
-    private float MainTaskActivationDelay = 2f;
+    private float MainTaskActivationDelay = 0f;
 
     private AudioClip _timeOutSound;
     private AudioClip _successSound;
@@ -37,7 +37,7 @@ public class USTaskController : MonoBehaviour
     void Awake()
     {
         _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
-        _fsr = GameComponents.GetGameController().GetComponent<FeedbackServer>();
+        _fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
         _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
         _audioSource = GetComponent<AudioSource>();
     }
@@ -60,8 +60,8 @@ public class USTaskController : MonoBehaviour
     {
         if (tpi.SecondaryTaskPos == USTask.POSITION.None)
         {
-            yield return new WaitForSecondsRealtime(3f);
-            mainTask.Activate();
+            yield return new WaitForSecondsRealtime(MainTaskActivationDelay);
+            mainTask.TryActivate();
             OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
         }
         else if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
@@ -81,27 +81,31 @@ public class USTaskController : MonoBehaviour
 
         _audioSource.PlayOneShot(voice, _usc.TaskVoiceVolume);
         SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-        if (mainTask == null) yield break;
-        mainTask.Activate();
-        OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
+        ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
+        
     }
 
     private IEnumerator StartSenseTask(PoolItem tpi, int spawnCount, USTask mainTask)
     {
-        string feedbackData = _usc.GetFeedbackData(tpi.MainTaskPos);
+        string feedbackData = _usc.GetFeedbackData(tpi.SecondaryTaskPos);
         if (feedbackData == null) Debug.LogError("No feedback data for main task pos");
 
-        float senseLatency = _fsr.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType());
+        float senseLatency = _fbs.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType());
         yield return new WaitForSecondsRealtime(MainTaskActivationDelay + senseLatency);
 
-        _fsr.PostChange(feedbackData, () =>
+        _fbs.PostChange(feedbackData, () =>
         {
             // callback waits till feedback is perceptible by player
             SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-            if (mainTask == null) return;
-            mainTask.Activate();
-            OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
+            ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
         });
+    }
+
+    private void ActivateTask(USTask task, USTask.POSITION pos, int spawnCount)
+    {
+        if (task == null) return;
+        task.TryActivate();
+        OnTaskStarted(USTask.TYPE.Main, pos, spawnCount);
     }
 
     private USTask SpawnMainTask(USTask.POSITION pos, int spawnCount)

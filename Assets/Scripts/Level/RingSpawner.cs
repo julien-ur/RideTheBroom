@@ -9,24 +9,26 @@ public class RingSpawner : MonoBehaviour {
     public float intervalMax = 8;
     public float widthRadius = 15;
     public float heightRadius = 15;
-    public float clearDistance = 50;
 
     public GameObject ring;
     private GameObject ringContainer;
-    private Transform playerTrans;
     private List<GameObject> rings;
+    private Transform playerTrans;
     private Transform lastRingTrans;
+    private float clearDistance;
 
     void Start () {
         playerTrans = GameComponents.GetPlayer().transform;
         ringContainer = new GameObject();
-        ringContainer.name = "RingContainer";
+        ringContainer.name = "RingRoute";
         rings = new List<GameObject>();
         StartCoroutine(SpawnRings());
-	}
+        clearDistance = dist * 1.5f;
+    }
 
     private void SpawnRing()
     {
+        Debug.Log("Spawn Ring");
         float rndFwd = dist;
         float rndRight = Random.Range(-widthRadius, widthRadius);
         float rndUp = Random.Range(-heightRadius / 1.5f, heightRadius);
@@ -38,7 +40,6 @@ public class RingSpawner : MonoBehaviour {
 
         i.transform.rotation = playerTrans.rotation;
         i.transform.Rotate(90, 0, 0);
-
         i.transform.parent = ringContainer.transform;
 
         lastRingTrans = i.transform;
@@ -53,7 +54,6 @@ public class RingSpawner : MonoBehaviour {
             if (Vector3.Distance(r.transform.position, playerTrans.position) > clearDistance)
             {
                 toRemove.Add(r);
-
             }
         }
         foreach (GameObject o in toRemove)

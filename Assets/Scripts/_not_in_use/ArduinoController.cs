@@ -47,8 +47,11 @@ public class ArduinoController : MonoBehaviour {
 
     private void OnDestroy()
     {
-        Send("w0h0");
-        if (_stream != null) _stream.Close();
+        if (_stream != null)
+        {
+            Send("w0h0");
+            _stream.Close();
+        }
     }
 
     private void Update()

@@ -41,9 +41,9 @@ public class USPovControl : MonoBehaviour
     void Update()
     {
         transform.rotation = _pc.transform.rotation;
-        transform.rotation *= Quaternion.AngleAxis(_rotAngle, transform.InverseTransformVector(_rotAxis));
-        _posRelativeToPlayer = transform.forward * 75;
+        transform.Rotate(transform.InverseTransformVector(_rotAxis), _rotAngle);
 
+        _posRelativeToPlayer = transform.forward * 75;
         transform.position = _pc.transform.position + _posRelativeToPlayer;
 
         //if (!_povActive)
@@ -72,9 +72,9 @@ public class USPovControl : MonoBehaviour
             _rotAngle = -40;
         }
 
-        //transform.rotation = playerTrans.rotation;
+        transform.rotation = playerTrans.rotation;
         //transform.Rotate(transform.InverseTransformVector(_rotAxis), 75);
-        ////transform.rotation *= Quaternion.AngleAxis(75, transform.InverseTransformVector(rotAxis));
+        transform.rotation *= Quaternion.AngleAxis(_rotAngle, transform.InverseTransformVector(_rotAxis));
         //_posRelativeToPlayer = transform.forward * 50;
     }
 

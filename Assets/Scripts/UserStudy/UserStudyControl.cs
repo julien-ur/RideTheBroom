@@ -13,13 +13,13 @@ public class UserStudyControl : MonoBehaviour {
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
-        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackServer.HEAT_TAG + "0, 2" },
-        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "1, 2" },
-        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 0.5" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackServer.HEAT_TAG + "0.3, 3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "0.5, 3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 3" },
 
-        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 2" },
-        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 2" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 0.8" },
 
         { "" + FeedbackType.Vibration + USTask.POSITION.Left, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
         { "" + FeedbackType.Vibration + USTask.POSITION.Middle, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
@@ -56,6 +56,7 @@ public class UserStudyControl : MonoBehaviour {
     private int _subjectId;
     private List<FeedbackType> _rounds;
     private FeedbackType _currentFeedbackType;
+    private FeedbackServer _fbs;
     private bool _playerReady;
     private bool _roundFinished;
     private USLogging _logging;
@@ -72,11 +73,11 @@ public class UserStudyControl : MonoBehaviour {
         _logging = u.AddComponent<USLogging>();
 
         _spawner.ActionCountReached += OnRoundFinished;
-        taskControl.TaskStarted += OnTaskStarted;
+        taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
+        _rounds = new List<FeedbackType> { FeedbackType.Heat };
 
         AddRoundsFromRoundConfig();
     }
@@ -85,13 +86,22 @@ public class UserStudyControl : MonoBehaviour {
     void Start()
     {
         _pc = GameComponents.GetPlayerControl();
+        _fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
         _loadingOverlay = GameComponents.GetLoadingOverlay();
         _infoText = GameComponents.GetVrHUD().transform.Find("StudyInfoText").GetComponentInChildren<Text>();
 
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
-        if (!mct) _playerReady = true;
-        else mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
+        if (!mct) {
+            _playerReady = true;
+            _fbs.Set(FeedbackServer.WIND_TAG, 0.2f);
+            _fbs.Set(FeedbackServer.HEAT_TAG, 0f);
+        }
+        else
+        {
+            mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
+        }
 
+        _pc.BlockRotationForAxis("x");
         StartCoroutine(StartStudy());
     }
 
@@ -99,6 +109,7 @@ public class UserStudyControl : MonoBehaviour {
     {
         _playerReady = true;
         GameComponents.GetMenuObject().SetActive(false);
+        _fbs.Set(FeedbackServer.WIND_TAG, 0.3f);
     }
 
     IEnumerator StartStudy()
@@ -115,7 +126,7 @@ public class UserStudyControl : MonoBehaviour {
         {
             _roundFinished = false;
             _currentFeedbackType = f;
-            _spawner.InitNewRound(++roundCount == -1);
+            _spawner.InitNewRound(roundCount++ == -1);
 
             //_loadingOverlay.FadeOut(1);
             //_pc.ChangeSpeedToTargetSpeed(0, 1);
@@ -190,8 +201,8 @@ public class UserStudyControl : MonoBehaviour {
     {
         if (args.Type == USTask.TYPE.Main)
         {
-            _pc.LimitRotationScopeByAxis('x', 30);
-            _pc.LimitRotationScopeByAxis('y', 65);
+            //_pc.LimitRotationScopeByAxis('x', 30);
+            //_pc.LimitRotationScopeByAxis('y', 65);
         }
     }
 
@@ -199,7 +210,7 @@ public class UserStudyControl : MonoBehaviour {
     {
         if (args.Type == USTask.TYPE.Main)
         {
-            _pc.BlockRotationForAxis("xy", true);
+            //_pc.BlockRotationForAxis("xy", true);
         }
     }
 

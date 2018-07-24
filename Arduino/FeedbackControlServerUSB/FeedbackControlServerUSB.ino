@@ -9,8 +9,9 @@
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager
 
 #include <ArduinoJson.h>          //https://github.com/bblanchon/ArduinoJson
+using namespace std;
 
-std::unique_ptr<ESP8266WebServer> server;
+unique_ptr<ESP8266WebServer> server;
 
 //default custom static IP
 char static_ip[16] = "192.168.137.100";
@@ -38,7 +39,7 @@ static const int WIND_CYCLE_TIME = 20; // in ms
 static const int VIBRATION_CYCLE_TIME = 20; // in ms
 
 // Variables
-string serialInputString;
+String serialInputString;
 int heatCycleStartTime;
 int windCycleStartTime;
 int vibrationCycleStartTime;
@@ -81,7 +82,7 @@ void setup() {
   vibrationData.type = "vibration";
   scentData.type = "scent";
 
-  mountFSAndReadConfig();
+/*   mountFSAndReadConfig();
   connectTheBadBoy();
 
   //save the custom parameters to FS
@@ -94,7 +95,7 @@ void setup() {
   Serial.println("HTTP server started");
   Serial.println(WiFi.localIP());
   Serial.println(WiFi.gatewayIP());
-  Serial.println(WiFi.subnetMask());
+  Serial.println(WiFi.subnetMask()); */
 
   windCycleStartTime = millis();
   heatCycleStartTime = millis();
@@ -110,21 +111,19 @@ void handleRevertDelay(FeedbackData &d, void (*revertFun)(FeedbackData) = NULL) 
   }
 }
 
-void handleUpdate(string data) {
-  RequestData data;
-  data = ExtractDataFromSerialString(data);
-  HandleRequest(data);
-}
-
 void loop() {
-  server->handleClient();
-
+  // server->handleClient();
   handleSerialInput();
   
   handleRevertDelay(windData);
   handleRevertDelay(heatData);
   handleRevertDelay(vibrationData);
   handleRevertDelay(scentData, &handleScent);
+
+  // security check for heating wire
+  if (windData.currentVal < 0.1) {
+    heatData.currentVal = 0;
+  }
   
   pwm(WIND_PIN, WIND_CYCLE_TIME, &windData, &windCycleStartTime, false);
   pwm(HEAT_PIN, HEAT_CYCLE_TIME, &heatData, &heatCycleStartTime, false);
@@ -144,23 +143,46 @@ void initRoutes() {
     
     for (int i = 0; i < server->args(); i++) {
       RequestData reqData = ExtractDataFromArgs(i);
-      HandleRquest(reqData); 
+      HandleRequest(reqData); 
     }
-    server->send(200, "text/plain", "feedback updated");
+    //server->send(200, "text/plain", "feedback updated");
   });
 }
 
 void handleSerialInput() {
   // data format: tag,strength,duration;
-  if (Serial.available() > 0) {
+  while (Serial.available() > 0) {
     char c = Serial.read();  //gets one byte from serial buffer
     if (c == ';') {
-      handleUpdate(serialInputString);
-      serialInputString = '';
+      handleSerialUpdate(serialInputString);
+      serialInputString = "";
     }
     else {
       serialInputString += c; //makes the string serialInputString
     }
+  }
+}
+
+void handleSerialUpdate(String serialStr) {
+  RequestData req;
+  req = ExtractDataFromSerialString(serialStr);
+  Serial.println(req.type + " " + req.value + " " + req.duration);
+  HandleRequest(req);
+}
+
+void HandleRequest(RequestData reqData) {
+  if (reqData.type == "w") {
+    UpdateFeedbackSettings(&windData, reqData);
+  }
+  else if (reqData.type == "h") {
+    UpdateFeedbackSettings(&heatData, reqData);
+  }
+  else if (reqData.type == "v") {          
+    UpdateFeedbackSettings(&vibrationData, reqData);
+  }
+  else if (reqData.type == "s") {          
+    UpdateFeedbackSettings(&scentData, reqData);
+    handleScent(scentData);
   }
 }
 
@@ -181,34 +203,21 @@ void UpdateFeedbackSettings(FeedbackData *fbData, RequestData reqData) {
   Serial.println(fbData->type + " val: " + fbData->nextVal + " dur: " + reqData.duration);
 }
 
-void HandleRequest(RequestData reqData) {
-  if (reqData.type == "w") {
-    UpdateFeedbackSettings(&windData, reqData);
-  }
-  else if (reqData.type == "h") {
-    UpdateFeedbackSettings(&heatData, reqData);
-  }
-  else if (reqData.type == "v") {          
-    UpdateFeedbackSettings(&vibrationData, reqData);
-  }
-  else if (reqData.type == "s") {          
-    UpdateFeedbackSettings(&scentData, reqData);
-    handleScent(scentData);
-  }
-}
-
-RequestData ExtractDataFromSerialString(string s) {
+RequestData ExtractDataFromSerialString(String s) {
   // data format: tag,strength,duration;
   RequestData data;
-  char seperator = ',';
-  int separatorIndex = s.indexOf(seperator);
-  data.type = s.substring(0, seperatorIndex);
+  char separator = ',';
+  
+  int separatorIndex = s.indexOf(separator);
+  data.type = s.substring(0, separatorIndex);
 
-  int from = seperatorIndex;
-  seperatorIndex = s.indexOf(seperator, from);
-  data.value = s.substring(from, seperatorIndex);
-
-  data.duration = s.substring(seperatorIndex+1);
+  int from = separatorIndex+1;
+  separatorIndex = s.indexOf(separator, from);
+  
+  data.value = s.substring(from, separatorIndex).toFloat();
+  data.duration = s.substring(separatorIndex+1).toFloat();
+  
+  return data;
 }
 
 RequestData ExtractDataFromArgs(int i) {
@@ -218,10 +227,10 @@ RequestData ExtractDataFromArgs(int i) {
     String argString = server->arg(i);
     int separatorIndex = argString.indexOf(",");
 
-    data.value = argString.substring(0, separatorIndex);
+    data.value = argString.substring(0, separatorIndex).toFloat();
 
     if (separatorIndex != -1) {
-      data.duration = argString.substring(separatorIndex+1);
+      data.duration = argString.substring(separatorIndex+1).toFloat();
     } else {
       data.duration = 0;
     }
@@ -328,7 +337,7 @@ void readConfig() {
     Serial.println("opened config file");
     size_t size = configFile.size();
     // Allocate a buffer to store contents of the file.
-    std::unique_ptr<char[]> buf(new char[size]);
+    unique_ptr<char[]> buf(new char[size]);
 
     configFile.readBytes(buf.get(), size);
     DynamicJsonBuffer jsonBuffer;

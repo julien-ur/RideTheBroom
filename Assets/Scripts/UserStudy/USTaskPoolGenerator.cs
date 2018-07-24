@@ -36,7 +36,7 @@ public class USTaskPoolGenerator
     private readonly List<USTask.POSITION>[] _asychronousPositionPool;
 
     private const int SecondaryTaskConditions = 6;
-    private const int SecondaryTaskConditionRepetitions = 4;
+    private const int SecondaryTaskConditionRepetitions = 1;
 
     private const int MinMainTasksOnlyBeforeSecondaryTask = 3;
     private const int MaxMainTasksOnlyBeforeSecondaryTask = 5;
@@ -58,12 +58,12 @@ public class USTaskPoolGenerator
     {
         List<PoolItem> actionPool = new List<PoolItem>();
 
-        //for (int i = 0; i < mainTaskRepetitions; i++)
-        //{
-        //    int rndPos = Random.Range(0, TaskPositions);
-        //    var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
-        //    actionPool.Add(poolItem);
-        //}
+        for (int i = 0; i < mainTaskRepetitions; i++)
+        {
+            int rndPos = Random.Range(0, TaskPositions);
+            var poolItem = new PoolItem((USTask.POSITION)rndPos, USTask.POSITION.None);
+            actionPool.Add(poolItem);
+        }
 
         for (int i = 0; i < TaskPositions; i++)
         {

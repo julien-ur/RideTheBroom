@@ -10,7 +10,7 @@ public class USTaskTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             TriggerSuccess();
-            Destroy(transform.parent.gameObject, 1f);
+            if (transform.parent) Destroy(transform.parent.gameObject, 1f);
         }
     }
 

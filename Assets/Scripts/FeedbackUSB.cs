@@ -58,12 +58,19 @@ public class FeedbackUSB : MonoBehaviour
         serialPort.BaudRate = 115200;
         serialPort.DataReceived += DataRecievedHandler;
 
-        OpenSerial();
-        serialPort.Write(rawData);
-        Debug.Log("Data sent");
-        callback = c;
-        if (callback != null) callback();
-        CloseSerial();
+        try
+        {
+            OpenSerial();
+            serialPort.Write(rawData);
+            Debug.Log("Data sent " + rawData);
+            callback = c;
+            if (callback != null) callback();
+            CloseSerial();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError(ex);
+        }
     }
 
     protected virtual void DataRecievedHandler(object sender, SerialDataReceivedEventArgs e)
@@ -91,6 +98,6 @@ public class FeedbackUSB : MonoBehaviour
 
     public void PermanentUpdate(string tag, float val)
     {
-        UpdateFeedback(tag + "," + val + ";");
+        UpdateFeedback(tag + "," + val.ToString("0.00") + ";");
     }
 }

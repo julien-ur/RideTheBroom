@@ -78,7 +78,7 @@ public class UserStudyControl : MonoBehaviour {
         taskControl.TaskEnded += OnTaskEnded;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> { FeedbackType.Vibration };
+        _rounds = new List<FeedbackType> {  };
 
         AddRoundsFromRoundConfig();
     }
@@ -95,8 +95,6 @@ public class UserStudyControl : MonoBehaviour {
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) {
             _playerReady = true;
-            _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.2f);
-            _feedbackUSB.PermanentUpdate(FeedbackConstants.HEAT_TAG, 0.4f);
         }
         else
         {
@@ -104,15 +102,17 @@ public class UserStudyControl : MonoBehaviour {
         }
 
         _pc.BlockRotationForAxis("x");
+
         StartCoroutine(StartStudy());
+
+        _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.3f);
+        _feedbackUSB.PermanentUpdate(FeedbackConstants.HEAT_TAG, 0.0f);
     }
 
     public void OnPlayerLeftTheBuilding(object sender, EventArgs args)
     {
         _playerReady = true;
         GameComponents.GetMenuObject().SetActive(false);
-        _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.3f);
-        _feedbackUSB.PermanentUpdate(FeedbackConstants.HEAT_TAG, 0f);
     }
 
     IEnumerator StartStudy()
@@ -152,10 +152,10 @@ public class UserStudyControl : MonoBehaviour {
             if (f != FeedbackType.Audio)
             {
                 _infoText.text = _feedbackLabels[(int)f];
-                yield return new WaitForSecondsRealtime(3);
-                _infoText.text = "";
+                yield return new WaitUntil(() => Input.GetKeyDown("space"));
             }
 
+            _infoText.text = "";
             Time.timeScale = 1;
 
             _loadingOverlay.FadeIn(2);

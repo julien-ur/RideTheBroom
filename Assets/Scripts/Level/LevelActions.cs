@@ -77,7 +77,7 @@ public class LevelActions : MonoBehaviour
             }
             else if (_currentLevel == Constants.LEVEL.SpaceProcedural)
             {
-                _pc.ChangeSpeed(7, 7, 7);
+                _pc.ChangeSpeed(20, 20, 20);
                 _pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
                 _pc.enableBroomRollback = false;
                 _pc.tiltAcceleration = false;

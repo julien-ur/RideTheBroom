@@ -1277,6 +1277,7 @@ GameObject:
   - component: {fileID: 169}
   - component: {fileID: 90}
   - component: {fileID: 100}
+  - component: {fileID: 91}
   m_Layer: 0
   m_Name: GameControl
   m_TagString: GameControl
@@ -1295,6 +1296,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d3bf33be761014695a9c13cadffbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &91
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b20b1f1a1113b0246afef1b6017ee375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendTest: 0
+  sendTestString: w,0.5,2;
 --- !u!1 &92
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,12 +1462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ce228e2058f2ab4bb6d5da8064e0c8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ALL_TAGS:
-  - w
-  - h
-  - s
-  - v
-  - p
 --- !u!1 &101
 GameObject:
   m_ObjectHideFlags: 0
@@ -9824,6 +9832,8 @@ MonoBehaviour:
   LandingForrestCave: {fileID: 7400000, guid: 243cfb8a1ef962041a61453c848e8b74, type: 2}
   LandingImmersionTest: {fileID: 7400000, guid: 243cfb8a1ef962041a61453c848e8b74,
     type: 2}
+  LandingSpaceProcedural: {fileID: 7400000, guid: 243cfb8a1ef962041a61453c848e8b74,
+    type: 2}
   OpenBarnDoors: {fileID: 7400000, guid: d65ec298c1beb0441837a34fee261fc0, type: 2}
   barnDoorAudioSource: {fileID: 389}
 --- !u!114 &443
@@ -9865,22 +9875,6 @@ MonoBehaviour:
     type: 3}
   BackToMenu: {fileID: 8300000, guid: 1b847ec1f9585fd4ba78d28f34abacd4, type: 3}
   defaultSpeed: 8
---- !u!1 &85879433 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1050435560623236, guid: 6f810fdc65734ea44aa66f93d3f222df,
-    type: 2}
-  m_PrefabInternal: {fileID: 1401405635}
---- !u!114 &85879434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 85879433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e798642284576f41b6f238a6402fbef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &378511559
 GameObject:
   m_ObjectHideFlags: 0
@@ -17178,56 +17172,6 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_FontSize
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114681165352151214, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: m_Color.r
-      value: 0.7205882
-      objectReference: {fileID: 0}
-    - target: {fileID: 114681165352151214, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: m_Color.g
-      value: 0.5616349
-      objectReference: {fileID: 0}
-    - target: {fileID: 114681165352151214, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: m_Color.b
-      value: 0.5616349
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: spaceTiltAcceleration
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: tiltAcceleration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: useBroomHardware
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: noRotationBlocking
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: useViveTracker
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: enableBroomRollback
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114192339243405818, guid: 6f810fdc65734ea44aa66f93d3f222df,
-        type: 2}
-      propertyPath: index
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}

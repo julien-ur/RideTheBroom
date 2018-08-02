@@ -14,33 +14,17 @@ public class FeedbackServer : MonoBehaviour
 {
     public EventHandler<FeedbackServerEventArgs> FeedbackRequestSuccessful;
 
-    public const int SMELL_LEMON_VAL = 3;
-    public const int SMELL_WOODY_VAL = 1;
-    public const int SMELL_BERRY_VAL = 4;
-
-    public const string WIND_TAG = "w";
-    public const string HEAT_TAG = "h";
-    public const string SMELL_TAG = "s";
-    public const string VIBRATION_TAG = "v";
-
-    public static Dictionary<string, float> SENSE_LATENCY_DICT = new Dictionary<string, float>
-    {
-        { HEAT_TAG, 0.2f },
-        { SMELL_TAG, 0.6f },
-        { VIBRATION_TAG, 0.1f }
-    };
-
     private string _address = "192.168.137.102";
     private string _updateRoute = "/update";
     private string _resetRoute = "/reset";
 
-    private string[] ALL_TAGS = { WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG };
+    private string[] ALL_TAGS = { FeedbackConstants.WIND_TAG, FeedbackConstants.HEAT_TAG, FeedbackConstants.SMELL_TAG, FeedbackConstants.VIBRATION_TAG };
 
     void OnDestroy()
     {
         WWWForm form = new WWWForm();
-        form.AddField(WIND_TAG, 0);
-        form.AddField(HEAT_TAG, 0);
+        form.AddField(FeedbackConstants.WIND_TAG, 0);
+        form.AddField(FeedbackConstants.HEAT_TAG, 0);
         WWW www = new WWW(_address + _updateRoute, form);
     }
 
@@ -62,7 +46,7 @@ public class FeedbackServer : MonoBehaviour
             {
                 Debug.Log("feedback request successful");
                 OnFeedbackRequestSuccessful();
-                yield return new WaitForSecondsRealtime(SENSE_LATENCY_DICT[feedbackTag]);
+                yield return new WaitForSecondsRealtime(FeedbackConstants.SENSE_LATENCY_DICT[feedbackTag]);
                 Debug.Log("feedback at player");
                 // if (callback != null) callback();
             }
@@ -107,13 +91,13 @@ public class FeedbackServer : MonoBehaviour
         var fTag = "";
 
         if (fType == UserStudyControl.FeedbackType.Heat)
-            fTag = HEAT_TAG;
+            fTag = FeedbackConstants.HEAT_TAG;
         else if (fType == UserStudyControl.FeedbackType.Smell)
-            fTag = SMELL_TAG;
+            fTag = FeedbackConstants.SMELL_TAG;
         else if (fType == UserStudyControl.FeedbackType.Vibration)
-            fTag = VIBRATION_TAG;
+            fTag = FeedbackConstants.VIBRATION_TAG;
 
-        return SENSE_LATENCY_DICT[fTag];
+        return FeedbackConstants.SENSE_LATENCY_DICT[fTag];
     }
 
     public void PostChange(string rawData, Action callback)

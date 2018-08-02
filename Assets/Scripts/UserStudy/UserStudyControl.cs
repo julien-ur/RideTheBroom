@@ -13,17 +13,17 @@ public class UserStudyControl : MonoBehaviour {
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
-        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackServer.HEAT_TAG + "0.3, 3" },
-        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackServer.HEAT_TAG + "0.5, 3" },
-        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackServer.HEAT_TAG + "1, 3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Left, FeedbackConstants.HEAT_TAG + ",0.3,3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Middle, FeedbackConstants.HEAT_TAG + ",0.5,3" },
+        { "" + FeedbackType.Heat + USTask.POSITION.Right, FeedbackConstants.HEAT_TAG + ",1,3" },
 
-        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_WOODY_VAL + ", 0.8" },
-        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_LEMON_VAL + ", 0.8" },
-        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackServer.SMELL_TAG + FeedbackServer.SMELL_BERRY_VAL + ", 0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Left, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_WOODY_VAL + ",0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Middle, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_LEMON_VAL + ",0.8" },
+        { "" + FeedbackType.Smell + USTask.POSITION.Right, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_BERRY_VAL + ",0.8" },
 
-        { "" + FeedbackType.Vibration + USTask.POSITION.Left, FeedbackServer.VIBRATION_TAG + "1, 1.5;" },
-        { "" + FeedbackType.Vibration + USTask.POSITION.Middle, FeedbackServer.VIBRATION_TAG + "1, 0.4;" },
-        { "" + FeedbackType.Vibration + USTask.POSITION.Right, FeedbackServer.VIBRATION_TAG + "0.4, 2;" }
+        { "" + FeedbackType.Vibration + USTask.POSITION.Left, FeedbackConstants.VIBRATION_TAG + ",0.2,0.5" },
+        { "" + FeedbackType.Vibration + USTask.POSITION.Middle, FeedbackConstants.VIBRATION_TAG + ",0.35,0.5" },
+        { "" + FeedbackType.Vibration + USTask.POSITION.Right, FeedbackConstants.VIBRATION_TAG + ",0.7,0.5" }
     };
 
     public AudioClip TimeOutSound;
@@ -56,7 +56,8 @@ public class UserStudyControl : MonoBehaviour {
     private int _subjectId;
     private List<FeedbackType> _rounds;
     private FeedbackType _currentFeedbackType;
-    private FeedbackServer _fbs;
+    //private FeedbackServer _fbs;
+    private FeedbackUSB _feedbackUSB;
     private bool _playerReady;
     private bool _roundFinished;
     private USLogging _logging;
@@ -77,7 +78,7 @@ public class UserStudyControl : MonoBehaviour {
         taskControl.TaskEnded += OnTaskEnded;
 
         _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> { FeedbackType.Heat };
+        _rounds = new List<FeedbackType> {  };
 
         AddRoundsFromRoundConfig();
     }
@@ -86,15 +87,14 @@ public class UserStudyControl : MonoBehaviour {
     void Start()
     {
         _pc = GameComponents.GetPlayerControl();
-        _fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
+        //_fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
+        _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
         _loadingOverlay = GameComponents.GetLoadingOverlay();
         _infoText = GameComponents.GetVrHUD().transform.Find("StudyInfoText").GetComponentInChildren<Text>();
 
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) {
             _playerReady = true;
-            _fbs.Set(FeedbackServer.WIND_TAG, 0.2f);
-            _fbs.Set(FeedbackServer.HEAT_TAG, 0f);
         }
         else
         {
@@ -102,14 +102,17 @@ public class UserStudyControl : MonoBehaviour {
         }
 
         _pc.BlockRotationForAxis("x");
+
         StartCoroutine(StartStudy());
+
+        _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.3f);
+        _feedbackUSB.PermanentUpdate(FeedbackConstants.HEAT_TAG, 0.0f);
     }
 
     public void OnPlayerLeftTheBuilding(object sender, EventArgs args)
     {
         _playerReady = true;
         GameComponents.GetMenuObject().SetActive(false);
-        _fbs.Set(FeedbackServer.WIND_TAG, 0.3f);
     }
 
     IEnumerator StartStudy()
@@ -125,33 +128,39 @@ public class UserStudyControl : MonoBehaviour {
         foreach (FeedbackType f in _rounds)
         {
             _roundFinished = false;
+            roundCount++;
             _currentFeedbackType = f;
-            _spawner.InitNewRound(roundCount++ == -1);
+            _spawner.InitNewRound(roundCount == -1);
 
-            //_loadingOverlay.FadeOut(1);
-            //_pc.ChangeSpeedToTargetSpeed(0, 1);
-            //yield return new WaitForSecondsRealtime(1.5f);
-            //Time.timeScale = 0;
+            _loadingOverlay.FadeOut(1);
+            _pc.ChangeSpeedToTargetSpeed(0, 1);
+            yield return new WaitForSecondsRealtime(1.5f);
+            Time.timeScale = 0;
 
-            //// pause game for questionaires
-            //_infoText.text = (f != FeedbackType.Audio) ? "Time to answer some questions" : _feedbackLabels[(int)f];
-            //yield return new WaitUntil(() => Input.GetKeyDown("space"));
-            //_infoText.text = "";
-            //yield return new WaitForSecondsRealtime(1.5f);
+            // pause game for questionaires
+            if (roundCount > 1)
+            {
+                _infoText.text = "Survey";
+                yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            }
 
-            //// show round label
-            //if (f != FeedbackType.Audio)
-            //{
-            //    _infoText.text = _feedbackLabels[(int)f];
-            //    yield return new WaitForSecondsRealtime(3);
-            //    _infoText.text = "";
-            //}
+            _infoText.text = _feedbackLabels[(int)f];
+            yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            yield return new WaitForSecondsRealtime(1.5f);
 
-            //Time.timeScale = 1;
+            // show round label
+            if (f != FeedbackType.Audio)
+            {
+                _infoText.text = _feedbackLabels[(int)f];
+                yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            }
 
-            //_loadingOverlay.FadeIn(2);
-            //_pc.ChangeSpeedToDefaultSpeed(2);
-            //yield return new WaitForSecondsRealtime(2);
+            _infoText.text = "";
+            Time.timeScale = 1;
+
+            _loadingOverlay.FadeIn(2);
+            _pc.ChangeSpeedToDefaultSpeed(2);
+            yield return new WaitForSecondsRealtime(2);
 
             _spawner.StartSpawning();
 
@@ -231,7 +240,7 @@ public class UserStudyControl : MonoBehaviour {
         FEEDBACK_DICT.TryGetValue("" + _currentFeedbackType + actionPosition, out feedbackData);
 
         if (feedbackData != null)
-            feedbackData = feedbackData.Replace(" ", "");
+            feedbackData = feedbackData.Replace(" ", "") + ";";
         else
             Debug.LogError("No feedback data for " + _currentFeedbackType + " " + actionPosition);
 

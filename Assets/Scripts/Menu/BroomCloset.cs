@@ -8,6 +8,7 @@ public class BroomCloset : MonoBehaviour {
     public AnimationClip LandingFloatingRocks;
     public AnimationClip LandingForrestCave;
     public AnimationClip LandingImmersionTest;
+    public AnimationClip LandingSpaceProcedural;
     public AnimationClip OpenBarnDoors;
     public AudioSource barnDoorAudioSource;
 
@@ -41,7 +42,7 @@ public class BroomCloset : MonoBehaviour {
         }
         else if (activeLevel == Constants.LEVEL.SpaceProcedural)
         {
-            anim.clip = null;
+            anim.clip = LandingSpaceProcedural;
         }
 
         anim.Play();

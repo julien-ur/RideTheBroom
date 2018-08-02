@@ -23,7 +23,8 @@ public class USTaskController : MonoBehaviour
     public EventHandler<USTaskControllerEventArgs> TaskEnded;
 
     private UserStudyControl _usc;
-    private FeedbackServer _fbs;
+    //private FeedbackServer _fbs;
+    private FeedbackUSB _feedbackUSB;
     private ScoreDisplayControl _scc;
     private AudioSource _audioSource;
 
@@ -37,7 +38,8 @@ public class USTaskController : MonoBehaviour
     void Awake()
     {
         _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
-        _fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
+        //_fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
+        _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
         _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
         _audioSource = GetComponent<AudioSource>();
     }
@@ -90,15 +92,17 @@ public class USTaskController : MonoBehaviour
         string feedbackData = _usc.GetFeedbackData(tpi.SecondaryTaskPos);
         if (feedbackData == null) Debug.LogError("No feedback data for main task pos");
 
-        float senseLatency = _fbs.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType());
-        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + senseLatency);
+        //float senseLatency = _fbs.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType());
+        //yield return new WaitForSecondsRealtime(MainTaskActivationDelay + senseLatency);
 
-        _fbs.PostChange(feedbackData, () =>
+        _feedbackUSB.UpdateFeedback(feedbackData, () =>
         {
             // callback waits till feedback is perceptible by player
             SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
             ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
         });
+
+        yield break;
     }
 
     private void ActivateTask(USTask task, USTask.POSITION pos, int spawnCount)

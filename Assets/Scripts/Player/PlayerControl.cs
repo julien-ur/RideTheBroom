@@ -18,6 +18,8 @@ public class PlayerControl : MonoBehaviour
     public float rotationFactorX = 120;
     public float rotationFactorY = 120;
     public bool noRotationBlocking = false;
+    public bool blockHorizontalRotation;
+    public bool blockVerticalRotation;
 
     public bool useBroomHardware = false;  // use gamepad instead of broom hardware, for testing purposes
     public bool useAndroidInput = false;
@@ -53,8 +55,6 @@ public class PlayerControl : MonoBehaviour
     public float timePassedSinceLastAngleUpdate = 0;
 
     private bool isRotationEnabled = true;
-    private bool horizontalRotationBlocked;
-    private bool verticalRotationBlocked;
     private bool horizontalRotationLimited;
     private bool verticalRotationLimited;
     private float verticalRotationLimit = 180;
@@ -163,15 +163,15 @@ public class PlayerControl : MonoBehaviour
             float rotateX = 0;
             float rotateY = 0;
 
-            if (noRotationBlocking || !verticalRotationLimited || !verticalRotationBlocked &&
-                  (inputVertical < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) <= verticalRotationLimit ||
-                  inputVertical > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) >= -verticalRotationLimit))
+            if (noRotationBlocking || !(blockVerticalRotation || verticalRotationLimited &&
+                  (inputVertical < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) >= verticalRotationLimit ||
+                  inputVertical > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.x, rotationScopeCenter.x) <= -verticalRotationLimit)))
             {
                 rotateX = inputVertical * rotationFactorX * Time.deltaTime;
             }
-            if (noRotationBlocking || !horizontalRotationLimited || !horizontalRotationBlocked &&
-                  (inputHorizontal > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) <= horizontalRotationLimit ||
-                  inputHorizontal < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) >= -horizontalRotationLimit))
+            if (noRotationBlocking || !(blockHorizontalRotation || horizontalRotationLimited &&
+                  (inputHorizontal > 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) >= horizontalRotationLimit ||
+                  inputHorizontal < 0 && Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotationScopeCenter.y) <= -horizontalRotationLimit)))
             {
                 rotateY = inputHorizontal * rotationFactorY * Time.deltaTime * -1;
             }
@@ -306,8 +306,8 @@ public class PlayerControl : MonoBehaviour
     private IEnumerator BlockRotation(string blockedAxes, bool withXRollback, float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (blockedAxes.Contains("x")) verticalRotationBlocked = verticalRotationLimited = true;
-        if (blockedAxes.Contains("y")) horizontalRotationBlocked = horizontalRotationLimited = true;
+        if (blockedAxes.Contains("x")) blockVerticalRotation = verticalRotationLimited = true;
+        if (blockedAxes.Contains("y")) blockHorizontalRotation = horizontalRotationLimited = true;
         if (withXRollback) StartCoroutine(RollBackToStartRotation("x"));
     }
 
@@ -376,8 +376,8 @@ public class PlayerControl : MonoBehaviour
 
     public void RemoveRotationLimitFromAxes(string freeAxes)
     {
-        if (freeAxes.Contains("x")) verticalRotationBlocked = verticalRotationLimited = false;
-        if (freeAxes.Contains("y")) horizontalRotationBlocked = horizontalRotationLimited = false;
+        if (freeAxes.Contains("x")) blockVerticalRotation = verticalRotationLimited = false;
+        if (freeAxes.Contains("y")) blockHorizontalRotation = horizontalRotationLimited = false;
     }
 
     public void LimitRotationScopeByAxis(char axis, float halfDegrees)
@@ -385,13 +385,13 @@ public class PlayerControl : MonoBehaviour
         if (axis == 'x')
         {
             verticalRotationLimited = (halfDegrees < 180);
-            verticalRotationBlocked = (halfDegrees == 0);
+            blockVerticalRotation = (halfDegrees == 0);
             verticalRotationLimit = halfDegrees;
         }
         else if (axis == 'y')
         {
             horizontalRotationLimited = (halfDegrees < 180);
-            horizontalRotationBlocked = (halfDegrees == 0);
+            blockHorizontalRotation = (halfDegrees == 0);
             horizontalRotationLimit = halfDegrees;
         }
     }

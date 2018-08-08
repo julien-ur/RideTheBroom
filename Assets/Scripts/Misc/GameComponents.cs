@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class GameComponents {
@@ -7,6 +8,18 @@ public static class GameComponents {
     {
         GameObject gc = GetGameControl();
         return (gc) ? gc.GetComponent<GameController>() : null;
+    }
+
+    public static UserStudyControl GetUserStudyControl()
+    {
+        GameObject gc = GetGameControl();
+        return (gc) ? gc.GetComponent<UserStudyControl>() : null;
+    }
+
+    public static FeedbackUSB GetFeedbackUSB()
+    {
+        GameObject gc = GetGameControl();
+        return (gc) ? gc.GetComponent<FeedbackUSB>() : null;
     }
 
     public static Tutorial GetTutorial()

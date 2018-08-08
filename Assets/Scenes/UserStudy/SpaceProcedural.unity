@@ -210,6 +210,16 @@ Prefab:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useBroomHardware
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useViveTracker
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
   m_IsPrefabParent: 0
@@ -224,8 +234,6 @@ GameObject:
   - component: {fileID: 362748212}
   - component: {fileID: 362748214}
   - component: {fileID: 362748215}
-  - component: {fileID: 362748216}
-  - component: {fileID: 362748217}
   m_Layer: 0
   m_Name: LevelControl
   m_TagString: LevelControl
@@ -294,46 +302,6 @@ MonoBehaviour:
   widthRadius: 15
   heightRadius: 8
   ring: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
---- !u!114 &362748216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 362748211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4414389679d3c194a965c69d8896fd73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeOutSound: {fileID: 8300000, guid: b0c220f028c1d7f4c9788fe40f0a7b89, type: 3}
-  TimeOutVolume: 0.3
-  SuccessSound: {fileID: 8300000, guid: 35dee669c4e9836448b9823e52c25182, type: 3}
-  SuccessVolume: 0.3
-  PovSelectingSound: {fileID: 8300000, guid: 48d3cc2e5089bd34e96607074c2b06ea, type: 3}
-  PovSelectingVolume: 0.3
-  VoicePovLeft: {fileID: 8300000, guid: 23d062a057261204ca781f051038b7d0, type: 3}
-  VoicePovMiddle: {fileID: 8300000, guid: c302921edbb5d744b850c9e3c5c35a5b, type: 3}
-  VoicePovRight: {fileID: 8300000, guid: 23f006abb1813424ab8a57d3e6981a60, type: 3}
-  TaskVoiceVolume: 1
-  RefillTankItem: {fileID: 0}
-  PovContainer: {fileID: 1106963318441436, guid: d659bcf02e09ffe4db4b2f010ed1c6f5,
-    type: 2}
-  RingObject: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
-  RingInactiveObject: {fileID: 1795434030836118, guid: e49e8756e9a02444a82dced4a768d05c,
-    type: 2}
---- !u!114 &362748217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 362748211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b20b1f1a1113b0246afef1b6017ee375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sendTest: 0
-  sendTestString: w,0.5,2;
 --- !u!1 &671125086
 GameObject:
   m_ObjectHideFlags: 0
@@ -8010,6 +7978,7 @@ GameObject:
   - component: {fileID: 1691091803}
   - component: {fileID: 1691091801}
   - component: {fileID: 1691091804}
+  - component: {fileID: 1691091805}
   m_Layer: 14
   m_Name: GameControl (1)
   m_TagString: GameControl
@@ -8111,6 +8080,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendTest: 0
   sendTestString: v,0.3;
+--- !u!114 &1691091805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1691091796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4414389679d3c194a965c69d8896fd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOutSound: {fileID: 8300000, guid: b0c220f028c1d7f4c9788fe40f0a7b89, type: 3}
+  TimeOutVolume: 0.3
+  SuccessSound: {fileID: 8300000, guid: 35dee669c4e9836448b9823e52c25182, type: 3}
+  SuccessVolume: 0.3
+  PovSelectingSound: {fileID: 8300000, guid: 48d3cc2e5089bd34e96607074c2b06ea, type: 3}
+  PovSelectingVolume: 0.3
+  VoicePovLeft: {fileID: 8300000, guid: 23d062a057261204ca781f051038b7d0, type: 3}
+  VoicePovMiddle: {fileID: 8300000, guid: c302921edbb5d744b850c9e3c5c35a5b, type: 3}
+  VoicePovRight: {fileID: 8300000, guid: 23f006abb1813424ab8a57d3e6981a60, type: 3}
+  TaskVoiceVolume: 1
+  RefillTankItem: {fileID: 0}
+  PovContainer: {fileID: 1106963318441436, guid: d659bcf02e09ffe4db4b2f010ed1c6f5,
+    type: 2}
+  RingObject: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
+  RingInactiveObject: {fileID: 1795434030836118, guid: e49e8756e9a02444a82dced4a768d05c,
+    type: 2}
 --- !u!1 &1787460151
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class USTask : MonoBehaviour {
 
     void Awake()
     {
-        _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
+        _usc = GameComponents.GetUserStudyControl();
         _pc = GameComponents.GetPlayerControl();
         _playerTrans = GameComponents.GetPlayer().transform;
     }

@@ -37,7 +37,7 @@ public class USTaskController : MonoBehaviour
 
     void Awake()
     {
-        _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
+        _usc = GameComponents.GetUserStudyControl();
         //_fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
         _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
         _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
@@ -63,8 +63,8 @@ public class USTaskController : MonoBehaviour
         if (tpi.SecondaryTaskPos == USTask.POSITION.None)
         {
             yield return new WaitForSecondsRealtime(MainTaskActivationDelay);
-            mainTask.TryActivate();
-            OnTaskStarted(USTask.TYPE.Main, tpi.MainTaskPos, spawnCount);
+            // mainTask.TryActivate();
+            // OnTaskStarted(USTask.TYPE.Main, mainTask, tpi.MainTaskPos, spawnCount);
         }
         else if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
         {
@@ -99,7 +99,7 @@ public class USTaskController : MonoBehaviour
         {
             // callback waits till feedback is perceptible by player
             SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
-            ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
+            // ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
         });
 
         yield break;
@@ -109,7 +109,7 @@ public class USTaskController : MonoBehaviour
     {
         if (task == null) return;
         task.TryActivate();
-        OnTaskStarted(USTask.TYPE.Main, pos, spawnCount);
+        OnTaskStarted(USTask.TYPE.Main, task, pos, spawnCount);
     }
 
     private USTask SpawnMainTask(USTask.POSITION pos, int spawnCount)
@@ -118,12 +118,12 @@ public class USTaskController : MonoBehaviour
 
         mainTask.StartNewTask(USTask.TYPE.Main, pos, (success) =>
         {
-            OnTaskEnded(USTask.TYPE.Main, pos, spawnCount, success ? "Success" : "Timeout");
+            OnTaskEnded(USTask.TYPE.Main, mainTask, pos, spawnCount, success ? "success" : "timeout");
             Debug.Log("Main Task " + (success ? "Success" : "Timeout") + " " + spawnCount);
             Destroy(mainTask);
         });
 
-        OnTaskSpawned(USTask.TYPE.Main, mainTask, pos, spawnCount);
+        OnTaskStarted(USTask.TYPE.Main, mainTask, pos, spawnCount);
 
         return mainTask;
     }
@@ -134,16 +134,16 @@ public class USTaskController : MonoBehaviour
 
         secondaryTask.StartNewTask(USTask.TYPE.Secondary, pos, (success) =>
         {
-            HandleSecondaryTaskEnded(pos, spawnCount, success);
+            HandleSecondaryTaskEnded(secondaryTask, pos, spawnCount, success);
             Destroy(secondaryTask);
         });
 
-        OnTaskStarted(USTask.TYPE.Secondary, pos, spawnCount);
+        OnTaskStarted(USTask.TYPE.Secondary, secondaryTask, pos, spawnCount);
     }
 
-    private void HandleSecondaryTaskEnded(USTask.POSITION pos, int spawnCount, bool success)
+    private void HandleSecondaryTaskEnded(USTask task, USTask.POSITION pos, int spawnCount, bool success)
     {
-        OnTaskEnded(USTask.TYPE.Secondary, pos, spawnCount, success ? "Success" : "Timeout");
+        OnTaskEnded(USTask.TYPE.Secondary, task, pos, spawnCount, success ? "success" : "timeout");
         Debug.Log("Secondary Task " + (success ? "Success" : "Timeout") + " " + spawnCount);
 
         if (success)
@@ -175,15 +175,15 @@ public class USTaskController : MonoBehaviour
             TaskSpawned(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c, Task = task });
     }
 
-    protected virtual void OnTaskStarted(USTask.TYPE t, USTask.POSITION p, int c)
+    protected virtual void OnTaskStarted(USTask.TYPE t, USTask task, USTask.POSITION p, int c)
     {
         if (TaskStarted != null)
-            TaskStarted(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c });
+            TaskStarted(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c, Task = task });
     }
 
-    protected virtual void OnTaskEnded(USTask.TYPE t, USTask.POSITION p, int c, string info)
+    protected virtual void OnTaskEnded(USTask.TYPE t, USTask task, USTask.POSITION p, int c, string info)
     {
         if (TaskEnded != null)
-            TaskEnded(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c, EventInfo = info });
+            TaskEnded(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c, Task = task, EventInfo = info });
     }
 }

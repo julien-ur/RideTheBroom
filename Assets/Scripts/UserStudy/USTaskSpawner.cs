@@ -12,6 +12,7 @@ public class USTaskSpawner : MonoBehaviour {
     public float MaxTimeBetweenActions = 7;
     public float MinTimeBetweenRings = 2;
     public float TimeBetweenRings = 4;
+    public float TimeBetweenPovs = 6;
     public float TimeBetweenRingAndPov = 0;
 
     private USTaskPoolGenerator _poolGenerator;
@@ -39,23 +40,32 @@ public class USTaskSpawner : MonoBehaviour {
             yield return new WaitUntil(IsPlayerReady);
 
             PoolItem nextPoolItem = _actionPool[0];
+            float waitDuration = TimeBetweenRings;
 
-
-            float waitDuration = Random.Range(MinTimeBetweenRings, TimeBetweenRings);
-
-            if (_actionPool.Count > 1 && _actionPool[1].SecondaryTaskPos != USTask.POSITION.None)
+            if (_actionPool.Count > 1)
             {
-                waitDuration = TimeBetweenRingAndPov;
-            }
-            else if (nextPoolItem.SecondaryTaskPos != USTask.POSITION.None)
-            {
-                waitDuration = TimeBetweenRings - TimeBetweenRingAndPov;
+                PoolItem secondNextPoolItem = _actionPool[1];
+
+                if (nextPoolItem.ContainsMainTask() && secondNextPoolItem.ContainsMainTask())
+                {
+                    waitDuration = Random.Range(MinTimeBetweenRings, TimeBetweenRings);
+                }
+                if (nextPoolItem.ContainsMainTask() && secondNextPoolItem.ContainsSecondaryTask())
+                {
+                    waitDuration = TimeBetweenRingAndPov;
+                }
+                else if (nextPoolItem.ContainsSecondaryTask() && secondNextPoolItem.ContainsMainTask())
+                {
+                    waitDuration = TimeBetweenRings - TimeBetweenRingAndPov;
+                }
+                else if (nextPoolItem.ContainsSecondaryTask() && secondNextPoolItem.ContainsSecondaryTask())
+                {
+                    waitDuration = TimeBetweenPovs;
+                }
             }
 
             _actionPool.RemoveAt(0);
-
             StartTasks(nextPoolItem);
-
             _readyForNextSpawn = true;
 
             yield return new WaitUntil(() => _readyForNextSpawn);
@@ -73,6 +83,7 @@ public class USTaskSpawner : MonoBehaviour {
         _taskControl.StartTasks(item, _spawnCount);
         _spawnCount++;
     }
+
 
     private bool IsPlayerReady()
     {

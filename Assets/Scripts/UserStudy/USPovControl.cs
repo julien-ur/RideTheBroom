@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class USPovControl : MonoBehaviour
 {
+    public EventHandler FirstContact;
     public EventHandler PovSelected;
 
     public AudioClip SelectingSound { get; set; }
@@ -16,7 +17,7 @@ public class USPovControl : MonoBehaviour
     private Vector3 _posRelativeToPlayer;
     private Vector3 _rotAxis;
     private float _rotAngle;
-
+    private bool _isFirstContact;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class USPovControl : MonoBehaviour
     void Start()
     {
         InitPovs();
-        UpdateRelativePositionAndRotation();
+        SetRotationAngle();
     }
 
     private void InitPovs()
@@ -40,46 +41,42 @@ public class USPovControl : MonoBehaviour
 
     void Update()
     {
+
         transform.rotation = _pc.transform.rotation;
-        transform.Rotate(transform.InverseTransformVector(_rotAxis), _rotAngle);
+        transform.Rotate(transform.InverseTransformVector(GetRotationAxis()), _rotAngle);
+        //transform.rotation *= Quaternion.AngleAxis(_rotAngle, transform.InverseTransformVector(_rotAxis));
 
         _posRelativeToPlayer = transform.forward * 75;
         transform.position = _pc.transform.position + _posRelativeToPlayer;
-
-        //if (!_povActive)
-        //{
-        //    UpdateChildPositionAndRotation();
-        //}
     }
 
-    private void UpdateRelativePositionAndRotation()
+    private void SetRotationAngle()
     {
-        Transform playerTrans = _pc.transform;
-
         if (PovPos == USTask.POSITION.Right)
         {
-            _rotAxis = playerTrans.up;
             _rotAngle = 75;
         }
         else if (PovPos == USTask.POSITION.Left)
         {
-            _rotAxis = playerTrans.up;
             _rotAngle = -75;
         }
-        else
+        else if(PovPos == USTask.POSITION.Middle)
         {
-            _rotAxis = playerTrans.right;
             _rotAngle = -40;
         }
+    }
 
-        transform.rotation = playerTrans.rotation;
-        //transform.Rotate(transform.InverseTransformVector(_rotAxis), 75);
-        transform.rotation *= Quaternion.AngleAxis(_rotAngle, transform.InverseTransformVector(_rotAxis));
-        //_posRelativeToPlayer = transform.forward * 50;
+    private Vector3 GetRotationAxis()
+    {
+        return (PovPos == USTask.POSITION.Middle) ? _pc.transform.right : _pc.transform.up;
     }
 
     public void ActivateCurrentPov()
     {
+        if (!_isFirstContact && FirstContact != null)
+            FirstContact(this, EventArgs.Empty);
+            _isFirstContact = true;
+
         _rndChosenPov.Activate();
     }
 

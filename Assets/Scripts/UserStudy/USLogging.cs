@@ -1,22 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using UnityEditorInternal;
 using UnityEngine;
 
-public struct USLogRecord
+public struct USGameStatusLogRecord
 {
-    public string SubjectName { get; set; }
+    public int SubjectId { get; set; }
     public string Timestamp { get; set; }
     public string FeedbackType { get; set; }
-    public string MainTask { get; set; }
-    public string MainTaskInfo { get; set; }
-    public string SecondaryTask { get; set; }
-    public string SecondaryTaskInfo { get; set; }
-    public string MainTaskXPos { get; set; }
-    public string MainTaskYPos { get; set; }
-    public string MainTaskZPos { get; set; }
     public float PlayerXPos { get; set; }
     public float PlayerYPos { get; set; }
     public float PlayerZPos { get; set; }
@@ -27,14 +22,36 @@ public struct USLogRecord
 
     public static string GetCSVHeader(char delimiter)
     {
-        string csvString = typeof(USLogRecord).GetProperties().Aggregate("", (current, property) => current + (property.Name + delimiter));
+        string csvString = typeof(USGameStatusLogRecord).GetProperties().Aggregate("", (current, property) => current + (property.Name + delimiter));
         return csvString.TrimEnd(delimiter);
     }
 
-    public static string ConvertToCSVString(USLogRecord self, char delimiter)
+    public static string ConvertToCSVString(USGameStatusLogRecord self, char delimiter)
     {
         
-        string csvString = typeof(USLogRecord).GetProperties().Aggregate("", (current, property) => current + (property.GetValue(self, null) + "" + delimiter));
+        string csvString = typeof(USGameStatusLogRecord).GetProperties().Aggregate("", (current, property) => current + (property.GetValue(self, null) + "" + delimiter));
+        return csvString.TrimEnd(delimiter);
+    }
+}
+
+public struct USEventLogRecord
+{
+    public int SubjectId { get; set; }
+    public string Timestamp { get; set; }
+    public string EventType { get; set; }
+    public string EventStatus { get; set; }
+    public string EventInfo { get; set; }
+    public float EventId { get; set; }
+
+    public static string GetCSVHeader(char delimiter)
+    {
+        string csvString = typeof(USEventLogRecord).GetProperties().Aggregate("", (current, property) => current + (property.Name + delimiter));
+        return csvString.TrimEnd(delimiter);
+    }
+
+    public static string ConvertToCSVString(USEventLogRecord self, char delimiter)
+    {
+        string csvString = typeof(USEventLogRecord).GetProperties().Aggregate("", (current, property) => current + (property.GetValue(self, null) + "" + delimiter));
         return csvString.TrimEnd(delimiter);
     }
 }
@@ -43,37 +60,35 @@ public class USLogging : MonoBehaviour
 {
     public int LogsPerSecond = 10;
     public char Delimiter = ';';
-    public char NumberDecimalSeparator = ',';
+    public char NumberDecimalSeparator = '.';
 
     private UserStudyControl _usc;
     private Coroutine _loggingCoroutine;
     private Transform _playerTrans;
     private Transform _mainCamTrans;
-    private Vector3 _activeRingPos;
+    private USTask _lastSecondaryTask;
 
 
     private bool _logging;
     private float _loggingStartTime;
-    private string _subjectName;
+    private int _subjectId;
 
     private USTaskControllerEventArgs[] _taskData;
-    private CultureInfo _customCulture;
 
 
     void Start()
     {
-        _usc = GameComponents.GetLevelControl().GetComponent<UserStudyControl>();
+        _usc = GameComponents.GetUserStudyControl();
         _playerTrans = GameComponents.GetPlayer().transform;
         _mainCamTrans = Camera.main.transform;
         _taskData = new USTaskControllerEventArgs[2];
 
+        UserStudyControl.StudyStarted += StartLogging;
+        UserStudyControl.StudyFinished += FinishLogging;
+
         var taskControl = GetComponent<USTaskController>();
-        taskControl.TaskSpawned += OnTaskSpawned;
         taskControl.TaskStarted += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
-
-        var fsr = GameComponents.GetGameController().GetComponent<FeedbackServer>();
-        fsr.FeedbackRequestSuccessful += OnFeedbackRequestSuccessful;
 
         var emptyTaskData = new USTaskControllerEventArgs { Position = USTask.POSITION.None, EventInfo = "" };
         _taskData[0] = emptyTaskData;
@@ -86,44 +101,38 @@ public class USLogging : MonoBehaviour
 
     IEnumerator CSVLogger()
     {
-        using (StreamWriter sw = new StreamWriter("UserStudy/" + _subjectName + ".csv"))
+        CreateEventLogCSV();
+
+        using (StreamWriter gameStatusWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_gamestatus.csv"))
         {
-            sw.WriteLine(USLogRecord.GetCSVHeader(Delimiter));
+            gameStatusWriter.WriteLine(USGameStatusLogRecord.GetCSVHeader(Delimiter));
 
             while (_logging)
             {
                 float startTime = Time.realtimeSinceStartup;
-                USLogRecord record = CreateNewRecord();
-                sw.WriteLine(USLogRecord.ConvertToCSVString(record, Delimiter));
-                sw.Flush();
+                USGameStatusLogRecord record = CreateNewGameStatusRecord();
+                gameStatusWriter.WriteLine(USGameStatusLogRecord.ConvertToCSVString(record, Delimiter));
+                gameStatusWriter.Flush();
                 float endTime = Time.realtimeSinceStartup;
-                yield return new WaitForSecondsRealtime(1.0f/LogsPerSecond - (endTime - startTime));
+                yield return new WaitForSecondsRealtime(1.0f / LogsPerSecond - (endTime - startTime));
             }
         }
     }
 
-    private USLogRecord CreateNewRecord()
+    private void CreateEventLogCSV()
     {
-        USTaskControllerEventArgs _mainTaskData = _taskData[(int)USTask.TYPE.Main];
-        USTaskControllerEventArgs _secondaryTaskData = _taskData[(int)USTask.TYPE.Secondary];
+        StreamWriter eventWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_events.csv");
+        eventWriter.WriteLine(USEventLogRecord.GetCSVHeader(Delimiter));
+        eventWriter.Close();
+    }
 
-        bool mainTaskActive = _mainTaskData.Position != USTask.POSITION.None;
-        bool secondaryTaskActive = _mainTaskData.Position != USTask.POSITION.None;
-
-        var record = new USLogRecord()
+    private USGameStatusLogRecord CreateNewGameStatusRecord()
+    {
+        var record = new USGameStatusLogRecord()
         {
-            SubjectName = _subjectName,
+            SubjectId = _subjectId,
             Timestamp = (Time.realtimeSinceStartup - _loggingStartTime).ToString("F3"),
             FeedbackType = _usc.GetCurrentFeedbackType().ToString(),
-
-            MainTask = mainTaskActive ? _mainTaskData.Position.ToString() : "",
-            MainTaskInfo = _mainTaskData.EventInfo,
-            SecondaryTask = secondaryTaskActive ? _secondaryTaskData.Position.ToString() : "",
-            SecondaryTaskInfo = _secondaryTaskData.EventInfo,
-
-            MainTaskXPos = mainTaskActive ? _activeRingPos.x.ToString() : "",
-            MainTaskYPos = mainTaskActive ? _activeRingPos.y.ToString() : "",
-            MainTaskZPos = mainTaskActive ? _activeRingPos.z.ToString() : "",
             PlayerXPos = _playerTrans.position.x,
             PlayerYPos = _playerTrans.position.y,
             PlayerZPos = _playerTrans.position.z,
@@ -133,46 +142,48 @@ public class USLogging : MonoBehaviour
             VerticalHmdRot = _mainCamTrans.eulerAngles.x
         };
 
-        _mainTaskData.EventInfo = "";
-        _secondaryTaskData.EventInfo = "";
-
         return record;
     }
 
-    public void OnTaskSpawned(object sender, USTaskControllerEventArgs args)
+    private void WriteEventLogRecord(USTask.TYPE type, string status, string info, float id)
     {
-        _taskData[(int)args.Type].EventInfo = "Task Spawned";
+        string t = (type == USTask.TYPE.Main) ? "Ring" : "POV";
 
-        if (args.Type == USTask.TYPE.Main)
-            _activeRingPos = args.Task.GetActiveRingPosition();
-    }
+        var record = new USEventLogRecord()
+        {
+            SubjectId = _subjectId,
+            Timestamp = (Time.realtimeSinceStartup - _loggingStartTime).ToString("F3"),
+            EventType = t,
+            EventStatus = status,
+            EventInfo = info,
+            EventId = id
+        };
 
-    public void OnFeedbackRequestSuccessful(object sender, FeedbackServerEventArgs args)
-    {
-        _taskData[(int)USTask.TYPE.Secondary].EventInfo = args.EventInfo;
+        var eventWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_events.csv", true);
+        eventWriter.WriteLine(USEventLogRecord.ConvertToCSVString(record, Delimiter));
+        eventWriter.Close();
     }
 
     public void OnTaskStarted(object sender, USTaskControllerEventArgs args)
     {
-        _taskData[(int)args.Type].Position = args.Position;
-        _taskData[(int)args.Type].EventInfo = "Task Started";
+        string info = (args.Type == USTask.TYPE.Main) ? args.Task.GetActiveRingPosition().ToString() : args.Position.ToString();
+        WriteEventLogRecord(args.Type, "visible", info, args.Task.GetInstanceID());
     }
 
     public void OnTaskEnded(object sender, USTaskControllerEventArgs args)
     {
-        _taskData[(int)args.Type].Position = USTask.POSITION.None;
-        _taskData[(int)args.Type].EventInfo = args.EventInfo;
+        WriteEventLogRecord(args.Type, args.EventInfo, "", args.Task.GetInstanceID());
     }
 
-    public void StartLogging(string subjectName)
+    public void StartLogging(object sender, UserStudyEventArgs e)
     {
-        _subjectName = subjectName;
+        _subjectId = e.SubjectID;
         _logging = true;
         _loggingStartTime = Time.realtimeSinceStartup;
         _loggingCoroutine = StartCoroutine(CSVLogger());
     }
 
-    public void FinishLogging()
+    public void FinishLogging(object sender, EventArgs eventArgs)
     {
         _logging = false;
         StopCoroutine(_loggingCoroutine);

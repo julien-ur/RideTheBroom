@@ -6,21 +6,16 @@ using System.Management;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
-class USBDeviceInfo
+public class FeedbackUSBEventArgs : EventArgs
 {
-    public USBDeviceInfo(string deviceID, string pnpDeviceID, string description)
-    {
-        this.DeviceID = deviceID;
-        this.PnpDeviceID = pnpDeviceID;
-        this.Description = description;
-    }
-    public string DeviceID { get; private set; }
-    public string PnpDeviceID { get; private set; }
-    public string Description { get; private set; }
+    public string RawFeedbackData;
 }
 
+[ExecuteInEditMode]
 public class FeedbackUSB : MonoBehaviour
 {
+    public EventHandler<FeedbackUSBEventArgs> FeedbackRequestSuccessful;
+
     private SerialPort serialPort;
     public bool sendTest = false;
     public string sendTestString = "w,0.5,2;";
@@ -65,6 +60,7 @@ public class FeedbackUSB : MonoBehaviour
             Debug.Log("Data sent " + rawData);
             callback = c;
             if (callback != null) callback();
+            OnFeedbackRequestSuccessful(rawData);
             CloseSerial();
         }
         catch (Exception ex)
@@ -99,5 +95,11 @@ public class FeedbackUSB : MonoBehaviour
     public void PermanentUpdate(string tag, float val)
     {
         UpdateFeedback(tag + "," + val.ToString("0.00") + ";");
+    }
+
+    protected virtual void OnFeedbackRequestSuccessful(string rawData)
+    {
+        if (FeedbackRequestSuccessful != null)
+            FeedbackRequestSuccessful(this, new FeedbackUSBEventArgs() { RawFeedbackData = rawData});
     }
 }

@@ -24,6 +24,16 @@ public struct PoolItem
 
         return taskCount;
     }
+
+    public bool ContainsMainTask()
+    {
+        return MainTaskPos != USTask.POSITION.None;
+    }
+
+    public bool ContainsSecondaryTask()
+    {
+        return SecondaryTaskPos != USTask.POSITION.None;
+    }
 }
 
 public class USTaskPoolGenerator
@@ -89,7 +99,7 @@ public class USTaskPoolGenerator
         List<int> secondaryTaskPool = CreateSecondaryTaskPool();
         var actionPool = new List<PoolItem>();
 
-        int secondaryTaskCounter = 0;
+        int secondaryTaskCounter = Random.Range(MinMainTasksOnlyBeforeSecondaryTask, MaxMainTasksOnlyBeforeSecondaryTask);
 
         while (secondaryTaskPool.Count > 0)
         {
@@ -161,12 +171,12 @@ public class USTaskPoolGenerator
         var secondaryTaskPosition = (USTask.POSITION)(secondaryTaskCondition / 2);
         var taskRelation = (RELATION)(secondaryTaskCondition % 2);
 
-        USTask.POSITION mainTaskPosition = secondaryTaskPosition;
+        //USTask.POSITION mainTaskPosition = secondaryTaskPosition;
         //if (taskRelation == RELATION.Asynchronous)
         //{
         //    mainTaskPosition = TakeRandomConditionFromPool(ref _asychronousPositionPool[(int)secondaryTaskPosition]);
         //}
-        mainTaskPosition = USTask.POSITION.None;
+        USTask.POSITION mainTaskPosition = USTask.POSITION.None;
 
         Debug.Log(secondaryTaskPosition + " " + taskRelation + " " + mainTaskPosition);
 

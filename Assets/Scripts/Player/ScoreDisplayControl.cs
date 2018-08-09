@@ -34,6 +34,7 @@ public class ScoreDisplayControl : MonoBehaviour
 	public void AddScore(int score)
 	{
 		this.score += score;
+	    if (score < 0) this.score = 0;
 		UpdateText();
 	}
 

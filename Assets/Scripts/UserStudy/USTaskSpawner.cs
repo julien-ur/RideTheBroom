@@ -11,8 +11,9 @@ public class USTaskSpawner : MonoBehaviour {
     public float MinTimeBetweenActions = 5;
     public float MaxTimeBetweenActions = 7;
     public float MinTimeBetweenRings = 2;
-    public float TimeBetweenRings = 4;
-    public float TimeBetweenRingAndPov = 0;
+    public float MaxTimeBetweenRings = 4;
+    public float TimeBetweenPovs = 6;
+    public float TimeBetweenRingAndPov = 2;
 
     private USTaskPoolGenerator _poolGenerator;
     private USTaskController _taskControl;
@@ -27,6 +28,7 @@ public class USTaskSpawner : MonoBehaviour {
         _taskControl = GetComponent<USTaskController>();
         _poolGenerator = new USTaskPoolGenerator();
 
+        _taskControl.TaskStarted += OnTaskStarted;
         _taskControl.TaskEnded += OnTaskEnded;
     }
 
@@ -39,27 +41,36 @@ public class USTaskSpawner : MonoBehaviour {
             yield return new WaitUntil(IsPlayerReady);
 
             PoolItem nextPoolItem = _actionPool[0];
+            float waitDuration = MaxTimeBetweenRings;
 
-
-            float waitDuration = Random.Range(MinTimeBetweenRings, TimeBetweenRings);
-
-            if (_actionPool.Count > 1 && _actionPool[1].SecondaryTaskPos != USTask.POSITION.None)
+            if (_actionPool.Count > 1)
             {
-                waitDuration = TimeBetweenRingAndPov;
-            }
-            else if (nextPoolItem.SecondaryTaskPos != USTask.POSITION.None)
-            {
-                waitDuration = TimeBetweenRings - TimeBetweenRingAndPov;
+                PoolItem secondNextPoolItem = _actionPool[1];
+
+                if (nextPoolItem.ContainsMainTask() && secondNextPoolItem.ContainsMainTask())
+                {
+                    waitDuration = Random.Range(MinTimeBetweenRings, MaxTimeBetweenRings);
+                }
+                if (nextPoolItem.ContainsMainTask() && secondNextPoolItem.ContainsSecondaryTask())
+                {
+                    waitDuration = TimeBetweenRingAndPov;
+                }
+                else if (nextPoolItem.ContainsSecondaryTask() && secondNextPoolItem.ContainsMainTask())
+                {
+                    waitDuration = MaxTimeBetweenRings - TimeBetweenRingAndPov;
+                }
+                else if (nextPoolItem.ContainsSecondaryTask() && secondNextPoolItem.ContainsSecondaryTask())
+                {
+                    waitDuration = TimeBetweenPovs;
+                }
             }
 
             _actionPool.RemoveAt(0);
-
             StartTasks(nextPoolItem);
-
             _readyForNextSpawn = true;
 
-            yield return new WaitUntil(() => _readyForNextSpawn);
             yield return new WaitForSeconds(waitDuration);
+            yield return new WaitUntil(() => _readyForNextSpawn);
         }
 
         yield return new WaitForSeconds(1);
@@ -68,29 +79,42 @@ public class USTaskSpawner : MonoBehaviour {
 
     private void StartTasks(PoolItem item)
     {
+        Debug.Log("Start new task..");
         _readyForNextSpawn = false;
-        _runningTaskCount = item.GetTaskCount();
+        //_runningTaskCount = item.GetTaskCount();
         _taskControl.StartTasks(item, _spawnCount);
         _spawnCount++;
     }
+
 
     private bool IsPlayerReady()
     {
         return true;
     }
 
+    private void OnTaskStarted(object sender, USTaskControllerEventArgs e)
+    {
+        if (e.Type == USTask.TYPE.Secondary)
+            e.Task.GetTaskObject().GetComponent<USPovControl>().FirstContact += OnSecondaryTaskFirstActivated;
+    }
+
     public void OnTaskEnded(object sender, USTaskControllerEventArgs args)
     {
-        _runningTaskCount--;
+        //if(--_runningTaskCount == 0)
+        //    _readyForNextSpawn = true;
 
-        if(_runningTaskCount == 0)
-            _readyForNextSpawn = true;
+        if (args.Type == USTask.TYPE.Secondary) _readyForNextSpawn = true;
     }
 
     protected virtual void OnActionCountReached()
     {
         if (ActionCountReached != null)
             ActionCountReached(this, EventArgs.Empty);
+    }
+
+    public void OnSecondaryTaskFirstActivated(object sender, EventArgs args)
+    {
+        _readyForNextSpawn = false;
     }
 
     public void StartSpawning()

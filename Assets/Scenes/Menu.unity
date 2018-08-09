@@ -1276,6 +1276,7 @@ GameObject:
   - component: {fileID: 436}
   - component: {fileID: 169}
   - component: {fileID: 90}
+  - component: {fileID: 104}
   - component: {fileID: 100}
   - component: {fileID: 91}
   m_Layer: 0
@@ -1308,7 +1309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sendTest: 0
-  sendTestString: w,0.5,2;
+  sendTestString: w,0;
 --- !u!1 &92
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1516,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4414389679d3c194a965c69d8896fd73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeOutSound: {fileID: 8300000, guid: b0c220f028c1d7f4c9788fe40f0a7b89, type: 3}
+  TimeOutVolume: 0.3
+  SuccessSound: {fileID: 8300000, guid: 35dee669c4e9836448b9823e52c25182, type: 3}
+  SuccessVolume: 0.3
+  PovSelectingSound: {fileID: 8300000, guid: 48d3cc2e5089bd34e96607074c2b06ea, type: 3}
+  PovSelectingVolume: 0.3
+  VoicePovLeft: {fileID: 8300000, guid: 23d062a057261204ca781f051038b7d0, type: 3}
+  VoicePovMiddle: {fileID: 8300000, guid: c302921edbb5d744b850c9e3c5c35a5b, type: 3}
+  VoicePovRight: {fileID: 8300000, guid: 23f006abb1813424ab8a57d3e6981a60, type: 3}
+  TaskVoiceVolume: 1
+  RefillTankItem: {fileID: 0}
+  PovContainer: {fileID: 1106963318441436, guid: d659bcf02e09ffe4db4b2f010ed1c6f5,
+    type: 2}
+  RingObject: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
+  RingInactiveObject: {fileID: 1795434030836118, guid: e49e8756e9a02444a82dced4a768d05c,
+    type: 2}
 --- !u!1 &106
 GameObject:
   m_ObjectHideFlags: 0
@@ -17142,7 +17170,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 515.066
+      value: 514.39
       objectReference: {fileID: 0}
     - target: {fileID: 4713634972784158, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalPosition.z
@@ -17172,6 +17200,39 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_FontSize
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useBroomHardware
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useViveTracker
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: blockVerticalRotation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: enableBroomRollback
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: useAndroidInput
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247527786839642, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4247527786839642, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -0.21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}

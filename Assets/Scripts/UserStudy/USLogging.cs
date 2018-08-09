@@ -60,7 +60,7 @@ public class USLogging : MonoBehaviour
 {
     public int LogsPerSecond = 10;
     public char Delimiter = ';';
-    public char NumberDecimalSeparator = ',';
+    public char NumberDecimalSeparator = '.';
 
     private UserStudyControl _usc;
     private Coroutine _loggingCoroutine;

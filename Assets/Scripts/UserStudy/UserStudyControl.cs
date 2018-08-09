@@ -73,28 +73,25 @@ public class UserStudyControl : MonoBehaviour
     private USLogging _logging;
     private PlayerControl _pc;
 
-    void Awake()
+    void Start()
     {
         var u = new GameObject() { name = "User Study" };
 
         u.AddComponent<AudioSource>();
         _spawner = u.AddComponent<USTaskSpawner>();
         var taskControl = u.AddComponent<USTaskController>();
-        
+
         _logging = u.AddComponent<USLogging>();
 
         _spawner.ActionCountReached += OnRoundFinished;
         taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
-        _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length;
-        _rounds = new List<FeedbackType> {  };
+        _subjectId = 4; //Directory.GetFiles(UserStudyPath, "*.csv").Length / 2;
+        _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
 
         AddRoundsFromRoundConfig();
-    }
 
-    void Start()
-    {
         _pc = GameComponents.GetPlayerControl();
         //_fbs = GameComponents.GetGameController().GetComponent<FeedbackServer>();
         _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
@@ -153,18 +150,21 @@ public class UserStudyControl : MonoBehaviour
             if (roundCount > 1)
             {
                 _infoText.text = "Survey";
-                yield return new WaitUntil(() => Input.GetKeyDown("space"));
+                //yield return new WaitUntil(() => Input.GetKeyDown("space"));
             }
 
             _infoText.text = _feedbackLabels[(int)f];
-            yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            //yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            yield return new WaitForSecondsRealtime(2f);
+
             yield return new WaitForSecondsRealtime(1.5f);
 
             // show round label
             if (f != FeedbackType.Audio)
             {
                 _infoText.text = _feedbackLabels[(int)f];
-                yield return new WaitUntil(() => Input.GetKeyDown("space"));
+                yield return new WaitForSecondsRealtime(2f);
+                //yield return new WaitUntil(() => Input.GetKeyDown("space"));
             }
 
             _infoText.text = "";
@@ -180,6 +180,7 @@ public class UserStudyControl : MonoBehaviour
         }
 
         Debug.Log("Study Finished");
+        OnStudyFinished();
 
         _loadingOverlay.FadeOut(2);
         yield return new WaitForSecondsRealtime(2);
@@ -248,13 +249,13 @@ public class UserStudyControl : MonoBehaviour
 
     protected virtual void OnRoundStarted()
     {
-        if (StudyStarted != null)
+        if (RoundStarted != null)
             RoundStarted(this, new UserStudyEventArgs() { SubjectID = _subjectId, FeedbackType = GetCurrentFeedbackType() });
     }
 
     protected virtual void OnStudyFinished()
     {
-        if (StudyStarted != null)
+        if (StudyFinished != null)
             StudyFinished(this, EventArgs.Empty);
     }
 

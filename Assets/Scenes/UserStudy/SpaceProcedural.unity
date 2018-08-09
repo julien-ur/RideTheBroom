@@ -7976,9 +7976,8 @@ GameObject:
   - component: {fileID: 1691091799}
   - component: {fileID: 1691091798}
   - component: {fileID: 1691091803}
-  - component: {fileID: 1691091801}
-  - component: {fileID: 1691091804}
   - component: {fileID: 1691091805}
+  - component: {fileID: 1691091804}
   m_Layer: 14
   m_Name: GameControl (1)
   m_TagString: GameControl
@@ -8034,17 +8033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdfff659ee40ab244b569acbf3557480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1691091801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1691091796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d40c6c0179eb4d741be9f6c5aa2ef97f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1691091802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8079,7 +8067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sendTest: 0
-  sendTestString: v,0.3;
+  sendTestString: w,0;
 --- !u!114 &1691091805
 MonoBehaviour:
   m_ObjectHideFlags: 0

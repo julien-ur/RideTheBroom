@@ -89,6 +89,7 @@ public class USTaskController : MonoBehaviour
 
     private IEnumerator StartSenseTask(PoolItem tpi, int spawnCount, USTask mainTask)
     {
+        Debug.Log("Start Sense Task..");
         string feedbackData = _usc.GetFeedbackData(tpi.SecondaryTaskPos);
         if (feedbackData == null) Debug.LogError("No feedback data for main task pos");
 
@@ -130,6 +131,7 @@ public class USTaskController : MonoBehaviour
 
     private void SpawnSecondaryTask(USTask.POSITION pos, int spawnCount)
     {
+        Debug.Log("Spawned Secondary Task..");
         var secondaryTask = gameObject.AddComponent<USTask>();
 
         secondaryTask.StartNewTask(USTask.TYPE.Secondary, pos, (success) =>

@@ -39,10 +39,7 @@ public class FeedbackUSB : MonoBehaviour
 
     public void UpdateFeedback(string rawData, Action c=null)
     {
-        Debug.Log(rawData);
         sendTest = false;
-        callback = c;
-        if (callback != null) callback();
 
         if (rawData.Contains(FeedbackConstants.VIBRATION_TAG))
         {
@@ -61,6 +58,7 @@ public class FeedbackUSB : MonoBehaviour
             OpenSerial();
             serialPort.Write(rawData);
             Debug.Log("Data sent " + rawData);
+            callback = c;
             if (callback != null) callback();
             OnFeedbackRequestSuccessful(rawData);
             CloseSerial();

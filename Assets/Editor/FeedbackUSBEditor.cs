@@ -53,11 +53,6 @@ public class FeedbackUSBEditor : Editor
         bool reachedCurrentType = false;
         foreach (var entry in UserStudyControl.FEEDBACK_DICT)
         {
-            if (reachedCurrentType && !entry.Key.Contains("" + _currFeedbackType))
-            {
-                EditorGUILayout.LabelField("---------------------------------------------");
-                reachedCurrentType = false;
-            }
 
             if (counter++ % 3 == 0) EditorGUILayout.LabelField("");
 
@@ -69,13 +64,8 @@ public class FeedbackUSBEditor : Editor
 
             if (GUILayout.Button(entry.Key))
             {
-                _fusb.UpdateFeedback(entry.Value);
+                _fusb.UpdateFeedback(entry.Value + ";");
             }
-        }
-
-        if (reachedCurrentType)
-        {
-            EditorGUILayout.LabelField("---------------------------------------------");
         }
 
         EditorGUILayout.LabelField("");

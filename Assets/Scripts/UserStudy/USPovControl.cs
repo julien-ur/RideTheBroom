@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public class USPovControl : MonoBehaviour
 {
+    public EventHandler FirstContact;
     public EventHandler PovSelected;
 
     public AudioClip SelectingSound { get; set; }
@@ -16,7 +17,7 @@ public class USPovControl : MonoBehaviour
     private Vector3 _posRelativeToPlayer;
     private Vector3 _rotAxis;
     private float _rotAngle;
-
+    private bool _isFirstContact;
 
     void Awake()
     {
@@ -59,7 +60,7 @@ public class USPovControl : MonoBehaviour
         {
             _rotAngle = -75;
         }
-        else
+        else if(PovPos == USTask.POSITION.Middle)
         {
             _rotAngle = -40;
         }
@@ -72,6 +73,10 @@ public class USPovControl : MonoBehaviour
 
     public void ActivateCurrentPov()
     {
+        if (!_isFirstContact && FirstContact != null)
+            FirstContact(this, EventArgs.Empty);
+            _isFirstContact = true;
+
         _rndChosenPov.Activate();
     }
 

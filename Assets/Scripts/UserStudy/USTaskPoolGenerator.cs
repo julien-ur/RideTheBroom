@@ -99,7 +99,7 @@ public class USTaskPoolGenerator
         List<int> secondaryTaskPool = CreateSecondaryTaskPool();
         var actionPool = new List<PoolItem>();
 
-        int secondaryTaskCounter = 0;
+        int secondaryTaskCounter = Random.Range(MinMainTasksOnlyBeforeSecondaryTask, MaxMainTasksOnlyBeforeSecondaryTask);
 
         while (secondaryTaskPool.Count > 0)
         {

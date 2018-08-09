@@ -167,6 +167,11 @@ public class USTask : MonoBehaviour {
     {
         _taskSuccess = true;
     }
+
+    public GameObject GetTaskObject()
+    {
+        return _taskItem;
+    }
     
     public Vector3 GetActiveRingPosition()
     {

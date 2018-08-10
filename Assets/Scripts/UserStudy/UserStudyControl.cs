@@ -87,7 +87,7 @@ public class UserStudyControl : MonoBehaviour
         taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
-        _subjectId = 4; //Directory.GetFiles(UserStudyPath, "*.csv").Length / 2;
+        _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length / 2;
         _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
 
         AddRoundsFromRoundConfig();
@@ -111,7 +111,7 @@ public class UserStudyControl : MonoBehaviour
 
         StartCoroutine(StartStudy());
 
-        _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.3f);
+        _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.4f);
         _feedbackUSB.PermanentUpdate(FeedbackConstants.HEAT_TAG, 0.2f);
     }
 
@@ -150,11 +150,11 @@ public class UserStudyControl : MonoBehaviour
             if (roundCount > 1)
             {
                 _infoText.text = "Survey";
-                //yield return new WaitUntil(() => Input.GetKeyDown("space"));
+                yield return new WaitUntil(() => Input.GetKeyDown("space"));
             }
 
             _infoText.text = _feedbackLabels[(int)f];
-            //yield return new WaitUntil(() => Input.GetKeyDown("space"));
+            yield return new WaitUntil(() => Input.GetKeyDown("space"));
             yield return new WaitForSecondsRealtime(2f);
 
             yield return new WaitForSecondsRealtime(1.5f);
@@ -164,7 +164,7 @@ public class UserStudyControl : MonoBehaviour
             {
                 _infoText.text = _feedbackLabels[(int)f];
                 yield return new WaitForSecondsRealtime(2f);
-                //yield return new WaitUntil(() => Input.GetKeyDown("space"));
+                yield return new WaitUntil(() => Input.GetKeyDown("space"));
             }
 
             _infoText.text = "";

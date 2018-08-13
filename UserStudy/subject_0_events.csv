@@ -1,22 +1,56 @@
 SubjectId;Timestamp;EventType;EventStatus;EventInfo;EventId
-0;9.099;Ring;visible;(-7.7, 17.8, 166.6);-282656
-0;11.553;Ring;visible;(-21.3, 22.4, 215.0);-282734
-0;13.131;Ring;success;;-282656
-0;14.836;Ring;visible;(-33.2, 28.1, 275.6);-282844
-0;15.800;Ring;success;;-282734
-0;18.744;POV;visible;Middle;-282956
-0;18.942;Ring;success;;-282844
-0;18.953;Ring;visible;(-50.8, 35.6, 353.9);-283084
-0;22.410;Ring;visible;(-84.8, 41.8, 414.5);-283192
-0;22.983;Ring;success;;-283084
-0;23.721;POV;timeout;;-282956
-0;25.314;Ring;visible;(-127.0, 46.5, 455.8);-283334
-0;26.647;Ring;success;;-283192
-0;29.220;POV;visible;Middle;-283446
-0;29.427;Ring;visible;(-135.3, 53.5, 531.6);-283574
-0;32.039;Ring;visible;(-167.2, 57.8, 571.3);-283652
-0;33.304;Ring;timeout;;-283334
-0;33.617;Ring;success;;-283574
-0;34.198;POV;timeout;;-283446
-0;35.211;Ring;visible;(-200.8, 63.2, 622.9);-283824
-0;36.187;Ring;success;;-283652
+0;0.024;Ring;visible;(9.4, 0.0, 110.5);-235990
+0;3.299;Ring;visible;(-19.9, 0.0, 175.0);-236084
+0;6.204;Ring;visible;(-85.3, 0.0, 208.2);-236182
+0;7.997;Ring;timeout;;-235990
+0;9.634;POV;visible;Right;-236324
+0;10.260;Ring;visible;(-158.4, 0.0, 244.5);-236470
+0;11.292;Ring;timeout;;-236084
+0;12.862;Ring;visible;(-216.6, 0.0, 237.4);-236618
+0;14.196;Ring;timeout;;-236182
+0;14.645;POV;timeout;;-236324
+0;14.997;Ring;visible;(-259.0, 0.0, 232.0);-236812
+0;17.309;Ring;visible;(-301.3, 0.0, 202.9);-236906
+0;18.251;Ring;timeout;;-236470
+0;20.770;POV;visible;Left;-237052
+0;20.867;Ring;timeout;;-236618
+0;21.377;Ring;visible;(-385.2, 0.0, 212.1);-237198
+0;23.010;Ring;timeout;;-236812
+0;25.288;Ring;timeout;;-236906
+0;25.400;Ring;success;;-237198
+0;25.735;POV;timeout;;-237052
+0;25.767;Ring;visible;(-472.9, 0.0, 211.8);-237442
+0;29.385;Ring;visible;(-544.9, 0.0, 219.4);-237538
+0;29.802;Ring;success;;-237442
+0;31.529;Ring;visible;(-587.3, 0.0, 226.8);-237680
+0;35.011;POV;visible;Right;-237776
+0;35.639;Ring;visible;(-668.1, 0.0, 243.3);-237922
+0;37.377;Ring;timeout;;-237538
+0;39.529;POV;success;;-237776
+0;39.561;Ring;visible;(-722.5, 0.0, 279.1);-238096
+0;40.334;Ring;timeout;;-237680
+0;43.358;Ring;visible;(-797.8, 0.0, 292.7);-238240
+0;44.445;Ring;timeout;;-237922
+0;45.815;Ring;visible;(-834.5, 0.0, 331.9);-238380
+0;47.553;Ring;timeout;;-238096
+0;49.298;POV;visible;Left;-238522
+0;49.926;Ring;visible;(-909.4, 0.0, 364.8);-238668
+0;51.348;Ring;timeout;;-238240
+0;53.806;Ring;timeout;;-238380
+0;54.275;POV;timeout;;-238522
+0;54.306;Ring;visible;(-973.8, 0.0, 426.0);-238862
+0;57.916;Ring;timeout;;-238668
+0;58.060;Ring;visible;(-1034.5, 0.0, 469.5);-239004
+0;62.057;Ring;visible;(-1094.2, 0.0, 523.0);-239098
+0;62.094;Ring;success;;-239004
+0;62.295;Ring;timeout;;-238862
+0;65.927;POV;visible;Middle;-239286
+0;66.143;Ring;visible;(-1142.8, 0.0, 590.0);-239432
+0;69.486;POV;success;;-239286
+0;69.516;Ring;visible;(-1174.2, 0.0, 651.1);-239530
+0;70.022;Ring;timeout;;-239098
+0;72.308;Ring;visible;(-1208.8, 0.0, 695.4);-239670
+0;73.518;Ring;success;;-239530
+0;74.110;Ring;timeout;;-239432
+0;76.204;POV;visible;Middle;-239860
+0;80.276;Ring;timeout;;-239670

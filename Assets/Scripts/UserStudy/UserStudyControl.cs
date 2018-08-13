@@ -16,10 +16,11 @@ public class UserStudyControl : MonoBehaviour
 {
     public static EventHandler<UserStudyEventArgs> StudyStarted;
     public static EventHandler<UserStudyEventArgs> RoundStarted;
+    public static EventHandler RoundFinished;
     public static EventHandler StudyFinished;
 
     public enum FeedbackType { Heat, Smell, Vibration, Audio }
-    private readonly string[] _feedbackLabels = { "Wärme", "Geruch", "Vibration", "Übung" };
+    private readonly string[] _feedbackLabels = { "Wärme", "Geruch", "Vibration", "Audio" };
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
@@ -34,6 +35,12 @@ public class UserStudyControl : MonoBehaviour
         { "" + FeedbackType.Vibration + " " + USTask.POSITION.Left, FeedbackConstants.VIBRATION_TAG + ",0.2,0.5" },
         { "" + FeedbackType.Vibration + " " + USTask.POSITION.Middle, FeedbackConstants.VIBRATION_TAG + ",0.35,0.5" },
         { "" + FeedbackType.Vibration + " " + USTask.POSITION.Right, FeedbackConstants.VIBRATION_TAG + ",0.7,0.5" }
+    };
+
+    public static Dictionary<string, float> DEFAULT_FEEDBACK = new Dictionary<string, float>
+    {
+        { FeedbackConstants.WIND_TAG, 0.4f },
+        { FeedbackConstants.HEAT_TAG, 0.2f },
     };
 
     public AudioClip TimeOutSound;
@@ -59,6 +66,8 @@ public class UserStudyControl : MonoBehaviour
     public static string RoundConfigName = "round_config.ini";
     public static string RoundConfigPath = UserStudyPath + "/" + RoundConfigName;
 
+    public static bool HasFeedbackPresented;
+
     private USTaskSpawner _spawner;
     private Text _infoText;
     private LoadingOverlay _loadingOverlay;
@@ -72,6 +81,9 @@ public class UserStudyControl : MonoBehaviour
     private bool _roundFinished;
     private USLogging _logging;
     private PlayerControl _pc;
+    private int _roundCount;
+
+
 
     void Start()
     {
@@ -83,7 +95,7 @@ public class UserStudyControl : MonoBehaviour
 
         _logging = u.AddComponent<USLogging>();
 
-        _spawner.ActionCountReached += OnRoundFinished;
+        _spawner.ActionCountReached += OnSpawnerFinished;
         taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
@@ -111,8 +123,10 @@ public class UserStudyControl : MonoBehaviour
 
         StartCoroutine(StartStudy());
 
-        _feedbackUSB.PermanentUpdate(FeedbackConstants.WIND_TAG, 0.4f);
-        _feedbackUSB.PermanentUpdate(FeedbackConstants.HEAT_TAG, 0.2f);
+        foreach (var entry in DEFAULT_FEEDBACK)
+        {
+            _feedbackUSB.PermanentUpdate(entry.Key, entry.Value);
+        }
     }
 
     public void OnPlayerLeftTheBuilding(object sender, EventArgs args)
@@ -130,42 +144,32 @@ public class UserStudyControl : MonoBehaviour
         Debug.Log("Study Started - Subject #" + _subjectId);
         OnStudyStarted();
 
-        var roundCount = 0;
+        _roundCount = 0;
 
         foreach (FeedbackType f in _rounds)
         {
             _roundFinished = false;
-            roundCount++;
+            HasFeedbackPresented = false;
             _currentFeedbackType = f;
 
-            OnRoundStarted();
-            _spawner.InitNewRound(roundCount == -1);
-
+            // PAUSE GAME AND SHOW INFO TEXT //
             _loadingOverlay.FadeOut(1);
             _pc.ChangeSpeedToTargetSpeed(0, 1);
+
             yield return new WaitForSecondsRealtime(1.5f);
             Time.timeScale = 0;
 
-            // pause game for questionaires
-            if (roundCount > 1)
+            if (_roundCount > 1)
             {
                 _infoText.text = "Survey";
-                yield return new WaitUntil(() => Input.GetKeyDown("space"));
+                yield return new WaitUntil(() => Input.GetKeyUp("space"));
+                yield return new WaitForEndOfFrame();
             }
 
-            _infoText.text = _feedbackLabels[(int)f];
-            yield return new WaitUntil(() => Input.GetKeyDown("space"));
-            yield return new WaitForSecondsRealtime(2f);
-
-            yield return new WaitForSecondsRealtime(1.5f);
-
-            // show round label
+            _infoText.text = (_roundCount > 0) ? _feedbackLabels[(int)f] : "Übung";
             if (f != FeedbackType.Audio)
-            {
-                _infoText.text = _feedbackLabels[(int)f];
-                yield return new WaitForSecondsRealtime(2f);
-                yield return new WaitUntil(() => Input.GetKeyDown("space"));
-            }
+                yield return new WaitUntil(() => HasFeedbackPresented);
+            yield return new WaitUntil(() => Input.GetKeyUp("space"));
 
             _infoText.text = "";
             Time.timeScale = 1;
@@ -173,10 +177,16 @@ public class UserStudyControl : MonoBehaviour
             _loadingOverlay.FadeIn(2);
             _pc.ChangeSpeedToDefaultSpeed(2);
             yield return new WaitForSecondsRealtime(2);
+            // ----------------------------------------------------------------- //
+
+            OnRoundStarted();
+            _spawner.InitNewRound(_roundCount == -1);
 
             _spawner.StartSpawning();
 
             yield return new WaitUntil(() => _roundFinished);
+            OnRoundFinished();
+            _roundCount++;
         }
 
         Debug.Log("Study Finished");
@@ -188,6 +198,7 @@ public class UserStudyControl : MonoBehaviour
         _infoText.resizeTextForBestFit = true;
 
         yield return new WaitForSecondsRealtime(5);
+        _feedbackUSB.StopAllFeedback();
 
         _infoText.text = "";
         _loadingOverlay.FadeIn(2);
@@ -235,7 +246,7 @@ public class UserStudyControl : MonoBehaviour
         }
     }
 
-    public void OnRoundFinished(object sender, EventArgs args)
+    public void OnSpawnerFinished(object sender, EventArgs args)
     {
         Debug.Log("Round Finished");
         _roundFinished = true;
@@ -253,6 +264,12 @@ public class UserStudyControl : MonoBehaviour
             RoundStarted(this, new UserStudyEventArgs() { SubjectID = _subjectId, FeedbackType = GetCurrentFeedbackType() });
     }
 
+    protected virtual void OnRoundFinished()
+    {
+        if (RoundFinished != null)
+            RoundFinished(this, EventArgs.Empty);
+    }
+
     protected virtual void OnStudyFinished()
     {
         if (StudyFinished != null)
@@ -262,6 +279,11 @@ public class UserStudyControl : MonoBehaviour
     public FeedbackType GetCurrentFeedbackType()
     {
         return _currentFeedbackType;
+    }
+
+    public int GetCurrentRoundCount()
+    {
+        return _roundCount;
     }
 
     public string GetFeedbackData(USTask.POSITION actionPosition)

@@ -46,6 +46,20 @@ public class FeedbackUSBEditor : Editor
 
     private void DrawFeedbackPresenter()
     {
+        EditorGUILayout.LabelField("");
+
+        if (GUILayout.Button("Pause Feedback"))
+        {
+                _fusb.StopAllFeedback();
+        }
+        if (GUILayout.Button("Resume Feedback"))
+        {
+            foreach (var entry in UserStudyControl.DEFAULT_FEEDBACK)
+            {
+                _fusb.PermanentUpdate(entry.Key, entry.Value);
+            }
+        }
+
         EditorGUILayout.LabelField("____________________________________________");
         EditorGUILayout.LabelField("FEEDBACK PRESENTER");
 
@@ -54,7 +68,7 @@ public class FeedbackUSBEditor : Editor
         foreach (var entry in UserStudyControl.FEEDBACK_DICT)
         {
 
-            if (counter++ % 3 == 0) EditorGUILayout.LabelField("");
+            if (counter++ % 3 == 0 && counter > 1) EditorGUILayout.LabelField("");
 
             if (_studyRunning && !reachedCurrentType && entry.Key.Contains("" + _currFeedbackType))
             {
@@ -65,6 +79,7 @@ public class FeedbackUSBEditor : Editor
             if (GUILayout.Button(entry.Key))
             {
                 _fusb.UpdateFeedback(entry.Value + ";");
+                UserStudyControl.HasFeedbackPresented = true;
             }
         }
 

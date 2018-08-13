@@ -79,7 +79,6 @@ public class USTaskSpawner : MonoBehaviour {
 
     private void StartTasks(PoolItem item)
     {
-        Debug.Log("Start new task..");
         _readyForNextSpawn = false;
         //_runningTaskCount = item.GetTaskCount();
         _taskControl.StartTasks(item, _spawnCount);

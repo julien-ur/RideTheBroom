@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FeedbackConstants : MonoBehaviour {
+public class FeedbackConstants : MonoBehaviour
+{
 
     public const int SMELL_LEMON_VAL = 1;
     public const int SMELL_WOODY_VAL = 2;
@@ -12,6 +13,10 @@ public class FeedbackConstants : MonoBehaviour {
     public const string HEAT_TAG = "h";
     public const string SMELL_TAG = "s";
     public const string VIBRATION_TAG = "v";
+
+    public static string[] ALL_TAGS = {
+        WIND_TAG, HEAT_TAG, SMELL_TAG, VIBRATION_TAG
+    };
 
     public static Dictionary<string, float> SENSE_LATENCY_DICT = new Dictionary<string, float>
     {

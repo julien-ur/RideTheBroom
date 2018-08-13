@@ -23,9 +23,7 @@ public class FeedbackUSB : MonoBehaviour
 
     void OnDestroy()
     {
-        UpdateFeedback("w,0;");
-        UpdateFeedback("h,0;");
-        UpdateFeedback("v,0;");
+        StopAllFeedback();
     }
 
     void Update()
@@ -40,6 +38,7 @@ public class FeedbackUSB : MonoBehaviour
     public void UpdateFeedback(string rawData, Action c=null)
     {
         sendTest = false;
+        print("Feedback Update " + rawData);
 
         if (rawData.Contains(FeedbackConstants.VIBRATION_TAG))
         {
@@ -95,6 +94,14 @@ public class FeedbackUSB : MonoBehaviour
     public void PermanentUpdate(string tag, float val)
     {
         UpdateFeedback(tag + "," + val.ToString("0.00") + ";");
+    }
+
+    public void StopAllFeedback()
+    {
+        foreach (var tag in FeedbackConstants.ALL_TAGS)
+        {
+            PermanentUpdate(tag, 0);
+        }
     }
 
     protected virtual void OnFeedbackRequestSuccessful(string rawData)

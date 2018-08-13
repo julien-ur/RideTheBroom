@@ -41,7 +41,6 @@ public class USPovControl : MonoBehaviour
 
     void Update()
     {
-
         transform.rotation = _pc.transform.rotation;
         transform.Rotate(transform.InverseTransformVector(GetRotationAxis()), _rotAngle);
         //transform.rotation *= Quaternion.AngleAxis(_rotAngle, transform.InverseTransformVector(_rotAxis));

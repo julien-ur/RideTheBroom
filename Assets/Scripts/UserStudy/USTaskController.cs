@@ -79,9 +79,10 @@ public class USTaskController : MonoBehaviour
     private IEnumerator StartAudioTask(PoolItem tpi, int spawnCount, USTask mainTask)
     {
         AudioClip voice = GetVoiceForSecondaryTask(tpi.SecondaryTaskPos);
-        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + voice.length - 0.5f);
 
         _audioSource.PlayOneShot(voice, _usc.TaskVoiceVolume);
+        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + voice.length - 0.2f);
+
         SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
         ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
         
@@ -131,7 +132,6 @@ public class USTaskController : MonoBehaviour
 
     private void SpawnSecondaryTask(USTask.POSITION pos, int spawnCount)
     {
-        Debug.Log("Spawned Secondary Task..");
         var secondaryTask = gameObject.AddComponent<USTask>();
 
         secondaryTask.StartNewTask(USTask.TYPE.Secondary, pos, (success) =>

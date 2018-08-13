@@ -11,6 +11,7 @@ public struct USGameStatusLogRecord
 {
     public int SubjectId { get; set; }
     public string Timestamp { get; set; }
+    public int Round { get; set; }
     public string FeedbackType { get; set; }
     public float PlayerXPos { get; set; }
     public float PlayerYPos { get; set; }
@@ -74,6 +75,9 @@ public class USLogging : MonoBehaviour
     private int _subjectId;
 
     private USTaskControllerEventArgs[] _taskData;
+    private bool _paused;
+    private float _pauseStartTime;
+    private float _pausedTime;
 
 
     void Start()
@@ -83,8 +87,11 @@ public class USLogging : MonoBehaviour
         _mainCamTrans = Camera.main.transform;
         _taskData = new USTaskControllerEventArgs[2];
 
-        UserStudyControl.StudyStarted += StartLogging;
+        UserStudyControl.StudyStarted += InitLogging;
         UserStudyControl.StudyFinished += FinishLogging;
+
+        UserStudyControl.RoundStarted += ResumeLogging;
+        UserStudyControl.RoundFinished += PauseLogging;
 
         var taskControl = GetComponent<USTaskController>();
         taskControl.TaskStarted += OnTaskStarted;
@@ -109,6 +116,7 @@ public class USLogging : MonoBehaviour
 
             while (_logging)
             {
+                yield return new WaitUntil(() => !_paused);
                 float startTime = Time.realtimeSinceStartup;
                 USGameStatusLogRecord record = CreateNewGameStatusRecord();
                 gameStatusWriter.WriteLine(USGameStatusLogRecord.ConvertToCSVString(record, Delimiter));
@@ -131,8 +139,9 @@ public class USLogging : MonoBehaviour
         var record = new USGameStatusLogRecord()
         {
             SubjectId = _subjectId,
-            Timestamp = (Time.realtimeSinceStartup - _loggingStartTime).ToString("F3"),
-            FeedbackType = _usc.GetCurrentFeedbackType().ToString(),
+            Timestamp = GetFormattedTimestamp(),
+            Round = _usc.GetCurrentRoundCount(),
+            FeedbackType = (_usc.GetCurrentRoundCount() == 0) ? "Practice" : _usc.GetCurrentFeedbackType().ToString(),
             PlayerXPos = _playerTrans.position.x,
             PlayerYPos = _playerTrans.position.y,
             PlayerZPos = _playerTrans.position.z,
@@ -152,7 +161,7 @@ public class USLogging : MonoBehaviour
         var record = new USEventLogRecord()
         {
             SubjectId = _subjectId,
-            Timestamp = (Time.realtimeSinceStartup - _loggingStartTime).ToString("F3"),
+            Timestamp = GetFormattedTimestamp(),
             EventType = t,
             EventStatus = status,
             EventInfo = info,
@@ -162,6 +171,11 @@ public class USLogging : MonoBehaviour
         var eventWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_events.csv", true);
         eventWriter.WriteLine(USEventLogRecord.ConvertToCSVString(record, Delimiter));
         eventWriter.Close();
+    }
+
+    private string GetFormattedTimestamp()
+    {
+        return (Time.realtimeSinceStartup - _loggingStartTime - _pausedTime).ToString("F3");
     }
 
     public void OnTaskStarted(object sender, USTaskControllerEventArgs args)
@@ -175,11 +189,12 @@ public class USLogging : MonoBehaviour
         WriteEventLogRecord(args.Type, args.EventInfo, "", args.Task.GetInstanceID());
     }
 
-    public void StartLogging(object sender, UserStudyEventArgs e)
+    public void InitLogging(object sender, UserStudyEventArgs e)
     {
+        if (_usc.GetCurrentRoundCount() > 0) return;
         _subjectId = e.SubjectID;
         _logging = true;
-        _loggingStartTime = Time.realtimeSinceStartup;
+        _paused = true;
         _loggingCoroutine = StartCoroutine(CSVLogger());
     }
 
@@ -187,5 +202,21 @@ public class USLogging : MonoBehaviour
     {
         _logging = false;
         StopCoroutine(_loggingCoroutine);
+    }
+
+    public void PauseLogging(object sender, EventArgs eventArgs)
+    {
+        _paused = true;
+        _pauseStartTime = Time.realtimeSinceStartup;
+    }
+
+    public void ResumeLogging(object sender, UserStudyEventArgs userStudyEventArgs)
+    {
+        if (_usc.GetCurrentRoundCount() == 0)
+            _loggingStartTime = Time.realtimeSinceStartup;
+        else
+            _pausedTime += Time.realtimeSinceStartup - _pauseStartTime;
+
+        _paused = false;
     }
 }

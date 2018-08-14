@@ -53,11 +53,11 @@ public class USPovControl : MonoBehaviour
     {
         if (PovPos == USTask.POSITION.Right)
         {
-            _rotAngle = 75;
+            _rotAngle = 100;
         }
         else if (PovPos == USTask.POSITION.Left)
         {
-            _rotAngle = -75;
+            _rotAngle = -65;
         }
         else if(PovPos == USTask.POSITION.Middle)
         {

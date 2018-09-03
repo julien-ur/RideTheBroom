@@ -39,6 +39,7 @@ public struct USEventLogRecord
 {
     public int SubjectId { get; set; }
     public string Timestamp { get; set; }
+    public string FeedbackType { get; set; }
     public string EventType { get; set; }
     public string EventStatus { get; set; }
     public string EventInfo { get; set; }
@@ -141,7 +142,7 @@ public class USLogging : MonoBehaviour
             SubjectId = _subjectId,
             Timestamp = GetFormattedTimestamp(),
             Round = _usc.GetCurrentRoundCount(),
-            FeedbackType = (_usc.GetCurrentRoundCount() == 0) ? "Practice" : _usc.GetCurrentFeedbackType().ToString(),
+            FeedbackType = GetFormattedFeedbackType(),
             PlayerXPos = _playerTrans.position.x,
             PlayerYPos = _playerTrans.position.y,
             PlayerZPos = _playerTrans.position.z,
@@ -162,6 +163,7 @@ public class USLogging : MonoBehaviour
         {
             SubjectId = _subjectId,
             Timestamp = GetFormattedTimestamp(),
+            FeedbackType = GetFormattedFeedbackType(),
             EventType = t,
             EventStatus = status,
             EventInfo = info,
@@ -176,6 +178,11 @@ public class USLogging : MonoBehaviour
     private string GetFormattedTimestamp()
     {
         return (Time.realtimeSinceStartup - _loggingStartTime - _pausedTime).ToString("F3");
+    }
+
+    private string GetFormattedFeedbackType()
+    {
+        return (_usc.GetCurrentRoundCount() == 0) ? "Practice" : _usc.GetCurrentFeedbackType().ToString();
     }
 
     public void OnTaskStarted(object sender, USTaskControllerEventArgs args)

@@ -38,6 +38,11 @@ public class ScoreDisplayControl : MonoBehaviour
 		UpdateText();
 	}
 
+	public int GetScore()
+	{
+		return score;
+	}
+
 	private void UpdateText()
 	{
 		string scoreString = score < 10 ? "0" + score : "" + score;

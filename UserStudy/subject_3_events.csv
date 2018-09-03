@@ -1,26 +1,22 @@
-SubjectId;Timestamp;EventType;EventStatus;EventInfo;EventId
-3;0.028;Ring;visible;(25.8, 0.0, 107.2);-290410
-3;4.035;Ring;visible;(54.4, 0.0, 180.9);-290504
-3;6.975;Ring;visible;(67.9, 0.0, 235.7);-290598
-3;7.993;Ring;timeout;;-290410
-3;8.172;Ring;success;;-290504
-3;9.946;Ring;visible;(86.9, 0.0, 291.7);-290786
-3;10.997;Ring;success;;-290598
-3;13.407;POV;visible;Left;-290930
-3;13.947;Ring;success;;-290786
-3;14.002;Ring;visible;(109.9, 0.0, 369.2);-291076
-3;17.231;POV;success;;-290930
-3;17.576;Ring;visible;(117.2, 0.0, 440.4);-291310
-3;18.024;Ring;success;;-291076
-3;20.302;Ring;visible;(123.7, 0.0, 494.7);-291452
-3;21.576;Ring;success;;-291310
-3;23.106;Ring;visible;(136.1, 0.0, 549.3);-291594
-3;24.357;Ring;success;;-291452
-3;26.576;POV;visible;Right;-291738
-3;27.149;Ring;success;;-291594
-3;27.227;Ring;visible;(146.0, 0.0, 630.9);-291884
-3;29.361;POV;success;;-291738
-3;30.221;Ring;visible;(142.4, 0.0, 690.8);-292032
-3;33.527;Ring;visible;(76.7, 0.0, 738.4);-292126
-3;35.215;Ring;timeout;;-291884
-3;35.874;Ring;visible;(60.5, 0.0, 782.8);-292266
+SubjectId;Timestamp;FeedbackType;EventType;EventStatus;EventInfo;EventId
+3;0.072;Practice;Ring;visible;(20.0, 0.0, 106.0);-34412
+3;3.357;Practice;Ring;visible;(76.7, 0.0, 151.0);-34670
+3;6.763;Practice;Ring;visible;(33.8, 0.0, 242.7);-34908
+3;7.978;Practice;Ring;timeout;;-34412
+3;8.822;Practice;Ring;visible;(76.8, 0.0, 271.7);-35120
+3;11.344;Practice;Ring;timeout;;-34670
+3;12.131;Practice;POV;visible;Right;-35474
+3;12.865;Practice;Ring;visible;(62.9, 0.0, 368.5);-35616
+3;14.757;Practice;Ring;timeout;;-34908
+3;16.249;Practice;Ring;visible;(61.2, 0.0, 437.7);-35850
+3;16.816;Practice;Ring;timeout;;-35120
+3;17.120;Practice;POV;timeout;;-35474
+3;20.051;Practice;Ring;visible;(56.8, 0.0, 514.3);-36294
+3;20.285;Practice;Ring;success;;-35850
+3;20.857;Practice;Ring;timeout;;-35616
+3;22.768;Practice;Ring;visible;(69.4, 0.0, 566.4);-36532
+3;25.800;Practice;Ring;visible;(29.4, 0.0, 614.3);-36658
+3;28.045;Practice;Ring;timeout;;-36294
+3;29.114;Practice;POV;visible;Left;-36934
+3;29.859;Practice;Ring;visible;(-51.9, 0.0, 579.2);-37086
+3;30.758;Practice;Ring;timeout;;-36532

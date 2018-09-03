@@ -139,6 +139,7 @@ public class UserStudyControl : MonoBehaviour
     {
         yield return new WaitUntil(() => _playerReady);
         _pc.BlockRotationForAxis("x");
+        
         yield return new WaitForSecondsRealtime(2f);
 
         Debug.Log("Study Started - Subject #" + _subjectId);
@@ -153,22 +154,26 @@ public class UserStudyControl : MonoBehaviour
             _currentFeedbackType = f;
 
             // PAUSE GAME AND SHOW INFO TEXT //
-            _loadingOverlay.FadeOut(1);
+            Debug.Log(_loadingOverlay);
             _pc.ChangeSpeedToTargetSpeed(0, 1);
-
+            
             yield return new WaitForSecondsRealtime(1.5f);
             Time.timeScale = 0;
 
-            if (_roundCount > 1)
+            if (_roundCount > 0)
             {
                 _infoText.text = "Survey";
                 yield return new WaitUntil(() => Input.GetKeyUp("space"));
                 yield return new WaitForEndOfFrame();
+                Time.timeScale = 1;
+                GameComponents.GetGameController().FinishLevel();
             }
 
             _infoText.text = (_roundCount > 0) ? _feedbackLabels[(int)f] : "Übung";
             if (f != FeedbackType.Audio)
+            {
                 yield return new WaitUntil(() => HasFeedbackPresented);
+            }
             yield return new WaitUntil(() => Input.GetKeyUp("space"));
 
             _infoText.text = "";
@@ -180,7 +185,7 @@ public class UserStudyControl : MonoBehaviour
             // ----------------------------------------------------------------- //
 
             OnRoundStarted();
-            _spawner.InitNewRound(_roundCount == -1);
+            _spawner.InitNewRound(_roundCount == 0);
 
             _spawner.StartSpawning();
 
@@ -203,6 +208,8 @@ public class UserStudyControl : MonoBehaviour
         _infoText.text = "";
         _loadingOverlay.FadeIn(2);
         yield return new WaitForSecondsRealtime(2);
+        
+        GameComponents.GetGameController().FinishLevel();
     }
 
     private void AddRoundsFromRoundConfig()
@@ -297,5 +304,10 @@ public class UserStudyControl : MonoBehaviour
             Debug.LogError("No feedback data for " + _currentFeedbackType + " " + actionPosition);
 
         return feedbackData;
+    }
+
+    public object GetSubjectId()
+    {
+        return _subjectId;
     }
 }

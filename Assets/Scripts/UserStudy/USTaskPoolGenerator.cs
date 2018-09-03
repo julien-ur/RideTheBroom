@@ -48,8 +48,8 @@ public class USTaskPoolGenerator
     private const int SecondaryTaskConditions = 6;
     private const int SecondaryTaskConditionRepetitions = 1;
 
-    private const int MinMainTasksOnlyBeforeSecondaryTask = 3;
-    private const int MaxMainTasksOnlyBeforeSecondaryTask = 5;
+    public const int MinMainTasksOnlyBeforeSecondaryTask = 3;
+    public const int MaxMainTasksOnlyBeforeSecondaryTask = 5;
 
     private const int TrainingMainTaskRepetitions = 0; //6;
     private const int TrainingSecondaryTaskRepetitions = 1; //3;
@@ -99,7 +99,7 @@ public class USTaskPoolGenerator
         List<int> secondaryTaskPool = CreateSecondaryTaskPool();
         var actionPool = new List<PoolItem>();
 
-        int secondaryTaskCounter = Random.Range(MinMainTasksOnlyBeforeSecondaryTask, MaxMainTasksOnlyBeforeSecondaryTask);
+        int secondaryTaskCounter = Random.Range(MinMainTasksOnlyBeforeSecondaryTask, MaxMainTasksOnlyBeforeSecondaryTask+1);
 
         while (secondaryTaskPool.Count > 0)
         {
@@ -108,7 +108,7 @@ public class USTaskPoolGenerator
             if (secondaryTaskCounter-- == 0)
             {
                 poolItem = CreateDoubleTaskPoolItem(ref secondaryTaskPool);
-                secondaryTaskCounter = Random.Range(MinMainTasksOnlyBeforeSecondaryTask, MaxMainTasksOnlyBeforeSecondaryTask);
+                secondaryTaskCounter = Random.Range(MinMainTasksOnlyBeforeSecondaryTask, MaxMainTasksOnlyBeforeSecondaryTask+1);
             }
             else
             {

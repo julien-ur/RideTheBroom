@@ -22,6 +22,7 @@ public class USTaskSpawner : MonoBehaviour {
     private int _spawnCount;
     private int _runningTaskCount;
     private bool _readyForNextSpawn;
+    private bool _trainingRound;
 
     void Start()
     {
@@ -102,7 +103,19 @@ public class USTaskSpawner : MonoBehaviour {
         //if(--_runningTaskCount == 0)
         //    _readyForNextSpawn = true;
 
-        if (args.Type == USTask.TYPE.Secondary) _readyForNextSpawn = true;
+        if (args.Type == USTask.TYPE.Secondary)
+        {
+            _readyForNextSpawn = true;
+            if (args.EventInfo == "timeout" && _trainingRound)
+            {
+                int newMainTasks = Random.Range(USTaskPoolGenerator.MinMainTasksOnlyBeforeSecondaryTask, USTaskPoolGenerator.MaxMainTasksOnlyBeforeSecondaryTask+1);
+                for (int i = 0; i < newMainTasks; i++)
+                {
+                    _actionPool.Add(new PoolItem(USTask.POSITION.Middle, USTask.POSITION.None));
+                }
+                _actionPool.Add(new PoolItem(USTask.POSITION.Middle, args.Position));
+            }
+        }
     }
 
     protected virtual void OnActionCountReached()
@@ -124,6 +137,7 @@ public class USTaskSpawner : MonoBehaviour {
     public void InitNewRound(bool trainingRound)
     {
         _spawnCount = 0;
-        _actionPool = _poolGenerator.GeneratePool(trainingRound);
+        _trainingRound = trainingRound;
+        _actionPool = _poolGenerator.GeneratePool(false);
     }
 }

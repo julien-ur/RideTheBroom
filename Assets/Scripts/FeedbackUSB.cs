@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO.Ports;
-using System.Management;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 
@@ -50,7 +49,6 @@ public class FeedbackUSB : MonoBehaviour
         }
 
         serialPort.BaudRate = 115200;
-        serialPort.DataReceived += DataRecievedHandler;
 
         try
         {
@@ -68,25 +66,12 @@ public class FeedbackUSB : MonoBehaviour
         }
     }
 
-    protected virtual void DataRecievedHandler(object sender, SerialDataReceivedEventArgs e)
-    {
-        SerialPort sp = (SerialPort)sender;
-        string indata = sp.ReadExisting();
-        Debug.Log(indata);
-        if (callback != null)
-        {
-            callback();
-            callback = null;
-        }
-        //CloseSerial();
-    }
-
-    public void OpenSerial()
+    private void OpenSerial()
     {
         if (!serialPort.IsOpen) serialPort.Open();
     }
 
-    public void CloseSerial()
+    private void CloseSerial()
     {
         if (serialPort.IsOpen) serialPort.Close();
     }
@@ -98,9 +83,9 @@ public class FeedbackUSB : MonoBehaviour
 
     public void StopAllFeedback()
     {
-        foreach (var tag in FeedbackConstants.ALL_TAGS)
+        foreach (string fTag in FeedbackConstants.ALL_TAGS)
         {
-            PermanentUpdate(tag, 0);
+            PermanentUpdate(fTag, 0);
         }
     }
 

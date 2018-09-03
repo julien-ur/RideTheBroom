@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class USTaskControllerEventArgs : EventArgs, ICloneable
@@ -28,7 +29,8 @@ public class USTaskController : MonoBehaviour
     private ScoreDisplayControl _scc;
     private AudioSource _audioSource;
 
-    private float MainTaskActivationDelay = 0f;
+    private const float MainTaskActivationDelay = 0f;
+    private const float AudioDelay = 1.28f;
 
     private AudioClip _timeOutSound;
     private AudioClip _successSound;
@@ -81,11 +83,10 @@ public class USTaskController : MonoBehaviour
         AudioClip voice = GetVoiceForSecondaryTask(tpi.SecondaryTaskPos);
 
         _audioSource.PlayOneShot(voice, _usc.TaskVoiceVolume);
-        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + voice.length - 0.2f);
+        yield return new WaitForSecondsRealtime(MainTaskActivationDelay + AudioDelay);
 
         SpawnSecondaryTask(tpi.SecondaryTaskPos, spawnCount);
         ActivateTask(mainTask, tpi.MainTaskPos, spawnCount);
-        
     }
 
     private IEnumerator StartSenseTask(PoolItem tpi, int spawnCount, USTask mainTask)
@@ -155,8 +156,8 @@ public class USTaskController : MonoBehaviour
         }
         else
         {
-            _audioSource.PlayOneShot(_usc.TimeOutSound, _usc.TimeOutVolume);
-            _scc.AddScore(-2);
+            //_audioSource.PlayOneShot(_usc.TimeOutSound, _usc.TimeOutVolume);
+            //_scc.AddScore(-2);
         }
     }
 

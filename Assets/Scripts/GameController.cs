@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour
 
     private int numRings;
     private Text _crosshair;
+    private ScoreDisplayControl _scoreDisplayControl;
 
     void Awake()
     {
@@ -43,6 +44,7 @@ public class GameController : MonoBehaviour
         ghostModeController = GameComponents.GetGhostModeController();
         materialResetter = GameComponents.GetMaterialResetter();
         vrSelectionControl = GameComponents.GetVRSelectionControl();
+        _scoreDisplayControl = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
 
         _loadingOverlay = GameComponents.GetLoadingOverlay();
         StartCoroutine(GameStartRoutine());
@@ -235,8 +237,17 @@ public class GameController : MonoBehaviour
 
     private void SaveHighscoreFile()
     {
-        string line = createTimeString(levelTime) + " " + numRings + "\r\n";
+        UserStudyControl usc = GameComponents.GetUserStudyControl();
+        var line = "";
         
+        if (GameComponents.GetUserStudyControl() != null)
+        {
+            line = "subject #" + usc.GetSubjectId() + " " + _scoreDisplayControl.GetScore() + "\r\n";
+        }
+        else
+        {
+            line = createTimeString(levelTime) + " " + _scoreDisplayControl.GetScore() + "\r\n";
+        }
         System.IO.File.AppendAllText(HIGHSCORE_FILE_PATH, line);
     }
 

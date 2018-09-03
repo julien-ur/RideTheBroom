@@ -2,14 +2,858 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30c82aa6-674e-4a87-9a72-bff37ebea8c1" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/UserStudy/.ipynb_checkpoints/Tests-checkpoint.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserStudy/Tests.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserStudy/pre_study_subject_0_events.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserStudy/pre_study_subject_0_gamestatus.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-firstpass.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-firstpass.csprojAssemblyReference.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TakeTheBroom/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TakeTheBroom/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TakeTheBroom/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TakeTheBroom/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.4.5.0/lib.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.4.5.0/ref/netstandard2.0.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.4.5.0/ref/netstandard2.0/System.Management.dll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.4.5.0/runtimes/win/lib/netcoreapp2.0.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.4.5.0/runtimes/win/lib/netcoreapp2.0/System.Management.dll.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.dll.1.0.0/lib.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Packages/System.Management.dll.1.0.0/lib/System.Management.dll.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Plugins/System.Management.dll.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UserStudy/SpaceProcedural.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UserStudy/SpaceProcedural.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScoreDisplayControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScoreDisplayControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskSpawner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TakeTheBroom.userprefs" beforeDir="false" afterPath="$PROJECT_DIR$/TakeTheBroom.userprefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/.ipynb_checkpoints/evaluation_pre_study-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/.ipynb_checkpoints/evaluation_pre_study-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #0.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #10.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #100 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #100.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #101 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #101.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #102 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #102.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #103 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #103.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #104 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #104.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #105 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #105.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #106 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #106.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #107 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #107.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #108 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #108.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #109 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #109.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #11.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #110 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #110.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #111 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #111.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #112 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #112.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #113 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #113.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #114 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #114.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #115 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #115.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #116 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #116.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #117 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #117.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #118 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #118.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #119 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #119.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #12.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #120 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #120.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #121 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #121.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #122 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #122.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #123 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #123.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #124 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #124.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #125 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #125.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #126 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #126.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #127 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #127.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #128 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #128.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #129 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #129.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #13.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #130 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #130.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #131 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #131.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #132 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #132.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #133 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #133.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #134 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #134.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #135 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #135.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #136 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #136.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #137 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #137.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #138 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #138.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #139 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #139.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #14.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #140 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #140.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #141 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #141.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #142 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #142.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #143 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #143.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #144 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #144.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #145 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #145.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #146 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #146.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #147 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #147.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #148 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #148.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #149 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #149.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #15.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #150 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #150.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #151 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #151.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #152 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #152.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #153 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #153.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #154 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #154.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #155 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #155.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #156 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #156.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #157 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #157.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #158 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #158.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #159 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #159.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #16.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #160 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #160.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #161 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #161.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #162 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #162.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #163 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #163.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #164 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #164.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #165 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #165.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #166 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #166.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #167 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #167.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #168 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #168.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #169 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #169.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #17.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #170 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #170.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #171 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #171.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #172 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #172.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #173 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #173.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #174 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #174.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #175 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #175.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #176 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #176.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #177 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #177.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #178 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #178.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #179 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #179.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #18.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #180 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #180.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #181 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #181.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #182 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #182.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #183 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #183.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #184 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #184.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #185 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #185.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #186 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #186.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #187 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #187.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #188 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #188.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #189 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #189.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #19.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #190 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #190.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #191 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #191.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #192 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #192.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #193 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #193.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #194 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #194.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #195 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #195.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #196 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #196.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #197 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #197.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #198 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #198.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #199 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #199.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #2.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #20.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #200 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #200.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #201 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #201.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #202 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #202.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #203 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #203.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #204 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #204.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #205 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #205.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #206 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #206.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #207 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #207.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #208 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #208.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #209 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #209.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #21.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #210 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #210.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #211 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #211.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #212 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #212.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #213 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #213.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #214 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #214.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #215 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #215.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #216 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #216.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #217 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #217.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #218 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #218.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #219 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #219.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #22.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #220 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #220.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #221 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #221.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #222 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #222.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #223 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #223.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #224 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #224.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #225 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #225.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #226 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #226.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #227 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #227.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #228 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #228.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #229 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #229.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #23.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #230 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #230.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #231 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #231.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #232 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #232.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #233 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #233.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #234 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #234.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #235 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #235.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #236 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #236.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #237 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #237.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #238 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #238.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #239 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #239.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #24.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #240 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #240.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #241 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #241.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #242 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #242.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #243 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #243.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #244 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #244.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #245 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #245.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #246 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #246.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #247 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #247.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #248 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #248.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #249 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #249.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #25.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #250 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #250.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #251 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #251.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #252 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #252.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #253 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #253.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #254 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #254.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #255 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #255.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #256 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #256.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #257 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #257.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #258 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #258.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #259 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #259.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #26.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #260 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #260.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #261 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #261.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #262 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #262.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #263 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #263.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #264 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #264.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #265 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #265.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #266 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #266.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #267 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #267.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #268 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #268.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #269 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #269.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #27.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #270 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #270.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #271 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #271.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #272 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #272.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #273 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #273.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #274 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #274.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #275 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #275.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #276 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #276.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #277 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #277.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #278 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #278.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #279 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #279.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #28.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #280 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #280.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #281 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #281.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #282 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #282.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #283 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #283.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #284 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #284.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #285 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #285.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #286 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #286.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #287 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #287.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #288 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #288.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #289 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #289.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #29.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #290 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #290.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #291 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #291.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #292 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #292.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #293 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #293.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #294 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #294.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #295 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #295.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #296 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #296.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #297 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #297.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #298 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #298.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #299 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #299.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #3.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #30.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #300 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #300.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #301 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #301.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #302 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #302.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #303 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #303.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #304 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #304.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #305 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #305.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #306 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #306.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #307 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #307.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #308 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #308.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #309 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #309.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #31.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #310 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #310.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #311 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #311.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #312 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #312.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #313 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #313.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #314 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #314.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #315 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #315.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #316 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #316.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #317.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #318.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #319.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #32.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #320.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #321.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #322.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #323.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #324.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #325.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #326.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #327.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #328.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #329.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #33.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #330.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #331.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #332.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #333.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #334.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #335.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #336.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #337.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #338.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #339.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #34.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #340.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #341.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #342.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #343.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #344.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #345.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #346.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #347.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #348.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #349.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #35.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #350.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #351.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #352.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #353.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #354.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #355.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #356.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #357.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #358.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #359.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #36.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #360.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #361.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #362.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #363.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #364.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #365.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #366.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #367.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #368.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #369.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #37.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #370.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #371.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #372.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #373.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #374.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #375.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #376.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #377.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #378.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #379.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #38.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #380.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #381.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #382.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #383.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #384.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #385.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #386.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #387.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #388.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #389.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #39.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #390.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #391.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #392.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #393.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #394.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #395.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #396.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #397.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #398.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #399.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #4.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #40.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #400.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #401.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #402.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #403.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #404.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #405.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #406.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #407.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #408.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #409.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #41.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #410.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #411.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #412.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #413.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #414.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #415.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #416.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #417.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #418.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #419.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #42.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #420.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #421.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #422.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #423.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #424.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #426.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #427.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #428.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #429.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #43.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #430.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #431.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #432.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #433.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #434.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #435.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #436.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #437.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #438.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #439.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #44.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #440.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #441.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #442.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #443.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #444.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #445.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #446.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #447.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #448.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #449.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #45.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #450.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #451.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #452.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #453.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #454.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #455.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #456.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #46.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #47.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #48.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #49.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #5.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #50.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #51.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #52.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #53.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #54.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #55.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #56.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #57.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #58.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #59.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #6.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #60.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #61.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #62.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #63.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #64.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #65.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #66.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #67.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #68.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #69.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #7.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #70.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #71.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #72.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #73.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #74.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #75.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #76.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #77.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #78.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #79.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #8.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #80.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #81.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #82.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #83.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #84.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #85.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #86.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #87.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #88.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #89.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #9.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #90.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #91.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #92.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #93 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #93.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #94 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #94.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #95 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #95.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #96 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #96.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #97 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #97.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #98 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #98.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #99 (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/Subject #99.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_0_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_0_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_10_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_10_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_10_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_10_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_11_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_11_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_11_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_11_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_12_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_12_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_12_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_12_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_13_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_13_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_13_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_13_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_14_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_14_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_14_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_14_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_15_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_15_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_11_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_16_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_16_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_17_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_17_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_18_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_18_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_19_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_19_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_18_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_1_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_1_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_20_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_20_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_2_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_2_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_2_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_2_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_3_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_3_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_3_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_3_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_425_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_425_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_458_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_458_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_460_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_460_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_462_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_462_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_464_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_464_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_466_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_466_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_468_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_468_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_470_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_470_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_472_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_472_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_474_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_474_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_476_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_476_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_478_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_478_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_4_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_4_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_4_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_4_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_5_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_5_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_5_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_5_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_6_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_6_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_6_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_6_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_7_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_7_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_7_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_7_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_8_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_8_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_8_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_8_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_9_events (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_9_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_9_gamestatus (2).csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/_old/subject_9_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/evaluation_pre_study.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/evaluation_pre_study.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_0_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_0_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_10_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_10_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_10_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_10_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_11_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_11_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_12_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_12_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_13_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_13_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_14_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_14_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_15_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_15_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_15_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_15_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_16_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_16_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_16_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_16_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_17_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_17_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_18_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_18_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_19_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_19_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_1_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_1_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_20_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_20_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_21_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_21_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_22_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_22_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_22_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_22_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_23_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_23_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_23_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_23_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_24_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_24_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_7_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_25_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_25_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_8_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_26_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_26_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_27_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_27_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_28_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_28_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_29_events.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_29_gamestatus.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_2_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_2_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_2_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_2_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_30_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/pre_study_subject_1_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_30_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/pre_study_subject_1_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_3_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_3_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_3_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_3_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_4_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_4_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_4_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_4_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_5_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_5_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_5_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_5_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_6_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_6_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_6_gamestatus.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_6_gamestatus.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_7_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_7_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_8_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_8_events.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserStudy/subject_9_events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/UserStudy/subject_9_events.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,52 +862,281 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="UserStudyControl.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="127" column="27" lean-forward="true" selection-start-line="127" selection-start-column="27" selection-end-line="127" selection-end-column="27" />
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
               <folding>
-                <marker date="1533302829615" expanded="false" signature="6:150" ph="..." />
-                <marker date="1533302829615" expanded="true" signature="198:8255" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="454:1514" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="2697:3288" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="3307:4030" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="3794:3838" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="3851:3937" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="4102:4143" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="4173:6468" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="4717:6029" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="5137:5285" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="5546:5709" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="6513:7100" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="6702:7015" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="6910:7005" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7043:7094" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7179:7360" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7228:7354" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7251:7344" ph="/* _pc.LimitRotationScopeByAxis('x', 30); ... */" />
-                <marker date="1533302829615" expanded="true" signature="7437:7564" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7486:7558" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7628:7708" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7758:7807" ph="{...}" />
-                <marker date="1533302829615" expanded="true" signature="7874:8253" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="6:150" ph="..." />
+                <marker date="1535996685332" expanded="true" signature="196:281" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="328:10112" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="807:1919" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="2019:2118" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="3378:4852" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="4481:4525" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="4538:4624" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="4760:4846" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="4924:5022" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="5052:7459" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="5374:6920" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="5775:6077" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="6203:6303" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="7504:8091" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="7693:8006" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="7901:7996" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8034:8085" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8170:8351" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8219:8345" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8242:8335" ph="/* _pc.LimitRotationScopeByAxis('x', 30); ... */" />
+                <marker date="1535996685332" expanded="true" signature="8428:8555" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8477:8549" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8621:8701" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8746:8904" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="8949:9121" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="9167:9264" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="9310:9407" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="9457:9506" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="9545:9585" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="9652:10037" ph="{...}" />
+                <marker date="1535996685332" expanded="true" signature="10071:10110" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FeedbackConstants.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+      <file leaf-file-name="GameController.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="22" selection-start-line="22" selection-end-line="22" />
+            <state relative-caret-position="30">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
               <folding>
-                <marker date="1533210559763" expanded="false" signature="6:78" ph="..." />
-                <marker date="1533210559763" expanded="true" signature="127:622" ph="{...}" />
-                <marker date="1533210559763" expanded="true" signature="523:619" ph="{...}" />
+                <marker date="1535995750164" expanded="false" signature="6:152" ph="..." />
+                <marker date="1535995750164" expanded="true" signature="197:7302" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="854:1083" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="1101:1665" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="1701:2011" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="1892:2005" ph="/* float duration = wisp.talkToPlayer(wisp.MenuIntro); ... */" />
+                <marker date="1535995750164" expanded="true" signature="2030:2097" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="2154:3479" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="2213:2359" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="2422:2573" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="2632:2780" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="3348:3473" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="3529:3609" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="3643:3715" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="3763:4119" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="3846:4005" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="4018:4072" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="4148:4372" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="4415:4485" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="4518:4713" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="4763:4775" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="4806:5133" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5169:5228" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5261:5642" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5382:5610" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5494:5600" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5670:6107" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5735:5942" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="5955:6024" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6136:6177" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6208:6250" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6295:6404" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6489:6661" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6699:7187" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6864:6986" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="6999:7116" ph="{...}" />
+                <marker date="1535995750164" expanded="true" signature="7217:7300" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="USTaskSpawner.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskSpawner.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+              <folding>
+                <marker date="1535994781761" expanded="false" signature="6:127" ph="..." />
+                <marker date="1535994781761" expanded="true" signature="172:4479" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="758:978" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="1013:2592" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="1124:2509" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="1336:2258" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="1507:1634" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="1733:1827" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="1931:2047" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="2156:2244" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="2636:2810" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="2845:2878" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="2954:3122" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="3198:3928" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="3213:3284" ph="/* if(--_runningTaskCount == 0) ... */" />
+                <marker date="1535994781761" expanded="true" signature="3333:3922" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="3445:3912" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="3679:3812" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="3979:4086" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="4164:4212" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="4245:4292" ph="{...}" />
+                <marker date="1535994781761" expanded="true" signature="4342:4477" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="USTaskPoolGenerator.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="750">
+              <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="70" />
+              <folding>
+                <marker date="1535994578098" expanded="false" signature="6:106" ph="..." />
+                <marker date="1535994578098" expanded="true" signature="130:857" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="301:393" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="424:645" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="681:745" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="786:855" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="891:6410" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="1499:1581" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="1639:1787" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="1890:2727" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="2009:2212" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="2261:2503" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="2423:2493" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="2552:2693" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="2774:3667" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="3063:3625" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="3150:3383" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="3400:3577" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="3723:3994" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="3847:3953" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="4072:5047" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="4229:5008" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="4458:4657" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="4562:4643" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="4756:4941" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="4817:4927" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="5127:5870" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="5383:5639" ph="/* USTask.POSITION mainTaskPosition = secondaryTaskPosition; ... */" />
+                <marker date="1535994578098" expanded="true" signature="5941:6101" ph="{...}" />
+                <marker date="1535994578098" expanded="true" signature="6194:6408" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="USTaskController.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="308">
+              <caret line="148" column="96" selection-start-line="148" selection-start-column="89" selection-end-line="148" selection-end-column="96" />
+              <folding>
+                <marker date="1535992480886" expanded="false" signature="6:92" ph="..." />
+                <marker date="1535992480886" expanded="true" signature="156:379" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="331:377" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="426:6673" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="1063:1440" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="1498:1862" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="1694:1781" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="1956:2532" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="2020:2244" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="2121:2234" ph="/* mainTask.TryActivate(); ... */" />
+                <marker date="1535992480886" expanded="true" signature="2331:2422" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="2435:2526" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="2619:2980" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="3067:3772" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="3286:3462" ph="/* float senseLatency = _fbs.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType()); ... */" />
+                <marker date="1535992480886" expanded="true" signature="3519:3742" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="3853:3991" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="4062:4542" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="4193:4439" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="4616:4984" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="4762:4897" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="5091:5590" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="5312:5439" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="5452:5584" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="5475:5574" ph="/* _audioSource.PlayOneShot(_usc.TimeOutSound, _usc.TimeOutVolume); ... */" />
+                <marker date="1535992480886" expanded="true" signature="5659:5869" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="5965:6128" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="6224:6387" ph="{...}" />
+                <marker date="1535992480886" expanded="true" signature="6494:6671" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FeedbackUSB.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="960">
+              <caret line="64" selection-start-line="64" selection-end-line="64" />
+              <folding>
+                <marker date="1535994825137" expanded="true" signature="6:150" ph="..." />
+                <marker date="1535994825137" expanded="true" signature="197:236" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="298:2258" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="541:580" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="599:756" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="676:748" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="819:1537" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="960:1029" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1042:1117" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1169:1450" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1479:1531" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1568:1631" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1663:1726" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1782:1858" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1893:2023" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="1959:2017" ph="{...}" />
+                <marker date="1535994825137" expanded="true" signature="2095:2256" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="USTask.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTask.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="76" selection-start-line="76" selection-end-line="76" />
+              <folding>
+                <marker date="1533854122446" expanded="false" signature="6:77" ph="..." />
+                <marker date="1533854122446" expanded="true" signature="115:5564" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="746:921" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="999:1302" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="1100:1177" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="1190:1237" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="1378:1844" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="1554:1813" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="1627:1753" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="1874:2610" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="2660:3835" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="2846:3787" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="3643:3777" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="3882:4306" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="4337:5022" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="4393:4480" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="5084:5125" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="5164:5202" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="5250:5304" ph="{...}" />
+                <marker date="1533854122446" expanded="true" signature="5387:5562" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -71,16 +1144,54 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>highscore</find>
+      <find>HIGHSCORE_FILE_PATH</find>
+      <find>subjec</find>
+      <find>numRings</find>
+      <find>SaveHighscoreFile</find>
+      <find>FinishLeve</find>
+      <find>finish</find>
+      <find>FinishLevel</find>
+      <find>fade</find>
+      <find>lev</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskSpawner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/LoadingOverlay.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SteamVR/Scripts/SteamVR_ExternalCamera.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/Score.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/ScoreDisplayControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/LevelActions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level/BillboardControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/GameComponents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/Effects/ImageEffects/Shaders/Tonemapper.shader" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Editor/Effects/ImageEffects/Scripts/ColorCorrectionLookup.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTask.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Player/ScoreDisplayControl.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskSpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Misc/LoadingOverlay.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs" />
       </list>
     </option>
@@ -101,26 +1212,48 @@
     <option name="height" value="1000" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="UnityExplorer" proportions="" version="1">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="TakeTheBroom (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="TakeTheBroom (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="TakeTheBroom (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Scripts" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="TakeTheBroom (3 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Assembly-CSharp" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Scripts" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="UserStudy" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
-      <pane id="Scratches" />
       <pane id="UnityExplorer">
         <subPane>
           <expand>
             <path>
               <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="TakeTheBroom" type="483dac07:UnityExplorerNode$Root" />
-            </path>
-            <path>
-              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
-              <item name="TakeTheBroom" type="483dac07:UnityExplorerNode$Root" />
-              <item name="" type="1045f7f1:UnityExplorerNode" />
             </path>
           </expand>
           <select />
@@ -132,6 +1265,7 @@
   <component name="PropertiesComponent">
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -164,11 +1298,14 @@
       <workItem from="1533230574038" duration="61000" />
       <workItem from="1533297199011" duration="599000" />
       <workItem from="1533302587272" duration="840000" />
+      <workItem from="1534607186575" duration="808000" />
+      <workItem from="1535299205028" duration="3440000" />
+      <workItem from="1535992388926" duration="4285000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1500000" />
+    <option name="totallyTimeSpent" value="10033000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -185,19 +1322,20 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Errors In Solution" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32897604" />
       <window_info anchor="bottom" id="Unit Tests" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2238806" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15565032" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Unity" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Unity" order="8" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32995737" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="NuGet" order="7" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -205,7 +1343,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,71 +1353,705 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="135">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
           <folding>
-            <marker date="1533210559763" expanded="false" signature="6:78" ph="..." />
-            <marker date="1533210559763" expanded="true" signature="127:622" ph="{...}" />
-            <marker date="1533210559763" expanded="true" signature="523:619" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="6:150" ph="..." />
+            <marker date="1535996685332" expanded="true" signature="196:281" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="328:10112" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="807:1919" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="2019:2118" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="3378:4852" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4481:4525" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4538:4624" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4760:4846" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4924:5022" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="5052:7459" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="5374:6920" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="5775:6077" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="6203:6303" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="7504:8091" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="7693:8006" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="7901:7996" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8034:8085" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8170:8351" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8219:8345" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8242:8335" ph="/* _pc.LimitRotationScopeByAxis('x', 30); ... */" />
+            <marker date="1535996685332" expanded="true" signature="8428:8555" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8477:8549" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8621:8701" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8746:8904" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8949:9121" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9167:9264" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9310:9407" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9457:9506" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9545:9585" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9652:10037" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="10071:10110" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="2385">
+          <caret line="166" column="26" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
           <folding>
-            <marker date="1533210559763" expanded="false" signature="6:78" ph="..." />
-            <marker date="1533210559763" expanded="true" signature="127:622" ph="{...}" />
-            <marker date="1533210559763" expanded="true" signature="523:619" ph="{...}" />
+            <marker date="1535301620383" expanded="false" signature="6:173" ph="..." />
+            <marker date="1535301620383" expanded="true" signature="210:1283" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="748:955" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1044:1281" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1315:2176" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1665:1867" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1951:2174" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="2778:3853" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="3882:4715" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4038:4709" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4165:4699" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4753:4971" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5034:5718" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5098:5687" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5812:6428" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5936:6203" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6472:6577" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6624:6743" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6821:7046" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7122:7221" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7287:7492" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7559:7639" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7705:7794" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7879:8107" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="1515">
+          <caret line="104" column="30" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="30" />
           <folding>
-            <marker date="1533210559763" expanded="false" signature="6:78" ph="..." />
-            <marker date="1533210559763" expanded="true" signature="127:622" ph="{...}" />
-            <marker date="1533210559763" expanded="true" signature="523:619" ph="{...}" />
+            <marker date="1535992480886" expanded="false" signature="6:92" ph="..." />
+            <marker date="1535992480886" expanded="true" signature="156:379" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="331:377" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="426:6673" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1063:1440" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1498:1862" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1694:1781" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1956:2532" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2020:2244" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2121:2234" ph="/* mainTask.TryActivate(); ... */" />
+            <marker date="1535992480886" expanded="true" signature="2331:2422" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2435:2526" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2619:2980" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="3067:3772" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="3286:3462" ph="/* float senseLatency = _fbs.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType()); ... */" />
+            <marker date="1535992480886" expanded="true" signature="3519:3742" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="3853:3991" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4062:4542" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4193:4439" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4616:4984" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4762:4897" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5091:5590" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5312:5439" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5452:5584" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5475:5574" ph="/* _audioSource.PlayOneShot(_usc.TimeOutSound, _usc.TimeOutVolume); ... */" />
+            <marker date="1535992480886" expanded="true" signature="5659:5869" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5965:6128" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="6224:6387" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="6494:6671" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="56" column="22" selection-start-line="56" selection-start-column="12" selection-end-line="56" selection-end-column="22" />
+          <folding>
+            <marker date="1535994825137" expanded="true" signature="6:150" ph="..." />
+            <marker date="1535994825137" expanded="true" signature="197:236" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="298:2258" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="541:580" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="599:756" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="676:748" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="819:1537" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="960:1029" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1042:1117" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1169:1450" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1479:1531" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1568:1631" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1663:1726" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1782:1858" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1893:2023" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1959:2017" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="2095:2256" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1535994578098" expanded="false" signature="6:106" ph="..." />
+            <marker date="1535994578098" expanded="true" signature="130:857" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="301:393" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="424:645" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="681:745" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="786:855" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="891:6410" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1499:1581" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1639:1787" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1890:2727" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2009:2212" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2261:2503" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2423:2493" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2552:2693" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2774:3667" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3063:3625" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3150:3383" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3400:3577" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3723:3994" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3847:3953" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4072:5047" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4229:5008" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4458:4657" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4562:4643" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4756:4941" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4817:4927" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="5127:5870" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="5383:5639" ph="/* USTask.POSITION mainTaskPosition = secondaryTaskPosition; ... */" />
+            <marker date="1535994578098" expanded="true" signature="5941:6101" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="6194:6408" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+          <folding>
+            <marker date="1535301620383" expanded="false" signature="6:173" ph="..." />
+            <marker date="1535301620383" expanded="true" signature="210:1283" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="748:955" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1044:1281" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1315:2176" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1665:1867" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1951:2174" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="2778:3853" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="3882:4715" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4038:4709" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4165:4699" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4753:4971" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5034:5718" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5098:5687" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5812:6428" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5936:6203" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6472:6577" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6624:6743" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6821:7046" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7122:7221" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7287:7492" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7559:7639" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7705:7794" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7879:8107" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1605">
+          <caret line="110" column="87" selection-start-line="110" selection-start-column="87" selection-end-line="110" selection-end-column="87" />
+          <folding>
+            <marker date="1535994578098" expanded="false" signature="6:106" ph="..." />
+            <marker date="1535994578098" expanded="true" signature="130:857" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="301:393" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="424:645" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="681:745" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="786:855" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="891:6410" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1499:1581" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1639:1787" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1890:2727" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2009:2212" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2261:2503" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2423:2493" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2552:2693" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2774:3667" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3063:3625" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3150:3383" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3400:3577" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3723:3994" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3847:3953" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4072:5047" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4229:5008" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4458:4657" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4562:4643" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4756:4941" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4817:4927" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="5127:5870" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="5383:5639" ph="/* USTask.POSITION mainTaskPosition = secondaryTaskPosition; ... */" />
+            <marker date="1535994578098" expanded="true" signature="5941:6101" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="6194:6408" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
+        <state relative-caret-position="1905">
           <caret line="127" column="27" lean-forward="true" selection-start-line="127" selection-start-column="27" selection-end-line="127" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackConstants.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scenes/FloatingRocks.unity">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USLogging.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2385">
+          <caret line="166" column="26" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
           <folding>
-            <marker date="1533302829615" expanded="false" signature="6:150" ph="..." />
-            <marker date="1533302829615" expanded="true" signature="198:8255" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="454:1514" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="2697:3288" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="3307:4030" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="3794:3838" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="3851:3937" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="4102:4143" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="4173:6468" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="4717:6029" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="5137:5285" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="5546:5709" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="6513:7100" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="6702:7015" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="6910:7005" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7043:7094" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7179:7360" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7228:7354" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7251:7344" ph="/* _pc.LimitRotationScopeByAxis('x', 30); ... */" />
-            <marker date="1533302829615" expanded="true" signature="7437:7564" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7486:7558" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7628:7708" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7758:7807" ph="{...}" />
-            <marker date="1533302829615" expanded="true" signature="7874:8253" ph="{...}" />
+            <marker date="1535301620383" expanded="false" signature="6:173" ph="..." />
+            <marker date="1535301620383" expanded="true" signature="210:1283" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="748:955" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1044:1281" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1315:2176" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1665:1867" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="1951:2174" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="2778:3853" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="3882:4715" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4038:4709" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4165:4699" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="4753:4971" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5034:5718" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5098:5687" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5812:6428" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="5936:6203" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6472:6577" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6624:6743" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="6821:7046" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7122:7221" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7287:7492" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7559:7639" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7705:7794" ph="{...}" />
+            <marker date="1535301620383" expanded="true" signature="7879:8107" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Misc/GameComponents.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1533854122429" expanded="false" signature="6:66" ph="..." />
+            <marker date="1533854122429" expanded="true" signature="103:4538" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="158:276" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="334:454" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="502:617" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="659:771" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="825:906" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="970:1093" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="1145:1269" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="1331:1470" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="1530:1651" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="1685:1817" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="1874:1959" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="1998:2066" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2107:2178" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2220:2291" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2341:2410" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2456:2525" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2559:2666" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2724:2853" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="2901:3015" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="3073:3192" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="3240:3317" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="3367:3515" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="3592:3736" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="3784:3860" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="4052:4536" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="4317:4448" ph="{...}" />
+            <marker date="1533854122429" expanded="true" signature="4370:4438" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Level/Score.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding>
+            <marker date="1490630724171" expanded="true" signature="21:163" ph="{...}" />
+            <marker date="1490630724171" expanded="true" signature="107:161" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player/ScoreDisplayControl.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+          <folding>
+            <marker date="1535993078773" expanded="true" signature="68:789" ph="{...}" />
+            <marker date="1535993078773" expanded="true" signature="122:169" ph="/* float timer; ... */" />
+            <marker date="1535993078773" expanded="true" signature="184:275" ph="{...}" />
+            <marker date="1535993078773" expanded="true" signature="329:419" ph="{...}" />
+            <marker date="1535993078773" expanded="true" signature="335:416" ph="/* timer += Time.deltaTime; ... */" />
+            <marker date="1535993078773" expanded="true" signature="453:497" ph="{...}" />
+            <marker date="1535993078773" expanded="true" signature="531:612" ph="{...}" />
+            <marker date="1535993078773" expanded="true" signature="636:658" ph="{...}" />
+            <marker date="1535993078773" expanded="true" signature="686:787" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Level/BillboardControl.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding>
+            <marker date="1490998267460" expanded="false" signature="6:44" ph="..." />
+            <marker date="1490998267460" expanded="true" signature="91:1906" ph="{...}" />
+            <marker date="1490998267460" expanded="true" signature="304:734" ph="{...}" />
+            <marker date="1490998267460" expanded="true" signature="790:1295" ph="{...}" />
+            <marker date="1490998267460" expanded="true" signature="1325:1557" ph="{...}" />
+            <marker date="1490998267460" expanded="true" signature="1383:1551" ph="{...}" />
+            <marker date="1490998267460" expanded="true" signature="1602:1904" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Level/LevelActions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="124" column="23" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="26" />
+          <folding>
+            <marker date="1533210559782" expanded="false" signature="6:100" ph="..." />
+            <marker date="1533210559782" expanded="true" signature="143:5001" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="573:1247" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="1292:3625" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="1439:3436" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="1973:2037" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="2097:2263" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="2332:2498" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="2564:2629" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="2700:3001" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3188:3334" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3351:3426" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3449:3498" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3668:3851" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3793:3845" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3882:4144" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="3980:4032" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="4207:4843" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="4444:4816" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="4661:4809" ph="{...}" />
+            <marker date="1533210559782" expanded="true" signature="4862:4999" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskPoolGenerator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="70" />
+          <folding>
+            <marker date="1535994578098" expanded="false" signature="6:106" ph="..." />
+            <marker date="1535994578098" expanded="true" signature="130:857" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="301:393" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="424:645" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="681:745" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="786:855" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="891:6410" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1499:1581" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1639:1787" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="1890:2727" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2009:2212" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2261:2503" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2423:2493" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2552:2693" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="2774:3667" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3063:3625" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3150:3383" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3400:3577" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3723:3994" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="3847:3953" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4072:5047" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4229:5008" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4458:4657" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4562:4643" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4756:4941" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="4817:4927" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="5127:5870" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="5383:5639" ph="/* USTask.POSITION mainTaskPosition = secondaryTaskPosition; ... */" />
+            <marker date="1535994578098" expanded="true" signature="5941:6101" ph="{...}" />
+            <marker date="1535994578098" expanded="true" signature="6194:6408" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="148" column="96" selection-start-line="148" selection-start-column="89" selection-end-line="148" selection-end-column="96" />
+          <folding>
+            <marker date="1535992480886" expanded="false" signature="6:92" ph="..." />
+            <marker date="1535992480886" expanded="true" signature="156:379" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="331:377" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="426:6673" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1063:1440" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1498:1862" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1694:1781" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="1956:2532" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2020:2244" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2121:2234" ph="/* mainTask.TryActivate(); ... */" />
+            <marker date="1535992480886" expanded="true" signature="2331:2422" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2435:2526" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="2619:2980" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="3067:3772" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="3286:3462" ph="/* float senseLatency = _fbs.GetLatencyForFeedbackType(_usc.GetCurrentFeedbackType()); ... */" />
+            <marker date="1535992480886" expanded="true" signature="3519:3742" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="3853:3991" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4062:4542" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4193:4439" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4616:4984" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="4762:4897" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5091:5590" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5312:5439" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5452:5584" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5475:5574" ph="/* _audioSource.PlayOneShot(_usc.TimeOutSound, _usc.TimeOutVolume); ... */" />
+            <marker date="1535992480886" expanded="true" signature="5659:5869" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="5965:6128" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="6224:6387" ph="{...}" />
+            <marker date="1535992480886" expanded="true" signature="6494:6671" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTask.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="76" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <marker date="1533854122446" expanded="false" signature="6:77" ph="..." />
+            <marker date="1533854122446" expanded="true" signature="115:5564" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="746:921" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="999:1302" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="1100:1177" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="1190:1237" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="1378:1844" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="1554:1813" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="1627:1753" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="1874:2610" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="2660:3835" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="2846:3787" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="3643:3777" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="3882:4306" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="4337:5022" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="4393:4480" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="5084:5125" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="5164:5202" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="5250:5304" ph="{...}" />
+            <marker date="1533854122446" expanded="true" signature="5387:5562" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/FeedbackUSB.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="960">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <marker date="1535994825137" expanded="true" signature="6:150" ph="..." />
+            <marker date="1535994825137" expanded="true" signature="197:236" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="298:2258" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="541:580" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="599:756" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="676:748" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="819:1537" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="960:1029" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1042:1117" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1169:1450" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1479:1531" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1568:1631" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1663:1726" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1782:1858" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1893:2023" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="1959:2017" ph="{...}" />
+            <marker date="1535994825137" expanded="true" signature="2095:2256" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/USTaskSpawner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
+          <folding>
+            <marker date="1535994781761" expanded="false" signature="6:127" ph="..." />
+            <marker date="1535994781761" expanded="true" signature="172:4479" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="758:978" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="1013:2592" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="1124:2509" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="1336:2258" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="1507:1634" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="1733:1827" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="1931:2047" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="2156:2244" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="2636:2810" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="2845:2878" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="2954:3122" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="3198:3928" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="3213:3284" ph="/* if(--_runningTaskCount == 0) ... */" />
+            <marker date="1535994781761" expanded="true" signature="3333:3922" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="3445:3912" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="3679:3812" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="3979:4086" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="4164:4212" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="4245:4292" ph="{...}" />
+            <marker date="1535994781761" expanded="true" signature="4342:4477" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/GameController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <marker date="1535995750164" expanded="false" signature="6:152" ph="..." />
+            <marker date="1535995750164" expanded="true" signature="197:7302" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="854:1083" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="1101:1665" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="1701:2011" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="1892:2005" ph="/* float duration = wisp.talkToPlayer(wisp.MenuIntro); ... */" />
+            <marker date="1535995750164" expanded="true" signature="2030:2097" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="2154:3479" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="2213:2359" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="2422:2573" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="2632:2780" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="3348:3473" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="3529:3609" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="3643:3715" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="3763:4119" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="3846:4005" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="4018:4072" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="4148:4372" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="4415:4485" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="4518:4713" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="4763:4775" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="4806:5133" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5169:5228" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5261:5642" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5382:5610" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5494:5600" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5670:6107" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5735:5942" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="5955:6024" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6136:6177" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6208:6250" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6295:6404" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6489:6661" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6699:7187" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6864:6986" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="6999:7116" ph="{...}" />
+            <marker date="1535995750164" expanded="true" signature="7217:7300" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Misc/LoadingOverlay.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+          <folding>
+            <marker date="1535996627160" expanded="true" signature="158:2694" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="455:716" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="739:1134" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1020:1128" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1171:1438" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1354:1432" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1474:1734" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1650:1728" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1796:2692" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="1806:1941" ph="/* Renders interior of the overlay instead of exterior. ... */" />
+            <marker date="1535996627160" expanded="true" signature="2055:2686" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="2325:2676" ph="{...}" />
+            <marker date="1535996627160" expanded="true" signature="2443:2613" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/UserStudy/UserStudyControl.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <marker date="1535996685332" expanded="true" signature="6:150" ph="..." />
+            <marker date="1535996685332" expanded="true" signature="196:281" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="328:10112" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="807:1919" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="2019:2118" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="3378:4852" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4481:4525" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4538:4624" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4760:4846" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="4924:5022" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="5052:7459" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="5374:6920" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="5775:6077" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="6203:6303" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="7504:8091" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="7693:8006" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="7901:7996" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8034:8085" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8170:8351" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8219:8345" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8242:8335" ph="/* _pc.LimitRotationScopeByAxis('x', 30); ... */" />
+            <marker date="1535996685332" expanded="true" signature="8428:8555" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8477:8549" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8621:8701" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8746:8904" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="8949:9121" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9167:9264" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9310:9407" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9457:9506" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9545:9585" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="9652:10037" ph="{...}" />
+            <marker date="1535996685332" expanded="true" signature="10071:10110" ph="{...}" />
           </folding>
         </state>
       </provider>

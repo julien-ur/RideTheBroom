@@ -43,6 +43,7 @@ public class USTaskSpawner : MonoBehaviour {
 
             PoolItem nextPoolItem = _actionPool[0];
             float waitDuration = MaxTimeBetweenRings;
+            _readyForNextSpawn = false;
 
             if (_actionPool.Count > 1)
             {
@@ -64,11 +65,12 @@ public class USTaskSpawner : MonoBehaviour {
                 {
                     waitDuration = TimeBetweenPovs;
                 }
+
+                _readyForNextSpawn = true;
             }
 
             _actionPool.RemoveAt(0);
             StartTasks(nextPoolItem);
-            _readyForNextSpawn = true;
 
             yield return new WaitForSeconds(waitDuration);
             yield return new WaitUntil(() => _readyForNextSpawn);
@@ -80,7 +82,7 @@ public class USTaskSpawner : MonoBehaviour {
 
     private void StartTasks(PoolItem item)
     {
-        _readyForNextSpawn = false;
+        //_readyForNextSpawn = false;
         //_runningTaskCount = item.GetTaskCount();
         _taskControl.StartTasks(item, _spawnCount);
         _spawnCount++;

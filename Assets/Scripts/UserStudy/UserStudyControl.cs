@@ -82,7 +82,7 @@ public class UserStudyControl : MonoBehaviour
     private USLogging _logging;
     private PlayerControl _pc;
     private int _roundCount;
-
+    private ScoreDisplayControl _scc;
 
 
     void Start()
@@ -109,6 +109,7 @@ public class UserStudyControl : MonoBehaviour
         _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
         _loadingOverlay = GameComponents.GetLoadingOverlay();
         _infoText = GameComponents.GetVrHUD().transform.Find("StudyInfoText").GetComponentInChildren<Text>();
+        _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
 
         MenuCabinTrigger mct = GameComponents.GetMenuCabinTrigger();
         if (!mct) {
@@ -156,17 +157,17 @@ public class UserStudyControl : MonoBehaviour
             // PAUSE GAME AND SHOW INFO TEXT //
             Debug.Log(_loadingOverlay);
             _pc.ChangeSpeedToTargetSpeed(0, 1);
-            
+
             yield return new WaitForSecondsRealtime(1.5f);
             Time.timeScale = 0;
 
             if (_roundCount > 0)
             {
-                _infoText.text = "Survey";
+                _infoText.text = "Pause";
                 yield return new WaitUntil(() => Input.GetKeyUp("space"));
                 yield return new WaitForEndOfFrame();
                 Time.timeScale = 1;
-                GameComponents.GetGameController().FinishLevel();
+                if (_roundCount == 1) _scc.SetScore(0);
             }
 
             _infoText.text = (_roundCount > 0) ? _feedbackLabels[(int)f] : "Übung";

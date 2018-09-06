@@ -75,7 +75,7 @@ public class SteamVR_TrackedObject : MonoBehaviour
             Transform broom = GameObject.FindGameObjectWithTag("Broom").transform;
             rotCorr = Quaternion.Inverse(pose.rot) * broom.rotation;
 
-            GameComponents.GetPlayer().GetComponentInChildren<PlayerCameraControl>().SetOffset(pose.pos);
+            GameComponents.GetPlayer().GetComponentInChildren<PlayerCameraControl>().SetOffset(pose.pos, pose.rot);
         }
 
 		if (false)//origin != null)

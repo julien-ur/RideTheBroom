@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -242,7 +243,7 @@ public class GameController : MonoBehaviour
         
         if (GameComponents.GetUserStudyControl() != null)
         {
-            line = "subject #" + usc.GetSubjectId() + " " + _scoreDisplayControl.GetScore() + "\r\n";
+            line = "#" + usc.GetSubjectId() + ", " + _scoreDisplayControl.GetScore() + ", " + DateTime.Now.ToString("dd.MM.yy H:mm:ss") + "\r\n";
         }
         else
         {

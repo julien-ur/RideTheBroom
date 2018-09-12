@@ -153,7 +153,7 @@ public class GameController : MonoBehaviour
     {
         //player.Find("armature_score").GetComponent<ScoreDisplayControl>().AddScore(1);
         numRings++;
-        player.GetComponentInChildren<ScoreDisplayControl>().AddScore(1);
+        player.GetComponentInChildren<ScoreDisplayControl>().AddScore(0.2f);
     }
 
     public void ShowResults(float durationInSec)

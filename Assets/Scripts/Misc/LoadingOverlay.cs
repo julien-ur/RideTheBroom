@@ -16,7 +16,7 @@ public class LoadingOverlay : MonoBehaviour {
     private Material material;
     private Renderer _renderer;
 
-    void Start(){
+    void Awake(){
         ReverseNormals(gameObject);
         fading = false;
         fade_timer = 0;

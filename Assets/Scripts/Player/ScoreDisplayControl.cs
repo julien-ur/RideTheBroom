@@ -3,7 +3,7 @@
 public class ScoreDisplayControl : MonoBehaviour
 {
 	private TextMesh scoreText;
-	private int score;
+	private float score;
 
 	//float timer;
 
@@ -25,27 +25,28 @@ public class ScoreDisplayControl : MonoBehaviour
 		}*/
 	}
 
-	public void SetScore(int score)
+	public void SetScore(float score)
 	{
 		this.score = score;
 		UpdateText();
 	}
 
-	public void AddScore(int score)
+	public void AddScore(float score)
 	{
 		this.score += score;
 	    if (score < 0) this.score = 0;
 		UpdateText();
 	}
 
-	public int GetScore()
+	public float GetScore()
 	{
 		return score;
 	}
 
 	private void UpdateText()
 	{
-		string scoreString = score < 10 ? "0" + score : "" + score;
+
+		string scoreString = score < 10 ? "0" + (int)score : "" + (int)score;
 
 		scoreText.text = scoreString;
 	}

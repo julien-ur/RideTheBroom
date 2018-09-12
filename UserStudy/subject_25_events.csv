@@ -1,41 +1,46 @@
 SubjectId;Timestamp;FeedbackType;EventType;EventStatus;EventInfo;EventId
-25;0.025;Practice;Ring;visible;(-11.4, 0.0, 110.8);-15488
-25;2.257;Practice;Ring;visible;(-8.0, 0.0, 155.6);-15596
-25;5.633;Practice;Ring;visible;(2.0, 0.0, 223.1);-15694
-25;8.008;Practice;Ring;timeout;;-15488
-25;8.949;Practice;POV;visible;Left;-15892
-25;9.670;Practice;Ring;success;;-15694
-25;9.699;Practice;Ring;visible;(2.2, 0.0, 304.5);-16040
-25;10.242;Practice;Ring;timeout;;-15596
-25;13.692;Practice;Ring;success;;-16040
-25;13.939;Practice;POV;timeout;;-15892
-25;13.955;Practice;Ring;visible;(-7.5, 0.0, 389.6);-16256
-25;16.926;Practice;Ring;visible;(-2.6, 0.0, 449.0);-16358
-25;20.098;Practice;Ring;visible;(1.2, 0.0, 512.4);-16456
-25;20.942;Practice;Ring;success;;-16358
-25;21.970;Practice;Ring;timeout;;-16256
-25;23.446;Practice;POV;visible;Left;-16876
-25;24.115;Practice;Ring;success;;-16456
-25;24.209;Practice;Ring;visible;(0.9, 0.0, 594.7);-17024
-25;27.673;Practice;Ring;visible;(9.3, 0.0, 663.9);-17172
-25;28.225;Practice;Ring;success;;-17024
-25;28.426;Practice;POV;timeout;;-16876
-25;31.403;Practice;Ring;visible;(11.2, 0.0, 738.5);-17372
-25;33.749;Practice;Ring;visible;(-8.8, 0.0, 785.4);-17470
-25;35.664;Practice;Ring;timeout;;-17172
-25;37.095;Practice;POV;visible;Right;-17788
-25;37.858;Practice;Ring;visible;(1.0, 0.0, 867.6);-17934
-25;39.395;Practice;Ring;timeout;;-17372
-25;40.116;Practice;Ring;visible;(-6.6, 0.0, 912.8);-18082
-25;41.741;Practice;Ring;timeout;;-17470
-25;41.875;Practice;Ring;success;;-17934
-25;42.076;Practice;POV;timeout;;-17788
-25;43.823;Practice;Ring;visible;(-11.3, 0.0, 986.9);-18332
-25;47.107;Practice;Ring;visible;(-3.3, 0.0, 1052.6);-18430
-25;48.108;Practice;Ring;timeout;;-18082
-25;50.455;Practice;POV;visible;Middle;-18628
-25;51.217;Practice;Ring;visible;(-9.3, 0.0, 1134.8);-18774
-25;51.816;Practice;Ring;timeout;;-18332
-25;54.189;Practice;Ring;visible;(-10.9, 0.0, 1194.3);-19030
-25;55.100;Practice;Ring;timeout;;-18430
-25;55.435;Practice;POV;timeout;;-18628
+25;0.027;Practice;Ring;visible;(8.3, 0.0, 109.8);-87488
+25;2.773;Practice;Ring;visible;(7.0, 0.0, 163.5);-89230
+25;4.091;Practice;Ring;success;;-87488
+25;5.536;Practice;Ring;visible;(62.9, 0.0, 205.8);-90970
+25;8.394;Practice;Ring;visible;(-53.3, 0.0, 235.4);-92674
+25;10.749;Practice;Ring;timeout;;-89230
+25;11.709;Practice;POV;visible;Left;-94586
+25;12.469;Practice;Ring;visible;(138.6, 0.0, 211.2);-95086
+25;12.693;Practice;Ring;success;;-90970
+25;14.791;Practice;Ring;visible;(183.5, 0.0, 204.2);-96336
+25;16.388;Practice;Ring;timeout;;-92674
+25;16.522;Practice;POV;success;;-94586
+25;18.254;Practice;Ring;visible;(251.0, 0.0, 197.2);-97844
+25;18.911;Practice;Ring;success;;-96336
+25;20.454;Practice;Ring;timeout;;-95086
+25;21.604;Practice;POV;visible;Middle;-99292
+25;22.352;Practice;Ring;success;;-97844
+25;22.368;Practice;Ring;visible;(331.9, 0.0, 198.6);-99716
+25;23.848;Practice;POV;success;;-99292
+25;26.297;Practice;Ring;visible;(409.7, 0.0, 205.2);-101360
+25;26.396;Practice;Ring;success;;-99716
+25;29.538;Practice;Ring;visible;(473.9, 0.0, 213.5);-102734
+25;30.306;Practice;Ring;success;;-101360
+25;33.114;Practice;Ring;visible;(545.2, 0.0, 221.9);-104226
+25;33.568;Practice;Ring;success;;-102734
+25;36.844;Practice;Ring;visible;(619.4, 0.0, 222.3);-105770
+25;37.165;Practice;Ring;success;;-104226
+25;40.191;Practice;POV;visible;Left;-107186
+25;40.875;Practice;Ring;success;;-105770
+25;40.955;Practice;Ring;visible;(701.5, 0.0, 220.7);-107648
+25;44.575;Practice;Ring;visible;(773.8, 0.0, 214.9);-109120
+25;44.984;Practice;Ring;success;;-107648
+25;45.163;Practice;POV;timeout;;-107186
+25;48.080;Practice;Ring;visible;(843.8, 0.0, 215.9);-110634
+25;48.604;Practice;Ring;success;;-109120
+25;51.118;Practice;Ring;visible;(904.8, 0.0, 219.7);-111926
+25;52.110;Practice;Ring;success;;-110634
+25;54.469;Practice;Ring;visible;(971.3, 0.0, 214.3);-113338
+25;55.172;Practice;Ring;success;;-111926
+25;57.818;Practice;POV;visible;Right;-114758
+25;58.500;Practice;Ring;success;;-113338
+25;58.582;Practice;Ring;visible;(1052.2, 0.0, 203.4);-115186
+25;59.951;Practice;POV;success;;-114758
+25;60.634;Practice;Ring;visible;(1093.7, 0.0, 201.9);-116104
+25;63.784;Practice;Ring;visible;(1155.7, 0.0, 220.5);-117318

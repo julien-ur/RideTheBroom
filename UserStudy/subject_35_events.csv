@@ -1,3 +1,88 @@
 SubjectId;Timestamp;FeedbackType;EventType;EventStatus;EventInfo;EventId
-35;0.022;Practice;Ring;visible;(-5.9, 0.0, 111.2);-244126
-35;4.065;Practice;Ring;success;;-244126
+35;0.025;Practice;Ring;visible;(-2.4, 0.0, 111.4);-139702
+35;2.216;Practice;Ring;visible;(-6.5, 0.0, 155.3);-139784
+35;4.020;Practice;Ring;success;;-139702
+35;5.165;Practice;Ring;visible;(2.9, 0.0, 214.2);-139942
+35;7.521;Practice;Ring;visible;(8.0, 0.0, 261.3);-140024
+35;9.157;Practice;Ring;success;;-139942
+35;10.207;Practice;Ring;timeout;;-139784
+35;10.996;Practice;Ring;visible;(7.6, 0.0, 330.8);-140174
+35;14.862;Practice;Ring;visible;(10.1, 0.0, 408.0);-140256
+35;15.000;Practice;Ring;success;;-140174
+35;15.525;Practice;Ring;timeout;;-140024
+35;18.211;Practice;POV;visible;Right;-140408
+35;18.887;Practice;Ring;success;;-140256
+35;18.985;Practice;Ring;visible;(20.7, 0.0, 489.9);-140574
+35;19.781;Practice;POV;success;;-140408
+35;22.804;Practice;Ring;visible;(20.0, 0.0, 566.5);-140694
+35;26.433;Practice;Ring;visible;(-56.8, 0.0, 619.6);-140776
+35;26.963;Practice;Ring;timeout;;-140574
+35;28.959;Practice;Ring;visible;(-38.8, 0.0, 678.9);-140892
+35;30.785;Practice;Ring;timeout;;-140694
+35;32.307;Practice;POV;visible;Right;-141010
+35;32.996;Practice;Ring;success;;-140892
+35;33.070;Practice;Ring;visible;(-54.2, 0.0, 760.0);-141144
+35;34.023;Practice;POV;success;;-141010
+35;34.425;Practice;Ring;timeout;;-140776
+35;36.085;Practice;Ring;visible;(-77.7, 0.0, 813.2);-141332
+35;37.219;Practice;Ring;success;;-141144
+35;38.297;Practice;Ring;visible;(-96.9, 0.0, 853.0);-141448
+35;40.100;Practice;Ring;success;;-141332
+35;41.291;Practice;Ring;visible;(-131.3, 0.0, 902.9);-141564
+35;42.312;Practice;Ring;success;;-141448
+35;43.748;Practice;Ring;visible;(-167.0, 0.0, 936.4);-141680
+35;45.372;Practice;Ring;success;;-141564
+35;47.212;Practice;Ring;visible;(-218.9, 0.0, 981.5);-141796
+35;47.785;Practice;Ring;success;;-141680
+35;50.559;Practice;POV;visible;Right;-141916
+35;51.248;Practice;Ring;success;;-141796
+35;51.321;Practice;Ring;visible;(-277.8, 0.0, 1039.2);-142048
+35;52.232;Practice;POV;success;;-141916
+35;54.091;Practice;Ring;visible;(-317.1, 0.0, 1077.6);-142168
+35;55.381;Practice;Ring;success;;-142048
+35;57.532;Practice;Ring;visible;(-363.0, 0.0, 1129.2);-142284
+35;58.151;Practice;Ring;success;;-142168
+35;60.123;Practice;Ring;visible;(-387.8, 0.0, 1174.1);-142400
+35;61.613;Practice;Ring;success;;-142284
+35;63.471;Practice;POV;visible;Right;-142518
+35;64.161;Practice;Ring;success;;-142400
+35;64.235;Practice;Ring;visible;(-426.0, 0.0, 1247.4);-142684
+35;65.232;Practice;POV;success;;-142518
+35;66.891;Practice;Ring;visible;(-434.2, 0.0, 1298.5);-142836
+35;68.405;Practice;Ring;success;;-142684
+35;70.265;Practice;Ring;visible;(-444.2, 0.0, 1364.3);-142954
+35;70.953;Practice;Ring;success;;-142836
+35;73.613;Practice;POV;visible;Middle;-143072
+35;74.304;Practice;Ring;success;;-142954
+35;74.378;Practice;Ring;visible;(-444.4, 0.0, 1447.1);-143240
+35;78.592;Practice;POV;timeout;;-143072
+35;78.623;Practice;Ring;visible;(-458.8, 0.0, 1530.8);-143326
+35;81.324;Practice;Ring;visible;(-494.1, 0.0, 1579.0);-143412
+35;82.347;Practice;Ring;timeout;;-143240
+35;85.188;Practice;Ring;visible;(-426.9, 0.0, 1647.8);-143530
+35;86.612;Practice;Ring;timeout;;-143326
+35;88.741;Practice;Ring;visible;(-418.4, 0.0, 1721.0);-143646
+35;89.316;Practice;Ring;timeout;;-143412
+35;92.090;Practice;POV;visible;Middle;-143764
+35;92.755;Practice;Ring;success;;-143646
+35;92.852;Practice;Ring;visible;(-405.6, 0.0, 1802.7);-143930
+35;93.179;Practice;Ring;timeout;;-143530
+35;96.091;Practice;Ring;visible;(-380.9, 0.0, 1862.9);-144052
+35;97.066;Practice;POV;timeout;;-143764
+35;99.676;Practice;Ring;visible;(-360.4, 0.0, 1931.9);-144170
+35;100.105;Practice;Ring;success;;-144052
+35;100.842;Practice;Ring;timeout;;-143930
+35;102.835;Practice;Ring;visible;(-360.1, 0.0, 1996.2);-144320
+35;106.792;Practice;Ring;visible;(-358.4, 0.0, 2075.8);-144402
+35;106.852;Practice;Ring;success;;-144320
+35;107.633;Practice;Ring;timeout;;-144170
+35;110.141;Practice;POV;visible;Right;-144522
+35;110.901;Practice;Ring;visible;(-334.0, 0.0, 2155.7);-144652
+35;113.695;Practice;Ring;visible;(-338.4, 0.0, 2212.3);-144734
+35;114.782;Practice;Ring;timeout;;-144402
+35;115.117;Practice;POV;timeout;;-144522
+35;116.934;Practice;Ring;visible;(-342.1, 0.0, 2277.3);-144886
+35;117.731;Practice;Ring;success;;-144734
+35;118.892;Practice;Ring;timeout;;-144652
+35;120.709;Practice;Ring;visible;(-350.8, 0.0, 2352.7);-145036
+35;120.949;Practice;Ring;success;;-144886

@@ -29,7 +29,7 @@ public class UserStudyControl : MonoBehaviour
         { "" + FeedbackType.Heat + " " + USTask.POSITION.Right, FeedbackConstants.HEAT_TAG + ",1,3" },
 
         { "" + FeedbackType.Smell + " " + USTask.POSITION.Left, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_WOODY_VAL + ",0.8" },
-        { "" + FeedbackType.Smell + " " + USTask.POSITION.Middle, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_LEMON_VAL + ",0.8" },
+        { "" + FeedbackType.Smell + " " + USTask.POSITION.Middle, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_LEMON_VAL + ",1" },
         { "" + FeedbackType.Smell + " " + USTask.POSITION.Right, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_BERRY_VAL + ",0.8" },
 
         { "" + FeedbackType.Vibration + " " + USTask.POSITION.Left, FeedbackConstants.VIBRATION_TAG + ",0.2,0.5" },
@@ -155,9 +155,8 @@ public class UserStudyControl : MonoBehaviour
             _currentFeedbackType = f;
 
             // PAUSE GAME AND SHOW INFO TEXT //
-            Debug.Log(_loadingOverlay);
             _pc.ChangeSpeedToTargetSpeed(0, 1);
-
+            // _loadingOverlay.FadeOut(2);
             yield return new WaitForSecondsRealtime(1.5f);
             Time.timeScale = 0;
 
@@ -180,7 +179,7 @@ public class UserStudyControl : MonoBehaviour
             _infoText.text = "";
             Time.timeScale = 1;
 
-            _loadingOverlay.FadeIn(2);
+            // _loadingOverlay.FadeIn(2);
             _pc.ChangeSpeedToDefaultSpeed(2);
             yield return new WaitForSecondsRealtime(2);
             // ----------------------------------------------------------------- //
@@ -198,18 +197,14 @@ public class UserStudyControl : MonoBehaviour
         Debug.Log("Study Finished");
         OnStudyFinished();
 
-        _loadingOverlay.FadeOut(2);
-        yield return new WaitForSecondsRealtime(2);
-        _infoText.text = "Danke für deine Teilnahme!";
-        _infoText.resizeTextForBestFit = true;
+        // _loadingOverlay.FadeOut(2);
+        _pc.ChangeSpeedToTargetSpeed(0, 1);
+        yield return new WaitForSecondsRealtime(1.5f);
+        Time.timeScale = 0;
+        _infoText.text = "Ende";
 
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(3);
         _feedbackUSB.StopAllFeedback();
-
-        _infoText.text = "";
-        _loadingOverlay.FadeIn(2);
-        yield return new WaitForSecondsRealtime(2);
-        
         GameComponents.GetGameController().FinishLevel();
     }
 

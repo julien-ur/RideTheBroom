@@ -48,7 +48,10 @@ public class USTaskController : MonoBehaviour
 
     public void StartTasks(PoolItem tpi, int spawnCount)
     {
-        Debug.Log("Tasks Spawned " + tpi.MainTaskPos + " " + tpi.SecondaryTaskPos + " " + spawnCount);
+        if (tpi.MainTaskPos != USTask.POSITION.None)
+            Debug.Log("Main Task Spawned " + tpi.MainTaskPos + " " + spawnCount);
+        else
+            Debug.Log("Secondary Task Spawned " + tpi.SecondaryTaskPos + " " + spawnCount);
 
         USTask mainTask = null;
 
@@ -152,7 +155,7 @@ public class USTaskController : MonoBehaviour
         if (success)
         {
             _audioSource.PlayOneShot(_usc.SuccessSound, _usc.SuccessVolume);
-            _scc.AddScore(5);
+            _scc.AddScore(1);
         }
         else
         {

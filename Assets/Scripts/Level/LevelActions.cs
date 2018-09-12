@@ -19,7 +19,7 @@ public class LevelActions : MonoBehaviour
     
     private Constants.LEVEL _currentLevel;
 
-    private void Start () {
+    void Awake () {
         _menu = GameComponents.GetMenu();
         if (_menu) deactivateTestingStuff(); // deactivates all objects of the layer "testing stuff"
 
@@ -77,7 +77,7 @@ public class LevelActions : MonoBehaviour
             }
             else if (_currentLevel == Constants.LEVEL.SpaceProcedural)
             {
-                _pc.ChangeSpeed(20, 20, 20);
+                _pc.ChangeSpeed(25, 25, 25);
                 _pc.gameObject.GetComponent<CapsuleCollider>().isTrigger = false;
                 _pc.enableBroomRollback = false;
                 _pc.tiltAcceleration = false;

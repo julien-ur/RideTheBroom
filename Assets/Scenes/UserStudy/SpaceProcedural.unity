@@ -739,6 +739,11 @@ Prefab:
       propertyPath: maxSpeed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 20594105932155964, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: far clip plane
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
   m_IsPrefabParent: 0
@@ -8048,7 +8053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sendTest: 0
-  sendTestString: w,0;
+  sendTestString: s,1,60;
 --- !u!114 &1691091805
 MonoBehaviour:
   m_ObjectHideFlags: 0

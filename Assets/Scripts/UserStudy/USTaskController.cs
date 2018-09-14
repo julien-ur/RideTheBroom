@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class USTaskControllerEventArgs : EventArgs, ICloneable
@@ -44,6 +45,7 @@ public class USTaskController : MonoBehaviour
         _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
         _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.mute = true;
     }
 
     public void StartTasks(PoolItem tpi, int spawnCount)

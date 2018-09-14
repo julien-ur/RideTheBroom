@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public bool blockSceneLoading;
+
     private const string HIGHSCORE_FILE_PATH = "highscore.txt";
 
     private GameObject player;
@@ -70,6 +72,8 @@ public class GameController : MonoBehaviour
 
     IEnumerator LoadScene(Constants.LEVEL levelToLoad)
     {
+        yield return new WaitUntil(() => !blockSceneLoading);
+
         if (levelToLoad == Constants.LEVEL.Tutorial)
         {
             float duration = wisp.talkToPlayer(wisp.TutorialFinished);
@@ -118,7 +122,6 @@ public class GameController : MonoBehaviour
     public void LoadLevel(Constants.LEVEL lvl)
     {
     	pc.EnableRotation();
-        
 
         if (lvl == Constants.LEVEL.Menu)
         {

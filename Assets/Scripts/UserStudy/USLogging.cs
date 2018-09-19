@@ -12,7 +12,8 @@ public struct USGameStatusLogRecord
     public int SubjectId { get; set; }
     public string Timestamp { get; set; }
     public int Round { get; set; }
-    public string FeedbackType { get; set; }
+    public int RepeatCount { get; set; }
+    public string RoundType { get; set; }
     public float PlayerXPos { get; set; }
     public float PlayerYPos { get; set; }
     public float PlayerZPos { get; set; }
@@ -39,7 +40,7 @@ public struct USEventLogRecord
 {
     public int SubjectId { get; set; }
     public string Timestamp { get; set; }
-    public string FeedbackType { get; set; }
+    public string RoundType { get; set; }
     public string EventType { get; set; }
     public string EventStatus { get; set; }
     public string EventInfo { get; set; }
@@ -111,7 +112,7 @@ public class USLogging : MonoBehaviour
     {
         CreateEventLogCSV();
 
-        using (StreamWriter gameStatusWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_gamestatus.csv"))
+        using (StreamWriter gameStatusWriter = new StreamWriter("UserStudy/s" + _subjectId + "_gamestatus.csv"))
         {
             gameStatusWriter.WriteLine(USGameStatusLogRecord.GetCSVHeader(Delimiter));
 
@@ -130,7 +131,7 @@ public class USLogging : MonoBehaviour
 
     private void CreateEventLogCSV()
     {
-        StreamWriter eventWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_events.csv");
+        StreamWriter eventWriter = new StreamWriter("UserStudy/s" + _subjectId + "_events.csv");
         eventWriter.WriteLine(USEventLogRecord.GetCSVHeader(Delimiter));
         eventWriter.Close();
     }
@@ -142,7 +143,8 @@ public class USLogging : MonoBehaviour
             SubjectId = _subjectId,
             Timestamp = GetFormattedTimestamp(),
             Round = _usc.GetCurrentRoundCount(),
-            FeedbackType = GetFormattedFeedbackType(),
+            RepeatCount = _usc.GetCurrentRepeatCount(),
+            RoundType = GetFormattedFeedbackType(),
             PlayerXPos = _playerTrans.position.x,
             PlayerYPos = _playerTrans.position.y,
             PlayerZPos = _playerTrans.position.z,
@@ -163,14 +165,14 @@ public class USLogging : MonoBehaviour
         {
             SubjectId = _subjectId,
             Timestamp = GetFormattedTimestamp(),
-            FeedbackType = GetFormattedFeedbackType(),
+            RoundType = GetFormattedFeedbackType(),
             EventType = t,
             EventStatus = status,
             EventInfo = info,
             EventId = id
         };
 
-        var eventWriter = new StreamWriter("UserStudy/subject_" + _subjectId + "_events.csv", true);
+        var eventWriter = new StreamWriter("UserStudy/s" + _subjectId + "_events.csv", true);
         eventWriter.WriteLine(USEventLogRecord.ConvertToCSVString(record, Delimiter));
         eventWriter.Close();
     }
@@ -182,7 +184,7 @@ public class USLogging : MonoBehaviour
 
     private string GetFormattedFeedbackType()
     {
-        return (_usc.GetCurrentRoundCount() == 0) ? "Practice" : _usc.GetCurrentFeedbackType().ToString();
+        return _usc.GetRoundType().ToString();
     }
 
     public void OnTaskStarted(object sender, USTaskControllerEventArgs args)

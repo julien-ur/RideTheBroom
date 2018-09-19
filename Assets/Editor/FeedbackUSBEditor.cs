@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using UnityEngine;
 using UnityEditor;
 
@@ -7,13 +8,20 @@ using UnityEditor;
 public class FeedbackUSBEditor : Editor
 {
     private FeedbackUSB _fusb;
+    private UserStudyControl _usc;
+    private USTaskSpawner _spawner;
+    
     private UserStudyControl.FeedbackType _currFeedbackType;
     private bool _studyRunning;
+    private static int newSubjectId;
+    private bool _useAutoId;
+
 
     void Awake()
     {
         _fusb = GameComponents.GetFeedbackUSB();
-
+        _usc = GameComponents.GetUserStudyControl();
+        
         UserStudyControl.StudyStarted += OnStudyStarted;
         UserStudyControl.RoundStarted += OnRoundStarted;
         UserStudyControl.StudyFinished += OnStudyFinished;
@@ -41,16 +49,47 @@ public class FeedbackUSBEditor : Editor
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
+        DrawStudyControl();
         DrawFeedbackPresenter();
     }
 
-    private void DrawFeedbackPresenter()
+    private void DrawStudyControl()
     {
+        EditorGUILayout.LabelField("____________________________________________");
+        EditorGUILayout.LabelField("STUDY CONTROL");
+        
+        EditorGUILayout.IntField("Auto Subject ID", _usc.GetAutoSubjectId());
+        if (!_useAutoId)
+        {
+            if ((newSubjectId = EditorGUILayout.IntField("Subject ID", _usc.GetSubjectId())) != _usc.GetSubjectId())
+            {
+                _usc.SetSubjectId(newSubjectId);
+            }
+        }
+        
+        _useAutoId = EditorGUILayout.Toggle("Use Auto ID", _useAutoId);
+
+        
+        EditorGUILayout.LabelField("");
+        
+        EditorGUILayout.LabelField("Round: " +  _usc.GetCurrentRoundCount() + ", Repeat Count: " + _usc.GetCurrentRepeatCount());
+        EditorGUILayout.LabelField("Round Type: " + _usc.GetRoundType());
+
+        
+        if (GUILayout.Button("Repeat Round: " + (UserStudyControl.IsRoundRepeated() ? "on" : "off")))
+        {
+            UserStudyControl.ToggleRoundRepeat();
+        }
+        if (GUILayout.Button("Force Finish Round"))
+        {
+            _usc.ForceFinishRound();
+        }
+        
         EditorGUILayout.LabelField("");
 
         if (GUILayout.Button("Pause Feedback"))
         {
-                _fusb.StopAllFeedback();
+            _fusb.StopAllFeedback();
         }
         if (GUILayout.Button("Resume Feedback"))
         {
@@ -59,7 +98,10 @@ public class FeedbackUSBEditor : Editor
                 _fusb.PermanentUpdate(entry.Key, entry.Value);
             }
         }
+    }
 
+    private void DrawFeedbackPresenter()
+    {
         EditorGUILayout.LabelField("____________________________________________");
         EditorGUILayout.LabelField("FEEDBACK PRESENTER");
 

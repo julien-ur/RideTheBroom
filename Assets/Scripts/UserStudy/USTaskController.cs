@@ -45,13 +45,12 @@ public class USTaskController : MonoBehaviour
         _feedbackUSB = GameComponents.GetGameController().GetComponent<FeedbackUSB>();
         _scc = GameComponents.GetPlayer().GetComponentInChildren<ScoreDisplayControl>();
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.mute = true;
     }
 
     public void StartTasks(PoolItem tpi, int spawnCount)
     {
         if (tpi.MainTaskPos != USTask.POSITION.None)
-            Debug.Log("Main Task Spawned " + tpi.MainTaskPos + " " + spawnCount);
+            Debug.Log("Main Task Spawned " + spawnCount);
         else
             Debug.Log("Secondary Task Spawned " + tpi.SecondaryTaskPos + " " + spawnCount);
 
@@ -73,7 +72,7 @@ public class USTaskController : MonoBehaviour
             // mainTask.TryActivate();
             // OnTaskStarted(USTask.TYPE.Main, mainTask, tpi.MainTaskPos, spawnCount);
         }
-        else if (_usc.GetCurrentFeedbackType() == UserStudyControl.FeedbackType.Audio)
+        else if (_usc.GetFeedbackType() == UserStudyControl.FeedbackType.Audio)
         {
             StartCoroutine(StartAudioTask(tpi, spawnCount, mainTask));
         }
@@ -127,7 +126,7 @@ public class USTaskController : MonoBehaviour
         mainTask.StartNewTask(USTask.TYPE.Main, pos, (success) =>
         {
             OnTaskEnded(USTask.TYPE.Main, mainTask, pos, spawnCount, success ? "success" : "timeout");
-            Debug.Log("Main Task " + (success ? "Success" : "Timeout") + " " + spawnCount);
+            Debug.Log("Main Task " + spawnCount + " " + (success ? "Success" : "Timeout"));
             Destroy(mainTask);
         });
 
@@ -193,5 +192,15 @@ public class USTaskController : MonoBehaviour
     {
         if (TaskEnded != null)
             TaskEnded(this, new USTaskControllerEventArgs { Type = t, Position = p, SpawnCount = c, Task = task, EventInfo = info });
+    }
+
+    public void RemoveAllTasks()
+    {
+        var runningTasks = gameObject.GetComponents<USTask>();
+        foreach (USTask t in runningTasks)
+        {
+            Destroy(t.GetTaskObject());
+            Destroy(t);
+        }
     }
 }

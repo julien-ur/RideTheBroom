@@ -22,7 +22,7 @@ public class USTaskSpawner : MonoBehaviour {
     private int _spawnCount;
     private int _runningTaskCount;
     private bool _readyForNextSpawn;
-    private bool _trainingRound;
+    private Coroutine _spawningRoutine;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class USTaskSpawner : MonoBehaviour {
     private IEnumerator Spawner()
     {
         // yield return new WaitForSeconds(Random.Range(15, 30));
-
+        
         while (_actionPool.Count > 0)
         {
             yield return new WaitUntil(IsPlayerReady);
@@ -104,20 +104,7 @@ public class USTaskSpawner : MonoBehaviour {
     {
         //if(--_runningTaskCount == 0)
         //    _readyForNextSpawn = true;
-
-        if (args.Type == USTask.TYPE.Secondary)
-        {
-            _readyForNextSpawn = true;
-            if (args.EventInfo == "timeout" && _trainingRound)
-            {
-                int newMainTasks = Random.Range(USTaskPoolGenerator.MinMainTasksOnlyBeforeSecondaryTask, USTaskPoolGenerator.MaxMainTasksOnlyBeforeSecondaryTask+1);
-                for (int i = 0; i < newMainTasks; i++)
-                {
-                    _actionPool.Add(new PoolItem(USTask.POSITION.Middle, USTask.POSITION.None));
-                }
-                _actionPool.Add(new PoolItem(USTask.POSITION.Middle, args.Position));
-            }
-        }
+        _readyForNextSpawn = true;
     }
 
     protected virtual void OnActionCountReached()
@@ -133,13 +120,20 @@ public class USTaskSpawner : MonoBehaviour {
 
     public void StartSpawning()
     {
-        StartCoroutine(Spawner());
+        _spawningRoutine = StartCoroutine(Spawner());
     }
 
-    public void InitNewRound(bool trainingRound)
+    public void StopSpawning()
+    {
+        if (_spawningRoutine != null)
+            StopCoroutine(_spawningRoutine);
+        
+        _taskControl.RemoveAllTasks();
+    }
+
+    public void InitNewRound(USTaskPoolGenerator.MODE m)
     {
         _spawnCount = 0;
-        _trainingRound = trainingRound;
-        _actionPool = _poolGenerator.GeneratePool(false);
+        _actionPool = _poolGenerator.GeneratePool(m);
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using Valve.VR;
 
 public class UserStudyEventArgs :  EventArgs
 {
@@ -19,8 +20,8 @@ public class UserStudyControl : MonoBehaviour
     public static EventHandler RoundFinished;
     public static EventHandler StudyFinished;
 
-    public enum FeedbackType { Heat, Smell, Vibration, Audio }
-    private readonly string[] _feedbackLabels = { "Wärme", "Geruch", "Vibration", "Audio" };
+    public enum FeedbackType { Heat, Smell, Vibration, Audio, Training_Ring_Only, Training_Complete }
+    private readonly string[] _feedbackLabels = { "Wärme", "Geruch", "Vibration", "Audio", "Training I", "Training II" };
 
     public static Dictionary<string, string> FEEDBACK_DICT = new Dictionary<string, string>
     {
@@ -67,6 +68,8 @@ public class UserStudyControl : MonoBehaviour
     public static string RoundConfigPath = UserStudyPath + "/" + RoundConfigName;
 
     public static bool HasFeedbackPresented;
+    public static bool UserMadeInput;
+    public static bool _repeatRound;
 
     private USTaskSpawner _spawner;
     private Text _infoText;
@@ -81,8 +84,13 @@ public class UserStudyControl : MonoBehaviour
     private bool _roundFinished;
     private USLogging _logging;
     private PlayerControl _pc;
-    private int _roundCount;
+    private int _roundNum;
     private ScoreDisplayControl _scc;
+    private bool _trainingFinished;
+    private bool _studyPaused;
+    private int _trainingPhase;
+    private int _roundRepeatCount;
+    private bool _showLabel;
 
 
     void Start()
@@ -95,12 +103,11 @@ public class UserStudyControl : MonoBehaviour
 
         _logging = u.AddComponent<USLogging>();
 
-        _spawner.ActionCountReached += OnSpawnerFinished;
+        _spawner.ActionCountReached += OnRoundFinished;
         taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
-        _subjectId = Directory.GetFiles(UserStudyPath, "*.csv").Length / 2;
-        _rounds = new List<FeedbackType> { FeedbackType.Audio, FeedbackType.Audio };
+        _rounds = new List<FeedbackType> { FeedbackType.Training_Ring_Only, FeedbackType.Training_Complete, FeedbackType.Audio };
 
         AddRoundsFromRoundConfig();
 
@@ -122,7 +129,7 @@ public class UserStudyControl : MonoBehaviour
 
         _pc.LimitRotationScopeByAxis('x', 30);
 
-        StartCoroutine(StartStudy());
+        StartCoroutine(StudyLoop());
 
         foreach (var entry in DEFAULT_FEEDBACK)
         {
@@ -136,76 +143,122 @@ public class UserStudyControl : MonoBehaviour
         GameComponents.GetMenuObject().SetActive(false);
     }
 
-    IEnumerator StartStudy()
+    private IEnumerator StudyLoop()
     {
         yield return new WaitUntil(() => _playerReady);
         _pc.BlockRotationForAxis("x");
         
         yield return new WaitForSecondsRealtime(2f);
 
-        Debug.Log("Study Started - Subject #" + _subjectId);
+        Debug.Log("Study Started - S" + _subjectId);
         OnStudyStarted();
 
-        _roundCount = 0;
+        _roundNum = 0;
+        
+        StartCoroutine(PauseGame());
+        yield return new WaitUntil(() => _studyPaused);
 
-        foreach (FeedbackType f in _rounds)
+        while (_roundNum < _rounds.Count)
         {
             _roundFinished = false;
-            HasFeedbackPresented = false;
-            _currentFeedbackType = f;
-
-            // PAUSE GAME AND SHOW INFO TEXT //
-            _pc.ChangeSpeedToTargetSpeed(0, 1);
-            // _loadingOverlay.FadeOut(2);
-            yield return new WaitForSecondsRealtime(1.5f);
-            Time.timeScale = 0;
-
-            if (_roundCount > 0)
-            {
-                _infoText.text = "Pause";
-                yield return new WaitUntil(() => Input.GetKeyUp("space"));
-                yield return new WaitForEndOfFrame();
-                Time.timeScale = 1;
-                if (_roundCount == 1) _scc.SetScore(0);
-            }
-
-            _infoText.text = (_roundCount > 0) ? _feedbackLabels[(int)f] : "Übung";
-            if (f != FeedbackType.Audio)
-            {
-                yield return new WaitUntil(() => HasFeedbackPresented);
-            }
-            yield return new WaitUntil(() => Input.GetKeyUp("space"));
-
-            _infoText.text = "";
-            Time.timeScale = 1;
-
-            // _loadingOverlay.FadeIn(2);
-            _pc.ChangeSpeedToDefaultSpeed(2);
-            yield return new WaitForSecondsRealtime(2);
-            // ----------------------------------------------------------------- //
-
+            _currentFeedbackType = _rounds[_roundNum];
+            
+            // reset score after training
+            if (_roundNum == 2) _scc.SetScore(0);
+            
+            StartCoroutine(ShowRoundTypeLabel());
+            yield return new WaitUntil(() => _infoText.text == "");
+            
+            StartCoroutine(ResumeGame());
+            yield return new WaitUntil(() => !_studyPaused);
+            
+            var spawnPoolType = _currentFeedbackType == FeedbackType.Training_Ring_Only
+                ? USTaskPoolGenerator.MODE.TRAINING_RING_ONLY
+                : USTaskPoolGenerator.MODE.STUDY;
+            
+            _spawner.InitNewRound(spawnPoolType);
+            
             OnRoundStarted();
-            _spawner.InitNewRound(_roundCount == 0);
-
             _spawner.StartSpawning();
-
             yield return new WaitUntil(() => _roundFinished);
             OnRoundFinished();
-            _roundCount++;
+
+            StartCoroutine(PauseGame());
+            yield return new WaitUntil(() => _studyPaused);
+
+            StartCoroutine(ShowPauseLabel());
+            yield return new WaitUntil(() => _infoText.text == "");
+
+            CheckRepeatAndUpdateCounts();
         }
 
         Debug.Log("Study Finished");
         OnStudyFinished();
 
-        // _loadingOverlay.FadeOut(2);
-        _pc.ChangeSpeedToTargetSpeed(0, 1);
-        yield return new WaitForSecondsRealtime(1.5f);
-        Time.timeScale = 0;
+        StartCoroutine(PauseGame());
+        yield return new WaitUntil(() => _studyPaused);
         _infoText.text = "Ende";
 
         yield return new WaitForSecondsRealtime(3);
         _feedbackUSB.StopAllFeedback();
         GameComponents.GetGameController().FinishLevel();
+    }
+
+    private IEnumerator PauseGame()
+    {
+        // freeze speed & time
+        _pc.ChangeSpeedToTargetSpeed(0, 1);
+        yield return new WaitForSecondsRealtime(1.5f);
+        Time.timeScale = 0;
+        _studyPaused = true;
+    }
+
+    private IEnumerator ResumeGame()
+    {
+        // unfreeze speed & time
+        Time.timeScale = 1;
+        _pc.ChangeSpeedToDefaultSpeed(2);
+        yield return new WaitForSecondsRealtime(2);
+        _studyPaused = false;
+    }
+    
+    private IEnumerator ShowPauseLabel()
+    {
+        // show pause label
+        _infoText.text = "Pause";
+        yield return new WaitUntil(() => Input.GetKeyUp("space"));
+        yield return new WaitForEndOfFrame();
+        _infoText.text = "";
+    }
+
+    private IEnumerator ShowRoundTypeLabel()
+    {
+        // show round info
+        _infoText.text = GetRoundLabel();
+        
+        // wait for feedback presentation if needed
+        if (GetFeedbackType() != FeedbackType.Audio)
+        {
+            HasFeedbackPresented = false;
+            yield return new WaitUntil(() => HasFeedbackPresented);
+        }
+        yield return new WaitUntil(() => Input.GetKeyUp("space"));
+
+        _infoText.text = "";
+    }
+    
+    private void CheckRepeatAndUpdateCounts()
+    {
+        if (_repeatRound)
+        {
+            _roundRepeatCount ++;
+            _repeatRound = false;
+        }
+        else
+        {
+            _roundNum ++;
+            _roundRepeatCount = 0;
+        }
     }
 
     private void AddRoundsFromRoundConfig()
@@ -249,7 +302,7 @@ public class UserStudyControl : MonoBehaviour
         }
     }
 
-    public void OnSpawnerFinished(object sender, EventArgs args)
+    public void OnRoundFinished(object sender, EventArgs args)
     {
         Debug.Log("Round Finished");
         _roundFinished = true;
@@ -264,7 +317,7 @@ public class UserStudyControl : MonoBehaviour
     protected virtual void OnRoundStarted()
     {
         if (RoundStarted != null)
-            RoundStarted(this, new UserStudyEventArgs() { SubjectID = _subjectId, FeedbackType = GetCurrentFeedbackType() });
+            RoundStarted(this, new UserStudyEventArgs() { SubjectID = _subjectId, FeedbackType = GetFeedbackType() });
     }
 
     protected virtual void OnRoundFinished()
@@ -278,17 +331,49 @@ public class UserStudyControl : MonoBehaviour
         if (StudyFinished != null)
             StudyFinished(this, EventArgs.Empty);
     }
+    
+    public static void ToggleRoundRepeat()
+    {
+        _repeatRound = !_repeatRound;
+    }
 
-    public FeedbackType GetCurrentFeedbackType()
+    public void ForceFinishRound()
+    {
+        Debug.Log("Round manually finished..");
+        _roundFinished = true;
+        _spawner.StopSpawning();
+    }
+
+    public FeedbackType GetFeedbackType()
+    {
+        return (int)_currentFeedbackType > 2 ? FeedbackType.Audio : _currentFeedbackType;
+    }
+    
+    public object GetRoundType()
     {
         return _currentFeedbackType;
+    }
+    
+    private string GetRoundLabel()
+    {
+        return _feedbackLabels[(int) _currentFeedbackType];
     }
 
     public int GetCurrentRoundCount()
     {
-        return _roundCount;
+        return _roundNum;
+    }
+    
+    public int GetCurrentRepeatCount()
+    {
+        return _roundRepeatCount;
     }
 
+    public static bool IsRoundRepeated()
+    {
+        return _repeatRound;
+    }
+    
     public string GetFeedbackData(USTask.POSITION actionPosition)
     {
         string feedbackData;
@@ -302,8 +387,18 @@ public class UserStudyControl : MonoBehaviour
         return feedbackData;
     }
 
-    public object GetSubjectId()
+    public int GetSubjectId()
     {
         return _subjectId;
+    }
+    
+    public int GetAutoSubjectId()
+    {
+        return Directory.GetFiles(UserStudyPath, "*.csv").Length / 2;
+    }
+    
+    public void SetSubjectId(int s)
+    {
+        _subjectId = s;
     }
 }

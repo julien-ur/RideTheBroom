@@ -38,33 +38,34 @@ public struct PoolItem
 
 public class USTaskPoolGenerator
 {
-    public enum RELATION { Synchronous, Asynchronous }
+    // public enum RELATION { Synchronous, Asynchronous }
+    public enum MODE { TRAINING_RING_ONLY, TRAINING_COMPLETE, STUDY }
 
     private const int TaskPositions = 3;
     private const int RelationNum = 2;
 
-    private readonly List<USTask.POSITION>[] _asychronousPositionPool;
+    // private readonly List<USTask.POSITION>[] _asychronousPositionPool;
 
     private const int SecondaryTaskConditions = 3;
     private const int SecondaryTaskConditionRepetitions = 3;
 
-    public const int MinMainTasksOnlyBeforeSecondaryTask = 3;
-    public const int MaxMainTasksOnlyBeforeSecondaryTask = 6;
-
-    private const int TrainingMainTaskRepetitions = 0; //6;
-    private const int TrainingSecondaryTaskRepetitions = 1; //3;
+    private const int MinMainTasksOnlyBeforeSecondaryTask = 3;
+    private const int MaxMainTasksOnlyBeforeSecondaryTask = 6;
+    
+    private const int TrainingMainTaskRepetitions = 20;
+    private const int TrainingSecondaryTaskRepetitions = 3;
 
     public USTaskPoolGenerator()
     {
-        _asychronousPositionPool = CreateAsynchronousPositionsPool();
+        // _asychronousPositionPool = CreateAsynchronousPositionsPool();
     }
 
-    public List<PoolItem> GeneratePool(bool forTraining)
+    public List<PoolItem> GeneratePool(MODE m)
     {
-        return forTraining ? GenerateTrainingPool(TrainingMainTaskRepetitions, TrainingSecondaryTaskRepetitions) : GenerateStudyPool();
+        return m == MODE.TRAINING_RING_ONLY ? GenerateTrainingPool(TrainingMainTaskRepetitions, 0) : GenerateStudyPool();
     }
 
-    public List<PoolItem> GenerateTrainingPool(int mainTaskRepetitions, int secondaryTaskRepetitions)
+    private static List<PoolItem> GenerateTrainingPool(int mainTaskRepetitions, int secondaryTaskRepetitions)
     {
         List<PoolItem> actionPool = new List<PoolItem>();
 
@@ -75,26 +76,29 @@ public class USTaskPoolGenerator
             actionPool.Add(poolItem);
         }
 
-        for (int i = 0; i < TaskPositions; i++)
+        if (secondaryTaskRepetitions > 0)
         {
-            var poolItem = new PoolItem(USTask.POSITION.None, (USTask.POSITION) i);
-
-            for (int j = 0; j < secondaryTaskRepetitions - 1; j++)
+            for (int i = 0; i < TaskPositions; i++)
             {
+                var poolItem = new PoolItem(USTask.POSITION.None, (USTask.POSITION) i);
+
+                for (int j = 0; j < secondaryTaskRepetitions - 1; j++)
+                {
+                    actionPool.Add(poolItem);
+                }
+            }
+
+            for (int i = 0; i < TaskPositions; i++)
+            {
+                var poolItem = new PoolItem(USTask.POSITION.None, (USTask.POSITION)i);
                 actionPool.Add(poolItem);
             }
         }
-
-        for (int i = 0; i < TaskPositions; i++)
-        {
-            var poolItem = new PoolItem(USTask.POSITION.None, (USTask.POSITION)i);
-            actionPool.Add(poolItem);
-        }
-
+        
         return actionPool;
     }
 
-    public List<PoolItem> GenerateStudyPool()
+    private List<PoolItem> GenerateStudyPool()
     {
         List<int> secondaryTaskPool = CreateSecondaryTaskPool();
         var actionPool = new List<PoolItem>();
@@ -164,7 +168,7 @@ public class USTaskPoolGenerator
         return asychronousPool;
     }
 
-    private PoolItem CreateDoubleTaskPoolItem(ref List<int> secondaryTaskPool)
+    private static PoolItem CreateDoubleTaskPoolItem(ref List<int> secondaryTaskPool)
     {
         int secondaryTaskCondition = TakeRandomConditionFromPool(ref secondaryTaskPool);
 
@@ -178,11 +182,8 @@ public class USTaskPoolGenerator
         //}
 
         var secondaryTaskPosition = (USTask.POSITION)Random.Range(0, SecondaryTaskConditionRepetitions);
-        Debug.Log(secondaryTaskPosition);
 
         USTask.POSITION mainTaskPosition = USTask.POSITION.None;
-
-        Debug.Log(secondaryTaskPosition + " " + mainTaskPosition);
 
         return new PoolItem(mainTaskPosition, secondaryTaskPosition);
     }

@@ -37,7 +37,7 @@ public class FeedbackUSB : MonoBehaviour
     public void UpdateFeedback(string rawData, Action c=null)
     {
         sendTest = false;
-        print("Feedback Update " + rawData);
+        // print("Feedback Update " + rawData);
 
         if (rawData.Contains(FeedbackConstants.VIBRATION_TAG))
         {
@@ -62,7 +62,7 @@ public class FeedbackUSB : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.LogError(ex);
+            Debug.LogWarning(ex);
         }
     }
 

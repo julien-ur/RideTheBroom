@@ -9814,7 +9814,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 89}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98ffe266eb42f4a0fb8ac8ee3b04a975, type: 3}
   m_Name: 
@@ -10127,7 +10127,7 @@ MonoBehaviour:
   rotationFactorY: 120
   noRotationBlocking: 0
   blockHorizontalRotation: 0
-  blockVerticalRotation: 0
+  blockVerticalRotation: 1
   useBroomHardware: 1
   useAndroidInput: 0
   useViveTracker: 1

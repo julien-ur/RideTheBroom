@@ -30,7 +30,7 @@ public class UserStudyControl : MonoBehaviour
         { "" + FeedbackType.Heat + " " + USTask.POSITION.Right, FeedbackConstants.HEAT_TAG + ",1,3" },
 
         { "" + FeedbackType.Smell + " " + USTask.POSITION.Left, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_WOODY_VAL + ",0.5" },
-        { "" + FeedbackType.Smell + " " + USTask.POSITION.Middle, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_LEMON_VAL + ",0.8" },
+        { "" + FeedbackType.Smell + " " + USTask.POSITION.Middle, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_LEMON_VAL + ",0.9" },
         { "" + FeedbackType.Smell + " " + USTask.POSITION.Right, FeedbackConstants.SMELL_TAG + "," + FeedbackConstants.SMELL_BERRY_VAL + ",0.8" },
 
         { "" + FeedbackType.Vibration + " " + USTask.POSITION.Left, FeedbackConstants.VIBRATION_TAG + ",0.2,0.5" },
@@ -107,7 +107,7 @@ public class UserStudyControl : MonoBehaviour
         taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
-        _rounds = new List<FeedbackType> { FeedbackType.Training_Ring_Only, FeedbackType.Training_Complete, FeedbackType.Audio };
+        _rounds = new List<FeedbackType> {  };
 
         AddRoundsFromRoundConfig();
 

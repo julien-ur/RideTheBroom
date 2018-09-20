@@ -172,6 +172,12 @@ public class USTask : MonoBehaviour {
     {
         return _taskItem;
     }
+
+    public void Remove()
+    {
+        Destroy(_taskItem);
+        Destroy(this);
+    }
     
     public Vector3 GetActiveRingPosition()
     {

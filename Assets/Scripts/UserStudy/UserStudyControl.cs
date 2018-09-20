@@ -107,7 +107,7 @@ public class UserStudyControl : MonoBehaviour
         taskControl.TaskSpawned += OnTaskStarted;
         taskControl.TaskEnded += OnTaskEnded;
 
-        _rounds = new List<FeedbackType> {  };
+        _rounds = new List<FeedbackType> { FeedbackType.Training_Ring_Only, FeedbackType.Training_Complete, FeedbackType.Audio };
 
         AddRoundsFromRoundConfig();
 
@@ -181,6 +181,7 @@ public class UserStudyControl : MonoBehaviour
             OnRoundStarted();
             _spawner.StartSpawning();
             yield return new WaitUntil(() => _roundFinished);
+            _spawner.StopSpawning();
             OnRoundFinished();
 
             StartCoroutine(PauseGame());
@@ -341,7 +342,6 @@ public class UserStudyControl : MonoBehaviour
     {
         Debug.Log("Round manually finished..");
         _roundFinished = true;
-        _spawner.StopSpawning();
     }
 
     public FeedbackType GetFeedbackType()

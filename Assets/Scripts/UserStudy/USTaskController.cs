@@ -49,11 +49,6 @@ public class USTaskController : MonoBehaviour
 
     public void StartTasks(PoolItem tpi, int spawnCount)
     {
-        if (tpi.MainTaskPos != USTask.POSITION.None)
-            Debug.Log("Main Task Spawned " + spawnCount);
-        else
-            Debug.Log("Secondary Task Spawned " + tpi.SecondaryTaskPos + " " + spawnCount);
-
         USTask mainTask = null;
 
         if (tpi.MainTaskPos != USTask.POSITION.None)
@@ -129,6 +124,7 @@ public class USTaskController : MonoBehaviour
             Debug.Log("Main Task " + spawnCount + " " + (success ? "Success" : "Timeout"));
             Destroy(mainTask);
         });
+        Debug.Log("Main Task Spawned " + spawnCount);
 
         OnTaskStarted(USTask.TYPE.Main, mainTask, pos, spawnCount);
 
@@ -144,6 +140,7 @@ public class USTaskController : MonoBehaviour
             HandleSecondaryTaskEnded(secondaryTask, pos, spawnCount, success);
             Destroy(secondaryTask);
         });
+        Debug.Log("Secondary Task Spawned " + pos + " " + spawnCount);
 
         OnTaskStarted(USTask.TYPE.Secondary, secondaryTask, pos, spawnCount);
     }
@@ -199,8 +196,7 @@ public class USTaskController : MonoBehaviour
         var runningTasks = gameObject.GetComponents<USTask>();
         foreach (USTask t in runningTasks)
         {
-            Destroy(t.GetTaskObject());
-            Destroy(t);
+            t.Remove();
         }
     }
 }

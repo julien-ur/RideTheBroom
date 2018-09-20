@@ -127,7 +127,8 @@ public class USTaskSpawner : MonoBehaviour {
     {
         if (_spawningRoutine != null)
             StopCoroutine(_spawningRoutine);
-        
+
+        _taskControl.StopAllCoroutines();
         _taskControl.RemoveAllTasks();
     }
 

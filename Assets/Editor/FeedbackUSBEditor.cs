@@ -14,7 +14,7 @@ public class FeedbackUSBEditor : Editor
     private UserStudyControl.FeedbackType _currFeedbackType;
     private bool _studyRunning;
     private static int newSubjectId;
-    private bool _useAutoId = true;
+    private bool _useAutoId = false;
 
 
     void Awake()

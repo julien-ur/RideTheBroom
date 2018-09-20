@@ -44,6 +44,8 @@ public class UserStudyControl : MonoBehaviour
         { FeedbackConstants.HEAT_TAG, 0.2f },
     };
 
+    public int SubjectId;
+
     public AudioClip TimeOutSound;
     public float TimeOutVolume = 0.3f;
 
@@ -75,7 +77,6 @@ public class UserStudyControl : MonoBehaviour
     private Text _infoText;
     private LoadingOverlay _loadingOverlay;
      
-    private int _subjectId;
     private List<FeedbackType> _rounds;
     private FeedbackType _currentFeedbackType;
     //private FeedbackServer _fbs;
@@ -150,7 +151,7 @@ public class UserStudyControl : MonoBehaviour
         
         yield return new WaitForSecondsRealtime(2f);
 
-        Debug.Log("Study Started - S" + _subjectId);
+        Debug.Log("Study Started - S" + SubjectId);
         OnStudyStarted();
 
         _roundNum = 0;
@@ -270,7 +271,7 @@ public class UserStudyControl : MonoBehaviour
 
         try
         {
-            string line = lines[_subjectId % 6];
+            string line = lines[SubjectId % 6];
             var roundOrder = line.Split(',');
 
             var fll = _feedbackLabels.ToList();
@@ -312,13 +313,13 @@ public class UserStudyControl : MonoBehaviour
     protected virtual void OnStudyStarted()
     {
         if (StudyStarted != null)
-            StudyStarted(this, new UserStudyEventArgs() { SubjectID = _subjectId, FeedbackType = _rounds[0] });
+            StudyStarted(this, new UserStudyEventArgs() { SubjectID = SubjectId, FeedbackType = _rounds[0] });
     }
 
     protected virtual void OnRoundStarted()
     {
         if (RoundStarted != null)
-            RoundStarted(this, new UserStudyEventArgs() { SubjectID = _subjectId, FeedbackType = GetFeedbackType() });
+            RoundStarted(this, new UserStudyEventArgs() { SubjectID = SubjectId, FeedbackType = GetFeedbackType() });
     }
 
     protected virtual void OnRoundFinished()
@@ -389,7 +390,7 @@ public class UserStudyControl : MonoBehaviour
 
     public int GetSubjectId()
     {
-        return _subjectId;
+        return SubjectId;
     }
     
     public int GetAutoSubjectId()
@@ -399,6 +400,6 @@ public class UserStudyControl : MonoBehaviour
     
     public void SetSubjectId(int s)
     {
-        _subjectId = s;
+        SubjectId = s;
     }
 }

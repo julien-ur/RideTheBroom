@@ -5,6 +5,7 @@ using UnityEditor;
 
 [CustomEditor(typeof(FeedbackUSB))]
 [CanEditMultipleObjects]
+[ExecuteInEditMode]
 public class FeedbackUSBEditor : Editor
 {
     private FeedbackUSB _fusb;
@@ -13,8 +14,9 @@ public class FeedbackUSBEditor : Editor
     
     private UserStudyControl.FeedbackType _currFeedbackType;
     private bool _studyRunning;
-    private static int newSubjectId;
-    private bool _useAutoId = false;
+    public int subjectId;
+    public static int newSubjectId;
+    public bool _useAutoId = false;
 
 
     void Awake()
@@ -57,20 +59,6 @@ public class FeedbackUSBEditor : Editor
     {
         EditorGUILayout.LabelField("____________________________________________");
         EditorGUILayout.LabelField("STUDY CONTROL");
-        
-        EditorGUILayout.IntField("Auto Subject ID", _usc.GetAutoSubjectId());
-        if (!_useAutoId)
-        {
-            if ((newSubjectId = EditorGUILayout.IntField("Subject ID", _usc.GetSubjectId())) != _usc.GetSubjectId())
-            {
-                _usc.SetSubjectId(newSubjectId);
-            }
-        }
-        
-        _useAutoId = EditorGUILayout.Toggle("Use Auto ID", _useAutoId);
-
-        
-        EditorGUILayout.LabelField("");
         
         EditorGUILayout.LabelField("Round: " +  _usc.GetCurrentRoundCount() + ", Repeat Count: " + _usc.GetCurrentRepeatCount());
         EditorGUILayout.LabelField("Round Type: " + _usc.GetRoundType());

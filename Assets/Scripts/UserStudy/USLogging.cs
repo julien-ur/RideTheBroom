@@ -76,6 +76,9 @@ public class USLogging : MonoBehaviour
     private float _loggingStartTime;
     private int _subjectId;
 
+    private string _eventCsvPath;
+    private string _gameStatusCsvPath;
+
     private USTaskControllerEventArgs[] _taskData;
     private bool _paused;
     private float _pauseStartTime;
@@ -108,11 +111,9 @@ public class USLogging : MonoBehaviour
         Thread.CurrentThread.CurrentCulture = customCulture;
     }
 
-    IEnumerator CSVLogger()
+    IEnumerator GameStatusLogger()
     {
-        CreateEventLogCSV();
-
-        using (StreamWriter gameStatusWriter = new StreamWriter("UserStudy/s" + _subjectId + "_gamestatus.csv"))
+        using (StreamWriter gameStatusWriter = new StreamWriter(_gameStatusCsvPath))
         {
             gameStatusWriter.WriteLine(USGameStatusLogRecord.GetCSVHeader(Delimiter));
 
@@ -127,13 +128,6 @@ public class USLogging : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f / LogsPerSecond - (endTime - startTime));
             }
         }
-    }
-
-    private void CreateEventLogCSV()
-    {
-        StreamWriter eventWriter = new StreamWriter("UserStudy/s" + _subjectId + "_events.csv");
-        eventWriter.WriteLine(USEventLogRecord.GetCSVHeader(Delimiter));
-        eventWriter.Close();
     }
 
     private USGameStatusLogRecord CreateNewGameStatusRecord()
@@ -157,6 +151,13 @@ public class USLogging : MonoBehaviour
         return record;
     }
 
+    private void CreateEventLogCSV()
+    {
+        StreamWriter eventWriter = new StreamWriter(_eventCsvPath);
+        eventWriter.WriteLine(USEventLogRecord.GetCSVHeader(Delimiter));
+        eventWriter.Close();
+    }
+
     private void WriteEventLogRecord(USTask.TYPE type, string status, string info, float id)
     {
         string t = (type == USTask.TYPE.Main) ? "Ring" : "POV";
@@ -172,7 +173,7 @@ public class USLogging : MonoBehaviour
             EventId = id
         };
 
-        var eventWriter = new StreamWriter("UserStudy/s" + _subjectId + "_events.csv", true);
+        var eventWriter = new StreamWriter(_eventCsvPath, true);
         eventWriter.WriteLine(USEventLogRecord.ConvertToCSVString(record, Delimiter));
         eventWriter.Close();
     }
@@ -204,7 +205,31 @@ public class USLogging : MonoBehaviour
         _subjectId = e.SubjectID;
         _logging = true;
         _paused = true;
-        _loggingCoroutine = StartCoroutine(CSVLogger());
+
+        GenerateSaveCsvPaths();
+
+        _loggingCoroutine = StartCoroutine(GameStatusLogger());
+        CreateEventLogCSV();
+    }
+
+    private void GenerateSaveCsvPaths()
+    {
+        _eventCsvPath = "UserStudy/s" + _subjectId + "_events.csv";
+        int counter = 0;
+
+        while (File.Exists(_eventCsvPath))
+        {
+            counter++;
+            _eventCsvPath = "UserStudy/s" + _subjectId + "_events_" + counter + ".csv";
+        }
+
+        _gameStatusCsvPath = "UserStudy/s" + _subjectId + "_gamestatus.csv";
+        counter = 0;
+        while (File.Exists(_gameStatusCsvPath))
+        {
+            counter++;
+            _gameStatusCsvPath = "UserStudy/s" + _subjectId + "_gamestatus_" + counter + ".csv";
+        }
     }
 
     public void FinishLogging(object sender, EventArgs eventArgs)

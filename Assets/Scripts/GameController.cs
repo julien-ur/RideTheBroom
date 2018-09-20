@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    public bool blockSceneLoading;
-
     private const string HIGHSCORE_FILE_PATH = "highscore.txt";
 
     private GameObject player;
@@ -29,6 +27,7 @@ public class GameController : MonoBehaviour
     private int numRings;
     private Text _crosshair;
     private ScoreDisplayControl _scoreDisplayControl;
+    private bool _blockSceneLoading;
 
     void Awake()
     {
@@ -72,7 +71,8 @@ public class GameController : MonoBehaviour
 
     IEnumerator LoadScene(Constants.LEVEL levelToLoad)
     {
-        yield return new WaitUntil(() => !blockSceneLoading);
+        _blockSceneLoading = true;
+        yield return new WaitUntil(() => !_blockSceneLoading);
 
         if (levelToLoad == Constants.LEVEL.Tutorial)
         {
@@ -237,6 +237,11 @@ public class GameController : MonoBehaviour
         int minutes = (int) ((time / 60) % 60);
 
         return minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+    public void UnblockSceneLoading()
+    {
+        _blockSceneLoading = false;
     }
 
     private void SaveHighscoreFile()

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.009900219, g: 0.014866816, b: 0.0195931, a: 1}
+  m_IndirectSpecularColor: {r: 0.006241649, g: 0.006389409, b: 0.012508297, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -722,7 +722,7 @@ Prefab:
     - target: {fileID: 114192339243405818, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: index
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114349664538927542, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
@@ -8066,6 +8066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4414389679d3c194a965c69d8896fd73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SubjectId: 0
   TimeOutSound: {fileID: 8300000, guid: b0c220f028c1d7f4c9788fe40f0a7b89, type: 3}
   TimeOutVolume: 0.3
   SuccessSound: {fileID: 8300000, guid: 35dee669c4e9836448b9823e52c25182, type: 3}

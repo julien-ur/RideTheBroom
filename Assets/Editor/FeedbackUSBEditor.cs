@@ -10,8 +10,7 @@ public class FeedbackUSBEditor : Editor
 {
     private FeedbackUSB _fusb;
     private UserStudyControl _usc;
-    private USTaskSpawner _spawner;
-    
+
     private UserStudyControl.FeedbackType _currFeedbackType;
     private bool _studyRunning;
     public int subjectId;
@@ -57,6 +56,15 @@ public class FeedbackUSBEditor : Editor
 
     private void DrawStudyControl()
     {
+        if (GUILayout.Button("Toggle Test HUD"))
+        {
+            _usc.TestHUD.SetActive(!_usc.TestHUD.activeSelf);
+        }
+        if (GUILayout.Button("Start Loading Scene"))
+        {
+            GameComponents.GetGameController().UnblockSceneLoading();
+        }
+
         EditorGUILayout.LabelField("____________________________________________");
         EditorGUILayout.LabelField("STUDY CONTROL");
         
@@ -75,16 +83,16 @@ public class FeedbackUSBEditor : Editor
         
         EditorGUILayout.LabelField("");
 
-        if (GUILayout.Button("Pause Feedback"))
-        {
-            _fusb.StopAllFeedback();
-        }
-        if (GUILayout.Button("Resume Feedback"))
+        if (GUILayout.Button("Start Feedback"))
         {
             foreach (var entry in UserStudyControl.DEFAULT_FEEDBACK)
             {
                 _fusb.PermanentUpdate(entry.Key, entry.Value);
             }
+        }
+        if (GUILayout.Button("Stop Feedback"))
+        {
+            _fusb.StopAllFeedback();
         }
     }
 
@@ -97,7 +105,6 @@ public class FeedbackUSBEditor : Editor
         bool reachedCurrentType = false;
         foreach (var entry in UserStudyControl.FEEDBACK_DICT)
         {
-
             if (counter++ % 3 == 0 && counter > 1) EditorGUILayout.LabelField("");
 
             if (_studyRunning && !reachedCurrentType && entry.Key.Contains("" + _currFeedbackType))

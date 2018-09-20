@@ -64,6 +64,7 @@ public class UserStudyControl : MonoBehaviour
     public GameObject PovContainer;
     public GameObject RingObject;
     public GameObject RingInactiveObject;
+    public GameObject TestHUD;
 
     public static string UserStudyPath = "UserStudy";
     public static string RoundConfigName = "round_config.ini";
@@ -128,14 +129,8 @@ public class UserStudyControl : MonoBehaviour
             mct.PlayerLeftTheBuilding += OnPlayerLeftTheBuilding;
         }
 
-        _pc.LimitRotationScopeByAxis('x', 30);
-
+        _pc.BlockRotationForAxis("x");
         StartCoroutine(StudyLoop());
-
-        foreach (var entry in DEFAULT_FEEDBACK)
-        {
-            _feedbackUSB.PermanentUpdate(entry.Key, entry.Value);
-        }
     }
 
     public void OnPlayerLeftTheBuilding(object sender, EventArgs args)
@@ -147,7 +142,6 @@ public class UserStudyControl : MonoBehaviour
     private IEnumerator StudyLoop()
     {
         yield return new WaitUntil(() => _playerReady);
-        _pc.BlockRotationForAxis("x");
         
         yield return new WaitForSecondsRealtime(2f);
 

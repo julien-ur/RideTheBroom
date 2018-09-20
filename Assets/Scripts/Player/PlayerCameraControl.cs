@@ -54,6 +54,5 @@ public class PlayerCameraControl : MonoBehaviour {
     public void SetOffset(Vector3 pos, Quaternion rot)
     {
         transform.position -= pos;
-        // transform.Rotate(Vector3.up, -(rot.eulerAngles.y-169f), Space.World);
     }
 }

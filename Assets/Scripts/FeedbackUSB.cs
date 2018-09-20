@@ -18,6 +18,7 @@ public class FeedbackUSB : MonoBehaviour
     private SerialPort serialPort;
     public bool sendTest = false;
     public string sendTestString = "w,0.5,2;";
+
     private Action callback;
 
     void OnDestroy()

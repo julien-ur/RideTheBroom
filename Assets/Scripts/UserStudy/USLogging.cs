@@ -17,10 +17,15 @@ public struct USGameStatusLogRecord
     public float PlayerXPos { get; set; }
     public float PlayerYPos { get; set; }
     public float PlayerZPos { get; set; }
-    public float HorizontalPlayerRot { get; set; }
-    public float VerticalPlayerRot { get; set; }
-    public float HorizontalHmdRot { get; set; }
-    public float VerticalHmdRot { get; set; }
+    public float MainCamXPos { get; set; }
+    public float MainCamYPos { get; set; }
+    public float MainCamZPos { get; set; }
+    public float PlayerXRot { get; set; }
+    public float PlayerYRot { get; set; }
+    public float PlayerZRot { get; set; }
+    public float MainCamXRot { get; set; }
+    public float MainCamYRot { get; set; }
+    public float MainCamZRot { get; set; }
 
     public static string GetCSVHeader(char delimiter)
     {
@@ -142,10 +147,15 @@ public class USLogging : MonoBehaviour
             PlayerXPos = _playerTrans.position.x,
             PlayerYPos = _playerTrans.position.y,
             PlayerZPos = _playerTrans.position.z,
-            HorizontalPlayerRot = _playerTrans.eulerAngles.y,
-            VerticalPlayerRot = _playerTrans.eulerAngles.x,
-            HorizontalHmdRot = _mainCamTrans.eulerAngles.y,
-            VerticalHmdRot = _mainCamTrans.eulerAngles.x
+            MainCamXPos = _mainCamTrans.position.x,
+            MainCamYPos = _mainCamTrans.position.y,
+            MainCamZPos = _mainCamTrans.position.z,
+            PlayerXRot = _playerTrans.eulerAngles.x,
+            PlayerYRot = _playerTrans.eulerAngles.y,
+            PlayerZRot = _playerTrans.eulerAngles.z,
+            MainCamXRot = _mainCamTrans.eulerAngles.x,
+            MainCamYRot = _mainCamTrans.eulerAngles.y,
+            MainCamZRot = _mainCamTrans.eulerAngles.z
         };
 
         return record;
@@ -158,9 +168,12 @@ public class USLogging : MonoBehaviour
         eventWriter.Close();
     }
 
-    private void WriteEventLogRecord(USTask.TYPE type, string status, string info, float id)
+    private void WriteEventLogRecord(USTask.TYPE type, string status, string info, float id, bool custom=false)
     {
         string t = (type == USTask.TYPE.Main) ? "Ring" : "POV";
+
+        if (custom)
+            t = "Custom";
 
         var record = new USEventLogRecord()
         {
@@ -190,7 +203,7 @@ public class USLogging : MonoBehaviour
 
     public void OnTaskStarted(object sender, USTaskControllerEventArgs args)
     {
-        string info = (args.Type == USTask.TYPE.Main) ? args.Task.GetActiveRingPosition().ToString() : args.Position.ToString();
+        string info = (args.Type == USTask.TYPE.Main) ? args.Task.GetActiveRingPosition().ToString("F3") : args.Position.ToString("F3");
         WriteEventLogRecord(args.Type, "visible", info, args.Task.GetInstanceID());
     }
 
@@ -210,6 +223,10 @@ public class USLogging : MonoBehaviour
 
         _loggingCoroutine = StartCoroutine(GameStatusLogger());
         CreateEventLogCSV();
+
+        GameObject cameraContainer = GameComponents.GetPlayer().GetComponentInChildren<PlayerCameraControl>().gameObject;
+        Debug.Log(cameraContainer.transform.localPosition);
+        WriteEventLogRecord(USTask.TYPE.Main, "CameraContainerPos", cameraContainer.transform.localPosition.ToString("F3"), cameraContainer.GetInstanceID(), true);
     }
 
     private void GenerateSaveCsvPaths()

@@ -708,7 +708,7 @@ Prefab:
     - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: randomSeed
-      value: 2129155281
+      value: -483949494
       objectReference: {fileID: 0}
     - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
@@ -743,6 +743,11 @@ Prefab:
         type: 2}
       propertyPath: far clip plane
       value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
@@ -8030,7 +8035,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739ec71b267f5fa45b9a836fd3a06d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockSceneLoading: 0
 --- !u!114 &1691091803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8083,6 +8087,7 @@ MonoBehaviour:
   RingObject: {fileID: 1187091028123330, guid: 08f00c375f8e05148b403ff08f4e1f5e, type: 2}
   RingInactiveObject: {fileID: 1795434030836118, guid: e49e8756e9a02444a82dced4a768d05c,
     type: 2}
+  TestHUD: {fileID: 0}
 --- !u!1 &1787460151
 GameObject:
   m_ObjectHideFlags: 0

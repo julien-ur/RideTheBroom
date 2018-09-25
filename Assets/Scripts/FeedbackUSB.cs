@@ -63,7 +63,7 @@ public class FeedbackUSB : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.LogWarning(ex);
+            Debug.LogError(ex);
         }
     }
 

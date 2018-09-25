@@ -203,7 +203,7 @@ public class USLogging : MonoBehaviour
 
     public void OnTaskStarted(object sender, USTaskControllerEventArgs args)
     {
-        string info = (args.Type == USTask.TYPE.Main) ? args.Task.GetActiveRingPosition().ToString("F3") : args.Position.ToString("F3");
+        string info = (args.Type == USTask.TYPE.Main) ? args.Task.GetActiveRingPosition().ToString("F3") : args.Position.ToString();
         WriteEventLogRecord(args.Type, "visible", info, args.Task.GetInstanceID());
     }
 

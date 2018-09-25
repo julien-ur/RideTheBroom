@@ -20743,7 +20743,7 @@ Prefab:
     - target: {fileID: 114192339243405818, guid: 6f810fdc65734ea44aa66f93d3f222df,
         type: 2}
       propertyPath: index
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4852072029471946, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
       propertyPath: m_LocalPosition.y
@@ -20774,6 +20774,30 @@ Prefab:
         type: 2}
       propertyPath: far clip plane
       value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822927006512750, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: randomSeed
+      value: -483949494
+      objectReference: {fileID: 0}
+    - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: CollisionModule.colliderForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: CollisionModule.m_Dampen.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198813693160664066, guid: 6f810fdc65734ea44aa66f93d3f222df,
+        type: 2}
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0.03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f810fdc65734ea44aa66f93d3f222df, type: 2}

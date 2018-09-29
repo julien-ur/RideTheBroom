@@ -171,6 +171,7 @@ public class USTaskPoolGenerator
     private static PoolItem CreateDoubleTaskPoolItem(ref List<int> secondaryTaskPool)
     {
         int secondaryTaskCondition = TakeRandomConditionFromPool(ref secondaryTaskPool);
+        var secondaryTaskPosition = (USTask.POSITION) secondaryTaskCondition;
 
         //var secondaryTaskPosition = (USTask.POSITION)(secondaryTaskCondition / 2);
         //var taskRelation = (RELATION)(secondaryTaskCondition % 2);
@@ -181,11 +182,9 @@ public class USTaskPoolGenerator
         //    mainTaskPosition = TakeRandomConditionFromPool(ref _asychronousPositionPool[(int)secondaryTaskPosition]);
         //}
 
-        var secondaryTaskPosition = (USTask.POSITION)Random.Range(0, SecondaryTaskConditionRepetitions);
+        // var secondaryTaskPosition = (USTask.POSITION)Random.Range(0, SecondaryTaskConditionRepetitions);
 
-        USTask.POSITION mainTaskPosition = USTask.POSITION.None;
-
-        return new PoolItem(mainTaskPosition, secondaryTaskPosition);
+        return new PoolItem(USTask.POSITION.None, secondaryTaskPosition);
     }
 
     private static T TakeRandomConditionFromPool<T>(ref List<T> pool)

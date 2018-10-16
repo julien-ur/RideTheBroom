@@ -1,0 +1,705 @@
+SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
+26;107.994;Heat;Custom;CameraContainerPos;(0.083, -1.147, -0.023);-1118
+26;0.034;Training_Ring_Only;Ring;visible;(-9.517, 3.150, 184.215);-154384
+26;3.052;Training_Ring_Only;Ring;visible;(-23.715, 3.150, 258.814);-154650
+26;3.284;Training_Ring_Only;Ring;success;;-154384
+26;5.598;Training_Ring_Only;Ring;visible;(-38.617, 3.150, 320.105);-154766
+26;6.309;Training_Ring_Only;Ring;success;;-154650
+26;8.323;Training_Ring_Only;Ring;visible;(-64.397, 3.150, 382.842);-154982
+26;8.833;Training_Ring_Only;Ring;success;;-154766
+26;11.580;Training_Ring_Only;Ring;success;;-154982
+26;12.123;Training_Ring_Only;Ring;visible;(-129.785, 3.150, 451.450);-155220
+26;15.406;Training_Ring_Only;Ring;visible;(-174.504, 3.150, 518.107);-155342
+26;15.423;Training_Ring_Only;Ring;success;;-155220
+26;18.378;Training_Ring_Only;Ring;visible;(-210.877, 3.150, 581.891);-155466
+26;18.662;Training_Ring_Only;Ring;success;;-155342
+26;21.193;Training_Ring_Only;Ring;visible;(-250.623, 3.150, 637.377);-155662
+26;21.700;Training_Ring_Only;Ring;success;;-155466
+26;24.471;Training_Ring_Only;Ring;success;;-155662
+26;25.034;Training_Ring_Only;Ring;visible;(-311.433, 3.150, 710.087);-155932
+26;28.290;Training_Ring_Only;Ring;success;;-155932
+26;28.585;Training_Ring_Only;Ring;visible;(-340.688, 3.150, 794.039);-156128
+26;31.843;Training_Ring_Only;Ring;success;;-156128
+26;32.162;Training_Ring_Only;Ring;visible;(-371.140, 3.150, 877.510);-156326
+26;34.820;Training_Ring_Only;Ring;visible;(-399.152, 3.150, 937.703);-156448
+26;35.395;Training_Ring_Only;Ring;success;;-156326
+26;37.992;Training_Ring_Only;Ring;visible;(-420.228, 3.150, 1014.496);-156644
+26;38.054;Training_Ring_Only;Ring;success;;-156448
+26;41.271;Training_Ring_Only;Ring;success;;-156644
+26;41.744;Training_Ring_Only;Ring;visible;(-476.845, 3.150, 1087.910);-156840
+26;44.315;Training_Ring_Only;Ring;visible;(-529.182, 3.150, 1125.080);-156962
+26;45.002;Training_Ring_Only;Ring;success;;-156840
+26;47.593;Training_Ring_Only;Ring;success;;-156962
+26;48.044;Training_Ring_Only;Ring;visible;(-610.766, 3.150, 1167.518);-157234
+26;51.323;Training_Ring_Only;Ring;success;;-157234
+26;52.042;Training_Ring_Only;Ring;visible;(-702.859, 3.150, 1202.860);-157430
+26;54.971;Training_Ring_Only;Ring;visible;(-773.783, 3.150, 1218.225);-157552
+26;55.299;Training_Ring_Only;Ring;success;;-157430
+26;58.204;Training_Ring_Only;Ring;success;;-157552
+26;58.991;Training_Ring_Only;Ring;visible;(-868.987, 3.150, 1250.477);-157822
+26;61.962;Training_Ring_Only;Ring;visible;(-938.284, 3.150, 1277.005);-157944
+26;62.248;Training_Ring_Only;Ring;success;;-157822
+26;65.219;Training_Ring_Only;Ring;success;;-157944
+26;67.054;Training_Complete;Ring;visible;(-1099.160, 3.150, 1303.964);-165840
+26;69.221;Training_Complete;Ring;visible;(-1152.670, 3.150, 1312.077);-165932
+26;70.311;Training_Complete;Ring;success;;-165840
+26;71.344;Training_Complete;Ring;visible;(-1202.210, 3.150, 1330.547);-166068
+26;72.478;Training_Complete;Ring;success;;-165932
+26;74.667;Training_Complete;Ring;success;;-166068
+26;74.674;Training_Complete;Ring;visible;(-1282.974, 3.150, 1337.736);-166454
+26;77.845;Training_Complete;Ring;visible;(-1361.492, 3.150, 1347.466);-166546
+26;77.951;Training_Complete;Ring;success;;-166454
+26;81.123;Training_Complete;Ring;success;;-166546
+26;81.219;Training_Complete;Ring;visible;(-1443.983, 3.150, 1361.829);-166682
+26;84.475;Training_Complete;Ring;success;;-166682
+26;84.567;Training_Complete;POV;visible;Middle;-166776
+26;85.329;Training_Complete;Ring;visible;(-1541.009, 3.150, 1394.676);-166918
+26;86.708;Training_Complete;POV;success;;-166776
+26;87.406;Training_Complete;Ring;visible;(-1587.935, 3.150, 1416.580);-167102
+26;88.651;Training_Complete;Ring;success;;-166918
+26;90.490;Training_Complete;Ring;visible;(-1653.576, 3.150, 1452.892);-167238
+26;90.730;Training_Complete;Ring;success;;-167102
+26;93.723;Training_Complete;Ring;success;;-167238
+26;93.751;Training_Complete;Ring;visible;(-1730.304, 3.150, 1481.216);-167374
+26;96.208;Training_Complete;Ring;visible;(-1790.732, 3.150, 1483.439);-167466
+26;97.030;Training_Complete;Ring;success;;-167374
+26;98.821;Training_Complete;Ring;visible;(-1854.851, 3.150, 1492.800);-167602
+26;99.465;Training_Complete;Ring;success;;-167466
+26;102.079;Training_Complete;Ring;success;;-167602
+26;102.170;Training_Complete;POV;visible;Middle;-167740
+26;102.931;Training_Complete;Ring;visible;(-1956.828, 3.150, 1500.926);-167882
+26;104.356;Training_Complete;POV;success;;-167740
+26;106.167;Training_Complete;Ring;success;;-167882
+26;106.709;Training_Complete;Ring;visible;(-2050.600, 3.150, 1504.117);-168068
+26;109.965;Training_Complete;Ring;success;;-168068
+26;110.439;Training_Complete;Ring;visible;(-2141.602, 3.150, 1523.268);-168204
+26;113.695;Training_Complete;Ring;success;;-168204
+26;113.791;Training_Complete;Ring;visible;(-2224.134, 3.150, 1532.443);-168296
+26;117.024;Training_Complete;Ring;success;;-168296
+26;117.138;Training_Complete;POV;visible;Middle;-168434
+26;117.902;Training_Complete;Ring;visible;(-2326.265, 3.150, 1545.019);-168576
+26;119.526;Training_Complete;POV;success;;-168434
+26;121.157;Training_Complete;Ring;success;;-168576
+26;121.186;Training_Complete;Ring;visible;(-2406.970, 3.150, 1535.602);-168762
+26;123.999;Training_Complete;Ring;visible;(-2476.343, 3.150, 1523.065);-168854
+26;124.419;Training_Complete;Ring;success;;-168762
+26;126.568;Training_Complete;Ring;visible;(-2536.759, 3.150, 1501.250);-168990
+26;127.255;Training_Complete;Ring;success;;-168854
+26;129.271;Training_Complete;Ring;visible;(-2603.335, 3.150, 1489.255);-169126
+26;129.825;Training_Complete;Ring;success;;-168990
+26;132.528;Training_Complete;Ring;success;;-169126
+26;132.600;Training_Complete;Ring;visible;(-2683.715, 3.150, 1470.141);-169264
+26;135.835;Training_Complete;Ring;success;;-169264
+26;135.949;Training_Complete;POV;visible;Right;-169400
+26;136.710;Training_Complete;Ring;visible;(-2781.482, 3.150, 1438.222);-169542
+26;138.022;Training_Complete;POV;success;;-169400
+26;139.749;Training_Complete;Ring;visible;(-2850.894, 3.150, 1406.892);-169680
+26;139.968;Training_Complete;Ring;success;;-169542
+26;142.586;Training_Complete;Ring;visible;(-2912.816, 3.150, 1375.496);-169816
+26;143.050;Training_Complete;Ring;success;;-169680
+26;145.826;Training_Complete;Ring;visible;(-2985.023, 3.150, 1339.632);-169952
+26;145.843;Training_Complete;Ring;success;;-169816
+26;148.238;Training_Complete;Ring;visible;(-3042.075, 3.150, 1319.871);-170044
+26;149.060;Training_Complete;Ring;success;;-169952
+26;151.495;Training_Complete;Ring;success;;-170044
+26;151.587;Training_Complete;POV;visible;Left;-170182
+26;152.347;Training_Complete;Ring;visible;(-3140.037, 3.150, 1290.087);-170324
+26;153.683;Training_Complete;POV;success;;-170182
+26;155.582;Training_Complete;Ring;success;;-170324
+26;156.214;Training_Complete;Ring;visible;(-3230.570, 3.150, 1256.584);-170548
+26;159.537;Training_Complete;Ring;success;;-170548
+26;160.122;Training_Complete;Ring;visible;(-3311.479, 3.150, 1206.881);-170684
+26;163.358;Training_Complete;Ring;success;;-170684
+26;163.472;Training_Complete;POV;visible;Right;-170776
+26;164.234;Training_Complete;Ring;visible;(-3400.270, 3.150, 1155.589);-170918
+26;165.569;Training_Complete;POV;success;;-170776
+26;167.468;Training_Complete;Ring;success;;-170918
+26;168.054;Training_Complete;Ring;visible;(-3475.364, 3.149, 1097.122);-171102
+26;170.691;Training_Complete;Ring;visible;(-3521.567, 3.149, 1050.910);-171626
+26;171.310;Training_Complete;Ring;success;;-171102
+26;173.923;Training_Complete;Ring;success;;-171626
+26;174.666;Training_Complete;Ring;visible;(-3597.072, 3.149, 986.147);-172260
+26;177.923;Training_Complete;Ring;success;;-172260
+26;178.354;Training_Complete;Ring;visible;(-3675.278, 3.149, 937.998);-172456
+26;181.587;Training_Complete;Ring;success;;-172456
+26;182.307;Training_Complete;Ring;visible;(-3754.207, 3.149, 878.739);-172652
+26;185.541;Training_Complete;Ring;success;;-172652
+26;185.656;Training_Complete;POV;visible;Left;-172776
+26;187.016;Training_Complete;POV;success;;-172776
+26;187.044;Training_Complete;Ring;visible;(-3850.636, 3.149, 810.420);-172950
+26;189.992;Training_Complete;Ring;visible;(-3905.706, 3.149, 761.658);-173072
+26;190.277;Training_Complete;Ring;success;;-172950
+26;193.226;Training_Complete;Ring;success;;-173072
+26;193.545;Training_Complete;Ring;visible;(-3973.348, 3.149, 704.544);-173342
+26;196.778;Training_Complete;Ring;success;;-173342
+26;197.296;Training_Complete;Ring;visible;(-4044.381, 3.149, 643.270);-173538
+26;200.369;Training_Complete;Ring;visible;(-4103.021, 3.149, 593.887);-173660
+26;200.521;Training_Complete;Ring;success;;-173538
+26;203.592;Training_Complete;Ring;success;;-173660
+26;203.779;Training_Complete;Ring;visible;(-4169.127, 3.149, 540.064);-173932
+26;207.011;Training_Complete;Ring;success;;-173932
+26;207.125;Training_Complete;POV;visible;Left;-174128
+26;207.887;Training_Complete;Ring;visible;(-4250.107, 3.150, 476.983);-174300
+26;208.798;Training_Complete;POV;success;;-174128
+26;211.133;Training_Complete;Ring;success;;-174300
+26;211.339;Training_Complete;Ring;visible;(-4308.742, 3.150, 414.124);-174572
+26;213.583;Training_Complete;Ring;visible;(-4344.591, 3.150, 371.201);-174694
+26;214.583;Training_Complete;Ring;success;;-174572
+26;216.310;Training_Complete;Ring;visible;(-4392.551, 3.150, 322.694);-174890
+26;216.817;Training_Complete;Ring;success;;-174694
+26;219.588;Training_Complete;Ring;success;;-174890
+26;219.660;Training_Complete;POV;visible;Right;-175162
+26;221.241;Training_Complete;POV;success;;-175162
+26;223.447;Audio;Ring;visible;(-4585.137, 3.150, 246.159);-197320
+26;226.239;Audio;Ring;visible;(-4654.032, 3.150, 240.634);-197442
+26;226.704;Audio;Ring;success;;-197320
+26;228.607;Audio;Ring;visible;(-4712.261, 3.150, 226.354);-197638
+26;229.462;Audio;Ring;success;;-197442
+26;231.745;Audio;Ring;visible;(-4790.029, 3.150, 218.204);-197834
+26;231.863;Audio;Ring;success;;-197638
+26;235.003;Audio;Ring;success;;-197834
+26;235.533;Audio;Ring;visible;(-4883.503, 3.150, 208.135);-198104
+26;238.660;Audio;Ring;visible;(-4961.119, 3.150, 202.597);-198286
+26;238.767;Audio;Ring;success;;-198104
+26;241.884;Audio;Ring;success;;-198286
+26;241.999;Audio;POV;visible;Middle;-198514
+26;242.771;Audio;Ring;visible;(-5063.836, 3.150, 199.615);-198686
+26;243.960;Audio;POV;success;;-198514
+26;246.016;Audio;Ring;success;;-198686
+26;246.100;Audio;Ring;visible;(-5146.294, 3.151, 214.008);-198958
+26;249.367;Audio;Ring;success;;-198958
+26;249.886;Audio;Ring;visible;(-5236.147, 3.151, 240.328);-199154
+26;253.132;Audio;Ring;success;;-199154
+26;253.854;Audio;Ring;visible;(-5329.198, 3.151, 273.443);-199350
+26;257.097;Audio;Ring;success;;-199350
+26;257.190;Audio;POV;visible;Middle;-199548
+26;257.951;Audio;Ring;visible;(-5420.778, 3.151, 318.901);-199720
+26;259.040;Audio;POV;success;;-199548
+26;260.161;Audio;Ring;visible;(-5464.304, 3.151, 354.042);-199918
+26;261.173;Audio;Ring;success;;-199720
+26;263.431;Audio;Ring;success;;-199918
+26;263.994;Audio;Ring;visible;(-5543.276, 3.152, 407.655);-200188
+26;267.240;Audio;Ring;success;;-200188
+26;267.670;Audio;Ring;visible;(-5623.823, 3.152, 450.875);-200384
+26;270.915;Audio;Ring;success;;-200384
+26;271.029;Audio;POV;visible;Right;-200506
+26;271.801;Audio;Ring;visible;(-5722.408, 3.152, 481.737);-200708
+26;272.667;Audio;POV;success;;-200506
+26;275.092;Audio;Ring;success;;-200708
+26;275.141;Audio;Ring;visible;(-5794.521, 3.152, 521.023);-200906
+26;278.388;Audio;Ring;success;;-200906
+26;279.130;Audio;Ring;visible;(-5876.167, 3.153, 578.623);-201134
+26;282.212;Audio;Ring;visible;(-5944.217, 3.153, 612.396);-201256
+26;282.409;Audio;Ring;success;;-201134
+26;285.447;Audio;Ring;success;;-201256
+26;285.539;Audio;POV;visible;Left;-201496
+26;287.011;Audio;POV;success;;-201496
+26;287.038;Audio;Ring;visible;(-6046.919, 3.153, 675.283);-201700
+26;290.273;Audio;Ring;success;;-201700
+26;290.591;Audio;Ring;visible;(-6125.068, 3.153, 716.671);-201896
+26;293.813;Audio;Ring;success;;-201896
+26;293.885;Audio;Ring;visible;(-6202.228, 3.154, 746.114);-202062
+26;297.142;Audio;Ring;success;;-202062
+26;297.211;Audio;POV;visible;Right;-202186
+26;297.973;Audio;Ring;visible;(-6296.680, 3.154, 783.859);-202388
+26;298.839;Audio;POV;success;;-202186
+26;301.202;Audio;Ring;visible;(-6376.600, 3.154, 794.887);-202586
+26;301.219;Audio;Ring;success;;-202388
+26;304.469;Audio;Ring;success;;-202586
+26;304.542;Audio;Ring;visible;(-6457.813, 3.154, 813.389);-202752
+26;307.798;Audio;Ring;success;;-202752
+26;308.028;Audio;Ring;visible;(-6539.760, 3.155, 842.113);-202948
+26;311.110;Audio;Ring;visible;(-6610.577, 3.155, 870.200);-203070
+26;311.283;Audio;Ring;success;;-202948
+26;314.333;Audio;Ring;success;;-203070
+26;314.839;Audio;Ring;visible;(-6701.325, 3.155, 892.980);-203298
+26;318.097;Audio;Ring;success;;-203298
+26;318.167;Audio;POV;visible;Right;-203420
+26;319.728;Audio;POV;success;;-203420
+26;319.755;Audio;Ring;visible;(-6815.583, 3.155, 935.889);-203624
+26;322.448;Audio;Ring;visible;(-6877.384, 3.156, 962.566);-203776
+26;322.989;Audio;Ring;success;;-203624
+26;325.385;Audio;Ring;visible;(-6944.683, 3.156, 991.918);-203972
+26;325.680;Audio;Ring;success;;-203776
+26;328.608;Audio;Ring;success;;-203972
+26;328.858;Audio;Ring;visible;(-7020.466, 3.156, 1035.575);-204242
+26;332.138;Audio;Ring;success;;-204242
+26;332.209;Audio;POV;visible;Left;-204396
+26;333.702;Audio;POV;success;;-204396
+26;333.731;Audio;Ring;visible;(-7122.400, 3.156, 1100.282);-204614
+26;336.963;Audio;Ring;success;;-204614
+26;337.616;Audio;Ring;visible;(-7202.949, 3.156, 1154.419);-204840
+26;339.995;Audio;Ring;visible;(-7256.940, 3.157, 1179.906);-204962
+26;340.861;Audio;Ring;success;;-204840
+26;343.241;Audio;Ring;success;;-204962
+26;343.334;Audio;POV;visible;Left;-205158
+26;344.848;Audio;POV;success;;-205158
+26;344.876;Audio;Ring;visible;(-7362.674, 3.157, 1240.449);-205332
+26;347.826;Audio;Ring;visible;(-7418.914, 3.157, 1287.027);-205454
+26;348.145;Audio;Ring;success;;-205332
+26;350.103;Audio;Ring;visible;(-7459.989, 3.157, 1326.043);-205650
+26;351.082;Audio;Ring;success;;-205454
+26;353.338;Audio;Ring;success;;-205650
+26;353.834;Audio;Ring;visible;(-7523.538, 3.157, 1395.048);-205922
+26;356.259;Audio;Ring;visible;(-7546.985, 3.158, 1451.363);-206044
+26;357.114;Audio;Ring;success;;-205922
+26;359.537;Audio;Ring;success;;-206044
+26;359.584;Audio;POV;visible;Middle;-206240
+26;361.347;Audio;POV;success;;-206240
+26;363.385;Smell;Ring;visible;(-7584.606, 3.158, 1655.176);-230802
+26;366.676;Smell;Ring;success;;-230802
+26;367.039;Smell;Ring;visible;(-7604.750, 3.159, 1741.950);-230986
+26;370.261;Smell;Ring;success;;-230986
+26;370.558;Smell;Ring;visible;(-7635.157, 3.159, 1824.614);-231172
+26;372.770;Smell;Ring;visible;(-7662.925, 3.159, 1872.698);-231290
+26;373.792;Smell;Ring;success;;-231172
+26;374.829;Smell;POV;visible;Left;-231480
+26;376.026;Smell;Ring;success;;-231290
+26;376.879;Smell;Ring;visible;(-7717.005, 3.159, 1959.021);-231726
+26;379.812;Smell;POV;timeout;;-231480
+26;379.885;Smell;Ring;visible;(-7759.522, 3.159, 2020.768);-231878
+26;380.103;Smell;Ring;success;;-231726
+26;383.119;Smell;Ring;success;;-231878
+26;383.636;Smell;Ring;visible;(-7810.984, 3.160, 2099.107);-232150
+26;385.695;Smell;POV;visible;Left;-232272
+26;386.871;Smell;Ring;success;;-232150
+26;387.747;Smell;Ring;visible;(-7868.730, 3.160, 2184.191);-232518
+26;390.661;Smell;POV;timeout;;-232272
+26;390.982;Smell;Ring;success;;-232518
+26;391.046;Smell;Ring;visible;(-7917.980, 3.160, 2250.083);-232758
+26;394.266;Smell;Ring;success;;-232758
+26;394.305;Smell;Ring;visible;(-7976.399, 3.161, 2306.667);-232880
+26;397.539;Smell;Ring;success;;-232880
+26;398.292;Smell;Ring;visible;(-8047.759, 3.161, 2375.962);-233076
+26;400.362;Smell;POV;visible;Right;-233198
+26;401.526;Smell;Ring;success;;-233076
+26;402.403;Smell;Ring;visible;(-8101.844, 3.161, 2463.946);-233446
+26;404.694;Smell;Ring;visible;(-8117.626, 3.161, 2518.380);-233568
+26;405.346;Smell;POV;timeout;;-233198
+26;405.681;Smell;Ring;success;;-233446
+26;407.462;Smell;Ring;visible;(-8140.573, 3.162, 2582.976);-233838
+26;407.972;Smell;Ring;success;;-233568
+26;410.793;Smell;Ring;visible;(-8106.263, 3.162, 2632.195);-234034
+26;411.636;Smell;Ring;success;;-233838
+26;414.048;Smell;Ring;success;;-234034
+26;414.543;Smell;Ring;visible;(-8030.743, 3.162, 2686.785);-234304
+26;416.603;Smell;POV;visible;Left;-234426
+26;417.768;Smell;Ring;success;;-234304
+26;418.667;Smell;Ring;visible;(-7946.261, 3.162, 2745.703);-234674
+26;421.576;Smell;POV;timeout;;-234426
+26;421.888;Smell;Ring;success;;-234674
+26;422.073;Smell;Ring;visible;(-7880.422, 3.163, 2799.559);-234944
+26;425.307;Smell;Ring;success;;-234944
+26;425.861;Smell;Ring;visible;(-7811.909, 3.163, 2865.153);-235140
+26;429.094;Smell;Ring;success;;-235140
+26;429.233;Smell;Ring;visible;(-7749.815, 3.163, 2921.776);-235336
+26;432.467;Smell;Ring;success;;-235336
+26;433.064;Smell;Ring;visible;(-7668.934, 3.163, 2973.458);-235532
+26;435.123;Smell;POV;visible;Right;-235654
+26;436.331;Smell;Ring;success;;-235532
+26;437.174;Smell;Ring;visible;(-7572.867, 3.164, 3007.112);-235902
+26;439.902;Smell;Ring;visible;(-7508.725, 3.164, 3030.154);-236024
+26;440.095;Smell;POV;timeout;;-235654
+26;440.408;Smell;Ring;success;;-235902
+26;441.977;Smell;Ring;visible;(-7461.537, 3.164, 3051.304);-236294
+26;443.157;Smell;Ring;success;;-236024
+26;444.412;Smell;Ring;visible;(-7407.065, 3.164, 3078.604);-236564
+26;445.211;Smell;Ring;success;;-236294
+26;447.647;Smell;Ring;success;;-236564
+26;447.992;Smell;Ring;visible;(-7284.936, 3.165, 3083.842);-257950
+26;450.387;Smell;Ring;visible;(-7225.000, 3.165, 3087.120);-258072
+26;451.248;Smell;Ring;success;;-257950
+26;453.661;Smell;Ring;success;;-258072
+26;454.238;Smell;Ring;visible;(-7132.590, 3.165, 3109.244);-258344
+26;457.482;Smell;Ring;success;;-258344
+26;457.800;Smell;Ring;visible;(-7054.392, 3.165, 3150.837);-258540
+26;459.858;Smell;POV;visible;Right;-258662
+26;461.056;Smell;Ring;success;;-258540
+26;461.910;Smell;Ring;visible;(-6970.849, 3.166, 3208.934);-258908
+26;462.976;Smell;POV;success;;-258662
+26;464.815;Smell;Ring;visible;(-6903.150, 3.166, 3234.031);-259106
+26;465.166;Smell;Ring;success;;-258908
+26;467.899;Smell;Ring;visible;(-6838.788, 3.166, 3274.597);-259302
+26;468.093;Smell;Ring;success;;-259106
+26;470.265;Smell;Ring;visible;(-6799.013, 3.166, 3319.556);-259500
+26;471.153;Smell;Ring;success;;-259302
+26;472.387;Smell;Ring;visible;(-6764.028, 3.166, 3357.543);-259696
+26;473.543;Smell;Ring;success;;-259500
+26;474.445;Smell;POV;visible;Right;-259892
+26;475.621;Smell;Ring;success;;-259696
+26;476.498;Smell;Ring;visible;(-6682.132, 3.167, 3418.884);-260138
+26;478.733;Smell;Ring;visible;(-6632.863, 3.167, 3446.132);-260260
+26;479.419;Smell;POV;timeout;;-259892
+26;479.731;Smell;Ring;success;;-260138
+26;481.748;Smell;Ring;visible;(-6566.400, 3.167, 3480.863);-260530
+26;481.966;Smell;Ring;success;;-260260
+26;484.982;Smell;Ring;success;;-260530
+26;485.635;Smell;Ring;visible;(-6482.784, 3.167, 3530.435);-260832
+26;487.982;Smell;Ring;visible;(-6429.485, 3.168, 3555.864);-260954
+26;488.868;Smell;Ring;success;;-260832
+26;490.796;Smell;Ring;visible;(-6362.361, 3.168, 3576.070);-261150
+26;491.238;Smell;Ring;success;;-260954
+26;492.854;Smell;POV;visible;Middle;-261346
+26;494.030;Smell;Ring;success;;-261150
+26;494.906;Smell;Ring;visible;(-6262.539, 3.168, 3599.001);-261592
+26;496.844;Smell;POV;success;;-261346
+26;497.832;Smell;Ring;visible;(-6190.831, 3.168, 3613.474);-261820
+26;498.139;Smell;Ring;success;;-261592
+26;500.737;Smell;Ring;visible;(-6119.813, 3.168, 3628.615);-262018
+26;501.090;Smell;Ring;success;;-261820
+26;503.171;Smell;Ring;visible;(-6061.781, 3.168, 3643.717);-262214
+26;503.992;Smell;Ring;success;;-262018
+26;505.229;Smell;POV;visible;Left;-262410
+26;506.406;Smell;Ring;success;;-262214
+26;507.282;Smell;Ring;visible;(-5959.823, 3.168, 3657.393);-262656
+26;509.606;Smell;Ring;visible;(-5901.842, 3.169, 3654.895);-262778
+26;510.210;Smell;POV;timeout;;-262410
+26;510.538;Smell;Ring;success;;-262656
+26;511.705;Smell;Ring;visible;(-5849.665, 3.169, 3649.149);-263048
+26;512.840;Smell;Ring;success;;-262778
+26;513.764;Smell;POV;visible;Right;-263246
+26;514.939;Smell;Ring;success;;-263048
+26;515.815;Smell;Ring;visible;(-5746.554, 3.169, 3645.791);-263492
+26;518.738;Smell;POV;timeout;;-263246
+26;518.774;Smell;Ring;visible;(-5673.655, 3.169, 3653.207);-263614
+26;519.095;Smell;Ring;success;;-263492
+26;521.625;Smell;Ring;visible;(-5603.567, 3.169, 3651.151);-263810
+26;522.043;Smell;Ring;success;;-263614
+26;524.439;Smell;Ring;visible;(-5535.130, 3.169, 3667.813);-264006
+26;524.880;Smell;Ring;success;;-263810
+26;527.696;Smell;Ring;success;;-264006
+26;528.369;Smell;Ring;visible;(-5439.755, 3.169, 3688.904);-264278
+26;530.851;Smell;Ring;visible;(-5378.047, 3.169, 3690.496);-264400
+26;531.628;Smell;Ring;success;;-264278
+26;532.915;Smell;POV;visible;Middle;-264596
+26;534.107;Smell;Ring;success;;-264400
+26;534.960;Smell;Ring;visible;(-5275.618, 3.169, 3697.717);-264842
+26;537.756;Smell;Ring;visible;(-5208.000, 3.169, 3715.059);-264964
+26;537.884;Smell;POV;timeout;;-264596
+26;538.218;Smell;Ring;success;;-264842
+26;541.011;Smell;Ring;success;;-264964
+26;541.039;Smell;Ring;visible;(-5133.333, 3.170, 3746.793);-265204
+26;543.105;Smell;POV;visible;Middle;-265326
+26;544.272;Smell;Ring;success;;-265204
+26;545.768;Smell;POV;success;;-265326
+26;545.796;Smell;Ring;visible;(-5021.589, 3.169, 3787.610);-265576
+26;548.389;Smell;Ring;visible;(-4959.834, 3.169, 3806.533);-265698
+26;549.054;Smell;Ring;success;;-265576
+26;551.623;Smell;Ring;success;;-265698
+26;552.185;Smell;Ring;visible;(-4874.291, 3.169, 3847.600);-265968
+26;555.420;Smell;Ring;success;;-265968
+26;555.661;Smell;Ring;visible;(-4794.380, 3.169, 3881.534);-266164
+26;558.928;Smell;Ring;success;;-266164
+26;559.045;Smell;Ring;visible;(-4715.693, 3.169, 3911.471);-266286
+26;562.061;Smell;Ring;visible;(-4650.375, 3.169, 3948.063);-266408
+26;562.302;Smell;Ring;success;;-266286
+26;564.118;Smell;POV;visible;Left;-266606
+26;565.295;Smell;Ring;success;;-266408
+26;566.172;Smell;Ring;visible;(-4555.549, 3.169, 3987.354);-266852
+26;568.516;Smell;Ring;visible;(-4500.575, 3.169, 4006.338);-266974
+26;569.093;Smell;POV;timeout;;-266606
+26;569.428;Smell;Ring;success;;-266852
+26;571.621;Smell;Ring;visible;(-4431.315, 3.169, 4042.095);-267244
+26;571.750;Smell;Ring;success;;-266974
+26;574.841;Smell;Ring;visible;(-4371.335, 3.169, 4095.412);-267440
+26;574.879;Smell;Ring;success;;-267244
+26;576.898;Smell;POV;visible;Left;-267636
+26;578.118;Smell;Ring;success;;-267440
+26;581.581;Smell;POV;success;;-267636
+26;582.638;Heat;Ring;visible;(-4246.484, 3.169, 4284.865);-322480
+26;584.826;Heat;Ring;visible;(-4231.876, 3.169, 4337.693);-322596
+26;585.892;Heat;Ring;success;;-322480
+26;588.102;Heat;Ring;success;;-322596
+26;588.153;Heat;Ring;visible;(-4210.955, 3.169, 4417.249);-322780
+26;590.388;Heat;Ring;visible;(-4202.978, 3.169, 4472.908);-322898
+26;591.387;Heat;Ring;success;;-322780
+26;593.644;Heat;Ring;success;;-322898
+26;594.364;Heat;Ring;visible;(-4207.592, 3.169, 4571.572);-323160
+26;596.423;Heat;POV;visible;Left;-323282
+26;597.621;Heat;Ring;success;;-323160
+26;598.475;Heat;Ring;visible;(-4212.694, 3.169, 4673.912);-323530
+26;600.033;Heat;POV;success;;-323282
+26;600.910;Heat;Ring;visible;(-4210.662, 3.169, 4734.546);-323728
+26;601.731;Heat;Ring;success;;-323530
+26;603.324;Heat;Ring;visible;(-4200.152, 3.169, 4794.438);-323924
+26;604.144;Heat;Ring;success;;-323728
+26;606.600;Heat;Ring;success;;-323924
+26;607.142;Heat;Ring;visible;(-4185.417, 3.169, 4887.812);-324224
+26;610.386;Heat;Ring;success;;-324224
+26;610.472;Heat;Ring;visible;(-4168.137, 3.169, 4969.630);-324420
+26;612.530;Heat;POV;visible;Right;-324542
+26;613.727;Heat;Ring;success;;-324420
+26;615.223;Heat;POV;success;;-324542
+26;615.251;Heat;Ring;visible;(-4131.976, 3.169, 5083.326);-324792
+26;618.068;Heat;Ring;visible;(-4134.509, 3.169, 5153.090);-324914
+26;618.531;Heat;Ring;success;;-324792
+26;621.150;Heat;Ring;visible;(-4138.973, 3.169, 5229.058);-325110
+26;621.324;Heat;Ring;success;;-324914
+26;623.363;Heat;Ring;visible;(-4145.503, 3.169, 5284.107);-325306
+26;624.385;Heat;Ring;success;;-325110
+26;625.686;Heat;Ring;visible;(-4148.055, 3.169, 5342.220);-325502
+26;626.595;Heat;Ring;success;;-325306
+26;627.743;Heat;POV;visible;Middle;-325698
+26;628.942;Heat;Ring;success;;-325502
+26;629.797;Heat;Ring;visible;(-4152.875, 3.169, 5444.959);-325946
+26;631.287;Heat;POV;success;;-325698
+26;633.073;Heat;Ring;success;;-325946
+26;633.459;Heat;Ring;visible;(-4170.189, 3.169, 5533.557);-326248
+26;636.074;Heat;Ring;visible;(-4182.572, 3.169, 5597.732);-326370
+26;636.693;Heat;Ring;success;;-326248
+26;639.307;Heat;Ring;success;;-326370
+26;639.738;Heat;Ring;visible;(-4199.091, 3.169, 5688.118);-326640
+26;642.994;Heat;Ring;success;;-326640
+26;643.669;Heat;Ring;visible;(-4210.774, 3.169, 5785.254);-326836
+26;646.899;Heat;Ring;visible;(-4223.025, 3.169, 5864.965);-326958
+26;646.912;Heat;Ring;success;;-326836
+26;648.944;Heat;POV;visible;Middle;-327082
+26;650.126;Heat;Ring;success;;-326958
+26;650.996;Heat;Ring;visible;(-4231.576, 3.169, 5967.426);-327328
+26;652.018;Heat;POV;success;;-327082
+26;653.586;Heat;Ring;visible;(-4235.159, 3.169, 6031.341);-327556
+26;654.275;Heat;Ring;success;;-327328
+26;656.823;Heat;Ring;success;;-327556
+26;657.566;Heat;Ring;visible;(-4228.594, 3.169, 6130.479);-327826
+26;660.820;Heat;Ring;success;;-327826
+26;661.026;Heat;Ring;visible;(-4216.717, 3.169, 6215.748);-328022
+26;663.262;Heat;Ring;visible;(-4210.194, 3.169, 6271.135);-328144
+26;664.261;Heat;Ring;success;;-328022
+26;665.319;Heat;POV;visible;Left;-328342
+26;666.494;Heat;Ring;success;;-328144
+26;668.102;Heat;POV;success;;-328342
+26;668.131;Heat;Ring;visible;(-4200.917, 3.169, 6393.066);-328590
+26;671.411;Heat;Ring;success;;-328590
+26;671.595;Heat;Ring;visible;(-4199.077, 3.169, 6478.524);-328786
+26;674.828;Heat;Ring;success;;-328786
+26;675.078;Heat;Ring;visible;(-4207.477, 3.169, 6564.856);-328982
+26;677.136;Heat;POV;visible;Right;-329104
+26;678.314;Heat;Ring;success;;-328982
+26;679.810;Heat;POV;success;;-329104
+26;679.838;Heat;Ring;visible;(-4232.632, 3.169, 6681.096);-329352
+26;683.095;Heat;Ring;success;;-329352
+26;683.837;Heat;Ring;visible;(-4264.336, 3.169, 6775.313);-329550
+26;686.875;Heat;Ring;visible;(-4295.189, 3.169, 6843.996);-329672
+26;687.093;Heat;Ring;success;;-329550
+26;690.003;Heat;Ring;visible;(-4325.032, 3.169, 6916.314);-329868
+26;690.110;Heat;Ring;success;;-329672
+26;692.437;Heat;Ring;visible;(-4342.748, 3.169, 6974.926);-330020
+26;693.236;Heat;Ring;success;;-329868
+26;694.494;Heat;POV;visible;Middle;-330216
+26;695.694;Heat;Ring;success;;-330020
+26;696.548;Heat;Ring;visible;(-4378.889, 3.169, 7070.703);-330462
+26;698.152;Heat;POV;success;;-330216
+26;699.780;Heat;Ring;success;;-330462
+26;700.480;Heat;Ring;visible;(-4417.852, 3.169, 7160.639);-330766
+26;702.736;Heat;Ring;visible;(-4428.424, 3.169, 7217.293);-330888
+26;703.714;Heat;Ring;success;;-330766
+26;705.685;Heat;Ring;visible;(-4434.205, 3.169, 7289.629);-331084
+26;706.015;Heat;Ring;success;;-330888
+26;708.919;Heat;Ring;success;;-331084
+26;709.638;Heat;Ring;visible;(-4452.633, 3.169, 7387.098);-331354
+26;711.696;Heat;POV;visible;Right;-331476
+26;712.895;Heat;Ring;success;;-331354
+26;714.237;Heat;POV;success;;-331476
+26;714.265;Heat;Ring;visible;(-4487.171, 3.169, 7496.788);-331724
+26;716.566;Heat;Ring;visible;(-4503.972, 3.169, 7551.558);-331846
+26;717.498;Heat;Ring;success;;-331724
+26;719.799;Heat;Ring;success;;-331846
+26;720.474;Heat;Ring;visible;(-4530.775, 3.169, 7645.479);-332118
+26;723.707;Heat;Ring;success;;-332118
+26;723.847;Heat;Ring;visible;(-4544.345, 3.169, 7728.623);-332270
+26;725.905;Heat;POV;visible;Left;-332392
+26;727.082;Heat;Ring;success;;-332270
+26;728.803;Heat;POV;success;;-332392
+26;731.002;Vibration;Ring;visible;(-4476.628, 3.169, 7912.553);-356714
+26;733.661;Vibration;Ring;visible;(-4422.304, 3.169, 7949.919);-356830
+26;734.281;Vibration;Ring;success;;-356714
+26;736.916;Vibration;Ring;success;;-356830
+26;737.593;Vibration;Ring;visible;(-4349.091, 3.169, 8015.384);-357084
+26;740.742;Vibration;Ring;visible;(-4298.435, 3.169, 8074.498);-357202
+26;740.847;Vibration;Ring;success;;-357084
+26;743.975;Vibration;Ring;success;;-357202
+26;744.381;Vibration;Ring;visible;(-4233.966, 3.169, 8139.023);-357424
+26;746.441;Vibration;POV;visible;Left;-357546
+26;747.626;Vibration;Ring;success;;-357424
+26;748.493;Vibration;Ring;visible;(-4153.289, 3.169, 8202.667);-357792
+26;750.083;Vibration;POV;success;;-357546
+26;751.727;Vibration;Ring;success;;-357792
+26;752.066;Vibration;Ring;visible;(-4086.642, 3.169, 8261.503);-358064
+26;754.503;Vibration;Ring;visible;(-4042.488, 3.169, 8303.467);-358186
+26;755.302;Vibration;Ring;success;;-358064
+26;756.717;Vibration;Ring;visible;(-4008.595, 3.169, 8347.938);-358384
+26;757.738;Vibration;Ring;success;;-358186
+26;759.953;Vibration;Ring;visible;(-3954.710, 3.169, 8407.939);-358580
+26;759.980;Vibration;Ring;success;;-358384
+26;763.211;Vibration;Ring;success;;-358580
+26;763.550;Vibration;Ring;visible;(-3888.203, 3.169, 8467.502);-358776
+26;765.609;Vibration;POV;visible;Middle;-358898
+26;766.783;Vibration;Ring;success;;-358776
+26;768.391;Vibration;POV;success;;-358898
+26;768.419;Vibration;Ring;visible;(-3792.323, 3.169, 8542.973);-359146
+26;771.677;Vibration;Ring;success;;-359146
+26;772.400;Vibration;Ring;visible;(-3707.721, 3.169, 8595.169);-359374
+26;775.392;Vibration;Ring;visible;(-3643.659, 3.169, 8633.030);-359496
+26;775.655;Vibration;Ring;success;;-359374
+26;778.251;Vibration;Ring;visible;(-3589.356, 3.169, 8680.379);-359692
+26;778.625;Vibration;Ring;success;;-359496
+26;780.307;Vibration;POV;visible;Right;-359888
+26;781.529;Vibration;Ring;success;;-359692
+26;782.692;Vibration;POV;success;;-359888
+26;782.720;Vibration;Ring;visible;(-3485.424, 3.169, 8715.383);-360136
+26;785.489;Vibration;Ring;visible;(-3421.356, 3.169, 8741.028);-360288
+26;785.974;Vibration;Ring;success;;-360136
+26;788.392;Vibration;Ring;visible;(-3358.999, 3.169, 8776.396);-360484
+26;788.744;Vibration;Ring;success;;-360288
+26;791.140;Vibration;Ring;visible;(-3300.936, 3.169, 8813.044);-360682
+26;791.625;Vibration;Ring;success;;-360484
+26;793.199;Vibration;POV;visible;Left;-360878
+26;794.375;Vibration;Ring;success;;-360682
+26;795.045;Vibration;POV;success;;-360878
+26;795.252;Vibration;Ring;visible;(-3215.110, 3.169, 8869.360);-361200
+26;797.599;Vibration;Ring;visible;(-3170.428, 3.169, 8907.301);-361322
+26;798.486;Vibration;Ring;success;;-361200
+26;800.832;Vibration;Ring;success;;-361322
+26;801.239;Vibration;Ring;visible;(-3094.013, 3.169, 8956.593);-361592
+26;804.472;Vibration;Ring;success;;-361592
+26;804.678;Vibration;Ring;visible;(-3023.225, 3.168, 9005.311);-361790
+26;806.737;Vibration;POV;visible;Left;-361912
+26;807.912;Vibration;Ring;success;;-361790
+26;808.649;Vibration;POV;success;;-361912
+26;808.791;Vibration;Ring;visible;(-2926.399, 3.168, 9041.339);-362234
+26;811.112;Vibration;Ring;visible;(-2868.982, 3.168, 9046.400);-362356
+26;812.067;Vibration;Ring;success;;-362234
+26;814.369;Vibration;Ring;success;;-362356
+26;814.574;Vibration;Ring;visible;(-2783.525, 3.168, 9055.764);-362626
+26;817.810;Vibration;Ring;success;;-362626
+26;818.239;Vibration;Ring;visible;(-2692.728, 3.168, 9067.511);-362822
+26;820.298;Vibration;POV;visible;Right;-362944
+26;822.350;Vibration;Ring;visible;(-2787.214, 3.168, 9075.341);-363120
+26;824.764;Vibration;Ring;visible;(-2721.582, 3.168, 8968.672);-363254
+26;825.271;Vibration;POV;timeout;;-362944
+26;826.230;Vibration;Ring;timeout;;-362822
+26;827.846;Vibration;Ring;visible;(-2763.346, 3.168, 8932.959);-363524
+26;828.934;Vibration;Ring;success;;-363254
+26;830.012;Vibration;Ring;visible;(-2800.856, 3.168, 8896.881);-363722
+26;830.342;Vibration;Ring;timeout;;-363120
+26;831.214;Vibration;Ring;success;;-363524
+26;833.269;Vibration;Ring;success;;-363722
+26;833.386;Vibration;Ring;visible;(-2856.957, 3.168, 8835.560);-364066
+26;835.443;Vibration;POV;visible;Right;-364188
+26;837.498;Vibration;Ring;visible;(-2816.346, 3.168, 8927.789);-364360
+26;840.419;Vibration;POV;timeout;;-364188
+26;840.426;Vibration;Ring;visible;(-2821.189, 3.168, 8928.496);-364482
+26;841.379;Vibration;Ring;timeout;;-364066
+26;843.642;Vibration;Ring;visible;(-2795.683, 3.168, 8910.322);-364748
+26;845.488;Vibration;Ring;timeout;;-364360
+26;846.566;Vibration;Ring;visible;(-2880.730, 3.168, 8736.144);-364944
+26;848.415;Vibration;Ring;timeout;;-364482
+26;849.582;Vibration;Ring;visible;(-2905.712, 3.168, 8683.078);-365140
+26;851.633;Vibration;Ring;timeout;;-364748
+26;852.823;Vibration;Ring;visible;(-2957.311, 3.169, 8622.062);-365336
+26;852.862;Vibration;Ring;success;;-365140
+26;854.540;Vibration;Ring;timeout;;-364944
+26;854.881;Vibration;POV;visible;Middle;-365532
+26;856.056;Vibration;Ring;success;;-365336
+26;857.597;Vibration;POV;success;;-365532
+26;857.626;Vibration;Ring;visible;(-3033.085, 3.169, 8528.948);-365788
+26;857.922;Vibration;Ring;visible;(-3059.824, 3.169, 8494.171);-371696
+26;861.177;Vibration;Ring;success;;-371696
+26;861.584;Vibration;Ring;visible;(-3105.101, 3.169, 8415.534);-371954
+26;864.820;Vibration;Ring;success;;-371954
+26;865.116;Vibration;Ring;visible;(-3158.500, 3.169, 8344.491);-372150
+26;868.372;Vibration;Ring;success;;-372150
+26;869.001;Vibration;Ring;visible;(-3218.193, 3.169, 8268.298);-372346
+26;871.953;Vibration;Ring;visible;(-3249.536, 3.169, 8202.316);-372468
+26;872.259;Vibration;Ring;success;;-372346
+26;875.208;Vibration;Ring;success;;-372468
+26;875.928;Vibration;Ring;visible;(-3283.425, 3.169, 8109.487);-372738
+26;877.986;Vibration;POV;visible;Right;-372860
+26;879.161;Vibration;Ring;success;;-372738
+26;880.166;Vibration;POV;success;;-372860
+26;880.194;Vibration;Ring;visible;(-3310.828, 3.169, 8005.950);-373110
+26;882.675;Vibration;Ring;visible;(-3344.952, 3.169, 7954.698);-373232
+26;883.473;Vibration;Ring;success;;-373110
+26;885.065;Vibration;Ring;visible;(-3377.841, 3.170, 7905.540);-373428
+26;885.930;Vibration;Ring;success;;-373232
+26;887.637;Vibration;Ring;visible;(-3407.884, 3.170, 7848.345);-373624
+26;888.298;Vibration;Ring;success;;-373428
+26;890.891;Vibration;Ring;success;;-373624
+26;891.253;Vibration;Ring;visible;(-3446.039, 3.170, 7767.041);-373894
+26;893.979;Vibration;Ring;visible;(-3480.731, 3.170, 7708.196);-374016
+26;894.487;Vibration;Ring;success;;-373894
+26;896.049;Vibration;POV;visible;Left;-374214
+26;897.212;Vibration;Ring;success;;-374016
+26;897.793;Vibration;POV;success;;-374214
+26;898.090;Vibration;Ring;visible;(-3551.116, 3.170, 7633.135);-374566
+26;901.039;Vibration;Ring;visible;(-3601.839, 3.170, 7580.361);-374688
+26;901.346;Vibration;Ring;success;;-374566
+26;904.077;Vibration;Ring;visible;(-3643.095, 3.170, 7516.602);-374884
+26;904.272;Vibration;Ring;success;;-374688
+26;906.354;Vibration;Ring;visible;(-3667.460, 3.170, 7466.141);-375080
+26;907.334;Vibration;Ring;success;;-374884
+26;908.413;Vibration;POV;visible;Right;-375276
+26;909.589;Vibration;Ring;success;;-375080
+26;910.639;Vibration;POV;success;;-375276
+26;910.667;Vibration;Ring;visible;(-3714.066, 3.170, 7369.021);-375526
+26;913.169;Vibration;Ring;visible;(-3739.462, 3.170, 7311.562);-375648
+26;913.900;Vibration;Ring;success;;-375526
+26;915.804;Vibration;Ring;visible;(-3769.855, 3.170, 7253.585);-375844
+26;916.425;Vibration;Ring;success;;-375648
+26;919.039;Vibration;Ring;success;;-375844
+26;919.178;Vibration;Ring;visible;(-3795.488, 3.170, 7172.848);-376114
+26;922.363;Vibration;Ring;visible;(-3823.152, 3.170, 7098.771);-376236
+26;922.413;Vibration;Ring;success;;-376114
+26;924.408;Vibration;POV;visible;Middle;-376388
+26;925.629;Vibration;Ring;success;;-376236
+26;926.344;Vibration;POV;success;;-376388
+26;926.463;Vibration;Ring;visible;(-3873.623, 3.170, 7009.958);-376682
+26;928.943;Vibration;Ring;visible;(-3900.326, 3.169, 6953.691);-376834
+26;929.695;Vibration;Ring;success;;-376682
+26;932.176;Vibration;Ring;success;;-376834
+26;932.359;Vibration;Ring;visible;(-3942.137, 3.169, 6879.417);-377104
+26;935.593;Vibration;Ring;success;;-377104
+26;936.291;Vibration;Ring;visible;(-4004.398, 3.169, 6803.403);-377300
+26;938.413;Vibration;Ring;visible;(-4037.492, 3.169, 6762.507);-377422
+26;939.547;Vibration;Ring;success;;-377300
+26;941.215;Vibration;Ring;visible;(-4077.225, 3.169, 6705.183);-377618
+26;941.647;Vibration;Ring;success;;-377422
+26;943.263;Vibration;POV;visible;Middle;-377816
+26;944.439;Vibration;Ring;success;;-377618
+26;945.243;Vibration;POV;success;;-377816
+26;945.317;Vibration;Ring;visible;(-4134.980, 3.169, 6619.942);-378094
+26;948.595;Vibration;Ring;success;;-378094
+26;948.780;Vibration;Ring;visible;(-4170.729, 3.169, 6541.923);-378290
+26;952.013;Vibration;Ring;success;;-378290
+26;952.711;Vibration;Ring;visible;(-4207.250, 3.169, 6451.034);-378486
+26;955.944;Vibration;Ring;success;;-378486
+26;955.951;Vibration;Ring;visible;(-4244.907, 3.169, 6379.157);-378608
+26;958.008;Vibration;POV;visible;Left;-378730
+26;959.183;Vibration;Ring;success;;-378608
+26;959.876;Vibration;POV;success;;-378730
+26;960.060;Vibration;Ring;visible;(-4289.689, 3.169, 6287.041);-379010
+26;962.719;Vibration;Ring;visible;(-4318.872, 3.169, 6227.359);-379176
+26;963.294;Vibration;Ring;success;;-379010
+26;965.953;Vibration;Ring;success;;-379176
+26;966.026;Vibration;Ring;visible;(-4357.311, 3.169, 6154.185);-379416
+26;969.260;Vibration;Ring;success;;-379416
+26;969.712;Vibration;Ring;visible;(-4407.570, 3.169, 6076.008);-379612
+26;971.769;Vibration;POV;visible;Right;-379788
+26;974.206;Vibration;POV;success;;-379788
+26;974.229;Vibration;Ring;visible;(-4485.482, 3.169, 6000.554);-379962
+26;977.503;Vibration;Ring;success;;-379962
+26;977.704;Vibration;Ring;timeout;;-379612
+26;978.043;Vibration;Ring;visible;(-4568.016, 3.169, 5954.791);-380262
+26;981.218;Vibration;Ring;visible;(-4637.216, 3.169, 5916.029);-380398
+26;981.279;Vibration;Ring;success;;-380262
+26;983.274;Vibration;POV;visible;Middle;-380594
+26;984.450;Vibration;Ring;success;;-380398
+26;985.142;Vibration;POV;success;;-380594
+26;985.327;Vibration;Ring;visible;(-4719.392, 3.169, 5854.367);-380918
+26;988.562;Vibration;Ring;success;;-380918
+26;989.015;Vibration;Ring;visible;(-4796.126, 3.169, 5802.658);-381118
+26;991.361;Vibration;Ring;visible;(-4843.313, 3.169, 5767.693);-381240
+26;992.270;Vibration;Ring;success;;-381118
+26;993.416;Vibration;POV;visible;Left;-381436
+26;994.614;Vibration;Ring;success;;-381240
+26;995.284;Vibration;POV;success;;-381436

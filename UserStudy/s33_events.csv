@@ -1,0 +1,536 @@
+SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
+33;234.026;Heat;Custom;CameraContainerPos;(0.061, -1.050, -0.151);-1118
+33;0.030;Training_Ring_Only;Ring;visible;(-1.219, 3.150, 184.840);-399658
+33;3.258;Training_Ring_Only;Ring;success;;-399658
+33;3.643;Training_Ring_Only;Ring;visible;(9.666, 3.150, 274.744);-399838
+33;6.900;Training_Ring_Only;Ring;success;;-399838
+33;6.928;Training_Ring_Only;Ring;visible;(20.678, 3.150, 355.460);-399952
+33;10.161;Training_Ring_Only;Ring;success;;-399952
+33;10.904;Training_Ring_Only;Ring;visible;(37.801, 3.150, 453.303);-400138
+33;13.339;Training_Ring_Only;Ring;visible;(45.847, 3.150, 513.493);-400258
+33;14.138;Training_Ring_Only;Ring;success;;-400138
+33;16.573;Training_Ring_Only;Ring;success;;-400258
+33;17.137;Training_Ring_Only;Ring;visible;(63.353, 3.150, 607.155);-400524
+33;19.307;Training_Ring_Only;Ring;visible;(75.047, 3.150, 659.887);-400644
+33;20.392;Training_Ring_Only;Ring;success;;-400524
+33;21.649;Training_Ring_Only;Ring;visible;(89.569, 3.150, 716.206);-400836
+33;22.559;Training_Ring_Only;Ring;success;;-400644
+33;24.884;Training_Ring_Only;Ring;success;;-400836
+33;24.978;Training_Ring_Only;Ring;visible;(105.098, 3.150, 797.955);-401028
+33;28.212;Training_Ring_Only;Ring;success;;-401028
+33;28.575;Training_Ring_Only;Ring;visible;(140.213, 3.150, 880.629);-401220
+33;31.836;Training_Ring_Only;Ring;success;;-401220
+33;31.881;Training_Ring_Only;Ring;visible;(176.332, 3.150, 954.582);-401342
+33;35.115;Training_Ring_Only;Ring;success;;-401342
+33;35.300;Training_Ring_Only;Ring;visible;(236.572, 3.150, 1015.567);-401534
+33;37.534;Training_Ring_Only;Ring;visible;(268.705, 3.150, 1060.972);-401654
+33;38.556;Training_Ring_Only;Ring;success;;-401534
+33;39.879;Training_Ring_Only;Ring;visible;(302.314, 3.150, 1108.153);-401846
+33;40.789;Training_Ring_Only;Ring;success;;-401654
+33;43.113;Training_Ring_Only;Ring;success;;-401846
+33;43.787;Training_Ring_Only;Ring;visible;(365.670, 3.150, 1182.594);-402110
+33;47.022;Training_Ring_Only;Ring;success;;-402110
+33;47.607;Training_Ring_Only;Ring;visible;(427.330, 3.150, 1255.282);-402304
+33;49.999;Training_Ring_Only;Ring;visible;(458.883, 3.150, 1306.933);-402424
+33;50.842;Training_Ring_Only;Ring;success;;-402304
+33;52.478;Training_Ring_Only;Ring;visible;(474.559, 3.150, 1366.640);-402616
+33;53.277;Training_Ring_Only;Ring;success;;-402424
+33;54.622;Training_Ring_Only;Ring;visible;(480.426, 3.150, 1419.152);-402808
+33;55.757;Training_Ring_Only;Ring;success;;-402616
+33;57.036;Training_Ring_Only;Ring;visible;(472.650, 3.150, 1479.058);-403000
+33;57.879;Training_Ring_Only;Ring;success;;-402808
+33;60.315;Training_Ring_Only;Ring;success;;-403000
+33;62.129;Training_Complete;Ring;visible;(509.761, 3.150, 1633.933);-413808
+33;65.279;Training_Complete;Ring;visible;(516.505, 3.150, 1710.395);-413958
+33;65.430;Training_Complete;Ring;success;;-413808
+33;68.071;Training_Complete;Ring;visible;(531.487, 3.150, 1778.882);-414108
+33;68.513;Training_Complete;Ring;success;;-413958
+33;71.328;Training_Complete;Ring;success;;-414108
+33;71.363;Training_Complete;Ring;visible;(545.520, 3.150, 1859.041);-414342
+33;74.589;Training_Complete;Ring;success;;-414342
+33;74.861;Training_Complete;Ring;visible;(558.423, 3.150, 1945.955);-414534
+33;77.275;Training_Complete;Ring;visible;(564.551, 3.150, 2004.980);-414654
+33;78.119;Training_Complete;Ring;success;;-414534
+33;80.509;Training_Complete;Ring;success;;-414654
+33;80.624;Training_Complete;POV;visible;Left;-414848
+33;81.385;Training_Complete;Ring;visible;(603.065, 3.150, 2099.827);-415048
+33;83.570;Training_Complete;POV;success;;-414848
+33;83.821;Training_Complete;Ring;visible;(619.796, 3.150, 2158.083);-415272
+33;84.642;Training_Complete;Ring;success;;-415048
+33;86.523;Training_Complete;Ring;visible;(591.615, 3.150, 2208.490);-415464
+33;87.480;Training_Complete;Ring;success;;-415272
+33;89.607;Training_Complete;Ring;visible;(566.222, 3.150, 2279.197);-415656
+33;89.824;Training_Complete;Ring;success;;-415464
+33;92.842;Training_Complete;Ring;success;;-415656
+33;93.540;Training_Complete;Ring;visible;(552.620, 3.150, 2377.307);-415920
+33;96.818;Training_Complete;Ring;success;;-415920
+33;97.158;Training_Complete;Ring;visible;(531.813, 3.150, 2464.557);-416114
+33;100.392;Training_Complete;Ring;success;;-416114
+33;100.508;Training_Complete;POV;visible;Middle;-416264
+33;101.269;Training_Complete;Ring;visible;(510.752, 3.150, 2564.761);-416476
+33;104.419;Training_Complete;Ring;visible;(489.233, 3.150, 2640.533);-416596
+33;104.514;Training_Complete;Ring;success;;-416476
+33;105.486;Training_Complete;POV;timeout;;-416264
+33;107.698;Training_Complete;Ring;success;;-416596
+33;107.704;Training_Complete;Ring;visible;(439.314, 3.150, 2704.625);-416788
+33;110.959;Training_Complete;Ring;success;;-416788
+33;111.051;Training_Complete;POV;visible;Middle;-416908
+33;111.813;Training_Complete;Ring;visible;(380.864, 3.150, 2788.248);-417120
+33;114.807;Training_Complete;Ring;visible;(342.198, 3.150, 2851.726);-417240
+33;115.070;Training_Complete;Ring;success;;-417120
+33;116.030;Training_Complete;POV;timeout;;-416908
+33;117.759;Training_Complete;Ring;visible;(305.089, 3.150, 2915.014);-417506
+33;118.062;Training_Complete;Ring;success;;-417240
+33;120.246;Training_Complete;Ring;visible;(272.049, 3.150, 2966.795);-417698
+33;121.012;Training_Complete;Ring;success;;-417506
+33;122.513;Training_Complete;Ring;visible;(243.362, 3.150, 3016.050);-417890
+33;123.469;Training_Complete;Ring;success;;-417698
+33;125.083;Training_Complete;Ring;visible;(214.173, 3.150, 3073.287);-418082
+33;125.748;Training_Complete;Ring;success;;-417890
+33;128.317;Training_Complete;Ring;success;;-418082
+33;128.431;Training_Complete;POV;visible;Right;-418348
+33;129.193;Training_Complete;Ring;visible;(154.431, 3.150, 3157.363);-418518
+33;130.462;Training_Complete;POV;success;;-418348
+33;132.120;Training_Complete;Ring;visible;(131.435, 3.150, 3224.198);-418712
+33;132.538;Training_Complete;Ring;success;;-418518
+33;134.957;Training_Complete;Ring;visible;(114.697, 3.150, 3293.788);-418904
+33;135.355;Training_Complete;Ring;success;;-418712
+33;137.437;Training_Complete;Ring;visible;(98.601, 3.150, 3352.469);-419096
+33;138.237;Training_Complete;Ring;success;;-418904
+33;139.628;Training_Complete;Ring;visible;(74.794, 3.150, 3402.594);-419288
+33;140.671;Training_Complete;Ring;success;;-419096
+33;142.883;Training_Complete;Ring;success;;-419288
+33;143.515;Training_Complete;Ring;visible;(32.245, 3.150, 3489.125);-419554
+33;146.748;Training_Complete;Ring;success;;-419554
+33;146.864;Training_Complete;POV;visible;Right;-419746
+33;147.637;Training_Complete;Ring;visible;(-7.963, 3.150, 3584.069);-419916
+33;148.736;Training_Complete;POV;success;;-419746
+33;150.707;Training_Complete;Ring;visible;(-19.365, 3.150, 3659.629);-420110
+33;150.903;Training_Complete;Ring;success;;-419916
+33;153.925;Training_Complete;Ring;visible;(-36.157, 3.150, 3738.061);-420260
+33;153.941;Training_Complete;Ring;success;;-420110
+33;157.142;Training_Complete;Ring;visible;(-51.498, 3.150, 3817.106);-420380
+33;157.159;Training_Complete;Ring;success;;-420260
+33;160.375;Training_Complete;Ring;success;;-420380
+33;161.006;Training_Complete;Ring;visible;(-65.425, 3.150, 3912.466);-420574
+33;163.709;Training_Complete;Ring;visible;(-75.138, 3.150, 3979.294);-420694
+33;164.240;Training_Complete;Ring;success;;-420574
+33;166.944;Training_Complete;Ring;success;;-420694
+33;167.057;Training_Complete;POV;visible;Left;-420916
+33;167.819;Training_Complete;Ring;visible;(-95.788, 3.150, 4079.859);-421086
+33;168.820;Training_Complete;POV;success;;-420916
+33;170.210;Training_Complete;Ring;visible;(-109.877, 3.150, 4138.157);-421310
+33;171.053;Training_Complete;Ring;success;;-421086
+33;172.465;Training_Complete;Ring;visible;(-115.343, 3.150, 4194.176);-421502
+33;173.444;Training_Complete;Ring;success;;-421310
+33;175.701;Training_Complete;Ring;success;;-421502
+33;175.817;Training_Complete;POV;visible;Middle;-421768
+33;176.576;Training_Complete;Ring;visible;(-127.325, 3.150, 4296.481);-421938
+33;177.934;Training_Complete;POV;success;;-421768
+33;178.900;Training_Complete;Ring;visible;(-145.737, 3.150, 4350.582);-422162
+33;179.856;Training_Complete;Ring;success;;-421938
+33;182.072;Training_Complete;Ring;visible;(-173.977, 3.150, 4424.506);-422354
+33;182.135;Training_Complete;Ring;success;;-422162
+33;184.150;Training_Complete;Ring;visible;(-202.034, 3.150, 4469.304);-422516
+33;185.307;Training_Complete;Ring;success;;-422354
+33;187.429;Training_Complete;Ring;success;;-422516
+33;187.499;Training_Complete;POV;visible;Left;-422708
+33;188.261;Training_Complete;Ring;visible;(-238.106, 3.150, 4564.322);-422878
+33;189.172;Training_Complete;POV;success;;-422708
+33;191.518;Training_Complete;Ring;success;;-422878
+33;191.701;Training_Complete;Ring;visible;(-276.690, 3.150, 4640.945);-423146
+33;194.958;Training_Complete;Ring;success;;-423146
+33;194.985;Training_Complete;Ring;visible;(-302.243, 3.150, 4718.596);-423266
+33;198.242;Training_Complete;Ring;success;;-423266
+33;198.626;Training_Complete;Ring;visible;(-328.746, 3.151, 4805.331);-423458
+33;201.861;Training_Complete;Ring;success;;-423458
+33;202.269;Training_Complete;Ring;visible;(-372.361, 3.150, 4884.817);-423650
+33;205.502;Training_Complete;Ring;success;;-423650
+33;205.887;Training_Complete;Ring;visible;(-402.045, 3.151, 4970.029);-423844
+33;209.121;Training_Complete;Ring;success;;-423844
+33;209.235;Training_Complete;POV;visible;Right;-423994
+33;211.043;Training_Complete;POV;success;;-423994
+33;213.035;Audio;Ring;visible;(-350.930, 3.151, 5043.024);-437154
+33;215.224;Audio;Ring;visible;(-311.716, 3.151, 5039.584);-437274
+33;217.028;Audio;Ring;success;;-437154
+33;218.591;Audio;Ring;success;;-437274
+33;218.738;Audio;Ring;visible;(-227.528, 3.151, 5042.077);-437466
+33;221.966;Audio;Ring;success;;-437466
+33;222.664;Audio;Ring;visible;(-129.894, 3.151, 5053.547);-437730
+33;225.920;Audio;Ring;success;;-437730
+33;226.012;Audio;POV;visible;Right;-437850
+33;226.773;Audio;Ring;visible;(-27.549, 3.151, 5047.368);-438020
+33;227.818;Audio;POV;success;;-437850
+33;230.029;Audio;Ring;success;;-438020
+33;230.393;Audio;Ring;visible;(56.615, 3.151, 5016.452);-438288
+33;232.739;Audio;Ring;visible;(113.960, 3.151, 5003.159);-438408
+33;233.627;Audio;Ring;success;;-438288
+33;235.441;Audio;Ring;visible;(180.624, 3.151, 4993.660);-438600
+33;235.973;Audio;Ring;success;;-438408
+33;237.944;Audio;Ring;visible;(240.892, 3.151, 4975.246);-438792
+33;238.676;Audio;Ring;success;;-438600
+33;241.200;Audio;Ring;success;;-438792
+33;241.293;Audio;POV;visible;Right;-439056
+33;242.054;Audio;Ring;visible;(338.979, 3.151, 4946.621);-439226
+33;242.874;Audio;POV;success;;-439056
+33;244.890;Audio;Ring;visible;(407.348, 3.152, 4928.304);-439420
+33;245.287;Audio;Ring;success;;-439226
+33;247.841;Audio;Ring;visible;(477.335, 3.152, 4904.991);-439614
+33;248.124;Audio;Ring;success;;-439420
+33;251.074;Audio;Ring;success;;-439614
+33;251.189;Audio;POV;visible;Left;-439836
+33;251.950;Audio;Ring;visible;(576.021, 3.152, 4876.727);-440048
+33;252.749;Audio;POV;success;;-439836
+33;255.185;Audio;Ring;success;;-440048
+33;255.480;Audio;Ring;visible;(662.502, 3.152, 4859.964);-440314
+33;257.805;Audio;Ring;visible;(720.331, 3.152, 4853.127);-440434
+33;258.714;Audio;Ring;success;;-440314
+33;260.529;Audio;Ring;visible;(786.601, 3.152, 4837.123);-440626
+33;261.038;Audio;Ring;success;;-440434
+33;263.763;Audio;Ring;success;;-440626
+33;263.878;Audio;POV;visible;Left;-440862
+33;264.639;Audio;Ring;visible;(887.357, 3.152, 4816.600);-441062
+33;265.505;Audio;POV;success;;-440862
+33;267.896;Audio;Ring;success;;-441062
+33;268.527;Audio;Ring;visible;(977.936, 3.152, 4783.564);-441328
+33;271.431;Audio;Ring;visible;(1047.343, 3.152, 4761.974);-441448
+33;271.760;Audio;Ring;success;;-441328
+33;274.665;Audio;Ring;success;;-441448
+33;275.139;Audio;Ring;visible;(1133.393, 3.153, 4727.760);-441712
+33;278.374;Audio;Ring;success;;-441712
+33;278.489;Audio;POV;visible;Right;-441862
+33;279.251;Audio;Ring;visible;(1231.056, 3.153, 4694.939);-442032
+33;280.161;Audio;POV;success;;-441862
+33;281.462;Audio;Ring;visible;(1283.917, 3.153, 4681.805);-442256
+33;282.529;Audio;Ring;success;;-442032
+33;283.830;Audio;Ring;visible;(1340.607, 3.153, 4665.318);-442450
+33;284.695;Audio;Ring;success;;-442256
+33;287.064;Audio;Ring;success;;-442450
+33;287.177;Audio;POV;visible;Left;-442714
+33;287.940;Audio;Ring;visible;(1441.534, 3.153, 4645.067);-442884
+33;288.739;Audio;POV;success;;-442714
+33;291.219;Audio;Ring;success;;-442884
+33;291.602;Audio;Ring;visible;(1531.645, 3.153, 4629.898);-443150
+33;294.555;Audio;Ring;visible;(1602.729, 3.153, 4615.967);-443270
+33;294.883;Audio;Ring;success;;-443150
+33;297.636;Audio;Ring;visible;(1678.176, 3.153, 4601.474);-443462
+33;297.786;Audio;Ring;success;;-443270
+33;300.870;Audio;Ring;success;;-443462
+33;301.478;Audio;Ring;visible;(1772.742, 3.153, 4584.196);-443728
+33;303.826;Audio;Ring;visible;(1832.287, 3.153, 4584.016);-443848
+33;304.713;Audio;Ring;success;;-443728
+33;307.103;Audio;Ring;success;;-443848
+33;307.173;Audio;POV;visible;Middle;-444040
+33;307.935;Audio;Ring;visible;(1930.013, 3.153, 4555.217);-444252
+33;309.225;Audio;POV;success;;-444040
+33;310.102;Audio;Ring;visible;(1983.881, 3.153, 4546.667);-444446
+33;311.191;Audio;Ring;success;;-444252
+33;312.962;Audio;Ring;visible;(2053.815, 3.153, 4536.939);-444638
+33;313.380;Audio;Ring;success;;-444446
+33;315.933;Audio;Ring;visible;(2123.394, 3.153, 4514.669);-444832
+33;316.241;Audio;Ring;success;;-444638
+33;318.233;Audio;Ring;visible;(2178.390, 3.153, 4498.522);-445024
+33;319.167;Audio;Ring;success;;-444832
+33;321.468;Audio;Ring;success;;-445024
+33;321.582;Audio;POV;visible;Middle;-445216
+33;322.343;Audio;Ring;visible;(2280.281, 3.153, 4482.589);-445386
+33;323.455;Audio;POV;success;;-445216
+33;325.601;Audio;Ring;success;;-445386
+33;326.275;Audio;Ring;visible;(2376.382, 3.152, 4466.764);-445682
+33;328.375;Audio;Ring;visible;(2428.448, 3.152, 4460.838);-445802
+33;329.509;Audio;Ring;success;;-445682
+33;331.610;Audio;Ring;success;;-445802
+33;331.726;Audio;POV;visible;Middle;-446068
+33;333.842;Audio;POV;success;;-446068
+33;335.525;Vibration;Ring;visible;(2490.576, 3.153, 4374.193);-459802
+33;338.318;Vibration;Ring;visible;(2483.327, 3.153, 4313.740);-459916
+33;339.138;Vibration;Ring;success;;-459802
+33;341.468;Vibration;Ring;visible;(2461.362, 3.153, 4238.449);-460096
+33;341.597;Vibration;Ring;success;;-459916
+33;344.724;Vibration;Ring;success;;-460096
+33;345.309;Vibration;Ring;visible;(2433.725, 3.153, 4146.936);-460310
+33;348.566;Vibration;Ring;success;;-460310
+33;348.861;Vibration;Ring;visible;(2411.036, 3.154, 4061.709);-460530
+33;351.430;Vibration;Ring;visible;(2405.784, 3.154, 3997.118);-460650
+33;352.096;Vibration;Ring;success;;-460530
+33;353.498;Vibration;POV;visible;Right;-460842
+33;355.582;Vibration;POV;success;;-460842
+33;355.610;Vibration;Ring;visible;(2322.614, 3.154, 4001.653);-461014
+33;357.732;Vibration;Ring;visible;(2303.376, 3.154, 4059.579);-461176
+33;359.423;Vibration;Ring;timeout;;-460650
+33;360.233;Vibration;Ring;visible;(2251.966, 3.154, 3967.673);-461368
+33;360.339;Vibration;Ring;success;;-461014
+33;362.579;Vibration;Ring;visible;(2198.895, 3.155, 3947.496);-461530
+33;363.557;Vibration;Ring;success;;-461368
+33;364.637;Vibration;POV;visible;Middle;-461722
+33;365.723;Vibration;Ring;timeout;;-461176
+33;365.836;Vibration;Ring;success;;-461530
+33;366.689;Vibration;Ring;visible;(2106.652, 3.155, 3904.327);-461966
+33;369.549;Vibration;Ring;visible;(2037.145, 3.155, 3883.750);-462086
+33;369.634;Vibration;POV;timeout;;-461722
+33;369.924;Vibration;Ring;success;;-461966
+33;372.118;Vibration;Ring;visible;(1973.903, 3.155, 3875.529);-462278
+33;372.828;Vibration;Ring;success;;-462086
+33;374.285;Vibration;Ring;visible;(1921.667, 3.156, 3860.997);-462470
+33;375.374;Vibration;Ring;success;;-462278
+33;377.542;Vibration;Ring;success;;-462470
+33;378.084;Vibration;Ring;visible;(1828.693, 3.156, 3844.251);-462734
+33;380.139;Vibration;POV;visible;Left;-462854
+33;381.338;Vibration;Ring;success;;-462734
+33;381.941;Vibration;POV;success;;-462854
+33;382.192;Vibration;Ring;visible;(1726.947, 3.156, 3834.981);-463172
+33;384.784;Vibration;Ring;visible;(1662.911, 3.156, 3824.109);-463292
+33;385.428;Vibration;Ring;success;;-463172
+33;388.020;Vibration;Ring;success;;-463292
+33;388.204;Vibration;Ring;visible;(1577.408, 3.157, 3832.184);-463556
+33;390.261;Vibration;POV;visible;Middle;-463676
+33;391.460;Vibration;Ring;success;;-463556
+33;392.314;Vibration;Ring;visible;(1477.330, 3.157, 3851.599);-463918
+33;393.135;Vibration;POV;success;;-463676
+33;395.285;Vibration;Ring;visible;(1403.987, 3.157, 3863.356);-464112
+33;395.548;Vibration;Ring;success;;-463918
+33;398.518;Vibration;Ring;success;;-464112
+33;398.747;Vibration;Ring;visible;(1318.956, 3.158, 3878.211);-464378
+33;400.806;Vibration;POV;visible;Right;-464498
+33;402.898;Vibration;POV;success;;-464498
+33;402.925;Vibration;Ring;visible;(1254.073, 3.158, 3942.579);-464670
+33;405.068;Vibration;Ring;visible;(1262.739, 3.158, 4000.682);-464790
+33;406.740;Vibration;Ring;timeout;;-464378
+33;406.941;Vibration;Ring;success;;-464670
+33;409.026;Vibration;Ring;visible;(1159.048, 3.158, 4035.802);-465054
+33;412.281;Vibration;Ring;success;;-465054
+33;413.022;Vibration;Ring;visible;(1089.219, 3.159, 4105.939);-465246
+33;413.061;Vibration;Ring;timeout;;-464790
+33;415.301;Vibration;Ring;visible;(1053.821, 3.159, 4151.648);-465396
+33;416.257;Vibration;Ring;success;;-465246
+33;417.360;Vibration;POV;visible;Middle;-465588
+33;418.580;Vibration;Ring;success;;-465396
+33;419.162;Vibration;POV;success;;-465588
+33;419.411;Vibration;Ring;visible;(986.247, 3.159, 4227.977);-465934
+33;422.405;Vibration;Ring;visible;(944.250, 3.160, 4289.857);-466054
+33;422.646;Vibration;Ring;success;;-465934
+33;425.424;Vibration;Ring;visible;(893.879, 3.160, 4346.156);-466248
+33;425.639;Vibration;Ring;success;;-466054
+33;427.479;Vibration;POV;visible;Left;-466440
+33;428.678;Vibration;Ring;success;;-466248
+33;429.281;Vibration;POV;success;;-466440
+33;429.532;Vibration;Ring;visible;(817.952, 3.160, 4414.583);-466756
+33;431.833;Vibration;Ring;visible;(776.947, 3.161, 4455.046);-466876
+33;432.766;Vibration;Ring;success;;-466756
+33;434.624;Vibration;Ring;visible;(729.382, 3.161, 4506.434);-467068
+33;435.066;Vibration;Ring;success;;-466876
+33;437.882;Vibration;Ring;success;;-467068
+33;438.647;Vibration;Ring;visible;(665.514, 3.161, 4583.813);-467334
+33;441.841;Vibration;Ring;visible;(615.964, 3.162, 4645.883);-467454
+33;441.903;Vibration;Ring;success;;-467334
+33;443.898;Vibration;POV;visible;Right;-467574
+33;446.438;Vibration;POV;success;;-467574
+33;446.466;Vibration;Ring;visible;(582.820, 3.162, 4732.265);-467746
+33;449.834;Vibration;Ring;timeout;;-467454
+33;449.844;Vibration;Ring;visible;(577.694, 3.162, 4810.753);-467866
+33;449.946;Vibration;Ring;success;;-467746
+33;453.080;Vibration;Ring;visible;(576.119, 3.162, 4891.223);-468028
+33;453.119;Vibration;Ring;success;;-467866
+33;455.493;Vibration;Ring;visible;(583.326, 3.162, 4950.945);-468220
+33;456.334;Vibration;Ring;success;;-468028
+33;458.461;Vibration;Ring;visible;(603.062, 3.162, 5022.035);-468412
+33;458.746;Vibration;Ring;success;;-468220
+33;460.520;Vibration;POV;visible;Left;-468606
+33;461.697;Vibration;Ring;success;;-468412
+33;462.278;Vibration;POV;success;;-468606
+33;465.611;Smell;Ring;visible;(706.888, 3.161, 5063.916);-488292
+33;467.780;Smell;Ring;visible;(742.570, 3.161, 5025.186);-488406
+33;468.912;Smell;Ring;success;;-488292
+33;471.012;Smell;Ring;success;;-488406
+33;471.152;Smell;Ring;visible;(804.894, 3.161, 4968.940);-488622
+33;473.211;Smell;POV;visible;Right;-488738
+33;474.386;Smell;Ring;success;;-488622
+33;475.459;Smell;POV;success;;-488738
+33;475.486;Smell;Ring;visible;(891.076, 3.160, 4903.321);-488976
+33;478.256;Smell;Ring;visible;(948.226, 3.160, 4864.524);-489096
+33;478.720;Smell;Ring;success;;-488976
+33;480.490;Smell;Ring;visible;(992.328, 3.160, 4830.113);-489290
+33;481.513;Smell;Ring;success;;-489096
+33;483.768;Smell;Ring;success;;-489290
+33;483.877;Smell;Ring;visible;(1052.405, 3.159, 4771.721);-489524
+33;486.633;Smell;Ring;visible;(1099.441, 3.159, 4721.594);-489644
+33;487.119;Smell;Ring;success;;-489524
+33;489.868;Smell;Ring;success;;-489644
+33;489.876;Smell;Ring;visible;(1148.336, 3.158, 4657.194);-489836
+33;491.932;Smell;POV;visible;Left;-489956
+33;493.107;Smell;Ring;success;;-489836
+33;493.844;Smell;POV;success;;-489956
+33;493.984;Smell;Ring;visible;(1213.696, 3.158, 4577.542);-490232
+33;497.261;Smell;Ring;success;;-490232
+33;497.402;Smell;Ring;visible;(1244.392, 3.157, 4498.162);-490394
+33;499.993;Smell;Ring;visible;(1273.941, 3.157, 4440.749);-490514
+33;500.658;Smell;Ring;success;;-490394
+33;503.250;Smell;Ring;success;;-490514
+33;503.271;Smell;Ring;visible;(1305.302, 3.157, 4365.153);-490706
+33;506.533;Smell;Ring;success;;-490706
+33;507.297;Smell;Ring;visible;(1334.929, 3.156, 4269.284);-490898
+33;509.358;Smell;POV;visible;Right;-491018
+33;510.555;Smell;Ring;success;;-490898
+33;512.185;Smell;POV;success;;-491018
+33;512.214;Smell;Ring;visible;(1365.987, 3.156, 4150.238);-491264
+33;515.491;Smell;Ring;success;;-491264
+33;515.519;Smell;Ring;visible;(1376.244, 3.156, 4069.229);-491426
+33;518.754;Smell;Ring;success;;-491426
+33;518.849;Smell;Ring;visible;(1373.793, 3.155, 3985.787);-491546
+33;521.015;Smell;Ring;visible;(1362.198, 3.155, 3932.558);-491666
+33;522.105;Smell;Ring;success;;-491546
+33;523.073;Smell;POV;visible;Middle;-491858
+33;524.293;Smell;Ring;success;;-491666
+33;525.097;Smell;POV;success;;-491858
+33;525.126;Smell;Ring;visible;(1341.722, 3.155, 3832.502);-492102
+33;528.163;Smell;Ring;visible;(1330.167, 3.155, 3757.910);-492222
+33;528.382;Smell;Ring;success;;-492102
+33;531.397;Smell;Ring;success;;-492222
+33;531.559;Smell;Ring;visible;(1319.460, 3.155, 3673.932);-492488
+33;533.617;Smell;POV;visible;Right;-492608
+33;534.794;Smell;Ring;success;;-492488
+33;535.598;Smell;POV;success;;-492608
+33;535.671;Smell;Ring;visible;(1291.511, 3.154, 3574.451);-492852
+33;538.948;Smell;Ring;success;;-492852
+33;539.647;Smell;Ring;visible;(1257.521, 3.154, 3482.015);-493086
+33;542.880;Smell;Ring;success;;-493086
+33;543.353;Smell;Ring;visible;(1222.099, 3.154, 3396.464);-493278
+33;545.677;Smell;Ring;visible;(1203.253, 3.154, 3341.396);-493398
+33;546.588;Smell;Ring;success;;-493278
+33;547.737;Smell;POV;visible;Middle;-493592
+33;548.913;Smell;Ring;success;;-493398
+33;550.074;Smell;POV;success;;-493592
+33;550.101;Smell;Ring;visible;(1173.935, 3.154, 3234.512);-493836
+33;552.202;Smell;Ring;visible;(1155.663, 3.154, 3185.637);-493986
+33;553.358;Smell;Ring;success;;-493836
+33;554.422;Smell;Ring;visible;(1133.857, 3.153, 3135.159);-494178
+33;555.458;Smell;Ring;success;;-493986
+33;557.647;Smell;Ring;success;;-494178
+33;557.763;Smell;Ring;visible;(1100.369, 3.153, 3058.729);-494370
+33;560.999;Smell;Ring;success;;-494370
+33;561.473;Smell;Ring;visible;(1067.753, 3.153, 2971.804);-494564
+33;563.531;Smell;POV;visible;Middle;-494684
+33;564.707;Smell;Ring;success;;-494564
+33;566.092;Smell;POV;success;;-494684
+33;566.119;Smell;Ring;visible;(1021.844, 3.153, 2864.954);-494928
+33;569.376;Smell;Ring;success;;-494928
+33;569.582;Smell;Ring;visible;(969.821, 3.152, 2796.213);-495150
+33;572.734;Smell;Ring;visible;(918.007, 3.152, 2736.893);-495270
+33;572.817;Smell;Ring;success;;-495150
+33;575.965;Smell;Ring;success;;-495270
+33;576.060;Smell;Ring;visible;(859.973, 3.152, 2677.492);-495504
+33;578.586;Smell;Ring;visible;(821.094, 3.152, 2627.340);-495654
+33;579.295;Smell;Ring;success;;-495504
+33;581.713;Smell;Ring;visible;(780.335, 3.152, 2560.783);-495848
+33;581.841;Smell;Ring;success;;-495654
+33;583.769;Smell;POV;visible;Left;-495968
+33;584.969;Smell;Ring;success;;-495848
+33;585.825;Smell;Ring;visible;(709.477, 3.152, 2487.229);-496210
+33;588.133;Smell;Ring;visible;(663.992, 3.152, 2451.271);-496330
+33;588.744;Smell;POV;timeout;;-495968
+33;589.056;Smell;Ring;success;;-496210
+33;590.426;Smell;Ring;visible;(617.858, 3.152, 2417.921);-496594
+33;591.381;Smell;Ring;success;;-496330
+33;593.660;Smell;Ring;success;;-496594
+33;594.379;Smell;Ring;visible;(535.476, 3.152, 2363.015);-496860
+33;596.836;Smell;Ring;visible;(483.814, 3.152, 2330.417);-496980
+33;597.636;Smell;Ring;success;;-496860
+33;599.540;Smell;Ring;visible;(429.298, 3.152, 2289.288);-497172
+33;600.072;Smell;Ring;success;;-496980
+33;601.599;Smell;POV;visible;Left;-497364
+33;602.797;Smell;Ring;success;;-497172
+33;606.572;Smell;POV;timeout;;-497364
+33;606.692;Heat;Ring;visible;(322.908, 3.153, 2319.135);-518586
+33;609.774;Heat;Ring;visible;(322.948, 3.153, 2395.808);-518700
+33;609.947;Heat;Ring;success;;-518586
+33;612.455;Heat;Ring;visible;(328.536, 3.154, 2462.330);-518880
+33;613.008;Heat;Ring;success;;-518700
+33;614.513;Heat;POV;visible;Left;-519064
+33;615.689;Heat;Ring;success;;-518880
+33;616.565;Heat;Ring;visible;(339.376, 3.155, 2564.650);-519304
+33;618.682;Heat;POV;success;;-519064
+33;619.820;Heat;Ring;success;;-519304
+33;620.004;Heat;Ring;visible;(338.830, 3.155, 2650.050);-519570
+33;622.743;Heat;Ring;visible;(348.736, 3.156, 2718.502);-519690
+33;623.238;Heat;Ring;success;;-519570
+33;624.789;Heat;POV;visible;Middle;-519882
+33;626.009;Heat;Ring;success;;-519690
+33;626.841;Heat;Ring;visible;(367.292, 3.156, 2819.020);-520124
+33;627.975;Heat;POV;success;;-519882
+33;629.277;Heat;Ring;visible;(355.184, 3.157, 2878.584);-520318
+33;630.120;Heat;Ring;success;;-520124
+33;632.002;Heat;Ring;visible;(348.885, 3.157, 2944.076);-520512
+33;632.600;Heat;Ring;success;;-520318
+33;634.191;Heat;Ring;visible;(356.144, 3.158, 2998.245);-520704
+33;635.258;Heat;Ring;success;;-520512
+33;636.249;Heat;POV;visible;Right;-520896
+33;637.448;Heat;Ring;success;;-520704
+33;638.967;Heat;POV;success;;-520896
+33;638.995;Heat;Ring;visible;(357.450, 3.159, 3117.623);-521140
+33;642.229;Heat;Ring;success;;-521140
+33;642.971;Heat;Ring;visible;(336.853, 3.159, 3215.042);-521332
+33;645.653;Heat;Ring;visible;(315.771, 3.160, 3277.457);-521452
+33;646.295;Heat;Ring;success;;-521332
+33;648.712;Heat;Ring;visible;(287.433, 3.160, 3345.623);-521646
+33;648.976;Heat;Ring;success;;-521452
+33;651.948;Heat;Ring;success;;-521646
+33;652.286;Heat;Ring;visible;(255.236, 3.161, 3428.974);-521910
+33;654.345;Heat;POV;visible;Left;-522030
+33;655.521;Heat;Ring;success;;-521910
+33;656.397;Heat;Ring;visible;(212.712, 3.162, 3522.799);-522272
+33;658.877;Heat;Ring;visible;(188.885, 3.162, 3579.930);-522392
+33;659.319;Heat;POV;timeout;;-522030
+33;659.653;Heat;Ring;success;;-522272
+33;662.133;Heat;Ring;success;;-522392
+33;662.250;Heat;Ring;visible;(158.722, 3.163, 3658.115);-522730
+33;665.485;Heat;Ring;success;;-522730
+33;666.272;Heat;Ring;visible;(121.044, 3.164, 3751.326);-522922
+33;669.176;Heat;Ring;visible;(96.320, 3.164, 3818.846);-523042
+33;669.528;Heat;Ring;success;;-522922
+33;672.192;Heat;Ring;visible;(63.876, 3.165, 3887.302);-523234
+33;672.409;Heat;Ring;success;;-523042
+33;674.248;Heat;POV;visible;Right;-523426
+33;675.447;Heat;Ring;success;;-523234
+33;676.303;Heat;Ring;visible;(28.466, 3.165, 3983.304);-523668
+33;677.236;Heat;POV;success;;-523426
+33;679.537;Heat;Ring;success;;-523668
+33;680.056;Heat;Ring;visible;(3.644, 3.166, 4074.396);-523936
+33;683.334;Heat;Ring;success;;-523936
+33;683.652;Heat;Ring;visible;(-17.047, 3.167, 4161.342);-524128
+33;685.710;Heat;POV;visible;Middle;-524248
+33;686.931;Heat;Ring;success;;-524128
+33;688.527;Heat;POV;success;;-524248
+33;688.550;Heat;Ring;visible;(-35.534, 3.168, 4281.412);-524492
+33;691.717;Heat;Ring;visible;(-57.806, 3.168, 4357.528);-524612
+33;691.779;Heat;Ring;success;;-524492
+33;693.885;Heat;Ring;visible;(-84.342, 3.169, 4405.361);-524762
+33;694.953;Heat;Ring;success;;-524612
+33;695.943;Heat;POV;visible;Right;-524954
+33;697.163;Heat;Ring;success;;-524762
+33;697.995;Heat;Ring;visible;(-130.870, 3.169, 4495.730);-525198
+33;698.793;Heat;POV;success;;-524954
+33;700.296;Heat;Ring;visible;(-172.663, 3.170, 4533.810);-525392
+33;701.305;Heat;Ring;success;;-525198
+33;703.575;Heat;Ring;success;;-525392
+33;704.183;Heat;Ring;visible;(-230.245, 3.170, 4610.944);-525656
+33;707.245;Heat;Ring;visible;(-262.290, 3.171, 4680.870);-525776
+33;707.416;Heat;Ring;success;;-525656
+33;709.790;Heat;Ring;visible;(-265.566, 3.171, 4745.073);-525926
+33;710.525;Heat;Ring;success;;-525776
+33;712.649;Heat;Ring;visible;(-256.903, 3.172, 4812.560);-526118
+33;713.181;Heat;Ring;success;;-525926
+33;714.707;Heat;POV;visible;Left;-526312
+33;715.928;Heat;Ring;success;;-526118
+33;716.759;Heat;Ring;visible;(-227.080, 3.173, 4910.251);-526554
+33;718.632;Heat;POV;success;;-526312
+33;719.844;Heat;Ring;visible;(-211.011, 3.174, 4984.113);-526748
+33;720.039;Heat;Ring;success;;-526554
+33;722.970;Heat;Ring;visible;(-191.960, 3.175, 5059.739);-526940
+33;723.076;Heat;Ring;success;;-526748
+33;725.384;Heat;Ring;visible;(-186.059, 3.176, 5120.420);-527102
+33;726.204;Heat;Ring;success;;-526940
+33;728.640;Heat;Ring;success;;-527102
+33;729.406;Heat;Ring;visible;(-187.399, 3.177, 5220.383);-527368
+33;731.463;Heat;POV;visible;Middle;-527488
+33;732.638;Heat;Ring;success;;-527368
+33;734.449;Heat;POV;success;;-527488

@@ -7,21 +7,21 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;6.309;Training_Ring_Only;Ring;success;;-154650
 26;8.323;Training_Ring_Only;Ring;visible;(-64.397, 3.150, 382.842);-154982
 26;8.833;Training_Ring_Only;Ring;success;;-154766
-26;11.580;Training_Ring_Only;Ring;success;;-154982
+26;11.58;Training_Ring_Only;Ring;success;;-154982
 26;12.123;Training_Ring_Only;Ring;visible;(-129.785, 3.150, 451.450);-155220
 26;15.406;Training_Ring_Only;Ring;visible;(-174.504, 3.150, 518.107);-155342
 26;15.423;Training_Ring_Only;Ring;success;;-155220
 26;18.378;Training_Ring_Only;Ring;visible;(-210.877, 3.150, 581.891);-155466
 26;18.662;Training_Ring_Only;Ring;success;;-155342
 26;21.193;Training_Ring_Only;Ring;visible;(-250.623, 3.150, 637.377);-155662
-26;21.700;Training_Ring_Only;Ring;success;;-155466
+26;21.7;Training_Ring_Only;Ring;success;;-155466
 26;24.471;Training_Ring_Only;Ring;success;;-155662
 26;25.034;Training_Ring_Only;Ring;visible;(-311.433, 3.150, 710.087);-155932
-26;28.290;Training_Ring_Only;Ring;success;;-155932
+26;28.29;Training_Ring_Only;Ring;success;;-155932
 26;28.585;Training_Ring_Only;Ring;visible;(-340.688, 3.150, 794.039);-156128
 26;31.843;Training_Ring_Only;Ring;success;;-156128
 26;32.162;Training_Ring_Only;Ring;visible;(-371.140, 3.150, 877.510);-156326
-26;34.820;Training_Ring_Only;Ring;visible;(-399.152, 3.150, 937.703);-156448
+26;34.82;Training_Ring_Only;Ring;visible;(-399.152, 3.150, 937.703);-156448
 26;35.395;Training_Ring_Only;Ring;success;;-156326
 26;37.992;Training_Ring_Only;Ring;visible;(-420.228, 3.150, 1014.496);-156644
 26;38.054;Training_Ring_Only;Ring;success;;-156448
@@ -57,16 +57,16 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;86.708;Training_Complete;POV;success;;-166776
 26;87.406;Training_Complete;Ring;visible;(-1587.935, 3.150, 1416.580);-167102
 26;88.651;Training_Complete;Ring;success;;-166918
-26;90.490;Training_Complete;Ring;visible;(-1653.576, 3.150, 1452.892);-167238
-26;90.730;Training_Complete;Ring;success;;-167102
+26;90.49;Training_Complete;Ring;visible;(-1653.576, 3.150, 1452.892);-167238
+26;90.73;Training_Complete;Ring;success;;-167102
 26;93.723;Training_Complete;Ring;success;;-167238
 26;93.751;Training_Complete;Ring;visible;(-1730.304, 3.150, 1481.216);-167374
 26;96.208;Training_Complete;Ring;visible;(-1790.732, 3.150, 1483.439);-167466
-26;97.030;Training_Complete;Ring;success;;-167374
+26;97.03;Training_Complete;Ring;success;;-167374
 26;98.821;Training_Complete;Ring;visible;(-1854.851, 3.150, 1492.800);-167602
 26;99.465;Training_Complete;Ring;success;;-167466
 26;102.079;Training_Complete;Ring;success;;-167602
-26;102.170;Training_Complete;POV;visible;Middle;-167740
+26;102.17;Training_Complete;POV;visible;Middle;-167740
 26;102.931;Training_Complete;Ring;visible;(-1956.828, 3.150, 1500.926);-167882
 26;104.356;Training_Complete;POV;success;;-167740
 26;106.167;Training_Complete;Ring;success;;-167882
@@ -88,19 +88,19 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;129.271;Training_Complete;Ring;visible;(-2603.335, 3.150, 1489.255);-169126
 26;129.825;Training_Complete;Ring;success;;-168990
 26;132.528;Training_Complete;Ring;success;;-169126
-26;132.600;Training_Complete;Ring;visible;(-2683.715, 3.150, 1470.141);-169264
+26;132.6;Training_Complete;Ring;visible;(-2683.715, 3.150, 1470.141);-169264
 26;135.835;Training_Complete;Ring;success;;-169264
 26;135.949;Training_Complete;POV;visible;Right;-169400
-26;136.710;Training_Complete;Ring;visible;(-2781.482, 3.150, 1438.222);-169542
+26;136.71;Training_Complete;Ring;visible;(-2781.482, 3.150, 1438.222);-169542
 26;138.022;Training_Complete;POV;success;;-169400
 26;139.749;Training_Complete;Ring;visible;(-2850.894, 3.150, 1406.892);-169680
 26;139.968;Training_Complete;Ring;success;;-169542
 26;142.586;Training_Complete;Ring;visible;(-2912.816, 3.150, 1375.496);-169816
-26;143.050;Training_Complete;Ring;success;;-169680
+26;143.05;Training_Complete;Ring;success;;-169680
 26;145.826;Training_Complete;Ring;visible;(-2985.023, 3.150, 1339.632);-169952
 26;145.843;Training_Complete;Ring;success;;-169816
 26;148.238;Training_Complete;Ring;visible;(-3042.075, 3.150, 1319.871);-170044
-26;149.060;Training_Complete;Ring;success;;-169952
+26;149.06;Training_Complete;Ring;success;;-169952
 26;151.495;Training_Complete;Ring;success;;-170044
 26;151.587;Training_Complete;POV;visible;Left;-170182
 26;152.347;Training_Complete;Ring;visible;(-3140.037, 3.150, 1290.087);-170324
@@ -116,7 +116,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;167.468;Training_Complete;Ring;success;;-170918
 26;168.054;Training_Complete;Ring;visible;(-3475.364, 3.149, 1097.122);-171102
 26;170.691;Training_Complete;Ring;visible;(-3521.567, 3.149, 1050.910);-171626
-26;171.310;Training_Complete;Ring;success;;-171102
+26;171.31;Training_Complete;Ring;success;;-171102
 26;173.923;Training_Complete;Ring;success;;-171626
 26;174.666;Training_Complete;Ring;visible;(-3597.072, 3.149, 986.147);-172260
 26;177.923;Training_Complete;Ring;success;;-172260
@@ -145,10 +145,10 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;211.339;Training_Complete;Ring;visible;(-4308.742, 3.150, 414.124);-174572
 26;213.583;Training_Complete;Ring;visible;(-4344.591, 3.150, 371.201);-174694
 26;214.583;Training_Complete;Ring;success;;-174572
-26;216.310;Training_Complete;Ring;visible;(-4392.551, 3.150, 322.694);-174890
+26;216.31;Training_Complete;Ring;visible;(-4392.551, 3.150, 322.694);-174890
 26;216.817;Training_Complete;Ring;success;;-174694
 26;219.588;Training_Complete;Ring;success;;-174890
-26;219.660;Training_Complete;POV;visible;Right;-175162
+26;219.66;Training_Complete;POV;visible;Right;-175162
 26;221.241;Training_Complete;POV;success;;-175162
 26;223.447;Audio;Ring;visible;(-4585.137, 3.150, 246.159);-197320
 26;226.239;Audio;Ring;visible;(-4654.032, 3.150, 240.634);-197442
@@ -159,28 +159,28 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;231.863;Audio;Ring;success;;-197638
 26;235.003;Audio;Ring;success;;-197834
 26;235.533;Audio;Ring;visible;(-4883.503, 3.150, 208.135);-198104
-26;238.660;Audio;Ring;visible;(-4961.119, 3.150, 202.597);-198286
+26;238.66;Audio;Ring;visible;(-4961.119, 3.150, 202.597);-198286
 26;238.767;Audio;Ring;success;;-198104
 26;241.884;Audio;Ring;success;;-198286
 26;241.999;Audio;POV;visible;Middle;-198514
 26;242.771;Audio;Ring;visible;(-5063.836, 3.150, 199.615);-198686
-26;243.960;Audio;POV;success;;-198514
+26;243.96;Audio;POV;success;;-198514
 26;246.016;Audio;Ring;success;;-198686
-26;246.100;Audio;Ring;visible;(-5146.294, 3.151, 214.008);-198958
+26;246.1;Audio;Ring;visible;(-5146.294, 3.151, 214.008);-198958
 26;249.367;Audio;Ring;success;;-198958
 26;249.886;Audio;Ring;visible;(-5236.147, 3.151, 240.328);-199154
 26;253.132;Audio;Ring;success;;-199154
 26;253.854;Audio;Ring;visible;(-5329.198, 3.151, 273.443);-199350
 26;257.097;Audio;Ring;success;;-199350
-26;257.190;Audio;POV;visible;Middle;-199548
+26;257.19;Audio;POV;visible;Middle;-199548
 26;257.951;Audio;Ring;visible;(-5420.778, 3.151, 318.901);-199720
-26;259.040;Audio;POV;success;;-199548
+26;259.04;Audio;POV;success;;-199548
 26;260.161;Audio;Ring;visible;(-5464.304, 3.151, 354.042);-199918
 26;261.173;Audio;Ring;success;;-199720
 26;263.431;Audio;Ring;success;;-199918
 26;263.994;Audio;Ring;visible;(-5543.276, 3.152, 407.655);-200188
-26;267.240;Audio;Ring;success;;-200188
-26;267.670;Audio;Ring;visible;(-5623.823, 3.152, 450.875);-200384
+26;267.24;Audio;Ring;success;;-200188
+26;267.67;Audio;Ring;visible;(-5623.823, 3.152, 450.875);-200384
 26;270.915;Audio;Ring;success;;-200384
 26;271.029;Audio;POV;visible;Right;-200506
 26;271.801;Audio;Ring;visible;(-5722.408, 3.152, 481.737);-200708
@@ -188,7 +188,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;275.092;Audio;Ring;success;;-200708
 26;275.141;Audio;Ring;visible;(-5794.521, 3.152, 521.023);-200906
 26;278.388;Audio;Ring;success;;-200906
-26;279.130;Audio;Ring;visible;(-5876.167, 3.153, 578.623);-201134
+26;279.13;Audio;Ring;visible;(-5876.167, 3.153, 578.623);-201134
 26;282.212;Audio;Ring;visible;(-5944.217, 3.153, 612.396);-201256
 26;282.409;Audio;Ring;success;;-201134
 26;285.447;Audio;Ring;success;;-201256
@@ -209,7 +209,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;304.542;Audio;Ring;visible;(-6457.813, 3.154, 813.389);-202752
 26;307.798;Audio;Ring;success;;-202752
 26;308.028;Audio;Ring;visible;(-6539.760, 3.155, 842.113);-202948
-26;311.110;Audio;Ring;visible;(-6610.577, 3.155, 870.200);-203070
+26;311.11;Audio;Ring;visible;(-6610.577, 3.155, 870.200);-203070
 26;311.283;Audio;Ring;success;;-202948
 26;314.333;Audio;Ring;success;;-203070
 26;314.839;Audio;Ring;visible;(-6701.325, 3.155, 892.980);-203298
@@ -220,7 +220,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;322.448;Audio;Ring;visible;(-6877.384, 3.156, 962.566);-203776
 26;322.989;Audio;Ring;success;;-203624
 26;325.385;Audio;Ring;visible;(-6944.683, 3.156, 991.918);-203972
-26;325.680;Audio;Ring;success;;-203776
+26;325.68;Audio;Ring;success;;-203776
 26;328.608;Audio;Ring;success;;-203972
 26;328.858;Audio;Ring;visible;(-7020.466, 3.156, 1035.575);-204242
 26;332.138;Audio;Ring;success;;-204242
@@ -251,7 +251,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;367.039;Smell;Ring;visible;(-7604.750, 3.159, 1741.950);-230986
 26;370.261;Smell;Ring;success;;-230986
 26;370.558;Smell;Ring;visible;(-7635.157, 3.159, 1824.614);-231172
-26;372.770;Smell;Ring;visible;(-7662.925, 3.159, 1872.698);-231290
+26;372.77;Smell;Ring;visible;(-7662.925, 3.159, 1872.698);-231290
 26;373.792;Smell;Ring;success;;-231172
 26;374.829;Smell;POV;visible;Left;-231480
 26;376.026;Smell;Ring;success;;-231290
@@ -312,10 +312,10 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;453.661;Smell;Ring;success;;-258072
 26;454.238;Smell;Ring;visible;(-7132.590, 3.165, 3109.244);-258344
 26;457.482;Smell;Ring;success;;-258344
-26;457.800;Smell;Ring;visible;(-7054.392, 3.165, 3150.837);-258540
+26;457.8;Smell;Ring;visible;(-7054.392, 3.165, 3150.837);-258540
 26;459.858;Smell;POV;visible;Right;-258662
 26;461.056;Smell;Ring;success;;-258540
-26;461.910;Smell;Ring;visible;(-6970.849, 3.166, 3208.934);-258908
+26;461.91;Smell;Ring;visible;(-6970.849, 3.166, 3208.934);-258908
 26;462.976;Smell;POV;success;;-258662
 26;464.815;Smell;Ring;visible;(-6903.150, 3.166, 3234.031);-259106
 26;465.166;Smell;Ring;success;;-258908
@@ -340,23 +340,23 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;490.796;Smell;Ring;visible;(-6362.361, 3.168, 3576.070);-261150
 26;491.238;Smell;Ring;success;;-260954
 26;492.854;Smell;POV;visible;Middle;-261346
-26;494.030;Smell;Ring;success;;-261150
+26;494.03;Smell;Ring;success;;-261150
 26;494.906;Smell;Ring;visible;(-6262.539, 3.168, 3599.001);-261592
 26;496.844;Smell;POV;success;;-261346
 26;497.832;Smell;Ring;visible;(-6190.831, 3.168, 3613.474);-261820
 26;498.139;Smell;Ring;success;;-261592
 26;500.737;Smell;Ring;visible;(-6119.813, 3.168, 3628.615);-262018
-26;501.090;Smell;Ring;success;;-261820
+26;501.09;Smell;Ring;success;;-261820
 26;503.171;Smell;Ring;visible;(-6061.781, 3.168, 3643.717);-262214
 26;503.992;Smell;Ring;success;;-262018
 26;505.229;Smell;POV;visible;Left;-262410
 26;506.406;Smell;Ring;success;;-262214
 26;507.282;Smell;Ring;visible;(-5959.823, 3.168, 3657.393);-262656
 26;509.606;Smell;Ring;visible;(-5901.842, 3.169, 3654.895);-262778
-26;510.210;Smell;POV;timeout;;-262410
+26;510.21;Smell;POV;timeout;;-262410
 26;510.538;Smell;Ring;success;;-262656
 26;511.705;Smell;Ring;visible;(-5849.665, 3.169, 3649.149);-263048
-26;512.840;Smell;Ring;success;;-262778
+26;512.84;Smell;Ring;success;;-262778
 26;513.764;Smell;POV;visible;Right;-263246
 26;514.939;Smell;Ring;success;;-263048
 26;515.815;Smell;Ring;visible;(-5746.554, 3.169, 3645.791);-263492
@@ -366,14 +366,14 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;521.625;Smell;Ring;visible;(-5603.567, 3.169, 3651.151);-263810
 26;522.043;Smell;Ring;success;;-263614
 26;524.439;Smell;Ring;visible;(-5535.130, 3.169, 3667.813);-264006
-26;524.880;Smell;Ring;success;;-263810
+26;524.88;Smell;Ring;success;;-263810
 26;527.696;Smell;Ring;success;;-264006
 26;528.369;Smell;Ring;visible;(-5439.755, 3.169, 3688.904);-264278
 26;530.851;Smell;Ring;visible;(-5378.047, 3.169, 3690.496);-264400
 26;531.628;Smell;Ring;success;;-264278
 26;532.915;Smell;POV;visible;Middle;-264596
 26;534.107;Smell;Ring;success;;-264400
-26;534.960;Smell;Ring;visible;(-5275.618, 3.169, 3697.717);-264842
+26;534.96;Smell;Ring;visible;(-5275.618, 3.169, 3697.717);-264842
 26;537.756;Smell;Ring;visible;(-5208.000, 3.169, 3715.059);-264964
 26;537.884;Smell;POV;timeout;;-264596
 26;538.218;Smell;Ring;success;;-264842
@@ -387,7 +387,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;549.054;Smell;Ring;success;;-265576
 26;551.623;Smell;Ring;success;;-265698
 26;552.185;Smell;Ring;visible;(-4874.291, 3.169, 3847.600);-265968
-26;555.420;Smell;Ring;success;;-265968
+26;555.42;Smell;Ring;success;;-265968
 26;555.661;Smell;Ring;visible;(-4794.380, 3.169, 3881.534);-266164
 26;558.928;Smell;Ring;success;;-266164
 26;559.045;Smell;Ring;visible;(-4715.693, 3.169, 3911.471);-266286
@@ -400,7 +400,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;569.093;Smell;POV;timeout;;-266606
 26;569.428;Smell;Ring;success;;-266852
 26;571.621;Smell;Ring;visible;(-4431.315, 3.169, 4042.095);-267244
-26;571.750;Smell;Ring;success;;-266974
+26;571.75;Smell;Ring;success;;-266974
 26;574.841;Smell;Ring;visible;(-4371.335, 3.169, 4095.412);-267440
 26;574.879;Smell;Ring;success;;-267244
 26;576.898;Smell;POV;visible;Left;-267636
@@ -419,21 +419,21 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;597.621;Heat;Ring;success;;-323160
 26;598.475;Heat;Ring;visible;(-4212.694, 3.169, 4673.912);-323530
 26;600.033;Heat;POV;success;;-323282
-26;600.910;Heat;Ring;visible;(-4210.662, 3.169, 4734.546);-323728
+26;600.91;Heat;Ring;visible;(-4210.662, 3.169, 4734.546);-323728
 26;601.731;Heat;Ring;success;;-323530
 26;603.324;Heat;Ring;visible;(-4200.152, 3.169, 4794.438);-323924
 26;604.144;Heat;Ring;success;;-323728
-26;606.600;Heat;Ring;success;;-323924
+26;606.6;Heat;Ring;success;;-323924
 26;607.142;Heat;Ring;visible;(-4185.417, 3.169, 4887.812);-324224
 26;610.386;Heat;Ring;success;;-324224
 26;610.472;Heat;Ring;visible;(-4168.137, 3.169, 4969.630);-324420
-26;612.530;Heat;POV;visible;Right;-324542
+26;612.53;Heat;POV;visible;Right;-324542
 26;613.727;Heat;Ring;success;;-324420
 26;615.223;Heat;POV;success;;-324542
 26;615.251;Heat;Ring;visible;(-4131.976, 3.169, 5083.326);-324792
 26;618.068;Heat;Ring;visible;(-4134.509, 3.169, 5153.090);-324914
 26;618.531;Heat;Ring;success;;-324792
-26;621.150;Heat;Ring;visible;(-4138.973, 3.169, 5229.058);-325110
+26;621.15;Heat;Ring;visible;(-4138.973, 3.169, 5229.058);-325110
 26;621.324;Heat;Ring;success;;-324914
 26;623.363;Heat;Ring;visible;(-4145.503, 3.169, 5284.107);-325306
 26;624.385;Heat;Ring;success;;-325110
@@ -461,7 +461,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;654.275;Heat;Ring;success;;-327328
 26;656.823;Heat;Ring;success;;-327556
 26;657.566;Heat;Ring;visible;(-4228.594, 3.169, 6130.479);-327826
-26;660.820;Heat;Ring;success;;-327826
+26;660.82;Heat;Ring;success;;-327826
 26;661.026;Heat;Ring;visible;(-4216.717, 3.169, 6215.748);-328022
 26;663.262;Heat;Ring;visible;(-4210.194, 3.169, 6271.135);-328144
 26;664.261;Heat;Ring;success;;-328022
@@ -475,22 +475,22 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;675.078;Heat;Ring;visible;(-4207.477, 3.169, 6564.856);-328982
 26;677.136;Heat;POV;visible;Right;-329104
 26;678.314;Heat;Ring;success;;-328982
-26;679.810;Heat;POV;success;;-329104
+26;679.81;Heat;POV;success;;-329104
 26;679.838;Heat;Ring;visible;(-4232.632, 3.169, 6681.096);-329352
 26;683.095;Heat;Ring;success;;-329352
 26;683.837;Heat;Ring;visible;(-4264.336, 3.169, 6775.313);-329550
 26;686.875;Heat;Ring;visible;(-4295.189, 3.169, 6843.996);-329672
 26;687.093;Heat;Ring;success;;-329550
 26;690.003;Heat;Ring;visible;(-4325.032, 3.169, 6916.314);-329868
-26;690.110;Heat;Ring;success;;-329672
+26;690.11;Heat;Ring;success;;-329672
 26;692.437;Heat;Ring;visible;(-4342.748, 3.169, 6974.926);-330020
 26;693.236;Heat;Ring;success;;-329868
 26;694.494;Heat;POV;visible;Middle;-330216
 26;695.694;Heat;Ring;success;;-330020
 26;696.548;Heat;Ring;visible;(-4378.889, 3.169, 7070.703);-330462
 26;698.152;Heat;POV;success;;-330216
-26;699.780;Heat;Ring;success;;-330462
-26;700.480;Heat;Ring;visible;(-4417.852, 3.169, 7160.639);-330766
+26;699.78;Heat;Ring;success;;-330462
+26;700.48;Heat;Ring;visible;(-4417.852, 3.169, 7160.639);-330766
 26;702.736;Heat;Ring;visible;(-4428.424, 3.169, 7217.293);-330888
 26;703.714;Heat;Ring;success;;-330766
 26;705.685;Heat;Ring;visible;(-4434.205, 3.169, 7289.629);-331084
@@ -530,15 +530,15 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;756.717;Vibration;Ring;visible;(-4008.595, 3.169, 8347.938);-358384
 26;757.738;Vibration;Ring;success;;-358186
 26;759.953;Vibration;Ring;visible;(-3954.710, 3.169, 8407.939);-358580
-26;759.980;Vibration;Ring;success;;-358384
+26;759.98;Vibration;Ring;success;;-358384
 26;763.211;Vibration;Ring;success;;-358580
-26;763.550;Vibration;Ring;visible;(-3888.203, 3.169, 8467.502);-358776
+26;763.55;Vibration;Ring;visible;(-3888.203, 3.169, 8467.502);-358776
 26;765.609;Vibration;POV;visible;Middle;-358898
 26;766.783;Vibration;Ring;success;;-358776
 26;768.391;Vibration;POV;success;;-358898
 26;768.419;Vibration;Ring;visible;(-3792.323, 3.169, 8542.973);-359146
 26;771.677;Vibration;Ring;success;;-359146
-26;772.400;Vibration;Ring;visible;(-3707.721, 3.169, 8595.169);-359374
+26;772.4;Vibration;Ring;visible;(-3707.721, 3.169, 8595.169);-359374
 26;775.392;Vibration;Ring;visible;(-3643.659, 3.169, 8633.030);-359496
 26;775.655;Vibration;Ring;success;;-359374
 26;778.251;Vibration;Ring;visible;(-3589.356, 3.169, 8680.379);-359692
@@ -546,12 +546,12 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;780.307;Vibration;POV;visible;Right;-359888
 26;781.529;Vibration;Ring;success;;-359692
 26;782.692;Vibration;POV;success;;-359888
-26;782.720;Vibration;Ring;visible;(-3485.424, 3.169, 8715.383);-360136
+26;782.72;Vibration;Ring;visible;(-3485.424, 3.169, 8715.383);-360136
 26;785.489;Vibration;Ring;visible;(-3421.356, 3.169, 8741.028);-360288
 26;785.974;Vibration;Ring;success;;-360136
 26;788.392;Vibration;Ring;visible;(-3358.999, 3.169, 8776.396);-360484
 26;788.744;Vibration;Ring;success;;-360288
-26;791.140;Vibration;Ring;visible;(-3300.936, 3.169, 8813.044);-360682
+26;791.14;Vibration;Ring;visible;(-3300.936, 3.169, 8813.044);-360682
 26;791.625;Vibration;Ring;success;;-360484
 26;793.199;Vibration;POV;visible;Left;-360878
 26;794.375;Vibration;Ring;success;;-360682
@@ -571,13 +571,13 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;812.067;Vibration;Ring;success;;-362234
 26;814.369;Vibration;Ring;success;;-362356
 26;814.574;Vibration;Ring;visible;(-2783.525, 3.168, 9055.764);-362626
-26;817.810;Vibration;Ring;success;;-362626
+26;817.81;Vibration;Ring;success;;-362626
 26;818.239;Vibration;Ring;visible;(-2692.728, 3.168, 9067.511);-362822
 26;820.298;Vibration;POV;visible;Right;-362944
-26;822.350;Vibration;Ring;visible;(-2787.214, 3.168, 9075.341);-363120
+26;822.35;Vibration;Ring;visible;(-2787.214, 3.168, 9075.341);-363120
 26;824.764;Vibration;Ring;visible;(-2721.582, 3.168, 8968.672);-363254
 26;825.271;Vibration;POV;timeout;;-362944
-26;826.230;Vibration;Ring;timeout;;-362822
+26;826.23;Vibration;Ring;timeout;;-362822
 26;827.846;Vibration;Ring;visible;(-2763.346, 3.168, 8932.959);-363524
 26;828.934;Vibration;Ring;success;;-363254
 26;830.012;Vibration;Ring;visible;(-2800.856, 3.168, 8896.881);-363722
@@ -598,7 +598,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;851.633;Vibration;Ring;timeout;;-364748
 26;852.823;Vibration;Ring;visible;(-2957.311, 3.169, 8622.062);-365336
 26;852.862;Vibration;Ring;success;;-365140
-26;854.540;Vibration;Ring;timeout;;-364944
+26;854.54;Vibration;Ring;timeout;;-364944
 26;854.881;Vibration;POV;visible;Middle;-365532
 26;856.056;Vibration;Ring;success;;-365336
 26;857.597;Vibration;POV;success;;-365532
@@ -606,7 +606,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;857.922;Vibration;Ring;visible;(-3059.824, 3.169, 8494.171);-371696
 26;861.177;Vibration;Ring;success;;-371696
 26;861.584;Vibration;Ring;visible;(-3105.101, 3.169, 8415.534);-371954
-26;864.820;Vibration;Ring;success;;-371954
+26;864.82;Vibration;Ring;success;;-371954
 26;865.116;Vibration;Ring;visible;(-3158.500, 3.169, 8344.491);-372150
 26;868.372;Vibration;Ring;success;;-372150
 26;869.001;Vibration;Ring;visible;(-3218.193, 3.169, 8268.298);-372346
@@ -621,7 +621,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;882.675;Vibration;Ring;visible;(-3344.952, 3.169, 7954.698);-373232
 26;883.473;Vibration;Ring;success;;-373110
 26;885.065;Vibration;Ring;visible;(-3377.841, 3.170, 7905.540);-373428
-26;885.930;Vibration;Ring;success;;-373232
+26;885.93;Vibration;Ring;success;;-373232
 26;887.637;Vibration;Ring;visible;(-3407.884, 3.170, 7848.345);-373624
 26;888.298;Vibration;Ring;success;;-373428
 26;890.891;Vibration;Ring;success;;-373624
@@ -631,7 +631,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;896.049;Vibration;POV;visible;Left;-374214
 26;897.212;Vibration;Ring;success;;-374016
 26;897.793;Vibration;POV;success;;-374214
-26;898.090;Vibration;Ring;visible;(-3551.116, 3.170, 7633.135);-374566
+26;898.09;Vibration;Ring;visible;(-3551.116, 3.170, 7633.135);-374566
 26;901.039;Vibration;Ring;visible;(-3601.839, 3.170, 7580.361);-374688
 26;901.346;Vibration;Ring;success;;-374566
 26;904.077;Vibration;Ring;visible;(-3643.095, 3.170, 7516.602);-374884
@@ -643,7 +643,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;910.639;Vibration;POV;success;;-375276
 26;910.667;Vibration;Ring;visible;(-3714.066, 3.170, 7369.021);-375526
 26;913.169;Vibration;Ring;visible;(-3739.462, 3.170, 7311.562);-375648
-26;913.900;Vibration;Ring;success;;-375526
+26;913.9;Vibration;Ring;success;;-375526
 26;915.804;Vibration;Ring;visible;(-3769.855, 3.170, 7253.585);-375844
 26;916.425;Vibration;Ring;success;;-375648
 26;919.039;Vibration;Ring;success;;-375844
@@ -669,7 +669,7 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;945.243;Vibration;POV;success;;-377816
 26;945.317;Vibration;Ring;visible;(-4134.980, 3.169, 6619.942);-378094
 26;948.595;Vibration;Ring;success;;-378094
-26;948.780;Vibration;Ring;visible;(-4170.729, 3.169, 6541.923);-378290
+26;948.78;Vibration;Ring;visible;(-4170.729, 3.169, 6541.923);-378290
 26;952.013;Vibration;Ring;success;;-378290
 26;952.711;Vibration;Ring;visible;(-4207.250, 3.169, 6451.034);-378486
 26;955.944;Vibration;Ring;success;;-378486
@@ -677,12 +677,12 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;958.008;Vibration;POV;visible;Left;-378730
 26;959.183;Vibration;Ring;success;;-378608
 26;959.876;Vibration;POV;success;;-378730
-26;960.060;Vibration;Ring;visible;(-4289.689, 3.169, 6287.041);-379010
+26;960.06;Vibration;Ring;visible;(-4289.689, 3.169, 6287.041);-379010
 26;962.719;Vibration;Ring;visible;(-4318.872, 3.169, 6227.359);-379176
 26;963.294;Vibration;Ring;success;;-379010
 26;965.953;Vibration;Ring;success;;-379176
 26;966.026;Vibration;Ring;visible;(-4357.311, 3.169, 6154.185);-379416
-26;969.260;Vibration;Ring;success;;-379416
+26;969.26;Vibration;Ring;success;;-379416
 26;969.712;Vibration;Ring;visible;(-4407.570, 3.169, 6076.008);-379612
 26;971.769;Vibration;POV;visible;Right;-379788
 26;974.206;Vibration;POV;success;;-379788
@@ -693,13 +693,13 @@ SubjectId;Timestamp;RoundType;EventType;EventStatus;EventInfo;EventId
 26;981.218;Vibration;Ring;visible;(-4637.216, 3.169, 5916.029);-380398
 26;981.279;Vibration;Ring;success;;-380262
 26;983.274;Vibration;POV;visible;Middle;-380594
-26;984.450;Vibration;Ring;success;;-380398
+26;984.45;Vibration;Ring;success;;-380398
 26;985.142;Vibration;POV;success;;-380594
 26;985.327;Vibration;Ring;visible;(-4719.392, 3.169, 5854.367);-380918
 26;988.562;Vibration;Ring;success;;-380918
 26;989.015;Vibration;Ring;visible;(-4796.126, 3.169, 5802.658);-381118
 26;991.361;Vibration;Ring;visible;(-4843.313, 3.169, 5767.693);-381240
-26;992.270;Vibration;Ring;success;;-381118
+26;992.27;Vibration;Ring;success;;-381118
 26;993.416;Vibration;POV;visible;Left;-381436
 26;994.614;Vibration;Ring;success;;-381240
 26;995.284;Vibration;POV;success;;-381436
